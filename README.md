@@ -3,9 +3,6 @@ I made this menu with RageUI
 Do not hesitate to contribute this project,
 You can donate at http://paypal.me/DoluTattoo
 
-# Forum thread:
- https://forum.cfx.re/t/dolutattoo-mapping-tool/1552051
-
 # Requirements
 - Please disable your other weather/time scripts.
 - Make sure to put spaces and not commas when you set portal flags, otherwise the menu will crash.
@@ -36,6 +33,9 @@ You can donate at http://paypal.me/DoluTattoo
 
 # Download:
 https://github.com/dolutattoo/DoluMappingTool
+
+# Forum thread:
+ https://forum.cfx.re/t/dolutattoo-mapping-tool/1552051
 
 # Credits:
 - @iTex_Zoz  and all his contributors for creating RageUI
