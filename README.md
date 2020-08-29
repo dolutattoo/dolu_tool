@@ -31,9 +31,6 @@ You can donate at http://paypal.me/DoluTattoo
 # Screenshots:
 ![unknown](https://cdn.discordapp.com/attachments/718783992546983936/749129029873041427/unknown.png) 
 
-# Video:
-https://www.youtube.com/embed/g6hw4ZA93gY
-
 # Download:
 https://github.com/dolutattoo/DoluMappingTool
 
