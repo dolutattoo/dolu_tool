@@ -17,6 +17,11 @@ You can donate at http://paypal.me/DoluTattoo
 - Teleport to custom coordinates
 - Change the time of day
 - Change weather
+**Updated 29-08-2020**
+  - Added No clip
+  - Added Entity Sets
+  - Added Spawn object by name
+  - Added Show coords
 
 # Usage:
 - **Press E to open the menu**
