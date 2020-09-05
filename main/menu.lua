@@ -100,7 +100,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                     for _, value in pairs(timeCycle) do
                         if(inputData == value.Name) then
                             founded = true
-                            setTimecycle(inputData)
+                            FUNC.setTimecycle(inputData)
                             RageUI.Text({
                                 message = "~b~ " .. i18n.get("current_timecycle") .. " ~w~" .. inputData
                             })
