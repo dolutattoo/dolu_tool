@@ -2,7 +2,7 @@
 DMT = {}
 
 -- DO NOT MODIFIY
-DMT.VERSION = "0.0.2"
+DMT.VERSION = "0.0.3"
 
 -- YOU CAN MODIFY HERE
 DMT.locale = "en" -- english only for the moment, looking for translators
