@@ -1,0 +1,8 @@
+{
+    "version":"0.0.3",
+    "patchnote" : [
+      "- Rework back-end of the script",
+      "- Add interior teleports",
+      "- Can save personnal interiors saved in json"
+    ]
+  }
