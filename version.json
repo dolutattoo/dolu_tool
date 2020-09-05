@@ -1,0 +1,8 @@
+{
+    "version":"0.0.3",
+    "patchnote" : [
+      "- test 1",
+      "- test 2",
+      "- test 3"
+    ]
+  }
