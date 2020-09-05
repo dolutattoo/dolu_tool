@@ -9,7 +9,7 @@ AddEventHandler("DMT:loadInteriors", function()
     TriggerClientEvent("DMT:initInteriors", source, interiorsData)
 end)
 
-PerformHttpRequest("https://raw.githubusercontent.com/AnthonyTCS/DoluMappingTool/master/version.json", function(err, text, h)
+PerformHttpRequest("https://raw.githubusercontent.com/dolutattoo/DoluMappingTool/master/version.json", function(err, text, h)
     if err == 200 then
       local versionArray = json.decode(text)
       local gitVersion = versionArray.version
