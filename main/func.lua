@@ -103,9 +103,17 @@ FUNC.teleportToMarker = function()
 
     if DoesBlipExist(waypointHandle) then
         local waypointCoords = GetBlipInfoIdCoord(waypointHandle)
-        local _, groundZ = GetGroundZFor_3dCoord(waypointCoords.x, waypointCoords.y, 1000.0, 1)
-        print(groundZ)
-        SetPedCoordsKeepVehicle(playerPed, waypointCoords.x, waypointCoords.y, groundZ)
+        for height = 1, 1000 do
+	        SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords.x, waypointCoords.y, height + 0.0)
+
+	        local foundGround, _ = GetGroundZFor_3dCoord(waypointCoords.x, waypointCoords.y, height + 0.0)
+	        if foundGround then
+	            SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords.x, waypointCoords.y, height + 0.0)
+	            break
+	        end
+
+	        Wait(1)
+	    end
 
         RageUI.Text({
 	        message = i18n.get("teleported_to") .. " " .. tostring(GetEntityCoords(playerPed))
