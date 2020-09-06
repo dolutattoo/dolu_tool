@@ -264,9 +264,9 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     RageUI.IsVisible(RMenu:Get('DMT', 'world'), true, true, true, function()
 
         RageUI.Slider(i18n.get("time"), settings.hour, 24, "~m~" .. i18n.get("set_time_day"), false, {}, true, function(Hovered, Selected, Active, Index)
-            if(Index > 24) then
+            if(Index > 23) then
                 settings.hour = 24
-            elseif(Index < 0) then
+            elseif(Index < 1) then
                 settings.hour = 0
             else
                 settings.hour = Index;
