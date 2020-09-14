@@ -38,31 +38,23 @@ Citizen.CreateThread(function()
                 local portalCount = GetInteriorPortalCount(interiorId)
                 local roomCount = GetInteriorRoomCount(interiorId)
                 local roomFlag = GetInteriorRoomFlag(interiorId, roomId)
-                -- local roomName = GetInteriorRoomName(interiorId, roomId)
+                local roomName = GetInteriorRoomName(interiorId, roomId)
                             
                 string = "~b~InteriorID: ~w~" .. interiorId
                 string = string .. "~n~ ~b~RoomID: ~w~" .. roomId
                 string = string .. "~n~ ~b~RoomCount: ~w~" .. roomCount-1
+                string = string .. "~n~ ~b~RoomTimecycle: ~w~" .. roomTimecycle
+                string2 = "~n~ ~b~portalCount: ~w~" .. portalCount
+                string2 = string2 .. "~n~ ~b~roomFlag: ~w~" .. roomFlag
+                string2 = string2 .. "~n~ ~b~roomName: ~w~" .. roomName
             else
                 string = "~o~You are not into an interior!"
+                string2 = ""
             end
 
-            SetTextFont(0)
-            SetTextProportional(1)
-            SetTextScale(0.36, 0.36)
-            SetTextColour(255, 255, 255, 255)
-            SetTextDropshadow(0, 0, 0, 0, 255)
-            SetTextEdge(5, 0, 0, 0, 255)
-            SetTextDropShadow()
-            SetTextOutline()
-            SetTextRightJustify(false)
-            SetTextWrap(0,0.55)
-            SetTextEntry("STRING")
-            
-            AddTextComponentString(string)
-            DrawText(0.245, 0.01)
-
-            RefreshInterior(InteriorId);
+            FUNC.drawText(string, {x=0.245, y=0.01})
+            FUNC.drawText(string2, {x=0.245, y=0.08})
+            RefreshInterior(InteriorId)
         end
     end
 end)
@@ -88,28 +80,40 @@ Citizen.CreateThread(function()
                 local roomHash = GetRoomKeyFromEntity(PlayerPedId())
                 local roomId = GetInteriorRoomIndexByHash(interiorId, roomHash)
 
-                for portalId = 0, countPortals - 1 do
+                for portalId = 0, 1 do
                     local corners = {}
                     local pureCorners = {}
                     for c = 0, 3 do
                         local cx, cy, cz = GetInteriorPortalCornerPosition(interiorId, portalId, c)
-                        local PortalCornerPosition = GetInteriorPortalCornerPosition(interiorId, portalId, c)
                         local cornerPosition = YMapInteriorPos + FUNC.QMultiply(Orientation, vector3(cx, cy, cz))
 
                         corners[c] = FUNC.round(cornerPosition, 2)
                         pureCorners[c] = vector3(cx, cy, cz)
                     end
 
-                    local CrossVector = FUNC.Lerp(corners[0], corners[3], 0.5)
+                    local longestCVector = { nil, nil, 0.0 }
+                    for key,_ in pairs(corners) do
+                        for i = 0, 3 do
+                            if(#(corners[key] - corners[i]) >= longestCVector[3] and #(corners[key] - corners[i]) > 0.0) then
+                                longestCVector = { corners[key], corners[i], #(corners[key] - corners[i]) }
+                            end
+                        end
+                    end
 
-                    if portalPoly then 
+                    if(#(corners[0] - corners[3]) < 7) then
+                        longestCVector = { corners[0], corners[3], #(corners[0] - corners[3]) }
+                    end
+
+                    local CrossVector = FUNC.Lerp(longestCVector[1], longestCVector[2], 0.5)
+
+                    if portalPoly then
                         DrawPoly(corners[0].x, corners[0].y, corners[0].z, corners[1].x, corners[1].y, corners[1].z, corners[2].x, corners[2].y, corners[2].z, 0, 0, 200, 100)
                         DrawPoly(corners[0].x, corners[0].y, corners[0].z, corners[2].x, corners[2].y, corners[2].z, corners[3].x, corners[3].y, corners[3].z, 0, 0, 200, 100)
                         DrawPoly(corners[3].x, corners[3].y, corners[3].z, corners[2].x, corners[2].y, corners[2].z, corners[1].x, corners[1].y, corners[1].z, 0, 0, 200, 100)
                         DrawPoly(corners[3].x, corners[3].y, corners[3].z, corners[1].x, corners[1].y, corners[1].z, corners[0].x, corners[0].y, corners[0].z, 0, 0, 200, 100)
                     end
 
-                    if portalLines then 
+                    if portalLines then
                         DrawLine(corners[0].x, corners[0].y, corners[0].z, corners[1].x, corners[1].y, corners[1].z, 255, 0, 0, 255)
                         DrawLine(corners[1].x, corners[1].y, corners[1].z, corners[2].x, corners[2].y, corners[2].z, 255, 0, 0, 255)
                         DrawLine(corners[2].x, corners[2].y, corners[2].z, corners[3].x, corners[3].y, corners[3].z, 255, 0, 0, 255)

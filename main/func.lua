@@ -102,10 +102,17 @@ FUNC.teleportToMarker = function()
     local waypointHandle = GetFirstBlipInfoId(8)
 
     if DoesBlipExist(waypointHandle) then
-        local waypointCoords = GetBlipInfoIdCoord(waypointHandle)
-        local _, groundZ = GetGroundZFor_3dCoord(waypointCoords.x, waypointCoords.y, 1000.0, 1)
-        print(groundZ)
-        SetPedCoordsKeepVehicle(playerPed, waypointCoords.x, waypointCoords.y, groundZ)
+        for height = 1, 1000 do
+	        SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords.x, waypointCoords.y, height + 0.0)
+
+	        local foundGround, _ = GetGroundZFor_3dCoord(waypointCoords.x, waypointCoords.y, height + 0.0)
+	        if foundGround then
+	            SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords.x, waypointCoords.y, height + 0.0)
+	            break
+	        end
+
+	        Wait(1)
+	    end
 
         RageUI.Text({
 	        message = i18n.get("teleported_to") .. " " .. tostring(GetEntityCoords(playerPed))
@@ -194,4 +201,21 @@ end
 
 FUNC.saveInteriors = function(array)
     TriggerServerEvent("DMT:saveInteriors", array)
+end
+
+FUNC.drawText = function(string, coords)
+    SetTextFont(0)
+    SetTextProportional(1)
+    SetTextScale(0.36, 0.36)
+    SetTextColour(255, 255, 255, 255)
+    SetTextDropshadow(0, 0, 0, 0, 255)
+    SetTextEdge(5, 0, 0, 0, 255)
+    SetTextDropShadow()
+    SetTextOutline()
+    SetTextRightJustify(false)
+    SetTextWrap(0,0.55)
+    SetTextEntry("STRING")
+    
+    AddTextComponentString(string)
+    DrawText(coords.x, coords.y)
 end

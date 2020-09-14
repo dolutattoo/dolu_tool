@@ -58,9 +58,19 @@ i18n["en"] = {
     set_interior = "Interior:",
     desc_interior_list ="List of all GTAV default interiors",
 
-    myinterior_list = "My interior list",
+    myinterior_list = "Saved Location",
     desc_myinterior_list ="List of all your interiors",
 
-    add_interior = "Add interior",
-    desc_add_interior = "Add your personnal interior coords"
+    add_interior = "Save current position",
+    desc_add_interior = "Save your personnal interior coords",
+
+    create_object = "Create object",
+    desc_create_object = "Create an object in front of you",
+
+    delete_object = "Delete object",
+    desc_delete_object = "Delete the object in front of you",
+
+    object_not_found = "~r~Object not found",
+
+    cant_get_version = "^8[DoluMappingTool] Can't get current version^7"
 }

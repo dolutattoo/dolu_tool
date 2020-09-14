@@ -31,6 +31,9 @@ client_scripts {
 }
 
 server_scripts {
+    "i18n/i18n.lua",
+    "i18n/locales/en.lua",
+    
     "main/server.lua",
-    "config.lua"
+    "config.lua",
 }

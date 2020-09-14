@@ -8,6 +8,8 @@ coordsOverMap = false
 
 interiorsData = {}
 
+objectData = {}
+
 local checkBox = {
     noClip = false,
     mloInfos = false,
@@ -37,9 +39,10 @@ RMenu.Add('DMT', 'rooms', RageUI.CreateSubMenu(RMenu:Get('DMT', 'main'), "DMT", 
 RMenu.Add('DMT', 'entitysets', RageUI.CreateSubMenu(RMenu:Get('DMT', 'main'), "DMT", "~b~EntitySets Menu"))
 RMenu.Add('DMT', 'teleport', RageUI.CreateSubMenu(RMenu:Get('DMT', 'main'), "DMT", "~b~Teleport Menu"))
 RMenu.Add('DMT', 'world', RageUI.CreateSubMenu(RMenu:Get('DMT', 'main'), "DMT", "~b~World Menu"))
+RMenu.Add('DMT', 'object', RageUI.CreateSubMenu(RMenu:Get('DMT', 'main'), "DMT", "~b~Object Menu"))
 RMenu.Add('DMT', 'interior_menu', RageUI.CreateSubMenu(RMenu:Get('DMT', 'teleport'), "DMT", "~b~Interior Menu"))
 RMenu.Add('DMT', 'interior_list', RageUI.CreateSubMenu(RMenu:Get('DMT', 'interior_menu'), "DMT", "~b~Interiors GTAV list"))
-RMenu.Add('DMT', 'myinterior_list', RageUI.CreateSubMenu(RMenu:Get('DMT', 'interior_menu'), "DMT", "~b~My interiors list"))
+RMenu.Add('DMT', 'myinterior_list', RageUI.CreateSubMenu(RMenu:Get('DMT', 'teleport'), "DMT", "~b~Saved Location"))
 
 
 RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
@@ -81,6 +84,9 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
 
         RageUI.Button(i18n.get("world_menu"), "~m~" .. i18n.get("inter_world"), true, function()
         end, RMenu:Get('DMT', 'world'))
+
+        RageUI.Button(i18n.get("object_menu"), "~m~" .. i18n.get("object_world"), true, function()
+        end, RMenu:Get('DMT', 'object'))
     end)
 
     -- Timecycle
@@ -98,11 +104,11 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                 local founded = false
                 if(inputData ~= nil) then
                     for _, value in pairs(timeCycle) do
-                        if(inputData == value.Name) then
+                        if(string.lower(inputData) == string.lower(value.Name)) then
                             founded = true
-                            setTimecycle(inputData)
+                            FUNC.setTimecycle(value.Name)
                             RageUI.Text({
-                                message = "~b~ " .. i18n.get("current_timecycle") .. " ~w~" .. inputData
+                                message = "~b~ " .. i18n.get("current_timecycle") .. " ~w~" .. value.Name
                             })
                         end
                     end
@@ -156,8 +162,14 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
         RageUI.Button(i18n.get("set_portalFlag"), "~m~" .. i18n.get("set_flag"), true, function(Hovered, Active, Selected)
             if (Selected) then
                 local inputData = FUNC.displayKeyboard()
-                local explode = FUNC.stringSplit(inputData, " ")
-                FUNC.setPortalFlag(explode[1], explode[2])
+
+                if(inputData) then
+                    local explode = FUNC.stringSplit(inputData, " ")
+
+                    if(#explode == 2) then
+                        FUNC.setPortalFlag(explode[1], explode[2])
+                    end
+                end
 	        end
 	    end)
     end)
@@ -191,6 +203,9 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     -- Teleport
     RageUI.IsVisible(RMenu:Get('DMT', 'teleport'), true, true, true, function()
 
+        RageUI.Button(i18n.get("myinterior_list"), "~m~" .. i18n.get("desc_myinterior_list"), true, function()
+        end, RMenu:Get('DMT', 'myinterior_list'))
+
         RageUI.Button(i18n.get("tp_interior"), "~m~" .. i18n.get("inter_interior"), true, function()
         end, RMenu:Get('DMT', 'interior_menu'))
 
@@ -203,15 +218,20 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
         RageUI.Button(i18n.get("custom_coords"), "~m~" .. i18n.get("set_custom_coords"), true, function(Hovered, Active, Selected)
             if (Selected) then
                 local inputData = FUNC.displayKeyboard()
-                local explode = FUNC.stringSplit(inputData, " ")
 
-                for key, value in pairs(explode) do
-                    customCoords[key] = value
+                if(inputData) then
+                    local explode = FUNC.stringSplit(inputData, " ")
+                    if(#explode == 3) then
+
+                        for key, value in pairs(explode) do
+                            customCoords[key] = value
+                        end
+
+                        RageUI.Text({
+                            message = i18n.get("coords_set") .. " " .. tostring(vector3(tonumber(customCoords[1]), tonumber(customCoords[2]), tonumber(customCoords[3])))
+                        })
+                    end
                 end
-
-                RageUI.Text({
-                    message = i18n.get("coords_set") .. " " .. tostring(vector3(tonumber(customCoords[1]), tonumber(customCoords[2]), tonumber(customCoords[3])))
-                })
             end
         end)
 
@@ -226,8 +246,6 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     RageUI.IsVisible(RMenu:Get('DMT', 'interior_menu'), true, true, true, function()
         RageUI.Button(i18n.get("interior_list"), "~m~" .. i18n.get("desc_interior_list"), true, function()
         end, RMenu:Get('DMT', 'interior_list'))
-        RageUI.Button(i18n.get("myinterior_list"), "~m~" .. i18n.get("desc_myinterior_list"), true, function()
-        end, RMenu:Get('DMT', 'myinterior_list'))
     end)
 
     RageUI.IsVisible(RMenu:Get('DMT', 'interior_list'), true, true, true, function()
@@ -264,9 +282,9 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     RageUI.IsVisible(RMenu:Get('DMT', 'world'), true, true, true, function()
 
         RageUI.Slider(i18n.get("time"), settings.hour, 24, "~m~" .. i18n.get("set_time_day"), false, {}, true, function(Hovered, Selected, Active, Index)
-            if(Index > 24) then
+            if(Index > 23) then
                 settings.hour = 24
-            elseif(Index < 0) then
+            elseif(Index < 1) then
                 settings.hour = 0
             else
                 settings.hour = Index;
@@ -294,6 +312,63 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
             coordsOverMap = true
         end, function()
             coordsOverMap = false
+        end)
+    end)
+
+    -- Object
+    RageUI.IsVisible(RMenu:Get('DMT', 'object'), true, true, true, function()
+
+        RageUI.Button(i18n.get("create_object"), "~m~" .. i18n.get("desc_create_object"), true, function(Hovered, Active, Selected)
+            if (Selected) then
+                local inputData = FUNC.displayKeyboard()
+                local playerCoords = GetEntityCoords(PlayerPedId())
+
+                if(inputData) then
+                    local explode = FUNC.stringSplit(inputData, " ")
+                    if(#explode == 1) then
+
+                        local model = GetHashKey(explode[1])
+                        local found = true
+                        local count = 0
+
+                        while not HasModelLoaded(model) do
+                            RequestModel(model)
+                            Wait(1)
+                            if(count > 1000) then
+                                found = false
+                                break
+                            end
+                            count = count + 1
+                        end
+
+                        if(found) then
+                            local obj = CreateObject(model, playerCoords.x, playerCoords.y, playerCoords.z-1, true, false, false)
+                            FreezeEntityPosition(obj, true)
+
+                            table.insert(objectData, { obj = obj, name = model })
+                        else
+                            RageUI.Text({
+                                message = i18n.get("object_not_found")
+                            })
+                        end
+                    end
+                end
+            end
+        end)
+
+        RageUI.Button(i18n.get("delete_object"), "~m~" .. i18n.get("desc_delete_object"), true, function(Hovered, Active, Selected)
+            if (Selected) then
+                local playerCoords = GetEntityCoords(PlayerPedId())
+
+                for i=1, #objectData do
+                    local obj = GetClosestObjectOfType(playerCoords.x, playerCoords.y, playerCoords.z , 2.0, objectData[i].name, true, true, true)
+
+                    if(#(playerCoords - GetEntityCoords(obj)) < 3.0) then
+                        objectData[i] = nil
+                        DeleteEntity(obj)
+                    end
+                end
+            end
         end)
     end)
 end)
