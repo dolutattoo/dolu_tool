@@ -80,7 +80,7 @@ Citizen.CreateThread(function()
                 local roomHash = GetRoomKeyFromEntity(PlayerPedId())
                 local roomId = GetInteriorRoomIndexByHash(interiorId, roomHash)
 
-                for portalId = 0, 1 do
+                for portalId = 0, countPortals - 1 do
                     local corners = {}
                     local pureCorners = {}
                     for c = 0, 3 do
