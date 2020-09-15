@@ -102,6 +102,7 @@ FUNC.teleportToMarker = function()
     local waypointHandle = GetFirstBlipInfoId(8)
 
     if DoesBlipExist(waypointHandle) then
+	local waypointCoords = GetBlipInfoIdCoord(WaypointHandle
         for height = 1, 1000 do
 	        SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords.x, waypointCoords.y, height + 0.0)
 
