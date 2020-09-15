@@ -363,10 +363,12 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                 for i=1, #objectData do
                     local obj = GetClosestObjectOfType(playerCoords.x, playerCoords.y, playerCoords.z , 2.0, objectData[i].name, true, true, true)
 
-                    if(#(playerCoords - GetEntityCoords(obj)) < 3.0) then
-                        objectData[i] = nil
-                        DeleteEntity(obj)
-                    end
+		    if(obj ~= nil) then
+			    if(#(playerCoords - GetEntityCoords(obj)) < 3.0) then
+				objectData[i] = nil
+				DeleteEntity(obj)
+			    end
+		    end
                 end
             end
         end)
