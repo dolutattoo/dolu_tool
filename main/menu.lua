@@ -224,12 +224,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                     if(#explode == 3) then
 
                         for key, value in pairs(explode) do
-                            if(type(value) == "number") then
-                                customCoords[key] = value
-                            else
-                                break
-                            end
-                            
+                            customCoords[key] = value
                         end
 
                         RageUI.Text({
