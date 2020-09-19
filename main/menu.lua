@@ -224,11 +224,16 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                     if(#explode == 3) then
 
                         for key, value in pairs(explode) do
-                            customCoords[key] = value
+                            if(type(value) == "number") then
+                                customCoords[key] = value
+                            else
+                                break
+                            end
+                            
                         end
 
                         RageUI.Text({
-                            message = i18n.get("coords_set") .. " " .. tostring(vector3(tonumber(customCoords[1]), tonumber(customCoords[2]), tonumber(customCoords[3])))
+                            message = i18n.get("coords_set") .. " vector3(" .. customCoords[1] .. ", " .. customCoords[2] .. ", " .. customCoords[3] .. ")"
                         })
                     end
                 end
@@ -282,12 +287,13 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     RageUI.IsVisible(RMenu:Get('DMT', 'world'), true, true, true, function()
 
         RageUI.Slider(i18n.get("time"), settings.hour, 24, "~m~" .. i18n.get("set_time_day"), false, {}, true, function(Hovered, Selected, Active, Index)
-            if(Index > 23) then
-                settings.hour = 23
-            elseif(Index < 1) then
+            
+            if(Index > 24) then
                 settings.hour = 0
+            elseif(Index < 0) then
+                settings.hour = 23
             else
-                settings.hour = Index;
+                settings.hour = Index
             end
             
             FUNC.setClockTime(settings.hour)
@@ -345,7 +351,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                             local obj = CreateObject(model, playerCoords.x, playerCoords.y, playerCoords.z-1, true, false, false)
                             FreezeEntityPosition(obj, true)
 
-                            table.insert(objectData, { obj = obj, name = model })
+                            table.insert(objectData, { obj = obj, name = model, coords = GetEntityCoords(obj) })
                         else
                             RageUI.Text({
                                 message = i18n.get("object_not_found")
@@ -363,12 +369,14 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                 for i=1, #objectData do
                     local obj = GetClosestObjectOfType(playerCoords.x, playerCoords.y, playerCoords.z , 2.0, objectData[i].name, true, true, true)
 
-		    if(obj ~= nil) then
-			    if(#(playerCoords - GetEntityCoords(obj)) < 3.0) then
-				objectData[i] = nil
-				DeleteEntity(obj)
-			    end
-		    end
+                    if(obj ~= nil) then
+                        if(GetEntityCoords(obj) == objectData[i].coords) then
+                            if(#(playerCoords - GetEntityCoords(obj)) < 3.0) then
+                            objectData[i] = nil
+                            DeleteEntity(obj)
+                            end
+                        end
+                    end
                 end
             end
         end)
