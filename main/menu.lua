@@ -185,27 +185,25 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                 end
 	        end
 	    end)
+
     end)
 
     -- EntitySets
     RageUI.IsVisible(RMenu:Get('DMT', 'entitysets'), true, true, true, function()
 
 	    RageUI.Button(i18n.get("enable_entitysets"), "~m~" .. i18n.get("ac_entitysets"), true, function(Hovered, Active, Selected)
-           if (Selected) then
+           	if (Selected) then
                 local inputData = FUNC.displayKeyboard()
                 if(inputData ~= nil) then
-                    FUNC.disableEntitySets(inputData)
+                    FUNC.enableEntitySet(inputData)
                 end
 	        end
 	    end)
 
-		RageUI.Button(i18n.get("disable_entitysets"), "~m~" .. i18n.get("desc_entitysets"), true, function(Hovered, Active, Selected)
-           if (Selected) then
-                local inputData = FUNC.displayKeyboard()
-                if(inputData ~= nil) then
-                    FUNC.disableEntitySets(inputData)
-                end
-	        end
+		RageUI.Button(i18n.get("toggle_last_entitysets"), "~m~" .. i18n.get("toggle_last_entitysets_info"), true, function(Hovered, Active, Selected)
+           	if (Selected) then
+           		FUNC.toggleLastEntitySet()
+	       	end
 	    end)
 
     end)

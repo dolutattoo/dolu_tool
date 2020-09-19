@@ -1,3 +1,5 @@
+LastEntitySet = nil
+
 
 FUNC = {}
 
@@ -87,24 +89,54 @@ FUNC.resetNoClip = function()
     FreezeEntityPosition(playerPed, false)
 end
 
-FUNC.enableEntitySets = function(value)
+FUNC.enableEntitySet = function(value)
     local playerPed = PlayerPedId()
     local interiorId = GetInteriorFromEntity(playerPed)
-    ActivateInteriorEntitySet(interiorId, tonumber(value))
+
+    if IsInteriorEntitySetActive(interiorId, value) then
+        DeactivateInteriorEntitySet(interiorId, value)
+        RageUI.Text({
+           message = "EntitySet ~b~" .. value .. " ~r~" .. i18n.get("disabled")
+        })
+        LastEntitySet = nil
+    else
+        ActivateInteriorEntitySet(interiorId, value)
+        RageUI.Text({
+           message = "EntitySet ~b~" .. value .. " ~g~" .. i18n.get("enabled")
+        })
+        LastEntitySet = value
+    end
+
     RefreshInterior(interiorId)
-    RageUI.Text({
-        message = "EntitySets " .. value .. " ~r~" .. i18n.get("enable")
-    })
 end
 
-FUNC.disableEntitySets = function(value)
+FUNC.toggleLastEntitySet = function()
     local playerPed = PlayerPedId()
     local interiorId = GetInteriorFromEntity(playerPed)
-    DeactivateInteriorEntitySet(interiorId, tonumber(value))
-    RefreshInterior(interiorId)
-    RageUI.Text({
-        message = "EntitySets " .. value .. " ~r~" .. i18n.get("disable")
-    })
+
+    if LastEntitySet ~= nil then
+        
+        if IsInteriorEntitySetActive(interiorId, LastEntitySet) then 
+            DeactivateInteriorEntitySet(interiorId, tostring(LastEntitySet))
+            RefreshInterior(interiorId)
+            RageUI.Text({
+                message = "EntitySet ~b~" .. tostring(LastEntitySet) .. " ~r~" .. i18n.get("disabled")
+            })
+        else
+            ActivateInteriorEntitySet(interiorId, tostring(LastEntitySet))
+            RefreshInterior(interiorId)
+            RageUI.Text({
+                message = "EntitySet ~b~" .. tostring(LastEntitySet) .. " ~g~" .. i18n.get("enabled")
+            })
+        end
+
+    else
+        
+        RageUI.Text({
+            message = "~o~" .. i18n.get("entitysetnotapplied")
+        })
+
+    end
 end
 
 FUNC.teleportToMarker = function()
