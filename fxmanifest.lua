@@ -1,26 +1,39 @@
 fx_version 'adamant'
 games { 'gta5' };
 
-name 'DoluMappingTool_v2';
+name 'DoluMappingTool';
 
 description 'Here is the first version of my mapping tool. This is only to help modders to create interiors mods (MLO). Do not hesitate to contribute to this project on my github.'
 description 'If you like the tool, you can donate here https://paypal.me/DoluTattoo'
 
 client_scripts {
-    "src/client/RMenu.lua",
-    "src/client/menu/RageUI.lua",
-    "src/client/menu/Menu.lua",
-    "src/client/menu/MenuController.lua",
-    "src/client/components/*.lua",
-    "src/client/menu/elements/*.lua",
-    "src/client/menu/items/*.lua",
-    "src/client/menu/panels/*.lua",
-    "src/client/menu/windows/*.lua",
+    "lib/RMenu.lua",
+    "lib/menu/RageUI.lua",
+    "lib/menu/Menu.lua",
+    "lib/menu/MenuController.lua",
+    "lib/components/*.lua",
+    "lib/menu/elements/*.lua",
+    "lib/menu/items/*.lua",
+    "lib/menu/panels/*.lua",
+    "lib/menu/windows/*.lua",
 
+    "config.lua",
+    "main/data/timecycle.lua",
+    "main/data/weather.lua",
+    "main/data/interiors.lua",
+
+    "i18n/i18n.lua",
+    "i18n/locales/en.lua",
+
+    "main/menu.lua",
+    "main/func.lua",
+    "main/threads.lua"
 }
 
-client_scripts {
-     'dolutattoo/dolu_mapping_tool.lua'
+server_scripts {
+    "i18n/i18n.lua",
+    "i18n/locales/en.lua",
+    
+    "main/server.lua",
+    "config.lua",
 }
-
-
