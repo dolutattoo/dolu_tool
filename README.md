@@ -30,7 +30,8 @@ You can donate at http://paypal.me/DoluTattoo
   - All the script was re-written with a lot of optimizations
   - Added Saving location
   - Added Teleport vanilla interiors (please pull request if you know others)
-  - Added Entity Sets Toggle by name
+  - Added Toggle Entity Sets by name
+  - Added Toogle last Entity Set 
   - Added delete spawned objects who are in front of you
   - Added config file to change translation
   - Added translation system (please pull request your language is not supported)
@@ -38,7 +39,7 @@ You can donate at http://paypal.me/DoluTattoo
   
 # Usage:
 - **Press E to open the menu**
-- You can change the shortcut in **dolu_mapping_tool.lua** at line 878
+- You can change the shortcut and language in **config.lua**
 
 # Screenshots:
 ![unknown](https://cdn.discordapp.com/attachments/718783992546983936/749129029873041427/unknown.png) 
