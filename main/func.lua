@@ -87,6 +87,16 @@ FUNC.resetNoClip = function()
     FreezeEntityPosition(playerPed, false)
 end
 
+FUNC.enableEntitySets = function(value)
+    local playerPed = PlayerPedId()
+    local interiorId = GetInteriorFromEntity(playerPed)
+    ActivateInteriorEntitySet(interiorId, tonumber(value))
+    RefreshInterior(interiorId)
+    RageUI.Text({
+        message = "EntitySets " .. value .. " ~r~" .. i18n.get("enable")
+    })
+end
+
 FUNC.disableEntitySets = function(value)
     local playerPed = PlayerPedId()
     local interiorId = GetInteriorFromEntity(playerPed)

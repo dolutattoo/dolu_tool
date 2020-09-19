@@ -190,7 +190,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     -- EntitySets
     RageUI.IsVisible(RMenu:Get('DMT', 'entitysets'), true, true, true, function()
 
-	    RageUI.Button(i18n.get("disable_entitysets"), "~m~" .. i18n.get("desc_entitysets"), true, function(Hovered, Active, Selected)
+	    RageUI.Button(i18n.get("enable_entitysets"), "~m~" .. i18n.get("ac_entitysets"), true, function(Hovered, Active, Selected)
            if (Selected) then
                 local inputData = FUNC.displayKeyboard()
                 if(inputData ~= nil) then
@@ -198,6 +198,16 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                 end
 	        end
 	    end)
+
+		RageUI.Button(i18n.get("disable_entitysets"), "~m~" .. i18n.get("desc_entitysets"), true, function(Hovered, Active, Selected)
+           if (Selected) then
+                local inputData = FUNC.displayKeyboard()
+                if(inputData ~= nil) then
+                    FUNC.disableEntitySets(inputData)
+                end
+	        end
+	    end)
+
     end)
 
     -- Teleport
@@ -206,14 +216,14 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
         RageUI.Button(i18n.get("myinterior_list"), "~m~" .. i18n.get("desc_myinterior_list"), true, function()
         end, RMenu:Get('DMT', 'myinterior_list'))
 
-        RageUI.Button(i18n.get("tp_interior"), "~m~" .. i18n.get("inter_interior"), true, function()
-        end, RMenu:Get('DMT', 'interior_menu'))
-
         RageUI.Button(i18n.get("tp_marker"), "~m~" .. i18n.get("tp_to_marker"), true, function(Hovered, Active, Selected)
 	        if (Selected) then
 	            FUNC.teleportToMarker()
 	        end
 	    end)
+
+        RageUI.Button(i18n.get("tp_interior"), "~m~" .. i18n.get("inter_interior"), true, function()
+        end, RMenu:Get('DMT', 'interior_menu'))
 
         RageUI.Button(i18n.get("custom_coords"), "~m~" .. i18n.get("set_custom_coords"), true, function(Hovered, Active, Selected)
             if (Selected) then
@@ -281,9 +291,9 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     -- World
     RageUI.IsVisible(RMenu:Get('DMT', 'world'), true, true, true, function()
 
-        RageUI.Slider(i18n.get("time"), settings.hour, 24, "~m~" .. i18n.get("set_time_day"), false, {}, true, function(Hovered, Selected, Active, Index)
+        RageUI.Slider(i18n.get("time"), settings.hour, 23, "~m~" .. i18n.get("set_time_day"), false, {}, true, function(Hovered, Selected, Active, Index)
             
-            if(Index > 24) then
+            if(Index > 23) then
                 settings.hour = 0
             elseif(Index < 0) then
                 settings.hour = 23
