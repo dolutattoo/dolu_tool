@@ -24,7 +24,7 @@ You can donate at http://paypal.me/DoluTattoo
   - Added Spawn object by name
   - Added Show coords
 
-**V3 Update 19-09-2020**
+**V3 Update 20-09-2020**
   - Fixed time slider
   - Fixed Portal info text position
   - All the script was re-written with a lot of optimizations
