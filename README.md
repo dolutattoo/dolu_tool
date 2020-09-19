@@ -25,14 +25,15 @@ You can donate at http://paypal.me/DoluTattoo
   - Added Show coords
 
 **V3 Update 19-09-2020**
+  - Fixed time slider
+  - Fixed Portal info text position
   - All the script was re-written with a lot of optimizations
   - Added Saving location
   - Added Teleport vanilla interiors (please pull request if you know others)
   - Added Entity Sets Toggle by name
-  - Fixed time slider
   - Added delete spawned objects who are in front of you
   - Added config file to change translation
-  - Added translation system
+  - Added translation system (please pull request your language is not supported)
   - Added console alert when a newer version is avalaible on github
   
 # Usage:
