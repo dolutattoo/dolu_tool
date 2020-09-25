@@ -23,13 +23,27 @@ You can donate at http://paypal.me/DoluTattoo
   - Added Entity Sets
   - Added Spawn object by name
   - Added Show coords
+  
+**Updated 25-09-2020**
+  - Fixed time slider
+  - Fixed Portal info text position
+  - All the script was re-written with a lot of optimizations
+  - Added Saving location
+  - Added Teleport vanilla interiors (please pull request if you know others)
+  - Added Toggle Entity Sets by name
+  - Added Toogle last Entity Set
+  - Added delete spawned objects who are in front of you
+  - Added translation system (please pull request your language is not supported)
+  - Added config file to change open key and translation
+  - Added console alert when a newer version is avalaible on github, showing the patchnote
+  - Minor changes
 
 # Usage:
 - **Press E to open the menu**
-- You can change the shortcut in **dolu_mapping_tool.lua** at line 878
+- You can change the shortcut and language in config file
 
 # Screenshots:
-![unknown](https://cdn.discordapp.com/attachments/718783992546983936/749129029873041427/unknown.png) 
+![unknown](https://cdn.discordapp.com/attachments/613840825025036289/758970134936551424/unknown.png) 
 
 # Download:
 https://github.com/dolutattoo/DoluMappingTool
