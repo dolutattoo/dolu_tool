@@ -36,6 +36,7 @@ You can donate at http://paypal.me/DoluTattoo
   - Added config file to change translation
   - Added translation system (please pull request your language is not supported)
   - Added console alert when a newer version is avalaible on github
+  - Minor changes
   
 # Usage:
 - **Press E to open the menu**
