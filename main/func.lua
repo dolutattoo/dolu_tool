@@ -98,7 +98,7 @@ FUNC.enableEntitySet = function(value)
         RageUI.Text({
            message = "EntitySet ~b~" .. value .. " ~r~" .. i18n.get("disabled")
         })
-        LastEntitySet = nil
+        LastEntitySet = value
     else
         ActivateInteriorEntitySet(interiorId, value)
         RageUI.Text({

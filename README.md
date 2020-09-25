@@ -18,29 +18,15 @@ You can donate at http://paypal.me/DoluTattoo
 - Change the time of day
 - Change weather
 
-**V2 Update 29-08-2020** 
+**Updated 29-08-2020** 
   - Added No clip
-  - Added Entity Sets Disabling
+  - Added Entity Sets
   - Added Spawn object by name
   - Added Show coords
 
-**V3 Update 20-09-2020**
-  - Fixed time slider
-  - Fixed Portal info text position
-  - All the script was re-written with a lot of optimizations
-  - Added Saving location
-  - Added Teleport vanilla interiors (please pull request if you know others)
-  - Added Toggle Entity Sets by name
-  - Added Toogle last Entity Set 
-  - Added delete spawned objects who are in front of you
-  - Added config file to change translation
-  - Added translation system (please pull request your language is not supported)
-  - Added console alert when a newer version is avalaible on github
-  - Minor changes
-  
 # Usage:
 - **Press E to open the menu**
-- You can change the shortcut and language in **config.lua**
+- You can change the shortcut in **dolu_mapping_tool.lua** at line 878
 
 # Screenshots:
 ![unknown](https://cdn.discordapp.com/attachments/718783992546983936/749129029873041427/unknown.png) 

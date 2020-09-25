@@ -1,7 +1,17 @@
 {
-    "version":"0.0.3",
+    "version":"3.0",
     "patchnote" : [
-      "- Refont backend scripts",
-      "- Spawn obj/Delete obj"
+     "- Fixed time slider",
+	 "- Fixed Portal info text position",
+	 "- All the script was re-written with a lot of optimizations",
+	 "- Added Saving location",
+	 "- Added Teleport vanilla interiors (please pull request if you know others)",
+	 "- Added Toggle Entity Sets by name",
+	 "- Added Toogle last Entity Set",
+	 "- Added delete spawned objects who are in front of you",
+	 "- Added config file to change translation",
+	 "- Added translation system (please pull request your language is not supported)",
+	 "- Added console alert when a newer version is avalaible on github",
+	 "- Minor changes"
     ]
   }
