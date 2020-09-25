@@ -43,7 +43,7 @@ You can donate at http://paypal.me/DoluTattoo
 - You can change the shortcut and language in config file
 
 # Screenshots:
-![unknown](https://cdn.discordapp.com/attachments/613840825025036289/758970134936551424/unknown.png) 
+![unknown](https://cdn.discordapp.com/attachments/613840825025036289/758971862486614046/unknown.png) 
 
 # Download:
 https://github.com/dolutattoo/DoluMappingTool
