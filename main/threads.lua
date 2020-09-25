@@ -48,7 +48,7 @@ Citizen.CreateThread(function()
                 string2 = string2 .. "~n~ ~b~roomFlag: ~w~" .. roomFlag
                 string2 = string2 .. "~n~ ~b~roomName: ~w~" .. roomName
             else
-                string = "~o~You are not into an interior!"
+                string = "~o~You are not in an interior!"
                 string2 = ""
             end
 
