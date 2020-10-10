@@ -38,6 +38,9 @@ You can donate at http://paypal.me/DoluTattoo
   - Added console alert when a newer version is avalaible on github, showing the patchnote
   - Minor changes
 
+**Updated 10-10-2020**
+  - Fix error: vector3 not supported by JSON server.lua:3
+
 # Usage:
 - **Press E to open the menu**
 - You can change the shortcut and language in config file
