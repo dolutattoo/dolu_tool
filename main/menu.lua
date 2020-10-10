@@ -281,7 +281,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
                 local inputName = FUNC.displayKeyboard("Interior name")
                 local playerPed = PlayerPedId()
                 local playerCoords = GetEntityCoords(playerPed)
-                table.insert(interiorsData, { Name = inputName, value = playerCoords})
+                table.insert(interiorsData, { Name = inputName, value = { x = playerCoords.x, y = playerCoords.y, z = playerCoords.z }})
                 FUNC.saveInteriors(interiorsData)
 	        end
 	    end)
