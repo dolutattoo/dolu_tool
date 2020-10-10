@@ -169,7 +169,6 @@ FUNC.teleportToMarker = function()
 end
 
 FUNC.teleportToCoords = function(coords)
-    print(coords)
     local playerPed = PlayerPedId()
     SetEntityCoords(playerPed, coords[1] + 0.0, coords[2] + 0.0, coords[3] + 0.0)
 end
