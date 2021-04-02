@@ -6,4 +6,4 @@ DMT.locale = "en" -- english only for the moment, looking for translators
 DMT.openUI = 51 -- https://docs.fivem.net/docs/game-references/controls/
 
 -- DO NOT MODIFIY !!
-DMT.VERSION = "3.0"
+DMT.VERSION = "3.1"

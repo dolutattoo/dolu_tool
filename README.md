@@ -1,7 +1,7 @@
 This is a tool to help modders who creates interiors mods (MLO) for FiveM
 I made this menu with RageUI
 Do not hesitate to contribute this project,
-You can donate at http://paypal.me/DoluTattoo
+You can donate at https://paypal.me/LudoAlfonsi
 
 # Requirements
 - Please disable your other weather/time scripts.
