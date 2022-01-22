@@ -24,6 +24,7 @@ client_scripts {
 
     "i18n/i18n.lua",
     "i18n/locales/en.lua",
+    "i18n/locales/fr.lua",
 
     "main/menu.lua",
     "main/func.lua",

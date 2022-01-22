@@ -1,0 +1,92 @@
+i18n["fr"] = {
+    timecycle_menu = "Menu Timecycle",
+    noclip = "Noclip",
+    mlo_info = "Infos MLO",
+    portal_menu = "Menu Portail",
+    room_menu = "Menu Room",
+    entitysets_menu = "Menu EntitySets",
+    teleport_menu = "Menu Téléportation",
+    world_menu = "Menu Monde",
+    object_menu = "Menu Objet",
+    show_interior = "Afficher les informations de l'intérieur à l'écran",
+    timecycle_room = "Interagir avec le timecycle de la pièce actuelle",
+    inter_portals = "Interagir avec les portails de la pièce actuelle",
+    inter_door = "Interagir avec les pièces de l'intérieur actuel",
+    inter_entitysets = "Activer/désactiver EntitySets pour l'intérieur actuel",
+    inter_object = "Créer un objet",
+    needed_tp = "Toutes les options de téléportation nécessaires",
+    inter_world = "Interagir avec l'ensemble de la map",
+    set_timecycle = "Définir le timecycle",
+    select_timecycle = "Sélétionner le timecycle que vous voulez appliquer dans la pièce actuelle",
+    set_timecycle_byname = "Choisir le timecycle appartir du nom",
+    type_timecycle = "Tapez le timecycle que vous voulez appliquer dans la pièce actuelle",
+    not_exist = "n'existe pas",
+    portals_show = "Afficher les portails ",
+    portals_bluePlane = "Remplir chaque portails avec un plan bleu",
+    portals_info = "Infos portails",
+    portals_outline = "Contour des portails",
+    portals_redLine = "Afficher les contours des portails avec une ligne rouge",
+    portals_corners = "Coins des portails",
+    portals_showcoords = "Afficher les informations sur les coins du portail",
+    set_portalFlag = "Définir les flags du portail",
+    set_flag = "Définissez le flag de n'importe quel portail en tapant '[portalIndex] [flag]'",
+    set_room_flag = "Choisir le flag de la pièce",
+    set_room_newflag = "Définissez le flag de la salle en tapant [flag]",
+    toggle_last_entitysets = "Basculer le dernier vers le dernier entity set",
+    enable_entitysets = "Basculer l'entity set par le nom",
+    toggle_last_entitysets_info = "Activer/Désactiver la dernière interaction avec l'entity set sans taper son nom",
+    ac_entitysets = "Tapez l'entity set que vous voulez activer/désactiver dans l'intérieur actuel. Assurez-vous que vous saisissez une valeur existante!",
+
+    disabled = "désactivé",
+    enabled = "activé",
+    entitysetnotapplied = "Vous devez d'abord activer au moins un entity set",
+    current_timecycle = "Le timecycle actuel est maintenant ",
+    tp_marker = "TP Marqueur",
+    tp_to_marker = "Téléportation vers le marqueur actuel",
+    place_point = "Veuillez placer votre waypoint",
+    teleported_to = "téléporté à ",
+    custom_coords = "Mettre des coordonnées personnalisé",
+    set_custom_coords = "Entrez des coordonnées personnalisées en tapant [X] [Y] [Z].",
+    go_to = "Aller à",
+    tp_custom_coords = "Téléportation vers les coordonnées. ~n~Utilisez l'option précédente pour les définir.",
+    coords_set = "les coords sont ",
+    time = "Temps",
+    set_time_day = "Régler l'heure de la journée",
+    time_set = "Heure fixée à",
+    current_weather = "Météo actuelle",
+    weather = "Météo",
+    select_weather = "Sélectionnez le temps que vous voulez",
+
+    tp_interior =  "TP interieur",
+    inter_interior = "TP dans les interieurs par défaut de GTA",
+    interior_list = "liste des interieurs de GTAV ",
+    set_interior = "Interieur:",
+    desc_interior_list ="Liste des interieurs par defaut de GTAV",
+
+    myinterior_list = "Emplacement sauvegardé",
+    desc_myinterior_list ="Liste de tous vos emplacements enregistrés",
+
+    add_interior = "Enregistrer la position actuelle",
+    desc_add_interior = "Enregistrez vos emplacements personnalisés",
+
+    create_object = "Créer un objet",
+    desc_create_object = "Créez un objet devant vous",
+
+    delete_object = "Supprimer l'objet",
+    desc_delete_object = "Supprimez l'objet qui se trouve devant vous",
+
+    object_not_found = "~r~Objet non trouvé",
+
+    cant_get_version = "^8[DoluMappingTool] Impossible d'obtenir la version actuelle^7",
+
+    --
+    object_world = "Créer/Supprimer des objets",
+
+    noclip_set = "Active/Désactive le NoClip",
+
+    portals_showinfo = "Afficher toutes les informations des portails sur leurs coordonnées",
+
+    show_coords = "Afficher les coordonnées",
+
+    show_coords_set = "Afficher la position actuelle sur la minimap"
+}
