@@ -79,7 +79,7 @@ i18n["en"] = {
 
     object_world = "Add/Delete object",
 
-    cant_get_version = "^8[DoluMappingTool] Can't get current version^7"
+    cant_get_version = "^8[DoluMappingTool] Can't get current version^7",
 
     --
     object_world = "Add/Delete objects",
