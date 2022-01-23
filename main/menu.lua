@@ -50,7 +50,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
     -- Global menu
     RageUI.IsVisible(RMenu:Get('DMT', 'main'), true, true, true, function()
 
-        RageUI.Checkbox(i18n.get("noclip"), "~m~" .. i18n.get("show_interior"), checkBox.noClip, { Style = RageUI.CheckboxStyle.Tick }, function(Hovered, Selected, Active, Checked)
+        RageUI.Checkbox(i18n.get("noclip"), "~m~" .. i18n.get("noclip_set"), checkBox.noClip, { Style = RageUI.CheckboxStyle.Tick }, function(Hovered, Selected, Active, Checked)
             checkBox.noClip = Checked
         end, function()
             noClip = true
@@ -143,7 +143,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
             portalLines = false
         end)
 
-        RageUI.Checkbox(i18n.get("portals_info"), "~m~Show all portal info on their own coordinates", settings.portalInfos, { Style = RageUI.CheckboxStyle.Tick }, function(Hovered, Selected, Active, Checked)
+        RageUI.Checkbox(i18n.get("portals_info"), "~m~" .. i18n.get("portals_showinfo"), settings.portalInfos, { Style = RageUI.CheckboxStyle.Tick }, function(Hovered, Selected, Active, Checked)
             settings.portalInfos = Checked;
         end, function()
             portalInfos = true
@@ -315,7 +315,7 @@ RageUI.CreateWhile(1.0, RMenu:Get('DMT', 'main'), DMT.openUI, function()
 
         end)
 
-	    RageUI.Checkbox("Show coords", "~m~Show current position over the minimap", settings.coordsOverMap, { Style = RageUI.CheckboxStyle.Tick }, function(Hovered, Selected, Active, Checked)
+	    RageUI.Checkbox(i18n.get("show_coords"), "~m~" .. i18n.get("show_coords_set"), settings.coordsOverMap, { Style = RageUI.CheckboxStyle.Tick }, function(Hovered, Selected, Active, Checked)
             settings.coordsOverMap = Checked;
         end, function()
             coordsOverMap = true
