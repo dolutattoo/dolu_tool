@@ -13,7 +13,6 @@ local InstructionalButtons = {
 	{ button = '~INPUT_SPRINT~', 		label = "XXXXXXXXXXXXXXXX" 	},
 }
 
-
 RegisterCommand('noclip', function()
 	Noclip = not Noclip
 end)

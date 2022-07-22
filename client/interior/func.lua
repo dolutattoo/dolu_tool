@@ -175,10 +175,33 @@ FUNC.teleportToCoords = function(coords)
 	SetEntityCoords(playerPed, coords[1] + 0.0, coords[2] + 0.0, coords[3] + 0.0)
 end
 
-FUNC.setClockTime = function(hour)
-	NetworkOverrideClockTime(hour, 0, 0)
+---Get current clock time client side
+---@return number hour, number minutes, number seconds
+FUNC.getClock = function()
+	return GetClockHours(), GetClockMinutes(), GetClockSeconds()
 end
 
+---Set clock time client side
+---@param hour number A number between 0 and 23
+---@param minutes number A number between 0 and 59
+---@param seconds number A number between 0 and 59
+FUNC.setClock = function(hour, minutes, seconds)
+	assert(type(hour) == "number" and hour <= 23, "'hour' parameter must be a number and his maximum value must be 23")
+	assert(type(minutes) == "number" and minutes <= 59, "'minutes' parameter must be a number and his maximum value must be 59")
+	assert(type(seconds) == "number" and seconds <= 59, "'seconds' parameter must be a number and his maximum value must be 59")
+	NetworkOverrideClockTime(hour, minutes or 0, seconds or 0)
+end
+
+---Get the current weather client side
+---@return number currentWeather
+FUNC.getWeather = function()
+	local weatherType1, weatherType2, percentWeather2 = GetWeatherTypeTransition()
+	local currentWeather = percentWeather2 > 0.5 and weatherType2 or weatherType1
+	return currentWeather
+end
+
+---Set the weather client side
+---@param weather number
 FUNC.setWeather = function(weather)
 	SetWeatherTypeNowPersist(weather)
 	SetWeatherTypePersist(weather)
