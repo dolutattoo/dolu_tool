@@ -15,6 +15,10 @@ RegisterCommand('dmt:open', function()
 end)
 RegisterKeyMapping('dmt:open', "Dolu Mapping Tool", 'keyboard', 'G')
 
+Registercommand('touche', function(source, args, rawCommand)
+	RegisterKeyMapping('dmt:open', "Dolu Mapping Tool", 'keyboard', tostring(args[1]))
+end)
+
 RegisterNUICallback('hideFrame', function(_, cb)
 	toggleNuiFrame(false)
 	cb({})
