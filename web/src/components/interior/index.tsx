@@ -3,6 +3,7 @@ import { useNuiEvent } from "../../hooks/useNuiEvent"
 import { Accordion, Group, Select, Text } from "@mantine/core"
 import Portals from "./Portals"
 import Rooms from "./Rooms"
+import { debugData, DebugTabInterior } from "../../utils/debugData"
 
 export interface InteriorProps {
   interiorId: any
@@ -37,6 +38,8 @@ const InteriorInfos = (props: any) => {
 const Interior = () => {
   const [intData, setIntData] = useState<InteriorProps|null>(null)
   useNuiEvent('setIntData', setIntData)
+
+  debugData(DebugTabInterior)
 
   return (
     <>

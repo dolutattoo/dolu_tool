@@ -4,7 +4,7 @@ import { RoomProps } from "./index"
 const Rooms = (props: RoomProps) => {
   const { rooms } = props
 
-  if (rooms === undefined) { return(<>You are not inside an interior !</>) }
+  if (rooms === undefined) { return(<>You are not in an interior !</>) }
 
   return (
     <>
