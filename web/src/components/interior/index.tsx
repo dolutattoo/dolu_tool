@@ -1,6 +1,6 @@
-import { Accordion, Group, Select, Text } from "@mantine/core"
 import { useState } from "react"
 import { useNuiEvent } from "../../hooks/useNuiEvent"
+import { Accordion, Group, Select, Text } from "@mantine/core"
 import Portals from "./Portals"
 import Rooms from "./Rooms"
 
@@ -26,10 +26,10 @@ const InteriorInfos = (props: any) => {
 
   return (
     <>
-      <Group><Text>Interior ID:</Text><Text color="orange" > {interiorData?.interiorId}</Text></Group>
-      <Group><Text>Room count:</Text><Text color="orange" > {interiorData?.roomCount}</Text></Group>
-      <Group><Text>Portal count:</Text><Text color="orange" > {interiorData?.portalCount}</Text></Group>
-      <Group><Text>Current room:</Text><Text color="orange" > {interiorData?.currentRoom?.currentRoomName}</Text></Group>
+      <Group><Text>Interior ID:</Text><Text color="orange" > { interiorData?.interiorId }</Text></Group>
+      <Group><Text>Room count:</Text><Text color="orange" > { interiorData?.roomCount }</Text></Group>
+      <Group><Text>Portal count:</Text><Text color="orange" > { interiorData?.portalCount }</Text></Group>
+      <Group><Text>Current room:</Text><Text color="orange" > { interiorData?.currentRoom?.currentRoomName }</Text></Group>
     </>
   )
 }

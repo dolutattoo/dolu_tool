@@ -8,7 +8,7 @@ const Portals = (props: PortalProps) => {
   // Portal checkboxes
   const [value, setValue] = useState<string[]>([])
   useEffect(() => {
-      fetch(`https://dolu-mapping-tool/dmt:toggleInteriorsDraw`, {
+      fetch(`https://DoluMappingTool/dmt:toggleInteriorsDraw`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json; charset=UTF-8',

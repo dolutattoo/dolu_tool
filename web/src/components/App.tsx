@@ -21,7 +21,7 @@ const App: React.FC = () => {
   useEffect(() => {
     // Ask interior data if interior tab is selected
     if (activeTab === 1) {
-      console.log('yolo')
+      console.log('Interior tab selected, TODO: ask interior data again to show them in menu!')
     }
 
     const keyHandler = (e: KeyboardEvent) => {
