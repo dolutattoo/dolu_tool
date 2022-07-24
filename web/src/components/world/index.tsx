@@ -1,13 +1,13 @@
 import { Accordion, ActionIcon, Checkbox, Divider, Group, NativeSelect, Slider, Space, TextInput, Text } from "@mantine/core"
-import { useEffect, useState } from "react";
-import { Check, ChevronDown, X } from "tabler-icons-react";
-import { fetchNui } from "../../utils/fetchNui";
+import { useEffect, useState } from "react"
+import { Check, ChevronDown, X } from "tabler-icons-react"
+import { fetchNui } from "../../utils/fetchNui"
 
 const World = () => {
 
   // Time Sliders
-  const [hour, setHour] = useState<number>(12);
-  const [minute, setMinute] = useState<number>(30);
+  const [hour, setHour] = useState<number>(12)
+  const [minute, setMinute] = useState<number>(30)
   useEffect(() => {
     fetch(`https://DoluMappingTool/dmt:world:setTime`, {
       method: 'POST',
@@ -21,7 +21,7 @@ const World = () => {
   })
 
   // Time Freeze CheckBox
-  const [freezeTime, setFreezeTime] = useState<boolean>(false);
+  const [freezeTime, setFreezeTime] = useState<boolean>(false)
   useEffect(() => {
     fetch(`https://DoluMappingTool/dmt:world:freezeTime`, {
       method: 'POST',
@@ -35,7 +35,7 @@ const World = () => {
   })
 
   // Weather Selector
-  const [weather, setWeather] = useState<any>('');
+  const [weather, setWeather] = useState<any>('')
   useEffect(() =>{
     fetch(`https://DoluMappingTool/dmt:world:setWeather`, {
       method: 'POST',
@@ -96,8 +96,8 @@ const World = () => {
                 rightSection={<ChevronDown size={14} color={'white'} />}
                 rightSectionWidth={40}
                 data={[
-                    'ExtraSunny',
                     'Clear',
+                    'ExtraSunny',
                     'Neutral',
                     'Smog',
                     'Foggy',

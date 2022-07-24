@@ -201,7 +201,7 @@ FUNC.getWeather = function()
 end
 
 ---Set the weather client side
----@param weather number
+---@param weather string
 FUNC.setWeather = function(weather)
 	SetWeatherTypeNowPersist(weather)
 	SetWeatherTypePersist(weather)
