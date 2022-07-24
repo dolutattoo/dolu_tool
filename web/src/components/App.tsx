@@ -2,16 +2,12 @@ import React, { useEffect, useState } from 'react'
 import './App.css'
 import { Box, Group, ScrollArea, Tabs } from '@mantine/core'
 import Header from './Header'
-import { debugData } from "../utils/debugData"
 import Interior from './interior'
 import World from './world'
+import { debugData, debugVisible } from "../utils/debugData"
+import General from './general'
 
-debugData([
-  {
-    action: 'setVisible',
-    data: true,
-  }
-])
+debugData(debugVisible)
 
 const App: React.FC = () => {
 
@@ -60,7 +56,7 @@ const App: React.FC = () => {
             {/* TAB 1 - GENERAL */}
             <Tabs.Tab label="General" tabKey="First">
               <ScrollArea sx={(theme) => ({ height: '50vh' })} scrollbarSize={8}>
-                TODO GENERAL APP
+                <General />
               </ScrollArea>
             </Tabs.Tab>
 

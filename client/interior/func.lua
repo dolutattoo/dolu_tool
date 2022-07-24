@@ -148,11 +148,11 @@ FUNC.teleportToMarker = function()
 
 		local waypointCoords = GetBlipInfoIdCoord(waypointHandle)
 		for height = 1, 1000 do
-			SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords.x, waypointCoords.y, height + 0.0)
+			SetPedCoordsKeepVehicle(playerPed, waypointCoords.x, waypointCoords.y, height + 0.0)
 
 			local foundGround, _ = GetGroundZFor_3dCoord(waypointCoords.x, waypointCoords.y, height + 0.0)
 			if foundGround then
-				SetPedCoordsKeepVehicle(PlayerPedId(), waypointCoords.x, waypointCoords.y, height + 0.0)
+				SetPedCoordsKeepVehicle(playerPed, waypointCoords.x, waypointCoords.y, height + 0.0)
 				break
 			end
 
@@ -170,9 +170,9 @@ FUNC.teleportToMarker = function()
 end
 
 FUNC.teleportToCoords = function(coords)
-	print(coords)
 	local playerPed = PlayerPedId()
-	SetEntityCoords(playerPed, coords[1] + 0.0, coords[2] + 0.0, coords[3] + 0.0)
+	SetPedCoordsKeepVehicle(playerPed, coords[1] + 0.0, coords[2] + 0.0, coords[3] + 0.0)
+	print("[^5INFO^7] Teleported to coordinates: ^5" .. coords .. "^7")
 end
 
 ---Get current clock time client side

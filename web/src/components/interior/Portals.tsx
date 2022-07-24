@@ -3,7 +3,7 @@ import { Checkbox, CheckboxGroup } from "@mantine/core"
 import { PortalProps } from "."
 
 const Portals = (props: PortalProps) => {
-  const { portals } = props
+  // const { portals } = props
 
   // Portal checkboxes
   const [value, setValue] = useState<string[]>([])
