@@ -1,12 +1,21 @@
-import { Accordion, ActionIcon, Checkbox, Divider, Group, NativeSelect, Slider, Space, TextInput, Text } from "@mantine/core"
-import { useState } from "react";
-import { Check, ChevronDown, X } from "tabler-icons-react";
-import { fetchNui } from "../../utils/fetchNui";
+import { Accordion } from "@mantine/core"
+import { useState } from "react"
+import Character from "./Character"
+import Vehicle from "./Vehicle"
 
 const General = () => {
 
   return (
     <>
+      <Accordion initialItem={0} iconSize={14} multiple>
+        <Accordion.Item label="Character">
+          <Character />
+        </Accordion.Item>
+
+        <Accordion.Item label="Vehicle">
+          <Vehicle />
+        </Accordion.Item>
+      </Accordion>
     </>
   )
 }
