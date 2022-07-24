@@ -60,6 +60,18 @@ function startInteriorLoop()
 	end)
 end
 
+-- Freeze time
+CreateThread(function()
+	while true do
+		if freezeTime then
+			FUNC.setClock(hour, minute, second)
+		else
+			Wait(500)
+		end
+		Wait(0)
+	end
+end)
+
 -- Coords display
 CreateThread(function()
 	while true do
