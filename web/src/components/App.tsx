@@ -43,7 +43,7 @@ const App: React.FC = () => {
         <Box sx={(theme) => ({
             userSelect: "none",
             margin: theme.spacing.lg,
-            width: theme.breakpoints.sm/2,
+            width: theme.breakpoints.sm/1.5,
             backgroundColor: 'rgba(30, 35, 45, .95)',
             color: theme.colors.dark[0],
             padding: theme.spacing.md,
@@ -60,7 +60,7 @@ const App: React.FC = () => {
             {/* TAB 1 - GENERAL */}
             <Tabs.Tab label="General" tabKey="First">
               <ScrollArea sx={(theme) => ({ height: '50vh' })} scrollbarSize={8}>
-                Teal tab content
+                TODO GENERAL APP
               </ScrollArea>
             </Tabs.Tab>
 

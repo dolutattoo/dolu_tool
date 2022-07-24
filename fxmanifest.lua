@@ -5,13 +5,7 @@ lua54 'yes'
 shared_script "shared/utils.lua"
 
 client_scripts {
-	"client/utils.lua",
-	"client/client.lua",
-	"client/nui.lua",
-	"client/noclip.lua",
-	"client/interior/interior.lua",
-	"client/interior/func.lua",
-	"client/interior/threads.lua"
+	"client/**/*.lua",
 }
 
 server_script "server/**/*"
