@@ -20,8 +20,22 @@ const World = () => {
     }).then(resp => resp.json())
   })
 
-  const [weather, setWeather] = useState<any>('');
+  // Time Freeze CheckBox
+  const [freezeTime, setFreezeTime] = useState<boolean>(false);
+  useEffect(() => {
+    fetch(`https://DoluMappingTool/dmt:world:freezeTime`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: JSON.stringify({
+        freezeTime
+      })
+    }).then(resp => resp.json())
+  })
 
+  // Weather Selector
+  const [weather, setWeather] = useState<any>('');
   useEffect(() =>{
     fetch(`https://DoluMappingTool/dmt:world:setWeather`, {
       method: 'POST',
@@ -33,12 +47,6 @@ const World = () => {
       })
     }).then(resp => resp.json())
   })
-
-  // TODO
-  const [toggleFreezeTime, setToggleFreezeTime] = useState<boolean>(false);
-  const sendToggleFreezeTime = () => {
-    fetchNui('toggleFreezeTime', !toggleFreezeTime)
-  }
 
   return (
     <>
@@ -68,22 +76,14 @@ const World = () => {
               max={59}
               color="orange"
             />
-            <Space h='md'/>
-              <Group position='right'>
-                {/* <ActionIcon
-                    onClick={sendNewTime}
-                >
-                    <Check/>
-                </ActionIcon> */}
-              </Group>
             <Divider my="md"/>
             <Group position='apart'>
-                <Text>Freeze Time</Text>
-                <Checkbox
-                color="orange"
-                checked={toggleFreezeTime}
-                onChange={(event) => {setToggleFreezeTime(event.currentTarget.checked); sendToggleFreezeTime()}}
-                />
+              <Text>Freeze Time</Text>
+              <Checkbox
+              color="orange"
+              checked={freezeTime}
+              onChange={(event) => {setFreezeTime(event.currentTarget.checked)}}
+              />
             </Group>
             </Accordion.Item>
             <Accordion.Item label="Weather">
