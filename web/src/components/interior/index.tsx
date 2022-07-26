@@ -39,6 +39,8 @@ const Interior = () => {
   const [intData, setIntData] = useState<InteriorProps|null>(null)
   useNuiEvent('setIntData', setIntData)
 
+  // if (intData?.interiorId == null || intData?.interiorId === 0) { return(<>You are not in an interior !</>) }
+
   debugData(DebugTabInterior)
 
   return (

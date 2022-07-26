@@ -54,16 +54,3 @@ const eventListener = (event: MessageEvent<NuiMessageData<boolean>>) => {
 }
 
 window.addEventListener("message", eventListener)
-
-ReactDOM.render(
-  <React.StrictMode>
-      <VisibilityProvider>
-        <MantineProvider theme={{ colorScheme: 'dark', focusRing: 'never' }}>
-          <NotificationsProvider position="top-right">
-            <App />
-          </NotificationsProvider>
-        </MantineProvider>
-      </VisibilityProvider>
-  </React.StrictMode>,
-  document.getElementById('root')
-)

@@ -25,9 +25,7 @@ const App: React.FC = () => {
         method: 'POST',
         headers: {'Content-Type': 'application/json; charset=UTF-8'}
         // No body needed
-      }).then(resp => resp.json()).then(resp => {
-        // if (isPlayerInInt !== resp.isInInt) { setIsPlayerInInt(resp.isInInt) }
-      })
+      }).then(resp => resp.json())
     }
   })
 
