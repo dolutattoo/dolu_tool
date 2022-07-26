@@ -6,32 +6,33 @@ import Interior from './interior'
 import World from './world'
 import { debugData, debugVisible } from "../utils/debugData"
 import General from './general'
+import { useNuiEvent } from '../hooks/useNuiEvent'
 
 debugData(debugVisible)
 
 const App: React.FC = () => {
 
   // Tab key to switch
-  const [activeTab, setActiveTab] = useState(1)
+  const [activeTab, setActiveTab] = useState(0)
   const onChange = (active: number, tabKey: string) => { setActiveTab(active) }
+
   useEffect(() => {
     // Ask interior data if interior tab is selected
     if (activeTab === 1) {
-      console.log('Interior tab selected, TODO: ask interior data again to show them in menu!')
-    }
+      console.log('Interior tab selected!')
 
-    const keyHandler = (e: KeyboardEvent) => {
-      if (["Tab"].includes(e.code)) {
-        if (activeTab === 2) {
-          setActiveTab(activeTab-2)
-        } else {
-          setActiveTab(activeTab+1)
-        }
-      }
+      fetch(`https://DoluMappingTool/dmt:interior:getData`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json; charset=UTF-8'}
+        // No body needed
+      }).then(resp => resp.json()).then(resp => {
+        // if (isPlayerInInt !== resp.isInInt) { setIsPlayerInInt(resp.isInInt) }
+      })
     }
-    window.addEventListener("keydown", keyHandler)
-    return () => window.removeEventListener("keydown", keyHandler)
   })
+
+  const [isPlayerInInt, setIsPlayerInInt] = useState<boolean>(false)
+  useNuiEvent('setIsPlayerInInt', setIsPlayerInInt)
 
   return (
     <>
@@ -52,6 +53,7 @@ const App: React.FC = () => {
             active={activeTab}
             onTabChange={onChange}
             grow
+            // activateTabWithKeyboard={!isPlayerInInt} ------------ NEED MANTINE V5 !
           >
             {/* TAB 1 - GENERAL */}
             <Tabs.Tab label="General" tabKey="First">
@@ -61,7 +63,7 @@ const App: React.FC = () => {
             </Tabs.Tab>
 
             {/* TAB 2 - INTERIORS */}
-            <Tabs.Tab label="Interiors" tabKey="Second">
+            <Tabs.Tab label="Interiors" tabKey="Second" disabled={!isPlayerInInt}>
               <ScrollArea sx={(theme) => ({ height: '50vh' })} scrollbarSize={8}>
                 <Interior />
               </ScrollArea>
