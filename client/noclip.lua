@@ -111,7 +111,6 @@ CreateThread(function()
 			SetEveryoneIgnorePlayer(PlayerId(), true)
 			SetPoliceIgnorePlayer(PlayerId(), true)
 
-			-- InstructionalScaleform = RageUI.DrawInstructionalButtons(InstructionalScaleform, InstructionalButtons)
 			drawInstructionalButtons(InstructionalButtons)
 		elseif WasNoClip and not Noclip then
 			ResetNoclip()

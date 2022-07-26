@@ -1,6 +1,6 @@
+FUNC = {}
 LastEntitySet = nil
 
-FUNC = {}
 
 FUNC.round = function(num, decimals)
 	local power = 10 ^ decimals
@@ -12,8 +12,7 @@ FUNC.stringSplit = function(input, seperator)
 		seperator = "%s"
 	end
 
-	local t = {}
-	local i = 1
+	local t, i = {}, 1
 
 	for str in string.gmatch(input, "([^" .. seperator .. "]+)") do
 		t[i] = str
@@ -96,15 +95,11 @@ FUNC.enableEntitySet = function(value)
 
 	if IsInteriorEntitySetActive(interiorId, value) then
 		DeactivateInteriorEntitySet(interiorId, value)
-		RageUI.Text({
-			message = "EntitySet ~b~" .. value .. " ~r~" .. i18n.get("disabled")
-		})
+		print("EntitySet ^5" .. value .. " ^1disabled")
 		LastEntitySet = value
 	else
 		ActivateInteriorEntitySet(interiorId, value)
-		RageUI.Text({
-			message = "EntitySet ~b~" .. value .. " ~g~" .. i18n.get("enabled")
-		})
+		print("EntitySet ^5" .. value .. " ^2enabled")
 		LastEntitySet = value
 	end
 
@@ -116,27 +111,17 @@ FUNC.toggleLastEntitySet = function()
 	local interiorId = GetInteriorFromEntity(playerPed)
 
 	if LastEntitySet ~= nil then
-
 		if IsInteriorEntitySetActive(interiorId, LastEntitySet) then
 			DeactivateInteriorEntitySet(interiorId, tostring(LastEntitySet))
 			RefreshInterior(interiorId)
-			RageUI.Text({
-				message = "EntitySet ~b~" .. tostring(LastEntitySet) .. " ~r~" .. i18n.get("disabled")
-			})
+			print("EntitySet ^5" .. tostring(LastEntitySet) .. " ^1disabled")
 		else
 			ActivateInteriorEntitySet(interiorId, tostring(LastEntitySet))
 			RefreshInterior(interiorId)
-			RageUI.Text({
-				message = "EntitySet ~b~" .. tostring(LastEntitySet) .. " ~g~" .. i18n.get("enabled")
-			})
+			print("EntitySet ^5" .. tostring(LastEntitySet) .. " ^2enabled")
 		end
-
 	else
-
-		RageUI.Text({
-			message = "~o~" .. i18n.get("entitysetnotapplied")
-		})
-
+		print("EntitySet not applied")
 	end
 end
 
