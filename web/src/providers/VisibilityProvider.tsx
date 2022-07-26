@@ -26,8 +26,6 @@ export const VisibilityProvider: React.FC = ({children}) => {
       if (["Escape"].includes(e.code)) {
         if (!isEnvBrowser()) fetchNui("hideFrame");
         else setVisible(!visible);
-      } else if (["Tab"].includes(e.code)) {
-        console.log('Yolooo')
       }
     }
 
