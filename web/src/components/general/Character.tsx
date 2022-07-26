@@ -1,4 +1,4 @@
-import { ActionIcon, Button, Checkbox, Divider, Group, Text, TextInput, Tooltip } from '@mantine/core'
+import { ActionIcon, Checkbox, Divider, Group, Text, TextInput } from '@mantine/core'
 import { useState } from 'react'
 import { Check, X } from 'tabler-icons-react'
 

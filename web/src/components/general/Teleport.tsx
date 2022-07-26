@@ -39,21 +39,11 @@ const Teleport = () => {
 
   return (
     <>
-      <Group position='apart'>
-        <Text>Teleport Marker</Text>
-        <ActionIcon>
-          <Check/>
-        </ActionIcon>
-      </Group>
-
-      <Space h="md" />
-
       <Group>
         <TextInput
         variant="unstyled"
           sx={(theme) => ({
             width: "22vw",
-            height: "4vh",
             backgroundColor: "rgb(0, 0, 0, 0.25)",
             borderRadius: '0.3vw',
             paddingLeft:'0.3vw',
@@ -77,18 +67,18 @@ const Teleport = () => {
         <Button
           color="orange"
           variant="outline"
-          onClick={() => {tpMarker()}}
-          size="xs"
-        >
-          Go to marker
-        </Button>
-        <Button
-          color="orange"
-          variant="outline"
           onClick={() => {tpCoords(coords)}}
           size="xs"
         >
           Go to coords
+        </Button>
+        <Button
+          color="orange"
+          variant="outline"
+          onClick={() => {tpMarker()}}
+          size="xs"
+        >
+          Go to marker
         </Button>
         <Button
           color="orange"
@@ -104,7 +94,7 @@ const Teleport = () => {
           onClick={() => {tpCoords(coords)}}
           size="xs"
         >
-          Reset coords
+          Reset
         </Button>
       </Group>
 
