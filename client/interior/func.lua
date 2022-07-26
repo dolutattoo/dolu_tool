@@ -159,13 +159,9 @@ FUNC.teleportToMarker = function()
 			Wait(1)
 		end
 
-		RageUI.Text({
-			message = i18n.get("teleported_to") .. " " .. tostring(GetEntityCoords(playerPed))
-		})
+		print('Succefully teleported')
 	else
-		RageUI.Text({
-			message = i18n.get("place_point")
-		})
+		print('No waypoint placed!')
 	end
 end
 

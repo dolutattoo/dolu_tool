@@ -50,7 +50,7 @@ const World = () => {
 
   return (
     <>
-        <Accordion initialItem={0} iconSize={14} multiple>
+        <Accordion iconSize={14} multiple>
           <Accordion.Item label="Time">
             <Group position='left'>
               <Text>Hour : {hour}</Text>

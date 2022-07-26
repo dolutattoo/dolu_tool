@@ -1,13 +1,18 @@
 import { Accordion } from "@mantine/core"
 import { useState } from "react"
 import Character from "./Character"
+import Teleport from "./Teleport"
 import Vehicle from "./Vehicle"
 
 const General = () => {
 
   return (
     <>
-      <Accordion initialItem={0} iconSize={14} multiple>
+      <Accordion iconSize={14} multiple>
+        <Accordion.Item label="Teleport">
+          <Teleport />
+        </Accordion.Item>
+
         <Accordion.Item label="Character">
           <Character />
         </Accordion.Item>

@@ -43,7 +43,7 @@ const Interior = () => {
 
   return (
     <>
-      <Accordion initialItem={0} iconSize={14} multiple>
+      <Accordion iconSize={14} multiple>
         <Accordion.Item label="General">
           {intData?.interiorId && <InteriorInfos interiorData={ intData } />}
         </Accordion.Item>
