@@ -1,7 +1,6 @@
 FUNC = {}
 LastEntitySet = nil
 
-
 FUNC.round = function(num, decimals)
 	local power = 10 ^ decimals
 	return math.floor(num * power) / power

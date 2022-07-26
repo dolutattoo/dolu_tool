@@ -1,6 +1,6 @@
-import { ActionIcon, Button, ColorInput, Divider, Group, Space, Text, TextInput } from "@mantine/core"
 import { useState } from "react"
-import { BorderAll, Check } from "tabler-icons-react"
+import { ActionIcon, Button, Divider, Group, Space, TextInput } from "@mantine/core"
+import { Check } from "tabler-icons-react"
 import { useNuiEvent } from "../../hooks/useNuiEvent"
 
 const Teleport = () => {
@@ -9,7 +9,7 @@ const Teleport = () => {
   // TP Coords
   const [coords, setCoords] = useState<string>('0, 0, 0')
   const tpCoords = (coords: any) => {
-    fetch(`https://DoluMappingTool/dmt:character:tpCoords`, {
+    fetch(`https://DoluMappingTool/dmt:teleport:tpCoords`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json; charset=UTF-8'},
       body: JSON.stringify(coords)
@@ -18,7 +18,7 @@ const Teleport = () => {
 
   // TP Marker
   const tpMarker = () => {
-    fetch(`https://DoluMappingTool/dmt:character:tpMarker`, {
+    fetch(`https://DoluMappingTool/dmt:teleport:tpMarker`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json; charset=UTF-8'}
       // No body needed
@@ -27,11 +27,11 @@ const Teleport = () => {
 
   // Get ped coords
   const getCoords = () => {
-    fetch(`https://DoluMappingTool/dmt:character:getCoords`, {
+    fetch(`https://DoluMappingTool/dmt:teleport:getCoords`, {
       method: 'POST',
       headers: {'Content-Type': 'application/json; charset=UTF-8'}
       // No body needed
-    }).then(resp => resp.json())
+    }).then(resp => resp.json()).then(resp => { setCoords(resp.coords) })
   }
 
   const [currentCoords, getCurrentCoords] = useState<any>('0, 0, 0')
@@ -91,7 +91,7 @@ const Teleport = () => {
         <Button
           color="orange"
           variant="outline"
-          onClick={() => {tpCoords(coords)}}
+          onClick={() => setCoords('0, 0, 0')}
           size="xs"
         >
           Reset
