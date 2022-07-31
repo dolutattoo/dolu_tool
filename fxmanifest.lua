@@ -2,13 +2,16 @@ fx_version "cerulean"
 game "gta5"
 lua54 'yes'
 
-shared_script "shared/utils.lua"
-
+shared_scripts{
+  "shared/**/*",
+}
 client_scripts {
 	"client/**/*.lua",
 }
 
-server_script "server/**/*"
+server_scripts{
+  "server/**/*",
+}
 
 ui_page 'web/build/index.html'
 

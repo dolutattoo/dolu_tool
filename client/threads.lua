@@ -164,3 +164,13 @@ CreateThread(function()
 		Wait(0)
 	end
 end)
+
+-- Load Saved Positions
+CreateThread(function()
+	TriggerServerEvent('dmt:loadPositions')
+end)
+
+RegisterNetEvent('dmt:initPositions', function(result)
+	positionsData = result
+	TriggerEvent("dmt:teleport:initPositions", positionsData)
+end)

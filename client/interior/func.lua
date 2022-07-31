@@ -247,8 +247,8 @@ FUNC.Draw3DText = function(DrawCoords, text)
 	end
 end
 
-FUNC.saveInteriors = function(array)
-	TriggerServerEvent("DMT:saveInteriors", array)
+FUNC.savePositions = function(array)
+	TriggerServerEvent("dmt:savePositions", array)
 end
 
 FUNC.drawText = function(string, coords)

@@ -1,10 +1,10 @@
 import { useState } from "react"
-import { ActionIcon, Button, Divider, Group, Space, TextInput } from "@mantine/core"
-import { Check } from "tabler-icons-react"
+import { ActionIcon, Button, Divider, Group, NativeSelect, Space, TextInput } from "@mantine/core"
+import { Check, ChevronDown, X } from "tabler-icons-react"
 import { useNuiEvent } from "../../hooks/useNuiEvent"
+import { fetchNui } from "../../utils/fetchNui"
 
 const Teleport = () => {
-	const [positionName, setPositionName] = useState<string>('')
 
   // TP Coords
   const [coords, setCoords] = useState<string>('0, 0, 0')
@@ -37,11 +37,33 @@ const Teleport = () => {
   const [currentCoords, getCurrentCoords] = useState<any>('0, 0, 0')
   useNuiEvent('getCurrentCoords', getCurrentCoords)
 
+  // Teleport List
+  const [positionSelect, setPositionSelect] = useState<any>('')
+  const [positionsData, setPositionsData] = useState<[]>([])
+  // Init Positions List
+  useNuiEvent('dmt:teleport:setPositionData', setPositionsData)
+
+  // Save new positions
+  const [positionName, setPositionName] = useState<any>('')
+  const savePositions = () => {
+    fetchNui('dmt:teleport:savePosition', positionName)
+  }
+
+  // Teleport to selected position
+  const tpPos = () => {
+    fetchNui('dmt:teleport:tpList', positionSelect)
+  }
+
+  // Remove selected position
+  const removePos = () => {
+    fetchNui('dmt:teleport:removeList', positionSelect)
+  }
+
   return (
     <>
       <Group>
         <TextInput
-        variant="unstyled"
+          variant="unstyled"
           sx={(theme) => ({
             width: "22vw",
             backgroundColor: "rgb(0, 0, 0, 0.25)",
@@ -101,14 +123,33 @@ const Teleport = () => {
       <Divider my="xs" label="Teleport List" labelPosition="center" />
 
       <Group position='apart'>
-
+        <NativeSelect 
+          value = {positionSelect}
+          onChange={(event) => {setPositionSelect(event.currentTarget.value)}}
+          placeholder='Select a position'
+          rightSection={<ChevronDown size={14} color={'white'} />}
+          rightSectionWidth={40}
+          data={positionsData}
+        />
+        <ActionIcon
+        onClick={tpPos}
+        >
+          <Check/>
+        </ActionIcon>
+        <ActionIcon
+        onClick={removePos}
+        >
+          <X/>
+        </ActionIcon>
       </Group>
 
       <Divider my="xs" label="Save Position" labelPosition="center" />
 
       <Group position='apart'>
         <TextInput  variant="filled" placeholder="Position Name" value={positionName} onChange={(event) => setPositionName(event.currentTarget.value)} rightSection={"?"} />
-        <ActionIcon>
+        <ActionIcon
+          onClick={savePositions}
+        >
           <Check/>
         </ActionIcon>
       </Group>

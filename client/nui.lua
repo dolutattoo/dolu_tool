@@ -3,6 +3,7 @@ local disabledControls = false
 local function toggleNuiFrame(bool)
 	if bool then startInteriorLoop() end
 	SendReactMessage('setVisible', bool)
+	SendReactMessage('dmt:teleport:setPositionData', positionsData)
 	SetNuiFocus(bool, bool)
 	SetNuiFocusKeepInput(bool)
 	SetCursorLocation(0.2, 0.2)
