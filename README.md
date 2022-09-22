@@ -9,7 +9,7 @@ This is a tool to help modders who creates interiors mods (MLO) for FiveM
 
 <div align="center">
 
-[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/project-error/pe-utils/master/LICENSE)
+[![license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/dolutattoo/DoluMappingTool/blob/v4/LICENSE)
 ![Discord](https://img.shields.io/discord/617267506440175616?label=My%20Discord)
 </div>
 
