@@ -1,9 +1,5 @@
-RegisterServerEvent('dmt:savePositions', function(array)
-  SaveResourceFile(GetCurrentResourceName(), 'shared/positions.json', json.encode(array, {indent = true}), -1)
-  TriggerEvent('dmt:loadPositions')
-end)
-
-RegisterServerEvent('dmt:loadPositions', function()
-  local positionsData = json.decode(LoadResourceFile(GetCurrentResourceName(), 'shared/positions.json') or '[]')
-  TriggerClientEvent("dmt:initPositions", -1, positionsData)
+lib.callback.register('ox_banking:getPlayerLocations', function()
+    local func, err = load(LoadResourceFile(GetCurrentResourceName(), 'data/locations.lua'), 'locations', 't')
+    assert(func, err == nil or '\n^1' .. err .. '^7')
+    return func()
 end)
