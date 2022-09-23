@@ -1,12 +1,8 @@
 local function openUI()
-    local locations = lib.callback.await('ox_banking:getPlayerLocations')
+    local locations = lib.callback.await('dmt:getPlayerLocations')
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
-            character = {
-                cashBalance = cash,
-                groups = player.groups
-            },
             locations = locations
         }
     })
@@ -25,11 +21,7 @@ CreateThread(function()
 end)
 
 RegisterNUICallback('teleportToLocation', function(data)
-    local playerPed = PlayerPedId()
-    SetEntityCoords(playerPed, data.x, data.y, data.z)
-    if data.heading then
-        SetEntityHeading(playerPed, data.heading or 0)
-    end
+    teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading })
 end)
 
 RegisterNUICallback('exit', function()
