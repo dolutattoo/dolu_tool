@@ -9,6 +9,7 @@ import { useNuiEvent } from '../../hooks/useNuiEvent';
 import { useExitListener } from '../../hooks/useExitListener';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Location, locationsAtom } from '../../atoms/location';
+import { GiTeleport } from 'react-icons/gi';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -30,20 +31,28 @@ const Menu: React.FC = () => {
     setLocations(data.locations);
   });
 
+  useNuiEvent('setLocationDatas', (data: { locations: Location[] }) => {
+    setLocations(data.locations);
+  });
+
   useExitListener(setVisible);
 
   return (
     <Transition transition="slide-right" mounted={visible}>
       {(style) => (
-        <Box style={style} className={classes.wrapper}>
+        <Box sx={{ position: 'absolute', top: '2%', left: '2%' }} style={style} className={classes.wrapper}>
           <AppShell
             padding="md"
             fixed={false}
             styles={(theme) => ({
+              root: {
+                maxWidth: 600,
+              },
               main: {
                 backgroundColor: theme.colors.dark[8],
                 width: 1024,
                 height: 768,
+                maxWidth: 600,
                 borderTopRightRadius: theme.radius.sm,
                 borderBottomRightRadius: theme.radius.sm,
               },
@@ -51,8 +60,9 @@ const Menu: React.FC = () => {
             navbar={<Nav />}
             header={
               <Header height={60}>
-                <Group sx={{ height: '100%' }} px={20} position='apart'>
+                <Group sx={{ height: '100%', borderRadius: '5px' }} px={20} position='apart'>
                   <Title order={3}>Dolu Mapping Tool v4</Title>
+                  <GiTeleport size={24} />
                 </Group>
               </Header>
             }

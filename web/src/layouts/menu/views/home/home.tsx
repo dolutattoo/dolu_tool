@@ -7,7 +7,7 @@ const Home: React.FC = () => {
   const location = getLastLocationUsed();
 
   return (
-    <SimpleGrid cols={2}>
+    <SimpleGrid cols={1}>
       <Stack>
         <Paper p="md">
           

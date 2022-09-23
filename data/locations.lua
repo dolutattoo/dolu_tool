@@ -1,3 +1,5 @@
+-- /!\ DO NOT CHANGE ORDER WHILE RESOURCE IS RUNNING
+
 return {
     { name = 'Location test 1', x = -68.0, y = -1091.0, z = 27.5, heading = 50.0 },
     { name = 'Location test 2', x = -67.0, y = -1048.0, z = 28.0, heading = 230.0 },
