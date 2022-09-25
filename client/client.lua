@@ -1,11 +1,10 @@
-locations = {}
-
 local function openUI()
-    locations = lib.callback.await('dmt:getPlayerLocations')
+    Client.locations = lib.callback.await('dmt:getLocations')
+    print(json.encode(Client.locations, {indent=true}))
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
-            locations = locations
+            locations = Client.locations
         }
     })
     SetNuiFocus(true, true)
@@ -45,13 +44,14 @@ RegisterNUICallback('changeLocationName', function(data)
         end
 
         -- Updating location data
-        locations[result.index] = result.value
+        Client.locations[result.index] = result.data
 
         --todo: Find a better way to refresh data
+        -- print(json.encode(locations, {indent=true}))
         SendNUIMessage({
             action = 'setLocationDatas',
             data = {
-                locations = locations
+                locations = Client.locations
             }
         })
     end, oldName, newName)
