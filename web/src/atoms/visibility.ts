@@ -1,3 +1,3 @@
-import { atom } from 'recoil';
+import { atom } from 'recoil'
 
-export const menuVisibilityAtom = atom({ key: 'menuVisibility', default: false });
+export const menuVisibilityAtom = atom({ key: 'menuVisibility', default: false })

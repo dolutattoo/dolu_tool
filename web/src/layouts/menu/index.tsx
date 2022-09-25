@@ -2,7 +2,7 @@ import { AppShell, Box, createStyles, Group, Header, Title, Transition } from '@
 import { Route } from 'react-router-dom';
 import { Routes } from 'react-router-dom';
 import Nav from './components/Nav';
-import Home from './views/home/home';
+import Home from './views/home';
 import Locations from './views/locations';
 import { menuVisibilityAtom } from '../../atoms/visibility';
 import { useNuiEvent } from '../../hooks/useNuiEvent';
@@ -10,6 +10,7 @@ import { useExitListener } from '../../hooks/useExitListener';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { Location, locationsAtom } from '../../atoms/location';
 import { GiTeleport } from 'react-icons/gi';
+import Interior from './views/interior';
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -70,6 +71,7 @@ const Menu: React.FC = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/locations" element={<Locations />} />
+              <Route path="/interior" element={<Interior />} />
             </Routes>
           </AppShell>
         </Box>
