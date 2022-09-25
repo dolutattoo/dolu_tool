@@ -1,7 +1,6 @@
 import { Text, Stack, SimpleGrid, Button, Paper, Group } from '@mantine/core';
 import { GiTeleport } from 'react-icons/gi';
 import { getLastLocationUsed, teleportToLocation } from '../../../../atoms/location';
-import HeaderGroup from '../../components/HeaderGroup';
 
 const Home: React.FC = () => {
   const location = getLastLocationUsed();

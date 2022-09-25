@@ -10,7 +10,7 @@ end
 ---@param data table
 ---@return boolean success
 local function updateFileData(path, file, data)
-    print(SaveResourceFile(RESOURCE_NAME, path .. '/' .. file .. '.json', json.encode(data)))
+    return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file .. '.json', json.encode(data))
 end
 
 lib.callback.register('dmt:getLocations', function()
@@ -18,11 +18,11 @@ lib.callback.register('dmt:getLocations', function()
     return Server.locations
 end)
 
-lib.callback.register('dmt:renameLocation', function(source, oldName, newName)
+lib.callback.register('dmt:renameLocation', function(source, data)
     local result
     for index, location in ipairs(Server.locations) do
-        if location.name == oldName then
-            location.name = newName
+        if location.name == data.oldName then
+            location.name = data.newName
             result = { index = index, data = location }
             break
         end
@@ -33,6 +33,9 @@ lib.callback.register('dmt:renameLocation', function(source, oldName, newName)
         return nil
     end
 
-    updateFileData('shared/data', 'locations', Server.locations)
+    local success = updateFileData('shared/data', 'locations', Server.locations)
+    if not success then
+        print("[DoluMappingTool] ^1ERROR: unable to update 'shared/data/locations.json' file.")
+    end
     return result
 end)

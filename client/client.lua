@@ -1,6 +1,5 @@
 local function openUI()
     Client.locations = lib.callback.await('dmt:getLocations')
-    print(json.encode(Client.locations, {indent=true}))
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
@@ -31,12 +30,6 @@ end)
 
 
 RegisterNUICallback('changeLocationName', function(data)
-    local oldName = data.oldName
-    local newName = data.newName
-    assert(oldName ~= nil, "Trying to send an empty default name")
-    assert(newName ~= nil, "Trying to send an empty new name")
-    print("Ancien nom: " .. oldName)
-    print("Nouveau nom: " .. newName)
 
     lib.callback('dmt:renameLocation', false, function(result)
         if not result then
@@ -54,5 +47,5 @@ RegisterNUICallback('changeLocationName', function(data)
                 locations = Client.locations
             }
         })
-    end, oldName, newName)
+    end, data)
 end)
