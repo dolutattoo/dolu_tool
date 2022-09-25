@@ -10,22 +10,33 @@ end
 ---@param data table
 ---@return boolean success
 local function updateFileData(path, file, data)
-    return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file .. '.json', json.encode(data))
+    return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file .. '.json', json.encode(data, { indent=true }))
 end
 
 lib.callback.register('dmt:getLocations', function()
-    Server.locations = getFileData('shared/data', 'locations')
+    if not Server.locations then
+        Server.locations = getFileData('shared/data', 'locations')
+    end
     return Server.locations
 end)
 
 lib.callback.register('dmt:renameLocation', function(source, data)
     local result
+    local lastUsedFound = 0
     for index, location in ipairs(Server.locations) do
+        if location.isLastLocationUsed and location.name ~= data.oldName then
+            location.isLastLocationUsed = nil
+            lastUsedFound += 1
+        end
+
         if location.name == data.oldName then
             location.name = data.newName
+            location.isLastLocationUsed = true
             result = { index = index, data = location }
-            break
+            lastUsedFound += 1
         end
+
+        if lastUsedFound == 2 then break end
     end
 
     if not result then

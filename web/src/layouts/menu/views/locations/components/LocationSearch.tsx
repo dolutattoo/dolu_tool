@@ -1,27 +1,29 @@
-import { TextInput } from '@mantine/core';
-import { useDebouncedValue } from '@mantine/hooks';
-import { TbSearch } from 'react-icons/tb';
-import { useSetRecoilState } from 'recoil';
-import { locationSearchAtom } from '../../../../../atoms/location';
-import { useEffect, useState } from 'react';
+import { Checkbox, TextInput } from '@mantine/core'
+import { useDebouncedValue } from '@mantine/hooks'
+import { TbSearch } from 'react-icons/tb'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { locationCustomFilterAtom, locationSearchAtom, locationVanillaFilterAtom } from '../../../../../atoms/location'
+import { useEffect, useState } from 'react'
 
 const LocationSearch: React.FC = () => {
-  const [search, setSearch] = useState('');
-  const setLocationsSearch = useSetRecoilState(locationSearchAtom);
-  const [debouncedSearch] = useDebouncedValue(search, 500);
+  const [search, setSearch] = useState('')
+  const setLocationsSearch = useSetRecoilState(locationSearchAtom)
+  const [debouncedSearch] = useDebouncedValue(search, 500)
 
   useEffect(() => {
-    setLocationsSearch(debouncedSearch);
-  }, [debouncedSearch, setLocationsSearch]);
+    setLocationsSearch(debouncedSearch)
+  }, [debouncedSearch, setLocationsSearch])
 
   return (
-    <TextInput
-      placeholder="Search"
-      icon={<TbSearch size={20} />}
-      value={search}
-      onChange={(e) => setSearch(e.target.value)}
-    />
-  );
-};
+    <>
+      <TextInput
+        placeholder="Search"
+        icon={<TbSearch size={20} />}
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
+      />
+    </>
+  )
+}
 
-export default LocationSearch;
+export default LocationSearch

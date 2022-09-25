@@ -7,18 +7,12 @@ const RenameLocation = (props: {defaultName: string}) => {
   const { defaultName } = props
   const [newName, setNewName] = useState(defaultName);
 
-  const isButtonDisabled = (string: string) => {
-    if (string === '' || string === defaultName) { return true }
-    return false
-  }
-
   return (
     <Stack>
       <TextInput label="Location name" value={newName} onChange={(e) => setNewName(e.target.value)} />
       <Button
         uppercase
-        fullWidth
-        disabled={isButtonDisabled(newName)}
+        disabled={newName === '' || newName === defaultName}
         variant="outline"
         color="orange"
         placeholder={defaultName}

@@ -7,6 +7,7 @@ export interface Location {
   y: number,
   z: number,
   heading?: number,
+  metadata?: any,
   isLastLocationUsed?: boolean
 }
 
@@ -38,6 +39,16 @@ export const locationsAtom = atom<Location[]>({ key: 'locations', default: mockL
 export const locationSearchAtom = atom<string>({
   key: 'locationSearch',
   default: '',
+})
+
+export const locationVanillaFilterAtom = atom<boolean>({
+  key: 'locationVanillaFilter',
+  default: true,
+})
+
+export const locationCustomFilterAtom = atom<boolean>({
+  key: 'locationCustomFilter',
+  default: true,
 })
 
 export const filteredLocationsAtom = selector({

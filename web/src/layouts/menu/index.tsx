@@ -1,16 +1,16 @@
-import { AppShell, Box, createStyles, Group, Header, Title, Transition } from '@mantine/core';
-import { Route } from 'react-router-dom';
-import { Routes } from 'react-router-dom';
-import Nav from './components/Nav';
-import Home from './views/home';
-import Locations from './views/locations';
-import { menuVisibilityAtom } from '../../atoms/visibility';
-import { useNuiEvent } from '../../hooks/useNuiEvent';
-import { useExitListener } from '../../hooks/useExitListener';
-import { useRecoilState, useSetRecoilState } from 'recoil';
-import { Location, locationsAtom } from '../../atoms/location';
-import { GiTeleport } from 'react-icons/gi';
-import Interior from './views/interior';
+import { AppShell, Box, createStyles, Group, Header, Title, Transition } from '@mantine/core'
+import { Route } from 'react-router-dom'
+import { Routes } from 'react-router-dom'
+import Nav from './components/Nav'
+import Home from './views/home'
+import Locations from './views/locations'
+import { menuVisibilityAtom } from '../../atoms/visibility'
+import { useNuiEvent } from '../../hooks/useNuiEvent'
+import { useExitListener } from '../../hooks/useExitListener'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { Location, locationsAtom } from '../../atoms/location'
+import { GiTeleport } from 'react-icons/gi'
+import Interior from './views/interior'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -20,23 +20,23 @@ const useStyles = createStyles((theme) => ({
     borderRadius: theme.radius.sm,
     color: theme.colors.dark[1],
   },
-}));
+}))
 
 const Menu: React.FC = () => {
-  const { classes } = useStyles();
-  const [visible, setVisible] = useRecoilState(menuVisibilityAtom);
-  const setLocations = useSetRecoilState(locationsAtom);
+  const { classes } = useStyles()
+  const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
+  const setLocations = useSetRecoilState(locationsAtom)
 
-  useNuiEvent('setMenuVisible', (data: { locations: Location[] }) => {
-    setVisible(true);
-    setLocations(data.locations);
-  });
+  useNuiEvent('setMenuVisible', (data: Location[]) => {
+    setVisible(true)
+    setLocations(data)
+  })
 
-  useNuiEvent('setLocationDatas', (data: { locations: Location[] }) => {
-    setLocations(data.locations);
-  });
+  useNuiEvent('setLocationDatas', (data: Location[]) => {
+    setLocations(data)
+  })
 
-  useExitListener(setVisible);
+  useExitListener(setVisible)
 
   return (
     <Transition transition="slide-right" mounted={visible}>
@@ -77,7 +77,7 @@ const Menu: React.FC = () => {
         </Box>
       )}
     </Transition>
-  );
-};
+  )
+}
 
-export default Menu;
+export default Menu

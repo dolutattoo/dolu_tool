@@ -1,16 +1,21 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text } from '@mantine/core'
+import { Accordion, Button, Checkbox, Group, Paper, ScrollArea, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
-import { teleportToLocation, useLocation } from '../../../../atoms/location'
+import { locationCustomFilterAtom, locationVanillaFilterAtom, teleportToLocation, useLocation } from '../../../../atoms/location'
 import { TbList } from 'react-icons/tb'
 import HeaderGroup from '../../components/HeaderGroup'
 import LocationSearch from './components/LocationSearch'
 import { setClipboard } from '../../../../utils/setClipboard'
 import { useEffect, useState } from 'react'
 import RenameLocation from './components/modals/RenameLocation'
+import { useRecoilState } from 'recoil'
 
 const Locations: React.FC = () => {
-  const locations = useLocation();
+  const locations = useLocation()
+
+  const [checkedVanilla, setCheckedVanilla] = useRecoilState(locationVanillaFilterAtom)
+  const [checkedCustom, setCheckedCustom] = useRecoilState(locationCustomFilterAtom)
+
   const [copied, setCopied] = useState(false);
 
   useEffect(() => {
@@ -23,7 +28,22 @@ const Locations: React.FC = () => {
     <>
       <Paper p="md">
         <Stack>
-          <HeaderGroup header="Existing Locations" Icon={TbList} />
+          <Group position='apart'>
+            <Text size={20}>Existing Locations</Text>
+            <Checkbox
+              label='Show Vanilla'
+              color="orange"
+              checked={checkedVanilla}
+              onChange={(e) => setCheckedVanilla(e.currentTarget.checked)}
+            />
+            <Checkbox
+              label='Show Custom'
+              color="orange"
+              checked={checkedCustom}
+              onChange={(e) => setCheckedCustom(e.currentTarget.checked)}
+            />
+          </Group>
+          
           <LocationSearch />
           <Button
             uppercase

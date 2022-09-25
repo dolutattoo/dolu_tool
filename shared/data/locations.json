@@ -1,1 +1,101 @@
-[{"x":-68.0,"heading":50.0,"name":"Location test 1","z":27.5,"y":-1091.0},{"x":-67.0,"heading":230.0,"name":"Location test 2","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 3","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 4","z":28.0,"y":-1048.0},{"x":-67.0,"isLastLocationUsed":true,"heading":230.0,"name":"Location test 5","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 6","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 7","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 8","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 9","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 10","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 11","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 12","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 13","z":28.0,"y":-1048.0},{"x":-67.0,"heading":230.0,"name":"Location test 14","z":28.0,"y":-1048.0}]
+[
+    {
+        "heading": 50.0,
+        "z": 27.5,
+        "x": -68.0,
+        "y": -1091.0,
+        "name": "Location test 1"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 2"
+    },
+    {
+        "isLastLocationUsed": true,
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 3"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 4"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 5"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 6"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 7"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 8"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 9"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 10"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 11"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 12"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 13"
+    },
+    {
+        "heading": 230.0,
+        "z": 28.0,
+        "x": -67.0,
+        "y": -1048.0,
+        "name": "Location test 14"
+    }
+]
