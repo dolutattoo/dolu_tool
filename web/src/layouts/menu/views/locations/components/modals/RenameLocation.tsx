@@ -16,9 +16,11 @@ const RenameLocation = (props: {defaultName: string}) => {
     <Stack>
       <TextInput label="Location name" value={newName} onChange={(e) => setNewName(e.target.value)} />
       <Button
+        uppercase
         fullWidth
         disabled={isButtonDisabled(newName)}
         variant="outline"
+        color="orange"
         placeholder={defaultName}
         onClick={() => {
           closeAllModals();

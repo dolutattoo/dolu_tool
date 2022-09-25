@@ -1,4 +1,4 @@
-import { Accordion, Box, Button, createStyles, Group, Paper, ScrollArea, Stack, Text } from '@mantine/core'
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
 import { teleportToLocation, useLocation } from '../../../../atoms/location'
@@ -27,7 +27,8 @@ const Locations: React.FC = () => {
           <LocationSearch />
           <Button
             uppercase
-            variant="light"
+            variant="outline"
+            color="orange"
             onClick={() =>
               openModal({
                 title: 'Create location',
@@ -90,20 +91,6 @@ const Locations: React.FC = () => {
                     </Accordion.Panel>
                   </Accordion.Item>
                 </Accordion>
-                // <Box
-                //   className={classes.location}
-                //   key={`location-${index}`}
-                //   onClick={() => setSelectedLocationIndex(location.name)}
-                // >
-                //   <Stack spacing="xl">
-                //     <Stack spacing={0}>
-                //       <Text size="xl">{location.name}</Text>
-                //       <Text size="xs">
-                //         Coords: {location.x}, {location.y}, {location.z}
-                //       </Text>
-                //     </Stack>
-                //   </Stack>
-                // </Box>
               ))}
             </Stack>
           </ScrollArea>
