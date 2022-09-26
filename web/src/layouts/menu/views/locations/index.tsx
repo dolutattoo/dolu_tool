@@ -33,12 +33,14 @@ const Locations: React.FC = () => {
             <Checkbox
               label='Show Vanilla'
               color="orange"
+              disabled={!checkedCustom}
               checked={checkedVanilla}
               onChange={(e) => setCheckedVanilla(e.currentTarget.checked)}
             />
             <Checkbox
               label='Show Custom'
               color="orange"
+              disabled={!checkedVanilla}
               checked={checkedCustom}
               onChange={(e) => setCheckedCustom(e.currentTarget.checked)}
             />

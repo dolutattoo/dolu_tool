@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { closeAllModals } from '@mantine/modals'
 import { Stack, Button, TextInput } from '@mantine/core'
+import { fetchNui } from '../../../../../../utils/fetchNui'
 
 const CreateLocation: React.FC = () => {
   const [locationName, setLocationName] = useState('')
@@ -15,7 +16,7 @@ const CreateLocation: React.FC = () => {
         color="orange"
         onClick={() => {
           closeAllModals()
-          console.log(locationName)
+          fetchNui('createCustomLocation', locationName)
         }}
       >
         Confirm

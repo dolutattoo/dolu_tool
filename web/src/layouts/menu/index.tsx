@@ -3,7 +3,6 @@ import { Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './views/home'
-import Locations from './views/locations'
 import { menuVisibilityAtom } from '../../atoms/visibility'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { useExitListener } from '../../hooks/useExitListener'
@@ -11,12 +10,12 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { Location, locationsAtom } from '../../atoms/location'
 import { GiTeleport } from 'react-icons/gi'
 import Interior from './views/interior'
+import Locations from './views/locations'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     width: 1280,
     height: 768,
-    // backgroundColor: theme.colors.dark[8],
     borderRadius: theme.radius.sm,
     color: theme.colors.dark[1],
   },
@@ -27,12 +26,12 @@ const Menu: React.FC = () => {
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
   const setLocations = useSetRecoilState(locationsAtom)
 
-  useNuiEvent('setMenuVisible', (data: Location[]) => {
+  useNuiEvent('setMenuVisible', (data: Location) => {
     setVisible(true)
     setLocations(data)
   })
 
-  useNuiEvent('setLocationDatas', (data: Location[]) => {
+  useNuiEvent('setLocationDatas', (data: Location) => {
     setLocations(data)
   })
 

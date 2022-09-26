@@ -28,17 +28,32 @@ end)
 
 
 RegisterNUICallback('changeLocationName', function(data)
-
     lib.callback('dmt:renameLocation', false, function(result)
         if not result then
-            print('[DMT] ^1 Error while trying to rename location. Location not found!^7')
+            print('^2[DoluMappingTool] ^1 Error while trying to rename location. Location not found!^7')
         end
 
-        Client.locations[result.index] = result.data
+        Client.locations.custom[result.index] = result.data
 
         SendNUIMessage({
             action = 'setLocationDatas',
             data = Client.locations
         })
     end, data)
+end)
+
+RegisterNUICallback('createCustomLocation', function(locationName)
+    local playerPed = PlayerPedId()
+    lib.callback('dmt:createCustomLocation', false, function(result)
+        if not result then
+            print('^2[DoluMappingTool] ^1 Error while trying to create location.^7')
+        end
+
+        Client.locations.custom[result.index] = result.data
+
+        SendNUIMessage({
+            action = 'setLocationDatas',
+            data = Client.locations
+        })
+    end, { name = locationName, coords = GetEntityCoords(playerPed), heading = GetEntityHeading(playerPed) })
 end)
