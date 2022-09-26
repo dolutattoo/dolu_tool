@@ -11,6 +11,7 @@ end
 
 CreateThread(function()
     while true do
+        GetInteriorData()
         if not IsNuiFocused() and not IsPauseMenuActive() then
             if IsControlJustPressed(0, 170) then -- F3
                 openUI()

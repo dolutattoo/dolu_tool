@@ -16,9 +16,7 @@ const Nav: React.FC = () => {
       p="md"
       fixed={false}
       sx={(theme) => ({
-        height: 768,
-        borderTopLeftRadius: theme.radius.sm,
-        borderBottomLeftRadius: theme.radius.sm,
+        height: 768
       })}
     >
       <Navbar.Section grow>
@@ -28,11 +26,11 @@ const Nav: React.FC = () => {
           <NavIcon color='orange' tooltip="Interior" Icon={RiHomeGearFill} to="/interior" />
         </Stack>
       </Navbar.Section>
-      <Navbar.Section>
+      {/* <Navbar.Section>
         <Stack justify="center">
           <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('exit')}} />
         </Stack>
-      </Navbar.Section>
+      </Navbar.Section> */}
     </Navbar>
   );
 };

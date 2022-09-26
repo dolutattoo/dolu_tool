@@ -4,22 +4,29 @@ export interface InteriorData {
     interiorId: number,
     roomCount?: number,
     portalCount?: number,
-    rooms?: any,
-    portals?: any,
-    currentRoomIndex?: number
+    rooms?: Array<{
+        roomId: number,
+        name: string,
+        flag: number,
+        timecycle: number,
+        isCurrent: boolean
+    }>,
+    portals?: Array<{
+        flag: number,
+        roomFrom: number,
+        roomTo: number
+    }>,
+    currentRoom?: {
+        id: number,
+        name: string,
+        flag: number,
+        timecycle: number
+    }
 }
 
 const mockInterior: InteriorData = {
-    interiorId: 123,
-    roomCount: 5,
-    portalCount: 5,
-    rooms: {},
-    portals: {},
-    currentRoomIndex: 2
+    interiorId: -1,
 }
-// const mockInterior: InteriorData = {
-//     interiorId: -1,
-// }
 
 export const interiorAtom = atom<InteriorData>({ key: 'interior', default: mockInterior })
 

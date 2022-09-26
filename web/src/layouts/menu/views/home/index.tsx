@@ -1,9 +1,12 @@
-import { Text, Stack, SimpleGrid, Button, Paper, Group } from '@mantine/core';
-import { GiTeleport } from 'react-icons/gi';
-import { getLastLocationUsed, teleportToLocation } from '../../../../atoms/location';
+import { Text, Stack, SimpleGrid, Button, Paper, Group } from '@mantine/core'
+import { GiTeleport } from 'react-icons/gi'
+import { RiHomeGearFill } from 'react-icons/ri'
+import { getInteriorData } from '../../../../atoms/interior'
+import { getLastLocationUsed, teleportToLocation } from '../../../../atoms/location'
 
 const Home: React.FC = () => {
-  const location = getLastLocationUsed();
+  const location = getLastLocationUsed()
+  const interior = getInteriorData()
 
   return (
     <SimpleGrid cols={1}>
@@ -29,6 +32,24 @@ const Home: React.FC = () => {
             </Button>
           </Group>
         </Paper>
+
+        <Paper p="md">
+          <Group position="apart">
+            <Text size={20} weight={600}>Current interior</Text>
+            <RiHomeGearFill size={24} />
+          </Group>
+         
+          {
+            interior.interiorId > 0
+            ? 
+              <>
+                <Text>Interior ID: {interior.interiorId}</Text>
+                <Text>Current room: {interior.currentRoomName}</Text>
+              </>
+            : 
+              "Not inside any interior"
+          }
+        </Paper>
       </Stack>
 
       {/* -- Making another box on the right side */}
@@ -39,7 +60,7 @@ const Home: React.FC = () => {
       </Box> */}
 
     </SimpleGrid>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

@@ -8,16 +8,18 @@ import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { useExitListener } from '../../hooks/useExitListener'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { Location, locationsAtom } from '../../atoms/location'
-import { GiTeleport } from 'react-icons/gi'
+import { FaTools } from 'react-icons/fa'
 import Interior from './views/interior'
 import Locations from './views/locations'
 import { interiorAtom, InteriorData } from '../../atoms/interior'
+import NavIcon from './components/NavIcon'
+import { TbLogout } from 'react-icons/tb'
+import { fetchNui } from '../../utils/fetchNui'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
     width: 1280,
     height: 768,
-    borderRadius: theme.radius.sm,
     color: theme.colors.dark[1],
   },
 }))
@@ -59,16 +61,16 @@ const Menu: React.FC = () => {
                 width: 1024,
                 height: 768,
                 maxWidth: 600,
-                borderTopRightRadius: theme.radius.sm,
+                borderBottomLeftRadius: theme.radius.sm,
                 borderBottomRightRadius: theme.radius.sm,
               },
             })}
             navbar={<Nav />}
             header={
-              <Header height={60}>
-                <Group sx={{ height: '100%', borderRadius: '5px' }} px={20} position='apart'>
+              <Header sx={{ borderTopLeftRadius: '5px', borderTopRightRadius: '5px' }} height={60}>
+                <Group sx={{ height: '100%' }} px={20} position='apart'>
                   <Title order={3}>Dolu Mapping Tool v4</Title>
-                  <GiTeleport size={24} />
+                  <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('exit')}} />
                 </Group>
               </Header>
             }

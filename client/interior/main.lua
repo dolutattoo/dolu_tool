@@ -1,6 +1,6 @@
 -- Check for interior data
 local lastRoomId = 0
-local function GetInteriorData(fromThread)
+function GetInteriorData(fromThread)
     local playerPed = PlayerPedId()
     local interiorId = GetInteriorFromEntity(playerPed)
     local currentRoomHash = GetRoomKeyFromEntity(playerPed)
@@ -38,12 +38,11 @@ local function GetInteriorData(fromThread)
             rooms = rooms,
             portals = portals,
             currentRoom = {
-                currentRoomId = currentRoomId > 0 and currentRoomId or 0,
-                currentRoomName = currentRoomId > 0 and rooms[currentRoomId].name or 'none',
-                currentRoomFlag = currentRoomId > 0 and rooms[currentRoomId].flag or 0,
-                currentRoomTimecycle = currentRoomId > 0 and rooms[currentRoomId].timecycle or 0
-            },
-            currentRoomName = currentRoomId > 0 and rooms[currentRoomId].name or 'none'
+                id = currentRoomId > 0 and currentRoomId or 0,
+                name = currentRoomId > 0 and rooms[currentRoomId].name or 'none',
+                flag = currentRoomId > 0 and rooms[currentRoomId].flag or 0,
+                timecycle = currentRoomId > 0 and rooms[currentRoomId].timecycle or 0
+            }
         }
 
         SendNUIMessage({
