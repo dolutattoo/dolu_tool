@@ -47,7 +47,7 @@ const Menu: React.FC = () => {
   return (
     <Transition transition="slide-right" mounted={visible}>
       {(style) => (
-        <Box sx={{ position: 'absolute', top: '2%', left: '2%' }} style={style} className={classes.wrapper}>
+        <Box sx={{ position: 'absolute', top: '2%', left: '1.5%' }} style={style} className={classes.wrapper}>
           <AppShell
             padding="md"
             fixed={false}
