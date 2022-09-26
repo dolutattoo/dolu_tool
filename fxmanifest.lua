@@ -24,16 +24,14 @@ shared_scripts {
 }
 
 client_scripts {
-    'data/locations.lua',
-    'data/targets.lua',
     'client/functions.lua',
     'client/client.lua',
     'client/threads.lua',
+    'client/functions.lua',
     'client/interior/main.lua',
 }
 
 server_scripts {
-	'@oxmysql/lib/MySQL.lua',
 	'server/server.lua'
 }
 

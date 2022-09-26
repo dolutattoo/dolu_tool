@@ -22,7 +22,7 @@ CreateThread(function()
 end)
 
 RegisterNUICallback('teleportToLocation', function(data)
-    teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading })
+    FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading })
 end)
 
 RegisterNUICallback('exit', function()
