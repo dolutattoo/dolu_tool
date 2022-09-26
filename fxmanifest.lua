@@ -26,7 +26,7 @@ shared_scripts {
 client_scripts {
     'client/functions.lua',
     'client/client.lua',
-    'client/threads.lua',
+    'client/controls.lua',
     'client/functions.lua',
     'client/interior/main.lua',
 }
