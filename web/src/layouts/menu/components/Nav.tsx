@@ -5,6 +5,7 @@ import NavIcon from './NavIcon';
 import { menuVisibilityAtom } from '../../../atoms/visibility';
 import { useSetRecoilState } from 'recoil';
 import { GiTeleport } from 'react-icons/gi';
+import { fetchNui } from '../../../utils/fetchNui';
 
 const Nav: React.FC = () => {
   const setVisible = useSetRecoilState(menuVisibilityAtom);
@@ -29,7 +30,7 @@ const Nav: React.FC = () => {
       </Navbar.Section>
       <Navbar.Section>
         <Stack justify="center">
-          <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => setVisible(false)} />
+          <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('exit')}} />
         </Stack>
       </Navbar.Section>
     </Navbar>
