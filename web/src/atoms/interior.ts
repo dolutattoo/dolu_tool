@@ -37,5 +37,4 @@ export const getInteriorAtom = selector({
     },
 })
 
-
 export const getInteriorData = () => useRecoilValue(getInteriorAtom)
