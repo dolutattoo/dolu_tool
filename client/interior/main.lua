@@ -14,7 +14,7 @@ function GetInteriorData(fromThread)
         local rooms = {}
         for i = 1, roomCount do
             rooms[i] = {
-                roomId = i,
+                index = i,
                 name = GetInteriorRoomName(interiorId, i),
                 flag = GetInteriorRoomFlag(interiorId, i),
                 timecycle = tostring(GetInteriorRoomTimecycle(interiorId, i)),
@@ -25,6 +25,7 @@ function GetInteriorData(fromThread)
         local portals = {}
         for i = 0, portalCount - 1 do
             portals[i] = {
+                index = i,
                 flag = GetInteriorPortalFlag(interiorId, i),
                 roomFrom = GetInteriorPortalRoomFrom(interiorId, i),
                 roomTo = GetInteriorPortalRoomTo(interiorId, i)
@@ -38,7 +39,7 @@ function GetInteriorData(fromThread)
             rooms = rooms,
             portals = portals,
             currentRoom = {
-                id = currentRoomId > 0 and currentRoomId or 0,
+                index = currentRoomId > 0 and currentRoomId or 0,
                 name = currentRoomId > 0 and rooms[currentRoomId].name or 'none',
                 flag = currentRoomId > 0 and rooms[currentRoomId].flag or 0,
                 timecycle = currentRoomId > 0 and rooms[currentRoomId].timecycle or 0

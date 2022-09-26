@@ -5,19 +5,20 @@ export interface InteriorData {
     roomCount?: number,
     portalCount?: number,
     rooms?: Array<{
-        roomId: number,
+        index: number,
         name: string,
         flag: number,
         timecycle: number,
         isCurrent: boolean
     }>,
     portals?: Array<{
+        index: number,
         flag: number,
         roomFrom: number,
         roomTo: number
     }>,
     currentRoom?: {
-        id: number,
+        index: number,
         name: string,
         flag: number,
         timecycle: number

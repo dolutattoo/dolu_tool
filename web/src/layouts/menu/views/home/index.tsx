@@ -28,7 +28,9 @@ const Home: React.FC = () => {
               onClick={() =>
                 teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
               }
-              value={location.name}>Teleport
+              value={location.name}
+            >
+              Teleport
             </Button>
           </Group>
         </Paper>
@@ -44,7 +46,7 @@ const Home: React.FC = () => {
             ? 
               <>
                 <Text>Interior ID: {interior.interiorId}</Text>
-                <Text>Current room: {interior.currentRoom?.name}</Text>
+                <Text>Current room: {interior.currentRoom?.index} - {interior.currentRoom?.name}</Text>
               </>
             : 
               "Not inside any interior"
