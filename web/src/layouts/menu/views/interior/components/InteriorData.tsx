@@ -1,10 +1,13 @@
-const InteriorData: React.FC = () => {
+import { getInteriorData } from "../../../../../atoms/interior"
+
+const InteriorElement: React.FC = () => {
+    const interior = getInteriorData()
 
     return (
         <>
-            Yopp !!
+            {"Current interior id: " + interior.interiorId}
         </>
     )
 }
 
-export default InteriorData
+export default InteriorElement

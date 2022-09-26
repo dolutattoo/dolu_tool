@@ -11,6 +11,7 @@ import { Location, locationsAtom } from '../../atoms/location'
 import { GiTeleport } from 'react-icons/gi'
 import Interior from './views/interior'
 import Locations from './views/locations'
+import { interiorAtom, InteriorData } from '../../atoms/interior'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -25,6 +26,7 @@ const Menu: React.FC = () => {
   const { classes } = useStyles()
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
   const setLocations = useSetRecoilState(locationsAtom)
+  const setInteriorData = useSetRecoilState(interiorAtom)
 
   useNuiEvent('setMenuVisible', (data: Location) => {
     setVisible(true)
@@ -33,6 +35,10 @@ const Menu: React.FC = () => {
 
   useNuiEvent('setLocationDatas', (data: Location) => {
     setLocations(data)
+  })
+
+  useNuiEvent('setIntData', (data: InteriorData) => {
+    setInteriorData(data)
   })
 
   useExitListener(setVisible)
