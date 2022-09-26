@@ -56,7 +56,7 @@ const Menu: React.FC = () => {
                 maxWidth: 600,
               },
               main: {
-                backgroundColor: theme.colors.dark[8],
+                backgroundColor: 'rgba(24, 24, 27, 0.99)', // backgroundColor: theme.colors.dark[8],
                 width: 1024,
                 height: 768,
                 maxWidth: 600,
