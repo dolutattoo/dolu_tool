@@ -35,7 +35,7 @@ function teleportPlayer(coords)
 
     freezePlayer(true, vehicle)
 
-    local z, inc, int = 0.0, 2.0, 0
+    local z, inc, int = 0.0, 10.0, 0
 
     while z < 800.0 do
         Wait(0)
