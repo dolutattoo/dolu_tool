@@ -76,26 +76,22 @@ lib.callback.register('dmt:renameLocation', function(source, data)
 end)
 
 lib.callback.register('dmt:createCustomLocation', function(source, data)
+    local result = {
+        name = data.name,
+        x = data.coords.x,
+        y = data.coords.y,
+        z = data.coords.z,
+        heading = data.heading,
+        isLastLocationUsed = true
+    }
+
     for _, location in ipairs(Server.locations.custom) do
         if location.isLastLocationUsed then
             location.isLastLocationUsed = nil
-            break
         end
     end
 
-    local result = {
-        index = #Server.locations.custom + 1,
-        data = {
-            name = data.name,
-            x = data.coords.x,
-            y = data.coords.y,
-            z = data.coords.z,
-            heading = data.heading,
-            isLastLocationUsed = true
-        }
-    }
-
-    Server.locations.custom[result.index] = result.data
+    table.insert(Server.locations.custom, 1, result)
 
     local success = updateFileData('shared/data', 'locations', Server.locations.custom)
     if not success then

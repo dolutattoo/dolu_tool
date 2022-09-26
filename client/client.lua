@@ -49,7 +49,7 @@ RegisterNUICallback('createCustomLocation', function(locationName)
             print('^2[DoluMappingTool] ^1 Error while trying to create location.^7')
         end
 
-        Client.locations.custom[result.index] = result.data
+        table.insert(Client.locations.custom, 1, result)
 
         SendNUIMessage({
             action = 'setLocationDatas',

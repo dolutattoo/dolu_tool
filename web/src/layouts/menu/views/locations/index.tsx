@@ -2,8 +2,6 @@ import { Accordion, Button, Checkbox, Group, Paper, ScrollArea, Stack, Text } fr
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
 import { locationCustomFilterAtom, locationVanillaFilterAtom, teleportToLocation, useLocation } from '../../../../atoms/location'
-import { TbList } from 'react-icons/tb'
-import HeaderGroup from '../../components/HeaderGroup'
 import LocationSearch from './components/LocationSearch'
 import { setClipboard } from '../../../../utils/setClipboard'
 import { useEffect, useState } from 'react'
