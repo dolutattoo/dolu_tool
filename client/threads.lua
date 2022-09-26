@@ -30,6 +30,9 @@ CreateThread(function()
             DisableControlAction(0, 140, true) -- Melee attack light
             DisableControlAction(0, 200, true) -- Pause Menu
             DisableControlAction(0, 245, true) -- Chat
+
+            DisableControlAction(0, 30, true) -- Player Movement
+            DisableControlAction(0, 31, true) -- Player Movement
         else
             Wait(10)
         end
@@ -43,6 +46,10 @@ CreateThread(function()
         if IsDisabledControlPressed(0, 25) then
             EnableControlAction(0, 1, true)
             EnableControlAction(0, 2, true)
+
+            EnableControlAction(0, 30, true) -- Player Movement
+            EnableControlAction(0, 31, true) -- Player Movement
+            EnableControlAction(0, 22, true) -- Jump
         end
         Wait(0)
     end
