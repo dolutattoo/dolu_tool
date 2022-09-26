@@ -5,5 +5,6 @@ CreateThread(function()
         Server = {}
     else
         Client = {}
+        isMenuOpen = false
     end
 end)

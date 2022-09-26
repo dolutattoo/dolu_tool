@@ -5,6 +5,8 @@ local function openUI()
         data = Client.locations
     })
     SetNuiFocus(true, true)
+    SetNuiFocusKeepInput(true)
+    isMenuOpen = true
 end
 
 CreateThread(function()
@@ -24,6 +26,8 @@ end)
 
 RegisterNUICallback('exit', function()
     SetNuiFocus(false, false)
+    SetNuiFocusKeepInput(false)
+    isMenuOpen = false
 end)
 
 

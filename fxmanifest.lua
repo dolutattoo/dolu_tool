@@ -28,6 +28,8 @@ client_scripts {
     'data/targets.lua',
     'client/functions.lua',
     'client/client.lua',
+    'client/threads.lua',
+    'client/interior/main.lua',
 }
 
 server_scripts {
