@@ -1,129 +1,72 @@
 [
     {
-        "heading": 50.0,
         "x": -68.0,
-        "z": 27.5,
         "y": -1091.0,
-        "name": "ABC"
+        "z": 27.5,
+        "name": "Location test 1",
+        "heading": 50.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 2"
+        "z": 28.0,
+        "name": "Location test 2",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 3"
+        "z": 28.0,
+        "name": "Location test 3",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 4"
+        "z": 28.0,
+        "name": "Location test 4",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 5"
+        "z": 28.0,
+        "name": "Location test 5",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 6"
+        "z": 28.0,
+        "name": "Location test 6",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 7"
+        "z": 28.0,
+        "name": "Location test 7",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 8"
+        "z": 28.0,
+        "name": "Location test 8",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 9"
+        "z": 28.0,
+        "name": "Location test 9",
+        "heading": 230.0
     },
     {
-        "heading": 230.0,
         "x": -67.0,
-        "z": 28.0,
         "y": -1048.0,
-        "name": "Location test 10"
-    },
-    {
-        "heading": 230.0,
-        "x": -67.0,
         "z": 28.0,
-        "y": -1048.0,
-        "name": "Location test 11"
-    },
-    {
-        "heading": 230.0,
-        "x": -67.0,
-        "z": 28.0,
-        "y": -1048.0,
-        "name": "Location test 12"
-    },
-    {
-        "heading": 230.0,
-        "x": -67.0,
-        "z": 28.0,
-        "y": -1048.0,
-        "name": "Location test 13"
-    },
-    {
-        "heading": 230.0,
-        "x": -67.0,
-        "z": 28.0,
-        "y": -1048.0,
-        "name": "Location test 14"
-    },
-    {
-        "heading": 54.86800384521484,
-        "x": -114.23014831542968,
-        "z": 70.51937866210938,
-        "y": -11.17986392974853,
-        "name": "AAAAAA"
-    },
-    {
-        "heading": 79.08493041992188,
-        "x": -114.29502868652344,
-        "z": 70.51953125,
-        "y": -11.14215755462646,
-        "name": "ABBBBB"
-    },
-    {
-        "heading": 79.08493041992188,
-        "z": 70.51953125,
-        "y": -11.14215755462646,
-        "name": "123456789",
-        "x": -114.29502868652344
-    },
-    {
-        "heading": 79.08828735351563,
-        "x": -114.31538391113281,
-        "z": 70.51953125,
-        "y": -11.14360332489013,
-        "name": "YOO",
-        "isLastLocationUsed": true
+        "name": "Location test 10",
+        "heading": 230.0
     }
 ]
