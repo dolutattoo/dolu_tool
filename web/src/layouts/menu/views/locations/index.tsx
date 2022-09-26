@@ -76,9 +76,9 @@ const Locations: React.FC = () => {
                           variant="outline"
                           color="orange"
                           size="xs"
-                          onClick={() => {
-                            teleportToLocation({ x: location.x, y: location.y, z: location.z, heading: location.heading })
-                          }}
+                          onClick={() =>
+                            teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
+                          }
                         >
                           Teleport
                         </Button>

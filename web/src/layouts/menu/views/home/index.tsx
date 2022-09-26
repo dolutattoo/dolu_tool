@@ -25,9 +25,9 @@ const Home: React.FC = () => {
             <Button
               color='orange'
               variant='outline'
-              onClick={() => {
-                teleportToLocation({ x: location.x, y: location.y, z: location.z, heading: location.heading })
-              }}
+              onClick={() =>
+                teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
+              }
               value={location.name}>Teleport
             </Button>
           </Group>
@@ -51,14 +51,6 @@ const Home: React.FC = () => {
           }
         </Paper>
       </Stack>
-
-      {/* -- Making another box on the right side */}
-
-      {/* <Box>
-        <Stack>
-        </Stack>
-      </Box> */}
-
     </SimpleGrid>
   )
 }

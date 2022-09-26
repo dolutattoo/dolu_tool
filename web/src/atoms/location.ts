@@ -113,8 +113,7 @@ export const lastLocationUsedAtom = selector({
   }
 })
 
-// export const teleportToLocation = (value: { x: number, y: number, z: number, heading?: number }) => {
-export const teleportToLocation = (value: any) => {
+export const teleportToLocation = (value: LocationProp) => {
   fetchNui('teleportToLocation', value)
 }
 
