@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react'
 const LocationSearch: React.FC = () => {
   const [search, setSearch] = useState('')
   const setLocationsSearch = useSetRecoilState(locationSearchAtom)
-  const [debouncedSearch] = useDebouncedValue(search, 500)
+  const [debouncedSearch] = useDebouncedValue(search, 200)
 
   useEffect(() => {
     setLocationsSearch(debouncedSearch)
