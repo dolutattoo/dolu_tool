@@ -1,6 +1,7 @@
 import { Navbar, Stack } from '@mantine/core';
 import { TbHome, TbLogout } from 'react-icons/tb';
 import { RiHomeGearFill } from 'react-icons/ri';
+import { FaTshirt } from 'react-icons/fa';
 import NavIcon from './NavIcon';
 import { menuVisibilityAtom } from '../../../atoms/visibility';
 import { useSetRecoilState } from 'recoil';
@@ -24,6 +25,7 @@ const Nav: React.FC = () => {
           <NavIcon color='orange' tooltip="Home" Icon={TbHome} to="/" />
           <NavIcon color='orange' tooltip="Locations" Icon={GiTeleport} to="/locations" />
           <NavIcon color='orange' tooltip="Interior" Icon={RiHomeGearFill} to="/interior" />
+          <NavIcon color='orange' tooltip="Ped" Icon={FaTshirt} to="/ped" />
         </Stack>
       </Navbar.Section>
       {/* <Navbar.Section>

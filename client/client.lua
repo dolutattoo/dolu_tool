@@ -25,6 +25,10 @@ RegisterNUICallback('teleportToLocation', function(data)
     FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading })
 end)
 
+RegisterNUICallback('dmt:changePed', function(data)
+    FUNC.changePed(data.name)
+end)
+
 RegisterNUICallback('exit', function()
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)

@@ -14,6 +14,7 @@ import { interiorAtom, InteriorData } from '../../atoms/interior'
 import NavIcon from './components/NavIcon'
 import { TbLogout } from 'react-icons/tb'
 import { fetchNui } from '../../utils/fetchNui'
+import Ped from './views/ped'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -78,6 +79,7 @@ const Menu: React.FC = () => {
               <Route path="/" element={<Home />} />
               <Route path="/locations" element={<Locations />} />
               <Route path="/interior" element={<Interior />} />
+              <Route path="/ped" element={<Ped />} />
             </Routes>
           </AppShell>
         </Box>

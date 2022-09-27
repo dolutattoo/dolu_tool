@@ -286,3 +286,13 @@ FUNC.teleportPlayer = function(coords)
     SetGameplayCamRelativeHeading(0)
     DoScreenFadeIn(750)
 end
+
+FUNC.changePed = function(model)
+    local playerId = cache.playerId
+    model = joaat(model)
+    RequestModel(model)
+    while not HasModelLoaded(model) do
+        Wait(0)
+    end
+    SetPlayerModel(playerId, model)
+end
