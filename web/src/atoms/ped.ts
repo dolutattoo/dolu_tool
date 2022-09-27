@@ -3,7 +3,7 @@ import { fetchNui } from '../utils/fetchNui'
 
 export interface PedProp {
   name: string,
-  hash: number
+  hash?: number
 }
 
 const mockPedList: PedProp[] = [

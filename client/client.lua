@@ -1,8 +1,9 @@
 local function openUI()
     Client.locations = lib.callback.await('dmt:getLocations')
+    Client.pedLists = lib.callback.await('dmt:getPedList')
     SendNUIMessage({
         action = 'setMenuVisible',
-        data = Client.locations
+        data = {locations = Client.locations, pedLists = Client.pedLists}
     })
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)

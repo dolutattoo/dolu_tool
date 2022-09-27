@@ -100,3 +100,10 @@ lib.callback.register('dmt:createCustomLocation', function(source, data)
     return result
 end)
 
+
+lib.callback.register('dmt:getPedList', function()
+    if not Server.pedLists then
+        Server.pedLists = getFileData('shared/data', 'pedList')
+    end
+    return Server.pedLists
+end)

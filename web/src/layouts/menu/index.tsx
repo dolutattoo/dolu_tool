@@ -15,6 +15,7 @@ import NavIcon from './components/NavIcon'
 import { TbLogout } from 'react-icons/tb'
 import { fetchNui } from '../../utils/fetchNui'
 import Ped from './views/ped'
+import { pedListAtom, PedProp } from '../../atoms/ped'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -29,10 +30,12 @@ const Menu: React.FC = () => {
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
   const setLocations = useSetRecoilState(locationsAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
+  const setPedList = useSetRecoilState(pedListAtom)
 
-  useNuiEvent('setMenuVisible', (data: Location) => {
+  useNuiEvent('setMenuVisible', (data: {locations: Location, pedLists: PedProp[]}) => {
     setVisible(true)
-    setLocations(data)
+    setLocations(data.locations)
+    setPedList(data.pedLists)
   })
 
   useNuiEvent('setLocationDatas', (data: Location) => {
