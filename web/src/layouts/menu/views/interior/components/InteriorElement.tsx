@@ -8,7 +8,7 @@ const InteriorElement: React.FC = () => {
   
   const [checkboxesValue, setCheckboxesValue] = useState<string[]>([])
   useEffect(() => {
-    if (checkboxesValue) fetchNui('dmt:setPortalCheckbox', { value: checkboxesValue })
+    if (checkboxesValue) fetchNui('dmt:setPortalCheckbox', checkboxesValue)
   }, [checkboxesValue, setCheckboxesValue])
   
   return (

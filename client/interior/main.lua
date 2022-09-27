@@ -73,7 +73,7 @@ local portalPoly, portalLines, portalCorners, portalInfos = false, false, false,
 
 RegisterNUICallback('dmt:setPortalCheckbox', function(data)
     local options = {}
-    for _, v in pairs(data.value) do options[v] = true end
+    for _, v in pairs(data) do options[v] = true end
     if options.portalInfos then portalInfos = true else portalInfos = false end
     if options.portalPoly then portalPoly = true else portalPoly = false end
     if options.portalLines then portalLines = true else portalLines = false end
