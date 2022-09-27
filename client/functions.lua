@@ -21,21 +21,8 @@ FUNC.stringSplit = function(input, seperator)
     return t
 end
 
-FUNC.displayKeyboard = function(title)
-    if (title == nil) then
-        title = ""
-    end
-
-    AddTextEntry('FMMC_KEY_TIP1', title)
-    DisplayOnscreenKeyboard(1, "FMMC_KEY_TIP1", "", "", "", "", "", 30)
-    while (UpdateOnscreenKeyboard() == 0) do
-        DisableAllControlActions(0)
-        Wait(0)
-    end
-
-    if (GetOnscreenKeyboardResult()) then
-        return GetOnscreenKeyboardResult()
-    end
+FUNC.Lerp = function(a, b, t)
+    return a + (b - a) * t
 end
 
 FUNC.setTimecycle = function(name)
@@ -80,14 +67,6 @@ FUNC.setRoomFlag = function(flag)
     end
 end
 
-FUNC.resetNoClip = function()
-    local playerPed = PlayerPedId()
-    ResetPedRagdollBlockingFlags(playerPed, 2)
-    ResetPedRagdollBlockingFlags(playerPed, 3)
-    SetEntityCollision(playerPed, true, true)
-    FreezeEntityPosition(playerPed, false)
-end
-
 FUNC.enableEntitySet = function(value)
     local playerPed = PlayerPedId()
     local interiorId = GetInteriorFromEntity(playerPed)
@@ -127,7 +106,10 @@ FUNC.getClock = function()
 end
 
 FUNC.setClock = function(hour, minutes, seconds)
-    NetworkOverrideClockTime(hour, minutes or 0, seconds or 0)
+    hour = tonumber(hour)
+    minutes = tonumber(minutes)
+    seconds = tonumber(seconds)
+    NetworkOverrideClockTime(hour, minutes, seconds)
 end
 
 FUNC.getWeather = function()
@@ -139,21 +121,6 @@ end
 FUNC.setWeather = function(weather)
     SetWeatherTypeNowPersist(weather)
     SetWeatherTypePersist(weather)
-end
-
-FUNC.Draw = function(text, r, g, b, alpha, x, y, width, height, layer, center, font)
-    SetTextColour(r, g, b, alpha)
-    SetTextFont(font)
-    SetTextScale(width, height)
-    SetTextWrap(0.0, 1.0)
-    SetTextCentre(center)
-    SetTextDropshadow(1, 1, 1, 1, 255);
-    SetTextEdge(2, 0, 0, 0, 150);
-    SetTextOutline(200, 200, 200, 255)
-    SetTextEntry("STRING")
-    AddTextComponentString(text)
-    Citizen.InvokeNative(0x61BB1D9B3A95D802, layer)
-    DrawText(x, y)
 end
 
 FUNC.QMultiply = function(a, b)
@@ -174,17 +141,12 @@ FUNC.QMultiply = function(a, b)
         ((b.x * (axzz - awyy)) + (b.y * (ayzz + awxx))) + (b.z * ((1.0 - axxx) - ayyy)))
 end
 
-FUNC.Lerp = function(a, b, t)
-    return a + (b - a) * t
-end
-
 FUNC.Draw3DText = function(DrawCoords, text)
     local onScreen, _x, _y = GetScreenCoordFromWorldCoord(DrawCoords.x, DrawCoords.y, DrawCoords.z)
     local px, py, pz = table.unpack(GetFinalRenderedCamCoord())
-    local dist = GetDistanceBetweenCoords(px, py, pz, DrawCoords.x, DrawCoords.y, DrawCoords.z, 1)
-    local scale = (1 / dist)
+    local dist = #(vec3(px, py, pz) - vec3(DrawCoords.x, DrawCoords.y, DrawCoords.z))
     local fov = (1 / GetGameplayCamFov()) * 100
-    local scale = scale * fov
+    local scale = (1 / dist) * fov
 
     if onScreen then
         SetTextScale(0.0 * scale, 1.1 * scale)
@@ -199,6 +161,14 @@ FUNC.Draw3DText = function(DrawCoords, text)
         AddTextComponentSubstringPlayerName(text)
         EndTextCommandDisplayText(_x, _y)
     end
+end
+
+FUNC.DrawFloating = function(DrawCoords, text)
+    BeginTextCommandDisplayHelp('FloatingNotification')
+    AddTextEntry('FloatingNotification', text)
+    EndTextCommandDisplayHelp(2, false, false, -1)
+    SetFloatingHelpTextWorldPosition(1, DrawCoords.x, DrawCoords.y, DrawCoords.z + 0.1)
+    SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
 end
 
 FUNC.savePositions = function(array)

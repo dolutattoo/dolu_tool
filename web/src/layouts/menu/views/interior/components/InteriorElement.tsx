@@ -14,7 +14,7 @@ const InteriorElement: React.FC = () => {
   return (
     <>
       {/* Current interior infos */}
-      <Paper sx={{ minHeight: "17vh" }} p="md">
+      <Paper p="md">
         <Text size={24} weight={600}>Current interior infos</Text>
         <Space h="xs" />
         <Group><Text>Interior ID:</Text><Text color="orange.4" > { interior.interiorId }</Text></Group>
@@ -24,7 +24,7 @@ const InteriorElement: React.FC = () => {
       </Paper>
 
       {/* Portal drawing */}
-      <Paper sx={{ minHeight: "10.5vh" }} p="md">
+      <Paper p="md">
         <Text size={24} weight={600}>Portal drawing</Text>
         
         {/* <Space h="xs" /> */}

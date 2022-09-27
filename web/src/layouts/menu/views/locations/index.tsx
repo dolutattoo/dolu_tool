@@ -14,13 +14,14 @@ const Locations: React.FC = () => {
   const [checkedVanilla, setCheckedVanilla] = useRecoilState(locationVanillaFilterAtom)
   const [checkedCustom, setCheckedCustom] = useRecoilState(locationCustomFilterAtom)
 
-  const [copied, setCopied] = useState(false);
+  const [copied, setCopied] = useState(false)
+  const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
 
   useEffect(() => {
     setTimeout(() => {
-      if (copied) setCopied(false);
-    }, 2000);
-  }, [copied, setCopied]);
+      if (copied) setCopied(false)
+    }, 2000)
+  }, [copied, setCopied])
 
   return (
     <>
@@ -62,8 +63,8 @@ const Locations: React.FC = () => {
           <ScrollArea style={{ height: 555 }} scrollbarSize={0}>
             <Stack>
               {locations.map((location, index) => (
-                <Accordion>
-                  <Accordion.Item value={location.name}>
+                <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
+                  <Accordion.Item value={index.toString()}>
                     <Accordion.Control>
                       <Stack spacing={0}>
                        <Text size="xl">{location.name}</Text>
@@ -91,7 +92,7 @@ const Locations: React.FC = () => {
                               title: 'Rename location',
                               children: <RenameLocation defaultName={location.name} />,
                               size: 'xs',
-                            });
+                            })
                           }}
                         >
                           Rename
@@ -101,8 +102,8 @@ const Locations: React.FC = () => {
                           color={copied ? 'teal' : 'orange'}
                           size="xs"
                           onClick={() => {
-                            setClipboard(location.x + ', ' + location.y + ', ' + location.z);
-                            setCopied(true);
+                            setClipboard(location.x + ', ' + location.y + ', ' + location.z)
+                            setCopied(true)
                           }}
                         >
                           {copied ? 'Copied' : 'Copy'} coords
@@ -117,12 +118,7 @@ const Locations: React.FC = () => {
         </Stack>
       </Paper>
     </>
-  );
-};
-
-export default Locations
-
-function setCopied(arg0: boolean) {
-  throw new Error('Function not implemented.')
+  )
 }
 
+export default Locations

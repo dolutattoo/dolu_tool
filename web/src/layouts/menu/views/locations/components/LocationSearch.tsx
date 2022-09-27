@@ -1,8 +1,8 @@
-import { Checkbox, TextInput } from '@mantine/core'
+import { TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { TbSearch } from 'react-icons/tb'
-import { useRecoilState, useSetRecoilState } from 'recoil'
-import { locationCustomFilterAtom, locationSearchAtom, locationVanillaFilterAtom } from '../../../../../atoms/location'
+import { useSetRecoilState } from 'recoil'
+import { locationSearchAtom } from '../../../../../atoms/location'
 import { useEffect, useState } from 'react'
 
 const LocationSearch: React.FC = () => {

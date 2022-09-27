@@ -11,7 +11,7 @@ const Interior: React.FC = () => {
         {
           interior?.interiorId <= 0
           ?
-          <Paper sx={{ minHeight: "16vh" }} p="md">
+          <Paper p="md">
               <Text size={24} weight={600}>Current interior infos</Text>
               <Space h="sm" />
               <Text color="red.4">You are not inside any interior.</Text>

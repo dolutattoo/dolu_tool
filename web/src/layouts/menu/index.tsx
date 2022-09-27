@@ -16,6 +16,7 @@ import { TbLogout } from 'react-icons/tb'
 import { fetchNui } from '../../utils/fetchNui'
 import Ped from './views/ped'
 import { pedListAtom, PedProp } from '../../atoms/ped'
+import World from './views/world'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -80,6 +81,7 @@ const Menu: React.FC = () => {
           >
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/world" element={<World />} />
               <Route path="/locations" element={<Locations />} />
               <Route path="/interior" element={<Interior />} />
               <Route path="/ped" element={<Ped />} />

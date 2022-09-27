@@ -45,8 +45,8 @@ const Home: React.FC = () => {
             interior.interiorId > 0
             ? 
               <>
-                <Text>Interior ID: {interior.interiorId}</Text>
-                <Text>Current room: {interior.currentRoom?.index} - {interior.currentRoom?.name}</Text>
+                <Group><Text>Interior ID:</Text><Text color="orange.4" >{interior.interiorId}</Text></Group>
+                <Group><Text>Current room:</Text><Text color="orange.4" >{interior.currentRoom?.index} - {interior.currentRoom?.name}</Text></Group>
               </>
             : 
               "Not inside any interior"

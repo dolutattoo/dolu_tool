@@ -4,11 +4,13 @@ specifiers:
   '@babel/core': ^7.19.1
   '@emotion/react': ^11.10.4
   '@mantine/core': ^5.4.1
+  '@mantine/dates': ^5.4.1
   '@mantine/hooks': ^5.4.1
   '@mantine/modals': ^5.4.1
   '@types/react': ^18.0.21
   '@types/react-dom': ^18.0.6
   '@vitejs/plugin-react': ^1.3.2
+  dayjs: ^1.11.5
   react: ^18.2.0
   react-dom: ^18.2.0
   react-icons: ^4.4.0
@@ -21,8 +23,10 @@ dependencies:
   '@babel/core': 7.19.1
   '@emotion/react': 11.10.4_msyv5sllghxdhcqrv627wahqgi
   '@mantine/core': 5.4.1_wg74yri6n7msncsqpz6oaue6ce
+  '@mantine/dates': 5.4.1_2ysezshb4xdt5s2q2jopqktauq
   '@mantine/hooks': 5.4.1_react@18.2.0
   '@mantine/modals': 5.4.1_yjrp4o5lii4tl5f25x3krrfp6i
+  dayjs: 1.11.5
   react: 18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-icons: 4.4.0_react@18.2.0
@@ -481,6 +485,21 @@ packages:
       - '@types/react'
     dev: false
 
+  /@mantine/dates/5.4.1_2ysezshb4xdt5s2q2jopqktauq:
+    resolution: {integrity: sha512-S1GRUPV5phEuU6rhRzfFFI4rkvIZLTC+Oo13PSBBCg/Ku/SfyyAxrsQM5N1aO5F6C0OBQOwrYQGE99yMQ+VPGA==}
+    peerDependencies:
+      '@mantine/core': 5.4.1
+      '@mantine/hooks': 5.4.1
+      dayjs: '>=1.0.0'
+      react: '>=16.8.0'
+    dependencies:
+      '@mantine/core': 5.4.1_wg74yri6n7msncsqpz6oaue6ce
+      '@mantine/hooks': 5.4.1_react@18.2.0
+      '@mantine/utils': 5.4.1_react@18.2.0
+      dayjs: 1.11.5
+      react: 18.2.0
+    dev: false
+
   /@mantine/hooks/5.4.1_react@18.2.0:
     resolution: {integrity: sha512-qLYWLhFTciyHZCHiSUXoGei3DBwo+2gjCP1zdko9YzKer9xgfKoVDBoxBGTdsAVpac4ZzmeMk/Jm74fWn8PU+A==}
     peerDependencies:
@@ -781,6 +800,10 @@ packages:
 
   /csstype/3.1.1:
     resolution: {integrity: sha512-DJR/VvkAvSZW9bTouZue2sSxDwdTN92uHjqeKVm+0dAqdfNykRzQ95tay8aXMBAAPpUiq4Qcug2L7neoRh2Egw==}
+
+  /dayjs/1.11.5:
+    resolution: {integrity: sha512-CAdX5Q3YW3Gclyo5Vpqkgpj8fSdLQcRuzfX6mC6Phy0nfJ0eGYOeS7m4mt2plDWLAtA4TqTakvbboHvUxfe4iA==}
+    dev: false
 
   /debug/4.3.4:
     resolution: {integrity: sha512-PRWFHuSU3eDtQJPvnNY7Jcket1j0t5OuOsFzPPzsekD52Zl8qUfFIPEiswXqIvHWGVHOgX+7G/vCNNhehwxfkQ==}

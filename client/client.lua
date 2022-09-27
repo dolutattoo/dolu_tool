@@ -67,3 +67,13 @@ RegisterNUICallback('createCustomLocation', function(locationName)
         })
     end, { name = locationName, coords = GetEntityCoords(playerPed), heading = GetEntityHeading(playerPed) })
 end)
+
+RegisterNUICallback('setWeather', function(weatherName)
+    FUNC.setWeather(weatherName)
+end)
+
+RegisterNUICallback('setClock', function(clock)
+    local newTime = FUNC.stringSplit(clock:sub(12, 16), ':')
+    FUNC.setClock(tonumber(newTime[1]), tonumber(newTime[2]))
+end)
+
