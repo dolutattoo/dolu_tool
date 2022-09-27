@@ -3,7 +3,10 @@ local function openUI()
     Client.pedLists = lib.callback.await('dmt:getPedList')
     SendNUIMessage({
         action = 'setMenuVisible',
-        data = {locations = Client.locations, pedLists = Client.pedLists}
+        data = {
+            locations = Client.locations,
+            pedLists = Client.pedLists
+        }
     })
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)
@@ -36,7 +39,6 @@ RegisterNUICallback('dmt:exit', function()
     isMenuOpen = false
 end)
 
-
 RegisterNUICallback('dmt:changeLocationName', function(data)
     lib.callback('dmt:renameLocation', false, function(result)
         if not result then
@@ -54,6 +56,7 @@ end)
 
 RegisterNUICallback('dmt:createCustomLocation', function(locationName)
     local playerPed = PlayerPedId()
+
     lib.callback('dmt:createCustomLocation', false, function(result)
         if not result then
             print('^2[DoluMappingTool] ^1 Error while trying to create location.^7')
@@ -74,6 +77,11 @@ end)
 
 RegisterNUICallback('dmt:setClock', function(clock)
     local newTime = FUNC.stringSplit(clock:sub(12, 16), ':')
-    FUNC.setClock(tonumber(newTime[1]), tonumber(newTime[2]))
-end)
 
+    CreateThread(function()
+        while true do
+            FUNC.setClock(newTime[1], newTime[2])
+            Wait(0)
+        end
+    end)
+end)
