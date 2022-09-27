@@ -14,21 +14,19 @@ const World: React.FC = () => {
 
   useEffect(() => {
     if (weatherValue) {
-      fetchNui('setWeather', weatherValue)
+      fetchNui('dmt:setWeather', weatherValue)
     }
   }, [weatherValue, setweatherValue])
 
   useEffect(() => {
     if (clockValue) {
-      fetchNui('setClock', clockValue)
+      fetchNui('dmt:setClock', clockValue)
     }
   }, [clockValue, setclockValue])
 
   return (
     <SimpleGrid cols={1}>
-      <Stack>
-        <Text color="blue">TODO</Text>
-        
+      <Stack>        
         <Paper p="md">  
           <Group position="apart">
             <Text size={20} weight={600}>Time</Text>

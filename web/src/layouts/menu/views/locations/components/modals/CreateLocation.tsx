@@ -16,7 +16,7 @@ const CreateLocation: React.FC = () => {
         color="orange"
         onClick={() => {
           closeAllModals()
-          fetchNui('createCustomLocation', locationName)
+          fetchNui('dmt:createCustomLocation', locationName)
         }}
       >
         Confirm

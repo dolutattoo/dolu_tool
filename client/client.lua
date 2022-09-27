@@ -22,7 +22,7 @@ CreateThread(function()
     end
 end)
 
-RegisterNUICallback('teleportToLocation', function(data)
+RegisterNUICallback('dmt:teleport', function(data)
     FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading })
 end)
 
@@ -30,14 +30,14 @@ RegisterNUICallback('dmt:changePed', function(data)
     FUNC.changePed(data.name)
 end)
 
-RegisterNUICallback('exit', function()
+RegisterNUICallback('dmt:exit', function()
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
     isMenuOpen = false
 end)
 
 
-RegisterNUICallback('changeLocationName', function(data)
+RegisterNUICallback('dmt:changeLocationName', function(data)
     lib.callback('dmt:renameLocation', false, function(result)
         if not result then
             print('^2[DoluMappingTool] ^1 Error while trying to rename location. Location not found!^7')
@@ -52,7 +52,7 @@ RegisterNUICallback('changeLocationName', function(data)
     end, data)
 end)
 
-RegisterNUICallback('createCustomLocation', function(locationName)
+RegisterNUICallback('dmt:createCustomLocation', function(locationName)
     local playerPed = PlayerPedId()
     lib.callback('dmt:createCustomLocation', false, function(result)
         if not result then
@@ -68,11 +68,11 @@ RegisterNUICallback('createCustomLocation', function(locationName)
     end, { name = locationName, coords = GetEntityCoords(playerPed), heading = GetEntityHeading(playerPed) })
 end)
 
-RegisterNUICallback('setWeather', function(weatherName)
+RegisterNUICallback('dmt:setWeather', function(weatherName)
     FUNC.setWeather(weatherName)
 end)
 
-RegisterNUICallback('setClock', function(clock)
+RegisterNUICallback('dmt:setClock', function(clock)
     local newTime = FUNC.stringSplit(clock:sub(12, 16), ':')
     FUNC.setClock(tonumber(newTime[1]), tonumber(newTime[2]))
 end)

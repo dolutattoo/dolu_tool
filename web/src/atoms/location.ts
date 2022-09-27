@@ -114,7 +114,7 @@ export const lastLocationUsedAtom = selector({
 })
 
 export const teleportToLocation = (value: LocationProp) => {
-  fetchNui('teleportToLocation', value)
+  fetchNui('dmt:teleport', value)
 }
 
 export const useLocation = () => useRecoilValue(filteredLocationsAtom)

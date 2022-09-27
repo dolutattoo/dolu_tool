@@ -74,7 +74,7 @@ const Menu: React.FC = () => {
               <Header sx={{ borderTopLeftRadius: '5px', borderTopRightRadius: '5px' }} height={60}>
                 <Group sx={{ height: '100%' }} px={20} position='apart'>
                   <Title order={3}>Dolu Mapping Tool v4</Title>
-                  <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('exit')}} />
+                  <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('dmt:exit')}} />
                 </Group>
               </Header>
             }

@@ -19,7 +19,7 @@ const RenameLocation = (props: {defaultName: string}) => {
         onClick={() => {
           closeAllModals();
           if (newName !== '') {
-            fetchNui('changeLocationName', {oldName: defaultName, newName: newName})
+            fetchNui('dmt:changeLocationName', {oldName: defaultName, newName: newName})
           }
         }}
       >

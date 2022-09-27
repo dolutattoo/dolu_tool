@@ -30,11 +30,6 @@ const Nav: React.FC = () => {
           <NavIcon color='orange' tooltip="Ped" Icon={FaTshirt} to="/ped" />
         </Stack>
       </Navbar.Section>
-      {/* <Navbar.Section>
-        <Stack justify="center">
-          <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('exit')}} />
-        </Stack>
-      </Navbar.Section> */}
     </Navbar>
   );
 };
