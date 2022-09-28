@@ -2,10 +2,23 @@ local noClip = false
 local lastCoords
 
 RegisterCommand('goback', function()
-    if lastCoords then
+    if not lastCoords then
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "No previous position found. You need to teleport to marker first.",
+            type = 'error',
+            position = 'top'
+        })
+    else
         local currentCoords = GetEntityCoords(cache.ped)
         FUNC.setPlayerCoords(cache.vehicle, lastCoords.x, lastCoords.y, lastCoords.z)
         lastCoords = currentCoords
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = 'Succefully teleport to last position',
+            type = 'success',
+            position = 'top'
+        })
     end
 end)
 
@@ -14,9 +27,10 @@ RegisterCommand('tpm', function()
 
     if marker == 0 then
         lib.notify({
-            title = 'Teleport to marker',
-            description = 'You did not set any marker!',
-            type = 'error'
+            title = 'Dolu Mapping Tool',
+            description = 'You did not set any marker',
+            type = 'error',
+            position = 'top'
         })
     else
         local coords = GetBlipInfoIdCoord(marker)
