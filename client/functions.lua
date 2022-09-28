@@ -218,7 +218,7 @@ FUNC.setPlayerCoords = function(vehicle, x, y, z, heading)
     end
 end
 
-FUNC.teleportPlayer = function(coords)
+FUNC.teleportPlayer = function(coords, updateLastCoords)
     assert(type(coords) == 'table', "Trying to teleport player to invalid coords type")
     coords = vec(coords.x, coords.y, coords.z, coords.heading)
 
@@ -228,6 +228,10 @@ FUNC.teleportPlayer = function(coords)
     local vehicle = cache.seat == -1 and cache.vehicle
 
     FUNC.freezePlayer(true, vehicle)
+
+    if updateLastCoords then
+        lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
+    end
 
     local z, inc, int = 0.0, 10.0, 0
 

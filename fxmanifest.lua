@@ -10,8 +10,9 @@ author       'Dolu'
 repository   'https://github.com/dolutattoo/DoluMappingTool'
 
 shared_scripts {
-	'@ox_lib/init.lua',
-    'init.lua'
+    '@ox_lib/init.lua',
+    'config.lua',
+    'shared/init.lua'
 }
 
 client_scripts {
@@ -37,6 +38,7 @@ files {
     'web/build/index.html',
     'web/build/**/*',
     'shared/img/**/*.webp',
+    'locales/*.json'
 }
 
 dependencies {

@@ -26,7 +26,7 @@ CreateThread(function()
 end)
 
 RegisterNUICallback('dmt:teleport', function(data)
-    FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading })
+    FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
 end)
 
 RegisterNUICallback('dmt:changePed', function(data)

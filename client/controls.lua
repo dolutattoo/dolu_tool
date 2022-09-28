@@ -44,8 +44,8 @@ end)
 CreateThread(function()
     while true do
         if IsDisabledControlPressed(0, 25) then
-            EnableControlAction(0, 1, true)
-            EnableControlAction(0, 2, true)
+            EnableControlAction(0, 1, true) -- Look Left/Right
+            EnableControlAction(0, 2, true) -- Look up/Down
 
             EnableControlAction(0, 30, true) -- Player Movement
             EnableControlAction(0, 31, true) -- Player Movement
