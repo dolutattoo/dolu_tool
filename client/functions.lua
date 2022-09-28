@@ -193,7 +193,7 @@ FUNC.drawText = function(string, coords)
 end
 
 -- Teleport functions (thanks to ox_core)
-local function freezePlayer(state, vehicle)
+FUNC.freezePlayer = function(state, vehicle)
     local playerId, ped = cache.playerId, cache.ped
     local entity = vehicle and cache.vehicle or ped
 
@@ -207,7 +207,7 @@ local function freezePlayer(state, vehicle)
     end
 end
 
-local function teleport(vehicle, x, y, z, heading)
+FUNC.setPlayerCoords = function(vehicle, x, y, z, heading)
     if vehicle then
         return SetPedCoordsKeepVehicle(cache.ped, x, y, z)
     end
@@ -227,7 +227,7 @@ FUNC.teleportPlayer = function(coords)
 
     local vehicle = cache.seat == -1 and cache.vehicle
 
-    freezePlayer(true, vehicle)
+    FUNC.freezePlayer(true, vehicle)
 
     local z, inc, int = 0.0, 10.0, 0
 
@@ -244,15 +244,15 @@ FUNC.teleportPlayer = function(coords)
         end
 
         if found then
-            teleport(vehicle, coords.x, coords.y, groundZ, coords.w)
+            FUNC.setPlayerCoords(vehicle, coords.x, coords.y, groundZ, coords.w)
             break
         end
 
-        teleport(vehicle, coords.x, coords.y, z, coords.w)
+        FUNC.setPlayerCoords(vehicle, coords.x, coords.y, z, coords.w)
         z += inc
     end
 
-    freezePlayer(false, vehicle)
+    FUNC.freezePlayer(false, vehicle)
     SetGameplayCamRelativeHeading(0)
     DoScreenFadeIn(750)
 end

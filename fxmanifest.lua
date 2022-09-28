@@ -1,22 +1,13 @@
---[[ FX Information ]]--
-fx_version   'cerulean'
+fx_version 'cerulean'
 use_experimental_fxv2_oal 'yes'
-lua54        'yes'
-game         'gta5'
+lua54 'yes'
+game 'gta5'
 
---[[ Resource Information ]]--
-name         'ox_banking'
-version      '0.0.0'
-description  'Banking system for ox_core'
-license      'MIT'
-author       'overextended'
-repository   'https://github.com/overextended/ox_banking'
-
---[[ Manifest ]]--
-dependencies {
-	'/server:5104',
-	'/onesync',
-}
+name         'DoluMappingTool'
+version      'v4'
+description  'Mapping tool for map developpers'
+author       'Dolu'
+repository   'https://github.com/dolutattoo/DoluMappingTool'
 
 shared_scripts {
 	'@ox_lib/init.lua',
@@ -24,11 +15,16 @@ shared_scripts {
 }
 
 client_scripts {
+    'client/freecam/utils.lua',
+    'client/freecam/config.lua',
+    'client/freecam/camera.lua',
+    'client/freecam/main.lua',
+
     'client/functions.lua',
     'client/client.lua',
     'client/controls.lua',
-    'client/functions.lua',
-    'client/interior/main.lua',
+    'client/commands.lua',
+    'client/interior.lua'
 }
 
 server_scripts {
@@ -41,4 +37,10 @@ files {
     'web/build/index.html',
     'web/build/**/*',
     'shared/img/**/*.webp',
+}
+
+dependencies {
+    '/server:5104',
+    '/onesync',
+    'ox_lib'
 }
