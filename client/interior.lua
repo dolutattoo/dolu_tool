@@ -1,9 +1,8 @@
 -- Check for interior data
 local lastRoomId = 0
 function GetInteriorData(fromThread)
-    local playerPed = PlayerPedId()
-    local interiorId = GetInteriorFromEntity(playerPed)
-    local currentRoomHash = GetRoomKeyFromEntity(playerPed)
+    local interiorId = GetInteriorFromEntity(cache.ped)
+    local currentRoomHash = GetRoomKeyFromEntity(cache.ped)
     local currentRoomId = GetInteriorRoomIndexByHash(interiorId, currentRoomHash)
 
     if (fromThread and lastRoomId ~= currentRoomId) or not fromThread then
@@ -84,9 +83,8 @@ end)
 CreateThread(function()
     while true do
         if portalPoly or portalLines or portalCorners or portalInfos then
-            local playerPed = PlayerPedId()
-            local interiorId = GetInteriorFromEntity(playerPed)
-            local pedCoords = GetEntityCoords(playerPed)
+            local interiorId = GetInteriorFromEntity(cache.ped)
+            local pedCoords = GetEntityCoords(cache.ped)
 
             if interiorId > 0 then
                 local ix, iy, iz = GetInteriorPosition(interiorId)

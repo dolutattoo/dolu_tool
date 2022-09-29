@@ -59,8 +59,6 @@ RegisterNUICallback('dmt:changeLocationName', function(data, cb)
 end)
 
 RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
-    local playerPed = PlayerPedId()
-
     lib.callback('dmt:createCustomLocation', false, function(result)
         if not result then
             print('^2[DoluMappingTool] ^1 Error while trying to create location.^7')
@@ -72,7 +70,7 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
             action = 'setLocationDatas',
             data = Client.locations
         })
-    end, { name = locationName, coords = GetEntityCoords(playerPed), heading = GetEntityHeading(playerPed) })
+    end, { name = locationName, coords = GetEntityCoords(cache.ped), heading = GetEntityHeading(cache.ped) })
     cb(1)
 end)
 
