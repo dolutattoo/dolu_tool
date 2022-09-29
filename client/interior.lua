@@ -60,17 +60,6 @@ function GetInteriorData(fromThread)
     end
 end
 
-CreateThread(function()
-    while true do
-        if isMenuOpen then
-            GetInteriorData(true)
-        else
-            Wait(500)
-        end
-        Wait(0)
-    end
-end)
-
 -- Portals display
 local portalPoly, portalLines, portalCorners, portalInfos = false, false, false, false
 

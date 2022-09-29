@@ -1,6 +1,21 @@
 FUNC = {}
 LastEntitySet = nil
 
+FUNC.openUI = function()
+    Client.locations = lib.callback.await('dmt:getLocations')
+    Client.pedLists = lib.callback.await('dmt:getPedList')
+    SendNUIMessage({
+        action = 'setMenuVisible',
+        data = {
+            locations = Client.locations,
+            pedLists = Client.pedLists
+        }
+    })
+    SetNuiFocus(true, true)
+    SetNuiFocusKeepInput(true)
+    isMenuOpen = true
+end
+
 FUNC.round = function(num, decimals)
     local power = 10 ^ decimals
     return math.floor(num * power) / power
@@ -169,10 +184,6 @@ FUNC.DrawFloating = function(DrawCoords, text)
     EndTextCommandDisplayHelp(2, false, false, -1)
     SetFloatingHelpTextWorldPosition(1, DrawCoords.x, DrawCoords.y, DrawCoords.z + 0.1)
     SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
-end
-
-FUNC.savePositions = function(array)
-    TriggerServerEvent("dmt:savePositions", array)
 end
 
 FUNC.drawText = function(string, coords)

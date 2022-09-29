@@ -1,32 +1,3 @@
-local function openUI()
-    Client.locations = lib.callback.await('dmt:getLocations')
-    Client.pedLists = lib.callback.await('dmt:getPedList')
-    SendNUIMessage({
-        action = 'setMenuVisible',
-        data = {
-            locations = Client.locations,
-            pedLists = Client.pedLists
-        }
-    })
-    SetNuiFocus(true, true)
-    SetNuiFocusKeepInput(true)
-    isMenuOpen = true
-end
-
-CreateThread(function()
-    Wait(500) --Todo: Why?!
-    GetInteriorData()
-
-    while true do
-        if not IsNuiFocused() and not IsPauseMenuActive() then
-            if IsControlJustPressed(0, 170) then -- F3
-                openUI()
-            end
-        end
-        Wait(0)
-    end
-end)
-
 RegisterNUICallback('dmt:teleport', function(data, cb)
     FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
     cb(1)

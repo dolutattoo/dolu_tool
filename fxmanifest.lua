@@ -25,7 +25,9 @@ client_scripts {
     'client/client.lua',
     'client/controls.lua',
     'client/commands.lua',
-    'client/interior.lua'
+    'client/interior.lua',
+    'client/threads.lua',
+
 }
 
 server_scripts {
