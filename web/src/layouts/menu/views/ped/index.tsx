@@ -6,6 +6,7 @@ import PedSearch from "./components/pedListSearch";
 
 const Ped: React.FC = () => {
   const pedLists = usePedList()
+  const searchPedValue = getSearchPedInput() as string
 
   const [copiedPedName, setCopiedPedName] = useState(false);
   const [copiedPedHash, setCopiedPedHash] = useState(false);
@@ -55,7 +56,7 @@ const Ped: React.FC = () => {
             variant="outline"
             color="orange"
             onClick={() => {
-              changePed(getSearchPedInput)
+              changePed({ name: `${searchPedValue}` })
             }}
           >
             Change by Name
