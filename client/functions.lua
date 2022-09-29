@@ -220,7 +220,7 @@ end
 
 FUNC.teleportPlayer = function(coords, updateLastCoords)
     assert(type(coords) == 'table', "Trying to teleport player to invalid coords type")
-    coords = vec(coords.x, coords.y, coords.z, coords.heading)
+    coords = vec4(coords.x, coords.y, coords.z, coords.heading or 0)
 
     DoScreenFadeOut(100)
     Wait(100)
@@ -265,8 +265,6 @@ FUNC.changePed = function(model)
     local playerId = cache.playerId
     model = joaat(model)
     RequestModel(model)
-    while not HasModelLoaded(model) do
-        Wait(0)
-    end
+    while not HasModelLoaded(model) do Wait(0) end
     SetPlayerModel(playerId, model)
 end

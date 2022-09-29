@@ -25,21 +25,24 @@ CreateThread(function()
     end
 end)
 
-RegisterNUICallback('dmt:teleport', function(data)
+RegisterNUICallback('dmt:teleport', function(data, cb)
     FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
+    cb(1)
 end)
 
-RegisterNUICallback('dmt:changePed', function(data)
+RegisterNUICallback('dmt:changePed', function(data, cb)
     FUNC.changePed(data.name)
+    cb(1)
 end)
 
-RegisterNUICallback('dmt:exit', function()
+RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
     isMenuOpen = false
+    cb(1)
 end)
 
-RegisterNUICallback('dmt:changeLocationName', function(data)
+RegisterNUICallback('dmt:changeLocationName', function(data, cb)
     lib.callback('dmt:renameLocation', false, function(result)
         if not result then
             print('^2[DoluMappingTool] ^1 Error while trying to rename location. Location not found!^7')
@@ -52,9 +55,10 @@ RegisterNUICallback('dmt:changeLocationName', function(data)
             data = Client.locations
         })
     end, data)
+    cb(1)
 end)
 
-RegisterNUICallback('dmt:createCustomLocation', function(locationName)
+RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
     local playerPed = PlayerPedId()
 
     lib.callback('dmt:createCustomLocation', false, function(result)
@@ -69,13 +73,15 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName)
             data = Client.locations
         })
     end, { name = locationName, coords = GetEntityCoords(playerPed), heading = GetEntityHeading(playerPed) })
+    cb(1)
 end)
 
-RegisterNUICallback('dmt:setWeather', function(weatherName)
+RegisterNUICallback('dmt:setWeather', function(weatherName, cb)
     FUNC.setWeather(weatherName)
+    cb(1)
 end)
 
-RegisterNUICallback('dmt:setClock', function(clock)
+RegisterNUICallback('dmt:setClock', function(clock, cb)
     local newTime = FUNC.stringSplit(clock:sub(12, 16), ':')
 
     CreateThread(function()
@@ -84,4 +90,5 @@ RegisterNUICallback('dmt:setClock', function(clock)
             Wait(0)
         end
     end)
+    cb(1)
 end)
