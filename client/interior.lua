@@ -5,7 +5,7 @@ function GetInteriorData(fromThread)
     local currentRoomHash = GetRoomKeyFromEntity(cache.ped)
     local currentRoomId = GetInteriorRoomIndexByHash(interiorId, currentRoomHash)
 
-    if (fromThread and lastRoomId ~= currentRoomId) or not fromThread then
+    if interiorId > 0 and (not fromThread or (fromThread and lastRoomId ~= currentRoomId)) then
         lastRoomId = currentRoomId
         local roomCount = GetInteriorRoomCount(interiorId) - 1
         local portalCount = GetInteriorPortalCount(interiorId)
@@ -62,7 +62,11 @@ end
 
 CreateThread(function()
     while true do
-        GetInteriorData(true)
+        if isMenuOpen then
+            GetInteriorData(true)
+        else
+            Wait(500)
+        end
         Wait(0)
     end
 end)
