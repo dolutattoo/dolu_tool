@@ -273,9 +273,46 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
 end
 
 FUNC.changePed = function(model)
+    if type(model) == 'string' then model = joaat(model) end
+    FUNC.assert(IsModelInCdimage(model), "Model %s does not exists", model)
+
     local playerId = cache.playerId
-    model = joaat(model)
     RequestModel(model)
     while not HasModelLoaded(model) do Wait(0) end
     SetPlayerModel(playerId, model)
+end
+
+---Assert with styling and formatting
+---@param v any
+---@param msg string
+---@param value boolean|string|number|table
+FUNC.assert = function(v, msg, value)
+    if not v or not msg then return end
+
+    if value then
+        if type(value) == "table" then
+            value = json.decode(value, { indent = true })
+        end
+        assert(v, '^5[' .. RESOURCE_NAME .. '] ^1' .. msg:format('^5' .. tostring(value) .. '^7'))
+    else
+        assert(v, '^5[' .. RESOURCE_NAME .. '] ^1' .. msg .. '^7')
+    end
+end
+
+---Debug with styling and formatting
+---@param msg string
+---@param value? boolean|string|number|table
+FUNC.debug = function(msg, value)
+    if not msg then return end
+
+    if Config.debug then
+        if value then
+            if type(value) == "table" then
+                value = json.decode(value, {indent=true})
+            end
+            print('^5[' .. RESOURCE_NAME .. '] ^7' .. msg:format('^5' .. tostring(value) .. '^7'))
+        else
+            print('^5[' .. RESOURCE_NAME .. '] ^7' .. msg .. '^7')
+        end
+    end
 end

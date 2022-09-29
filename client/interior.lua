@@ -45,14 +45,12 @@ function GetInteriorData(fromThread)
             }
         }
 
-        print('1')
         SendNUIMessage({
             action = 'setIntData',
             data = intData
         })
     else
         if interiorId == 0 then
-            print('2')
             SendNUIMessage({
                 action = 'setIntData',
                 data = { interiorId = 0 }

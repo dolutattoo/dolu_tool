@@ -1,3 +1,4 @@
-Config = {
-    locale = 'fr'
-}
+Config = {}
+
+Config.locale = 'fr'
+Config.debug = true
