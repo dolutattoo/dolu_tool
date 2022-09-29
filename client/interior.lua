@@ -5,7 +5,7 @@ function GetInteriorData(fromThread)
     local currentRoomHash = GetRoomKeyFromEntity(cache.ped)
     local currentRoomId = GetInteriorRoomIndexByHash(interiorId, currentRoomHash)
 
-    if interiorId > 0 and (not fromThread or (fromThread and lastRoomId ~= currentRoomId)) then
+    if (fromThread and lastRoomId ~= currentRoomId) or not fromThread then
         lastRoomId = currentRoomId
         local roomCount = GetInteriorRoomCount(interiorId) - 1
         local portalCount = GetInteriorPortalCount(interiorId)
@@ -45,12 +45,14 @@ function GetInteriorData(fromThread)
             }
         }
 
+        print('1')
         SendNUIMessage({
             action = 'setIntData',
             data = intData
         })
     else
         if interiorId == 0 then
+            print('2')
             SendNUIMessage({
                 action = 'setIntData',
                 data = { interiorId = 0 }
