@@ -1,4 +1,4 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, SimpleGrid } from "@mantine/core"
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image } from "@mantine/core"
 import { useEffect, useState } from "react";
 import { usePedList, changePed, getSearchPedInput } from "../../../../atoms/ped";
 import { setClipboard } from '../../../../utils/setClipboard'
@@ -10,6 +10,9 @@ const Ped: React.FC = () => {
   const [copiedPedName, setCopiedPedName] = useState(false);
   const [copiedPedHash, setCopiedPedHash] = useState(false);
   const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
+
+  const [displayImage, setSisplayImage] = useState<boolean>(false)
+  const [imagePath, setImagePath] = useState<string>("")
 
   useEffect(() => {
     setTimeout(() => {
@@ -25,6 +28,25 @@ const Ped: React.FC = () => {
 
   return(
     <>
+      <Paper
+        radius="md"
+        p="md"
+        shadow="xs"
+        sx={{
+          display: displayImage ? "" : "none",
+          position: 'absolute',
+          top: '0%',
+          left: '46.87%'
+        }}
+      > 
+        <Image
+          height={300}
+          fit="contain"
+          alt={"Display selected image"}
+          src={imagePath}
+          withPlaceholder={true}
+        />
+      </Paper>
       <Paper p="md">
         <Stack>
           <PedSearch/>
@@ -40,65 +62,71 @@ const Ped: React.FC = () => {
           </Button>
           <ScrollArea style={{ height: 555 }} scrollbarSize={0}>
             <Stack>
-              {pedLists.map((pedList, index) =>(
+              {pedLists.map((pedList, index) => (
                 <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
                   <Accordion.Item value={index.toString()}>
                     <Accordion.Control>
-                      <Stack spacing={0}>
-                        <Text size="xl">{pedList.name}</Text>
-                        <Text size="xs">Hash: {pedList.hash}</Text>
-                      </Stack>
+                      <Text size="sm">{pedList.name}</Text>
+                      <Text size="xs">Hash: {pedList.hash}</Text>
                     </Accordion.Control>
                     <Accordion.Panel>
-                      <Group grow spacing="xs">
+                      <Group grow spacing="xs"> 
                         <Image
-                          height={200}
+                          height={50}
                           fit="contain"
                           alt={`${pedList.name}`}
-                          src={`nui://DoluMappingTool/shared/img/${pedList.name}.webp`}
+                          src={`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`}
+                          withPlaceholder={true}
+                          onClick={() => {
+                            if (!displayImage){
+                              setSisplayImage(true);
+                              setImagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
+                            } else if (displayImage && imagePath === `https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`){
+                              setSisplayImage(false)
+                            } else if (displayImage && imagePath !== `https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`){
+                              setImagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
+                            }
+                          }}
+                          sx={{
+                            '&:hover':{
+                              cursor: "grab",
+                              borderRadius: '5px',
+                              backgroundColor: 'rgba(35, 35, 35, 0.75)'
+                            }
+                          }}
                         />
-                        <SimpleGrid cols={2}>
-                          <Button
-                            variant="outline"
-                            color={'orange'}
-                            size="xs"
-                            onClick={() => {
-                              changePed({ name: pedList.name, hash: pedList.hash })
-                            }}
-                          >
-                            Change Ped
-                          </Button>
-                          <Button
-                            variant="outline"
-                            color={copiedPedName ? 'teal' : 'orange'}
-                            size="xs"
-                            onClick={() => {
-                              setClipboard(pedList.name);
-                              setCopiedPedName(true);
-                            }}
-                          >
-                            {copiedPedName ? 'Copied' : 'Copy'} Name
-                          </Button>
-                          <Button
-                            variant="outline"
-                            color='orange'
-                            size="xs"
-                            onClick={() => {}}
-                          >
-                            Set Default
-                          </Button>
-                          <Button
-                            variant="outline"
-                            color={copiedPedHash ? 'teal' : 'orange'}
-                            size="xs"
-                            onClick={() => {
-                              setClipboard(pedList.hash ? `${pedList.hash}` : '');
-                              setCopiedPedHash(true);
-                            }}
-                          >
-                            {copiedPedHash ? 'Copied' : 'Copy'} Hash
-                          </Button>
-                        </SimpleGrid>                        
+                        <Button
+                          variant="outline"
+                          color={'orange'}
+                          size="xs"
+                          onClick={() => {
+                            changePed({ name: pedList.name, hash: pedList.hash })
+                          }}
+                        >
+                          Change Ped
+                        </Button>
+                        <Button
+                          variant="outline"
+                          color={copiedPedName ? 'teal' : 'orange'}
+                          size="xs"
+                          onClick={() => {
+                            setClipboard(pedList.name);
+                            setCopiedPedName(true);
+                          }}
+                        >
+                          {copiedPedName ? 'Copied' : 'Copy'} Name
+                        </Button>
+                        <Button
+                          variant="outline"
+                          color={copiedPedHash ? 'teal' : 'orange'}
+                          size="xs"
+                          onClick={() => {
+                            setClipboard(pedList.hash ? `${pedList.hash}` : '');
+                            setCopiedPedHash(true);
+                          }}
+                        >
+                          {copiedPedHash ? 'Copied' : 'Copy'} Hash
+                        </Button>                     
                       </Group>
                     </Accordion.Panel>
                   </Accordion.Item>
