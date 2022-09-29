@@ -1,11 +1,11 @@
 local noClip = false
-local lastCoords
+lib.locale()
 
 RegisterCommand('goback', function()
     if not lastCoords then
         lib.notify({
             title = 'Dolu Mapping Tool',
-            description = "No previous position found. You need to teleport to marker first.",
+            description = locale('cannot_goback'),
             type = 'error',
             position = 'top'
         })
@@ -15,7 +15,7 @@ RegisterCommand('goback', function()
         lastCoords = currentCoords
         lib.notify({
             title = 'Dolu Mapping Tool',
-            description = 'Succefully teleport to last position',
+            description = locale('teleport_success'),
             type = 'success',
             position = 'top'
         })
@@ -28,7 +28,7 @@ RegisterCommand('tpm', function()
     if marker == 0 then
         lib.notify({
             title = 'Dolu Mapping Tool',
-            description = 'You did not set any marker',
+            description = locale('no_marker'),
             type = 'error',
             position = 'top'
         })
@@ -71,13 +71,13 @@ RegisterCommand('tpm', function()
         DoScreenFadeIn(750)
     end
 end)
-RegisterKeyMapping('tpm', "~b~>~w~ Teleport to marker", 'keyboard', '')
+RegisterKeyMapping('tpm', locale('command_tpm', '~o~>~w~'), 'keyboard', '')
 
 RegisterCommand('noclip', function()
     noClip = not noClip
     SetFreecamActive(noClip)
 end)
-RegisterKeyMapping('noclip', "~b~>~w~ Toggle noclip mode", 'keyboard', '')
+RegisterKeyMapping('noclip', locale('command_noclip', '~o~>~w~'), 'keyboard', '')
 
 -- https://github.com/Deltanic/fivem-freecam/
 -- https://github.com/tabarra/txAdmin/tree/master/scripts/menu/vendor/freecam
