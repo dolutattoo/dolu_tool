@@ -79,7 +79,7 @@ const Locations: React.FC = () => {
           </Button>
           <ScrollArea style={{ height: 500 }} scrollbarSize={0}>
             <Stack>
-              {pages[activePage].map((location: any, index: number) => (
+              {pages[activePage] && pages[activePage].map((location: any, index: number) => (
                 <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
                   <Accordion.Item value={index.toString()}>
                     <Accordion.Control>
