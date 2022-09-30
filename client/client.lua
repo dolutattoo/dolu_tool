@@ -33,11 +33,9 @@ end)
 
 RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
     lib.callback('dmt:createCustomLocation', false, function(result)
-        if not result then
-            print('^2[DoluMappingTool] ^1 Error while trying to create location.^7')
-        end
+        FUNC.assert(result ~= nil, "Error while trying to create location.")
 
-        table.insert(Client.locations.custom, 1, result)
+        table.insert(Client.locations, 1, result)
 
         SendNUIMessage({
             action = 'setLocationDatas',

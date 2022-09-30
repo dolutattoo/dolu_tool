@@ -2,9 +2,12 @@ import { useState } from 'react'
 import { closeAllModals } from '@mantine/modals'
 import { Stack, Button, TextInput } from '@mantine/core'
 import { fetchNui } from '../../../../../../utils/fetchNui'
+import { useSetRecoilState } from 'recoil'
+import { locationCustomFilterAtom } from '../../../../../../atoms/location'
 
 const CreateLocation: React.FC = () => {
   const [locationName, setLocationName] = useState('')
+  const setCustomLocationCheckbox = useSetRecoilState(locationCustomFilterAtom)
 
   return (
     <Stack>
@@ -13,10 +16,11 @@ const CreateLocation: React.FC = () => {
         uppercase
         disabled={locationName === ''}
         variant="outline"
-        color="orange"
+        color="blue.4"
         onClick={() => {
           closeAllModals()
           fetchNui('dmt:createCustomLocation', locationName)
+          setCustomLocationCheckbox(true)
         }}
       >
         Confirm

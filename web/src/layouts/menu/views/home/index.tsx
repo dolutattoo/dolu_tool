@@ -35,7 +35,7 @@ const Home: React.FC = () => {
           <Group position='apart'>
             <Text>Heading: {currentHeading}</Text>
             <Button
-              color='orange.4'
+              color='blue.4'
               variant='outline'
               onClick={() =>
               openModal({
@@ -63,7 +63,7 @@ const Home: React.FC = () => {
           <Group position='apart'>
             <Text>Coords: {location.x}, {location.y}, {location.z}</Text>
             <Button
-              color='orange.4'
+              color='blue.4'
               variant='outline'
               onClick={() =>
                 teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
@@ -85,8 +85,8 @@ const Home: React.FC = () => {
             interior.interiorId > 0
             ? 
               <>
-                <Group><Text>Interior ID:</Text><Text color="orange.4" >{interior.interiorId}</Text></Group>
-                <Group><Text>Current room:</Text><Text color="orange.4" >{interior.currentRoom?.index} - {interior.currentRoom?.name}</Text></Group>
+                <Group><Text>Interior ID:</Text><Text color="blue.4" >{interior.interiorId}</Text></Group>
+                <Group><Text>Current room:</Text><Text color="blue.4" >{interior.currentRoom?.index} - {interior.currentRoom?.name}</Text></Group>
               </>
             : 
               "Not inside any interior"

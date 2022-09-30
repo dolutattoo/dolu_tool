@@ -23,11 +23,11 @@ const Nav: React.FC = () => {
     >
       <Navbar.Section grow>
         <Stack justify="center" spacing={5}>
-          <NavIcon color='orange' tooltip="Home" Icon={TbHome} to="/" />
-          <NavIcon color='orange' tooltip="World" Icon={BiWorld} to="/world" />
-          <NavIcon color='orange' tooltip="Locations" Icon={GiTeleport} to="/locations" />
-          <NavIcon color='orange' tooltip="Interior" Icon={RiHomeGearFill} to="/interior" />
-          <NavIcon color='orange' tooltip="Ped" Icon={FaTshirt} to="/ped" />
+          <NavIcon color="blue.4" tooltip="Home" Icon={TbHome} to="/" />
+          <NavIcon color="blue.4" tooltip="World" Icon={BiWorld} to="/world" />
+          <NavIcon color="blue.4" tooltip="Locations" Icon={GiTeleport} to="/locations" />
+          <NavIcon color="blue.4" tooltip="Interior" Icon={RiHomeGearFill} to="/interior" />
+          <NavIcon color="blue.4" tooltip="Ped" Icon={FaTshirt} to="/ped" />
         </Stack>
       </Navbar.Section>
     </Navbar>

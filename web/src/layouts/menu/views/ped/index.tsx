@@ -58,7 +58,7 @@ const Ped: React.FC = () => {
           <Button
             uppercase
             variant="outline"
-            color="orange"
+            color="blue.4"
             onClick={() => { changePed({ name: `${searchPedValue}` }) }}
           >
             Change by Name
@@ -94,7 +94,7 @@ const Ped: React.FC = () => {
                         />
                         <Button
                           variant="outline"
-                          color={'orange'}
+                          color={"blue.4"}
                           size="xs"
                           onClick={() => { changePed({ name: pedList.name, hash: pedList.hash }) }}
                         >
@@ -102,7 +102,7 @@ const Ped: React.FC = () => {
                         </Button>
                         <Button
                           variant="outline"
-                          color={copiedPedName ? 'teal' : 'orange'}
+                          color={copiedPedName ? 'teal' : "blue.4"}
                           size="xs"
                           onClick={() => {
                             setClipboard(pedList.name);
@@ -113,7 +113,7 @@ const Ped: React.FC = () => {
                         </Button>
                         <Button
                           variant="outline"
-                          color={copiedPedHash ? 'teal' : 'orange'}
+                          color={copiedPedHash ? 'teal' : "blue.4"}
                           size="xs"
                           onClick={() => {
                             setClipboard(pedList.hash ? `${pedList.hash}` : '');

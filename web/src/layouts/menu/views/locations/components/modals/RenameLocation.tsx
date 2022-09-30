@@ -14,7 +14,7 @@ const RenameLocation = (props: {defaultName: string}) => {
         uppercase
         disabled={newName === '' || newName === defaultName}
         variant="outline"
-        color="orange"
+        color="blue.4"
         placeholder={defaultName}
         onClick={() => {
           closeAllModals();

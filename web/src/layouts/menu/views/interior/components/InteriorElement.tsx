@@ -17,10 +17,10 @@ const InteriorElement: React.FC = () => {
       <Paper p="md">
         <Text size={24} weight={600}>Current interior infos</Text>
         <Space h="xs" />
-        <Group><Text>Interior ID:</Text><Text color="orange.4" > { interior.interiorId }</Text></Group>
-        <Group><Text>Room count:</Text><Text color="orange.4" > { interior.roomCount }</Text></Group>
-        <Group><Text>Portal count:</Text><Text color="orange.4" > { interior.portalCount }</Text></Group>
-        <Group><Text>Current room:</Text><Text color="orange.4" > { interior.currentRoom?.index } - { interior.currentRoom?.name }</Text></Group>
+        <Group><Text>Interior ID:</Text><Text color="blue.4" > { interior.interiorId }</Text></Group>
+        <Group><Text>Room count:</Text><Text color="blue.4" > { interior.roomCount }</Text></Group>
+        <Group><Text>Portal count:</Text><Text color="blue.4" > { interior.portalCount }</Text></Group>
+        <Group><Text>Current room:</Text><Text color="blue.4" > { interior.currentRoom?.index } - { interior.currentRoom?.name }</Text></Group>
       </Paper>
 
       {/* Portal drawing */}
@@ -36,10 +36,10 @@ const InteriorElement: React.FC = () => {
           value={checkboxesValue}
           onChange={setCheckboxesValue}
         >
-          <Checkbox color="orange.4" value="portalInfos" label="Infos" />
-          <Checkbox color="orange.4" value="portalPoly" label="Fill portals" />
-          <Checkbox color="orange.4" value="portalLines" label="Outline" />
-          <Checkbox color="orange.4" value="portalCorners" label="Corners" />
+          <Checkbox color="blue.4" value="portalInfos" label="Infos" />
+          <Checkbox color="blue.4" value="portalPoly" label="Fill portals" />
+          <Checkbox color="blue.4" value="portalLines" label="Outline" />
+          <Checkbox color="blue.4" value="portalCorners" label="Corners" />
         </Checkbox.Group>
       </Paper>
     </>

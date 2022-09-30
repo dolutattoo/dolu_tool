@@ -36,7 +36,7 @@ export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', 
 export const locationSearchAtom = atom<string>({ key: 'locationSearch', default: '' })
 
 // Filter Checkboxes
-export const locationVanillaFilterAtom = atom<boolean>({ key: 'locationVanillaFilter', default: false })
+export const locationVanillaFilterAtom = atom<boolean>({ key: 'locationVanillaFilter', default: true })
 export const locationCustomFilterAtom = atom<boolean>({ key: 'locationCustomFilter', default: true })
 
 export const filteredLocationsAtom = selector({

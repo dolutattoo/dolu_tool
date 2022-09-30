@@ -16,8 +16,8 @@ const Locations: React.FC = () => {
   const createPages = (arr: any, size: number) => {
     const setPageCount = useSetRecoilState(locationsPageCountAtom)
     var result = []
-    var pageCount = 0
-    for (var i = 0; i < arr.length; i += size) {
+    var pageCount = -1
+    for (var i = size*-1; i < arr.length; i += size) {
       if (i < arr.length) { pageCount += 1 }
       result.push(arr.slice(i, i+size))
     }
@@ -33,17 +33,68 @@ const Locations: React.FC = () => {
   const [checkedCustom, setCheckedCustom] = useRecoilState(locationCustomFilterAtom)
   const setActivePage = useSetRecoilState(locationActivePageAtom)
 
-  // Copied button
-  const [copied, setCopied] = useState(false)
-
   // Accordion
   const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
 
+  // Copied button
+  const [copied, setCopied] = useState(false)
   useEffect(() => {
     setTimeout(() => {
       if (copied) setCopied(false)
     }, 2000)
   }, [copied, setCopied])
+
+  const Locationlist = pages[activePage]?.map((location: any, index: number) => (
+    <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
+      <Accordion.Item value={index.toString()}>
+        <Accordion.Control>
+          <Stack spacing={0}>
+            <Text size="md" weight={500}>• {location.name}</Text>
+            <Text size="xs">Coords: {location.x}, {location.y}, {location.z}</Text>
+          </Stack>
+        </Accordion.Control>
+        <Accordion.Panel>
+          <Group grow spacing="xs">
+            <Button
+              variant="outline"
+              color="blue.4"
+              size="xs"
+              onClick={() =>
+                teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
+              }
+            >
+              Teleport
+            </Button>
+            <Button
+              variant="outline"
+              color="blue.4"
+              size="xs"
+              onClick={() => {
+                openModal({
+                  title: 'Rename location',
+                  children: <RenameLocation defaultName={location.name} />,
+                  size: 'xs',
+                })
+              }}
+            >
+              Rename
+            </Button>
+            <Button
+              variant="outline"
+              color={copied ? 'teal' : "blue.4"}
+              size="xs"
+              onClick={() => {
+                setClipboard(location.x + ', ' + location.y + ', ' + location.z)
+                setCopied(true)
+              }}
+            >
+              {copied ? 'Copied' : 'Copy'} coords
+            </Button>
+          </Group>
+        </Accordion.Panel>
+      </Accordion.Item>
+    </Accordion>
+  ))
 
   return (
     <>
@@ -53,7 +104,7 @@ const Locations: React.FC = () => {
             <Text size={20}>Existing Locations</Text>
             <Checkbox
               label='Show Vanilla'
-              color="orange.4"
+              color="blue.4"
               disabled={!checkedCustom}
               checked={checkedVanilla}
               onChange={(e) => {
@@ -63,7 +114,7 @@ const Locations: React.FC = () => {
             />
             <Checkbox
               label='Show Custom'
-              color="orange.4"
+              color="blue.4"
               disabled={!checkedVanilla}
               checked={checkedCustom}
               onChange={(e) => {
@@ -77,7 +128,7 @@ const Locations: React.FC = () => {
           <Button
             uppercase
             variant="outline"
-            color="orange.4"
+            color="blue.4"
             onClick={() =>
               openModal({
                 title: 'Create location',
@@ -90,62 +141,16 @@ const Locations: React.FC = () => {
           </Button>
           <ScrollArea style={{ height: 500 }} scrollbarSize={0}>
             <Stack>
-              {pages[activePage] && pages[activePage].map((location: any, index: number) => (
-                <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
-                  <Accordion.Item value={index.toString()}>
-                    <Accordion.Control>
-                      <Stack spacing={0}>
-                       <Text size="md" weight={500}>{location.name}</Text>
-                       <Text size="xs">Coords: {location.x}, {location.y}, {location.z}</Text>
-                     </Stack>
-                    </Accordion.Control>
-                    <Accordion.Panel>
-                      <Group grow spacing="xs">
-                        <Button
-                          variant="outline"
-                          color="orange.4"
-                          size="xs"
-                          onClick={() =>
-                            teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
-                          }
-                        >
-                          Teleport
-                        </Button>
-                        <Button
-                          variant="outline"
-                          color="orange.4"
-                          size="xs"
-                          onClick={() => {
-                            openModal({
-                              title: 'Rename location',
-                              children: <RenameLocation defaultName={location.name} />,
-                              size: 'xs',
-                            })
-                          }}
-                        >
-                          Rename
-                        </Button>
-                        <Button
-                          variant="outline"
-                          color={copied ? 'teal' : "orange.4"}
-                          size="xs"
-                          onClick={() => {
-                            setClipboard(location.x + ', ' + location.y + ', ' + location.z)
-                            setCopied(true)
-                          }}
-                        >
-                          {copied ? 'Copied' : 'Copy'} coords
-                        </Button>
-                      </Group>
-                    </Accordion.Panel>
-                  </Accordion.Item>
-                </Accordion>
-              ))}
+              {Locationlist ? Locationlist :
+                <Paper p="md">
+                  <Text size="md" weight={600} color="red.4">No location found</Text>
+                </Paper>
+              }
             </Stack>
           </ScrollArea>
           <Center>
             <Pagination
-              color="orange.4"
+              color="blue.4"
               page={activePage}
               onChange={setPage}
               total={pageCount}
