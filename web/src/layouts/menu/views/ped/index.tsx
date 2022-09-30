@@ -1,4 +1,4 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image } from "@mantine/core"
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Transition } from "@mantine/core"
 import { useEffect, useState } from "react";
 import { usePedList, changePed, getSearchPedInput } from "../../../../atoms/ped";
 import { setClipboard } from '../../../../utils/setClipboard'
@@ -29,27 +29,29 @@ const Ped: React.FC = () => {
 
   return(
     <>
-      <Paper
-        radius="md"
-        p="md"
-        shadow="xs"
-        sx={{
-          // display: displayImage ? "" : "none",
-          opacity: displayImage ? 1 : 0,
-          position: 'absolute',
-          top: '0%',
-          left: '46.87%',
-          transition: "all 200ms ease-in"
-        }}
-      >
-        <Image
-          height={300}
-          fit="contain"
-          alt={"Display selected image"}
-          src={imagePath}
-          withPlaceholder={true}
-        />
-      </Paper>
+      <Transition transition="slide-right" mounted={displayImage}>
+        {(style) => (
+          <Paper
+            radius="md"
+            p="md"
+            shadow="xs"
+            style={style}
+            sx={{
+              position: 'absolute',
+              top: '0%',
+              left: '46.87%',
+            }}
+          >
+            <Image
+              height={300}
+              fit="contain"
+              alt={"Display selected image"}
+              src={imagePath}
+              withPlaceholder={true}
+            />
+          </Paper>
+        )}
+      </Transition>
       <Paper p="md">
         <Stack>
           <PedSearch/>
