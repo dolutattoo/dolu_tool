@@ -16,6 +16,7 @@ CreateThread(function()
             DisableControlAction(0, 44, true) -- Cover
             DisableControlAction(0, 47, true) -- Detonate
             DisableControlAction(0, 55, true) -- Dive
+            DisableControlAction(0, 69, true) -- Vehicle attack
             DisableControlAction(0, 81, true) -- Next Radio (Vehicle)
             DisableControlAction(0, 82, true) -- Previous Radio (Vehicle)
             DisableControlAction(0, 91, true) -- Passenger Aim (Vehicle)
@@ -28,13 +29,16 @@ CreateThread(function()
             DisableControlAction(0, 122, true) -- Control OVerride (Flying)
             DisableControlAction(0, 135, true) -- Control OVerride (Sub)
             DisableControlAction(0, 140, true) -- Melee attack light
-            DisableControlAction(0, 200, true) -- Pause Menu
+            DisableControlAction(0, 142, true) -- Attack alternate
+            DisableControlAction(0, 199, true) -- Pause menu (P)
+            DisableControlAction(0, 200, true) -- Pause Menu (ESC) 
             DisableControlAction(0, 245, true) -- Chat
+            DisableControlAction(0, 257, true) -- Attack 2
 
             DisableControlAction(0, 30, true) -- Player Movement
             DisableControlAction(0, 31, true) -- Player Movement
         else
-            Wait(10)
+            Wait(100)
         end
         Wait(0)
     end
