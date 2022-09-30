@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilValue } from 'recoil'
+import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil'
 import { fetchNui } from '../utils/fetchNui'
 
 export interface Location {
@@ -32,37 +32,30 @@ const mockLocations: Location[] = [
 export const locationsAtom = atom<Location[]>({ key: 'locations', default: mockLocations })
 export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', default: 1 })
 
-export const locationSearchAtom = atom<string>({
-  key: 'locationSearch',
-  default: '',
-})
+// Filter search bar input
+export const locationSearchAtom = atom<string>({ key: 'locationSearch', default: '' })
 
-export const locationVanillaFilterAtom = atom<boolean>({
-  key: 'locationVanillaFilter',
-  default: false,
-})
-
-export const locationCustomFilterAtom = atom<boolean>({
-  key: 'locationCustomFilter',
-  default: true,
-})
+// Filter Checkboxes
+export const locationVanillaFilterAtom = atom<boolean>({ key: 'locationVanillaFilter', default: false })
+export const locationCustomFilterAtom = atom<boolean>({ key: 'locationCustomFilter', default: true })
 
 export const filteredLocationsAtom = selector({
   key: 'filteredLocations',
   get: ({ get }) => {
     const search = get(locationSearchAtom)
     const locations = get(locationsAtom)
-
-    // const isCustomChecked = get(locationCustomFilterAtom)
-    // const isVanillaChecked = get(locationVanillaFilterAtom)
-
-    if (search === '') return locations
+    const isCustomChecked = get(locationCustomFilterAtom)
+    const isVanillaChecked = get(locationVanillaFilterAtom)
 
     const searchedLocations = locations.filter((location) => {
-      const regEx = new RegExp(search, 'gi')
-      if (!location.name.match(regEx)) return false
+      if (search !== '') {
+        const regEx = new RegExp(search, 'gi')
+        if (!location.name.match(regEx)) return false      
+      }
+      if (isCustomChecked && location.custom) return true
+      if (isVanillaChecked && !location.custom) return true
 
-      return true
+      return false
     })
 
     return searchedLocations
