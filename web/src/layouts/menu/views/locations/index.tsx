@@ -9,9 +9,10 @@ import RenameLocation from './components/modals/RenameLocation'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 
 const Locations: React.FC = () => {
+  // Get Locations (depending on search bar value)
   const locations = useLocation()
-  const pageCount = getLocationPageCount()
 
+  // Pagination
   const createPages = (arr: any, size: number) => {
     const setPageCount = useSetRecoilState(locationsPageCountAtom)
     var result = []
@@ -20,19 +21,23 @@ const Locations: React.FC = () => {
       if (i < arr.length) { pageCount += 1 }
       result.push(arr.slice(i, i+size))
     }
-    setPageCount(pageCount-1)
+    setPageCount(pageCount)
     return result
   }
-
   const pages = createPages(locations, 5)
+  const pageCount = getLocationPageCount()
+  const [activePage, setPage] = useRecoilState(locationActivePageAtom)
 
+  // Checkboxes
   const [checkedVanilla, setCheckedVanilla] = useRecoilState(locationVanillaFilterAtom)
   const [checkedCustom, setCheckedCustom] = useRecoilState(locationCustomFilterAtom)
+  const setActivePage = useSetRecoilState(locationActivePageAtom)
 
+  // Copied button
   const [copied, setCopied] = useState(false)
-  const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
 
-  const [activePage, setPage] = useRecoilState(locationActivePageAtom)
+  // Accordion
+  const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
 
   useEffect(() => {
     setTimeout(() => {
@@ -48,17 +53,23 @@ const Locations: React.FC = () => {
             <Text size={20}>Existing Locations</Text>
             <Checkbox
               label='Show Vanilla'
-              color="orange"
+              color="orange.4"
               disabled={!checkedCustom}
               checked={checkedVanilla}
-              onChange={(e) => setCheckedVanilla(e.currentTarget.checked)}
+              onChange={(e) => {
+                setActivePage(1)
+                setCheckedVanilla(e.currentTarget.checked)
+              }}
             />
             <Checkbox
               label='Show Custom'
-              color="orange"
+              color="orange.4"
               disabled={!checkedVanilla}
               checked={checkedCustom}
-              onChange={(e) => setCheckedCustom(e.currentTarget.checked)}
+              onChange={(e) => {
+                setActivePage(1)
+                setCheckedCustom(e.currentTarget.checked)
+              }}
             />
           </Group>
           
@@ -66,7 +77,7 @@ const Locations: React.FC = () => {
           <Button
             uppercase
             variant="outline"
-            color="orange"
+            color="orange.4"
             onClick={() =>
               openModal({
                 title: 'Create location',
@@ -84,7 +95,7 @@ const Locations: React.FC = () => {
                   <Accordion.Item value={index.toString()}>
                     <Accordion.Control>
                       <Stack spacing={0}>
-                       <Text size="xl">{location.name}</Text>
+                       <Text size="md" weight={500}>{location.name}</Text>
                        <Text size="xs">Coords: {location.x}, {location.y}, {location.z}</Text>
                      </Stack>
                     </Accordion.Control>
@@ -92,7 +103,7 @@ const Locations: React.FC = () => {
                       <Group grow spacing="xs">
                         <Button
                           variant="outline"
-                          color="orange"
+                          color="orange.4"
                           size="xs"
                           onClick={() =>
                             teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
@@ -102,7 +113,7 @@ const Locations: React.FC = () => {
                         </Button>
                         <Button
                           variant="outline"
-                          color="orange"
+                          color="orange.4"
                           size="xs"
                           onClick={() => {
                             openModal({
@@ -116,7 +127,7 @@ const Locations: React.FC = () => {
                         </Button>
                         <Button
                           variant="outline"
-                          color={copied ? 'teal' : 'orange'}
+                          color={copied ? 'teal' : "orange.4"}
                           size="xs"
                           onClick={() => {
                             setClipboard(location.x + ', ' + location.y + ', ' + location.z)
@@ -133,7 +144,12 @@ const Locations: React.FC = () => {
             </Stack>
           </ScrollArea>
           <Center>
-            <Pagination page={activePage} onChange={setPage} total={pageCount} />
+            <Pagination
+              color="orange.4"
+              page={activePage}
+              onChange={setPage}
+              total={pageCount}
+            />
           </Center>
         </Stack>
       </Paper>
