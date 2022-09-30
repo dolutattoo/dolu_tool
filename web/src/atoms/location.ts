@@ -1,23 +1,18 @@
 import { atom, selector, useRecoilValue } from 'recoil'
 import { fetchNui } from '../utils/fetchNui'
 
-export interface LocationProp {
+export interface Location {
   name: string,
   x: number,
   y: number,
   z: number,
   heading?: number,
+  custom?: boolean
   metadata?: any,
   isLastLocationUsed?: boolean
 }
 
-export interface Location {
-  custom: Array<LocationProp>
-  vanilla: Array<LocationProp>
-}
-
-const mockLocations: Location = {
-  custom: [
+const mockLocations: Location[] = [
     {
       name: "Custom Location test 1",
       x: 12,
@@ -32,18 +27,10 @@ const mockLocations: Location = {
       heading: 150,
       isLastLocationUsed: true
     }
-  ],
-  vanilla: [
-    {
-      name: "Vanilla Location test 1",
-      x: 12,
-      y: 11,
-      z: 10,
-    }
-  ]
-}
+]
 
-export const locationsAtom = atom<Location>({ key: 'locations', default: mockLocations })
+export const locationsAtom = atom<Location[]>({ key: 'locations', default: mockLocations })
+export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', default: 1 })
 
 export const locationSearchAtom = atom<string>({
   key: 'locationSearch',
@@ -66,25 +53,12 @@ export const filteredLocationsAtom = selector({
     const search = get(locationSearchAtom)
     const locations = get(locationsAtom)
 
-    const isCustomChecked = get(locationCustomFilterAtom)
-    const isVanillaChecked = get(locationVanillaFilterAtom)
+    // const isCustomChecked = get(locationCustomFilterAtom)
+    // const isVanillaChecked = get(locationVanillaFilterAtom)
 
-    var finalLocation: LocationProp[] = locations.custom
-    
-    if (isCustomChecked && !isVanillaChecked) {
-      finalLocation = locations.custom
-    
-    } else if (!isCustomChecked && isVanillaChecked) {
-      finalLocation = locations.vanilla
-    
-    } else if (isCustomChecked && isVanillaChecked) {
-      const allLocations = locations.vanilla.concat(locations.custom)
-      finalLocation = allLocations
-    }
+    if (search === '') return locations
 
-    if (search === '') return finalLocation
-
-    const searchedLocations = finalLocation?.filter((location) => {
+    const searchedLocations = locations.filter((location) => {
       const regEx = new RegExp(search, 'gi')
       if (!location.name.match(regEx)) return false
 
@@ -92,15 +66,17 @@ export const filteredLocationsAtom = selector({
     })
 
     return searchedLocations
-  },
+  }
 })
+
+export const locationActivePageAtom = atom<number>({ key: 'locationActivePage', default: 1 })
 
 export const selectedLocationIdAtom = atom<string | null>({ key: 'selectedLocationIndex', default: null })
 
 export const lastLocationUsedAtom = selector({
   key: 'lastLocationUsed',
   get: ({ get }) => {
-    const location = get(locationsAtom).custom.find((location) => location.isLastLocationUsed)
+    const location = Array.from(get(locationsAtom)).find((location) => location.isLastLocationUsed)
     if (location?.isLastLocationUsed === true) return location
 
     return {
@@ -113,9 +89,10 @@ export const lastLocationUsedAtom = selector({
   }
 })
 
-export const teleportToLocation = (value: LocationProp) => {
+export const teleportToLocation = (value: Location) => {
   fetchNui('dmt:teleport', value)
 }
 
 export const useLocation = () => useRecoilValue(filteredLocationsAtom)
 export const getLastLocationUsed = () => useRecoilValue(lastLocationUsedAtom)
+export const getLocationPageCount = () => useRecoilValue(locationsPageCountAtom)

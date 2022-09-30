@@ -1,21 +1,38 @@
-import { Accordion, Button, Checkbox, Group, Paper, ScrollArea, Stack, Text } from '@mantine/core'
+import { Accordion, Button, Center, Checkbox, Group, Pagination, Paper, ScrollArea, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
-import { locationCustomFilterAtom, locationVanillaFilterAtom, teleportToLocation, useLocation } from '../../../../atoms/location'
+import { getLocationPageCount, locationActivePageAtom, locationCustomFilterAtom, locationsPageCountAtom, locationVanillaFilterAtom, teleportToLocation, useLocation } from '../../../../atoms/location'
 import LocationSearch from './components/LocationSearch'
 import { setClipboard } from '../../../../utils/setClipboard'
 import { useEffect, useState } from 'react'
 import RenameLocation from './components/modals/RenameLocation'
-import { useRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 
 const Locations: React.FC = () => {
   const locations = useLocation()
+  const pageCount = getLocationPageCount()
+
+  const createPages = (arr: any, size: number) => {
+    const setPageCount = useSetRecoilState(locationsPageCountAtom)
+    var result = []
+    var pageCount = 0
+    for (var i = 0; i < arr.length; i += size) {
+      if (i < arr.length) { pageCount += 1 }
+      result.push(arr.slice(i, i+size))
+    }
+    setPageCount(pageCount-1)
+    return result
+  }
+
+  const pages = createPages(locations, 5)
 
   const [checkedVanilla, setCheckedVanilla] = useRecoilState(locationVanillaFilterAtom)
   const [checkedCustom, setCheckedCustom] = useRecoilState(locationCustomFilterAtom)
 
   const [copied, setCopied] = useState(false)
   const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
+
+  const [activePage, setPage] = useRecoilState(locationActivePageAtom)
 
   useEffect(() => {
     setTimeout(() => {
@@ -60,9 +77,9 @@ const Locations: React.FC = () => {
           >
             Create location
           </Button>
-          <ScrollArea style={{ height: 555 }} scrollbarSize={0}>
+          <ScrollArea style={{ height: 500 }} scrollbarSize={0}>
             <Stack>
-              {locations.map((location, index) => (
+              {pages[activePage].map((location: any, index: number) => (
                 <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
                   <Accordion.Item value={index.toString()}>
                     <Accordion.Control>
@@ -115,6 +132,9 @@ const Locations: React.FC = () => {
               ))}
             </Stack>
           </ScrollArea>
+          <Center>
+            <Pagination page={activePage} onChange={setPage} total={pageCount} />
+          </Center>
         </Stack>
       </Paper>
     </>

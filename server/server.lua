@@ -9,7 +9,7 @@ end
 local function formatVanillaLocations(vanillaLocations)
     local formatedLocations = {}
     local count = 0
-
+    
     for i=1, #vanillaLocations do
         local v = vanillaLocations[i]
         if v.Locations[1] then
@@ -29,16 +29,22 @@ local function formatVanillaLocations(vanillaLocations)
             }
         end
     end
-
+    
     return formatedLocations
 end
 
 lib.callback.register('dmt:getLocations', function()
     if not Server.locations then
-        Server.locations = {
-            vanilla = formatVanillaLocations(getFileData('shared/data', 'mloInteriors')),
-            custom = getFileData('shared/data', 'locations')
-        }
+        local customLocations = getFileData('shared/data', 'locations')
+        local locations = formatVanillaLocations(getFileData('shared/data', 'mloInteriors'))
+
+        -- Merge locations
+        for _, v in ipairs(customLocations) do
+            v.custom = true
+            locations[#locations+1] = v
+        end
+
+        Server.locations = locations
     end
     return Server.locations
 end)
@@ -46,28 +52,28 @@ end)
 lib.callback.register('dmt:renameLocation', function(source, data)
     local result
     local lastUsedFound = 0
-
+    
     for index, location in ipairs(Server.locations.custom) do
         if location.isLastLocationUsed and location.name ~= data.oldName then
             location.isLastLocationUsed = nil
             lastUsedFound += 1
         end
-
+        
         if location.name == data.oldName then
             location.name = data.newName
             location.isLastLocationUsed = true
             result = { index = index, data = location }
             lastUsedFound += 1
         end
-
+        
         if lastUsedFound == 2 then break end
     end
-
+    
     if not result then
         print('^2[DoluMappingTool] ^1 Error while trying to rename location. Location not found!^7')
         return nil
     end
-
+    
     local success = updateFileData('shared/data', 'locations', Server.locations.custom)
     if not success then
         print("^2[DoluMappingTool] ^1ERROR: unable to update 'shared/data/locations.json' file.")
@@ -84,15 +90,15 @@ lib.callback.register('dmt:createCustomLocation', function(source, data)
         heading = data.heading,
         isLastLocationUsed = true
     }
-
+    
     for _, location in ipairs(Server.locations.custom) do
         if location.isLastLocationUsed then
             location.isLastLocationUsed = nil
         end
     end
-
+    
     table.insert(Server.locations.custom, 1, result)
-
+    
     local success = updateFileData('shared/data', 'locations', Server.locations.custom)
     if not success then
         print("^2[DoluMappingTool] ^1ERROR: unable to update 'shared/data/locations.json' file.")
