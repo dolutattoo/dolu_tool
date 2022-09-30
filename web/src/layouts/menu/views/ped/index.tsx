@@ -12,7 +12,7 @@ const Ped: React.FC = () => {
   const [copiedPedHash, setCopiedPedHash] = useState(false);
   const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
 
-  const [displayImage, setSisplayImage] = useState<boolean>(false)
+  const [displayImage, setDisplayImage] = useState<boolean>(false)
   const [imagePath, setImagePath] = useState<string>("")
 
   useEffect(() => {
@@ -34,12 +34,14 @@ const Ped: React.FC = () => {
         p="md"
         shadow="xs"
         sx={{
-          display: displayImage ? "" : "none",
+          // display: displayImage ? "" : "none",
+          opacity: displayImage ? 1 : 0,
           position: 'absolute',
           top: '0%',
-          left: '46.87%'
+          left: '46.87%',
+          transition: "all 200ms ease-in"
         }}
-      > 
+      >
         <Image
           height={300}
           fit="contain"
@@ -55,9 +57,7 @@ const Ped: React.FC = () => {
             uppercase
             variant="outline"
             color="orange"
-            onClick={() => {
-              changePed({ name: `${searchPedValue}` })
-            }}
+            onClick={() => { changePed({ name: `${searchPedValue}` }) }}
           >
             Change by Name
           </Button>
@@ -73,24 +73,18 @@ const Ped: React.FC = () => {
                     <Accordion.Panel>
                       <Group grow spacing="xs"> 
                         <Image
+                          onMouseEnter={() => {
+                            setDisplayImage(true);
+                            setImagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
+                          }}
+                          onMouseLeave={() => {setDisplayImage(false)}}
                           height={50}
                           fit="contain"
                           alt={`${pedList.name}`}
                           src={`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`}
                           withPlaceholder={true}
-                          onClick={() => {
-                            if (!displayImage){
-                              setSisplayImage(true);
-                              setImagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
-                            } else if (displayImage && imagePath === `https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`){
-                              setSisplayImage(false)
-                            } else if (displayImage && imagePath !== `https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`){
-                              setImagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
-                            }
-                          }}
                           sx={{
                             '&:hover':{
-                              cursor: "grab",
                               borderRadius: '5px',
                               backgroundColor: 'rgba(35, 35, 35, 0.75)'
                             }
@@ -100,9 +94,7 @@ const Ped: React.FC = () => {
                           variant="outline"
                           color={'orange'}
                           size="xs"
-                          onClick={() => {
-                            changePed({ name: pedList.name, hash: pedList.hash })
-                          }}
+                          onClick={() => { changePed({ name: pedList.name, hash: pedList.hash }) }}
                         >
                           Change Ped
                         </Button>
