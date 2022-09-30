@@ -4,7 +4,8 @@
         "y": -1091.0,
         "z": 27.5,
         "name": "Location test 1",
-        "heading": 50.0
+        "heading": 50.0,
+        "isLastLocationUsed": true
     },
     {
         "x": -67.0,
