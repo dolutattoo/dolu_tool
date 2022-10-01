@@ -3,7 +3,7 @@ local function getFileData(path, file)
 end
 
 local function updateFileData(path, file, data)
-    return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file .. '.json', json.encode(data, { indent=true }))
+    return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file, json.encode(data, { indent=true }))
 end
 
 local function formatVanillaLocations(vanillaLocations)
@@ -86,7 +86,7 @@ lib.callback.register('dmt:renameLocation', function(source, data)
         return nil
     end
 
-    local success = updateFileData('shared/data', 'locations', Server.locations.custom)
+    local success = updateFileData('shared/data', 'locations.json', Server.locations.custom)
     if not success then
         print("^2[DoluMappingTool] ^1ERROR: unable to update 'shared/data/locations.json' file.")
     end
@@ -94,34 +94,45 @@ lib.callback.register('dmt:renameLocation', function(source, data)
 end)
 
 lib.callback.register('dmt:createCustomLocation', function(source, data)
-    local result = {
+    -- Remove previous 'isLastLocationUsed'
+    for _, location in ipairs(Server.locations) do
+        if location.isLastLocationUsed then
+            location.isLastLocationUsed = nil
+            break
+        end
+    end
+
+    -- Format new location
+    local newLocation = {
         name = data.name,
-        x = data.coords.x,
-        y = data.coords.y,
-        z = data.coords.z,
-        heading = data.heading,
+        x = math.round(data.coords.x, 3),
+        y = math.round(data.coords.y, 3),
+        z = math.round(data.coords.z, 3),
+        heading = math.round(data.heading, 3),
         isLastLocationUsed = true,
         custom = true
     }
 
-    for _, location in ipairs(Server.locations) do
-        if location.isLastLocationUsed then
-            location.isLastLocationUsed = nil
+    -- Register new location at index 1
+    table.insert(Server.locations, 1, newLocation)
+
+    -- Create new table with custom locations only
+    local customLocations = {}
+    for _, v in ipairs(Server.locations) do
+        if v.custom then
+            customLocations[#customLocations+1] = v
         end
     end
 
-    table.insert(Server.locations, 1, result)
+    -- Update custom locations json file with previous table
+    updateFileData('shared/data', 'locations.json', customLocations)
 
-    local success = updateFileData('shared/data', 'locations', Server.locations)
-    if not success then
-        FUNC.print("^1ERROR: unable to update 'shared/data/locations.json' file.")
-    end
-    return result
+    return newLocation
 end)
 
 lib.callback.register('dmt:getPedList', function()
     if not Server.pedLists then
-        Server.pedLists = getFileData('shared/data', 'pedList')
+        Server.pedLists = getFileData('shared/data', 'pedList.json')
     end
     return Server.pedLists
 end)

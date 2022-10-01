@@ -32,16 +32,23 @@ RegisterNUICallback('dmt:changeLocationName', function(data, cb)
 end)
 
 RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
+    local playerPed = cache.ped
+
     lib.callback('dmt:createCustomLocation', false, function(result)
         FUNC.assert(result ~= nil, "Error while trying to create location.")
 
+        -- Insert new location at index 1
         table.insert(Client.locations, 1, result)
 
         SendNUIMessage({
             action = 'setLocationDatas',
             data = Client.locations
         })
-    end, { name = locationName, coords = GetEntityCoords(cache.ped), heading = GetEntityHeading(cache.ped) })
+    end, {
+        name = locationName,
+        coords = GetEntityCoords(playerPed),
+        heading = GetEntityHeading(playerPed)
+    })
     cb(1)
 end)
 
