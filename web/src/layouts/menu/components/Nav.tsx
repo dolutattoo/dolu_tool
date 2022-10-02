@@ -1,25 +1,21 @@
-import { Navbar, Stack } from '@mantine/core';
-import { TbHome, TbLogout } from 'react-icons/tb';
-import { RiHomeGearFill } from 'react-icons/ri';
-import { FaTshirt } from 'react-icons/fa';
-import { BiWorld } from 'react-icons/bi';
-import NavIcon from './NavIcon';
-import { menuVisibilityAtom } from '../../../atoms/visibility';
-import { useSetRecoilState } from 'recoil';
-import { GiTeleport } from 'react-icons/gi';
-import { fetchNui } from '../../../utils/fetchNui';
+import { Navbar, Stack } from '@mantine/core'
+import { TbHome, TbLogout } from 'react-icons/tb'
+import { RiHomeGearFill } from 'react-icons/ri'
+import { FaTshirt } from 'react-icons/fa'
+import { BiWorld } from 'react-icons/bi'
+import NavIcon from './NavIcon'
+import { GiTeleport } from 'react-icons/gi'
 
 const Nav: React.FC = () => {
-  const setVisible = useSetRecoilState(menuVisibilityAtom);
 
   return (
     <Navbar
       width={{ base: 80 }}
       p="md"
       fixed={false}
-      sx={(theme) => ({
+      sx={{
         height: 768
-      })}
+      }}
     >
       <Navbar.Section grow>
         <Stack justify="center" spacing={5}>
@@ -31,7 +27,7 @@ const Nav: React.FC = () => {
         </Stack>
       </Navbar.Section>
     </Navbar>
-  );
-};
+  )
+}
 
-export default Nav;
+export default Nav
