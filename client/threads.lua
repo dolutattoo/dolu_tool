@@ -15,11 +15,12 @@ CreateThread(function()
     end
 end)
 
--- Send interior data to NUI
 CreateThread(function()
     while true do
-        if isMenuOpen then
-            GetInteriorData(true)
+        if interiorId > 0 then
+            if portalPoly or portalLines or portalCorners or portalInfos then
+                DrawPortalInfos(interiorId)
+            end
         else
             Wait(500)
         end

@@ -1,7 +1,6 @@
 -- Check for interior data
 local lastRoomId = 0
-function GetInteriorData(fromThread)
-    local interiorId = GetInteriorFromEntity(cache.ped)
+function GetInteriorData(interiorId, fromThread)
     local currentRoomHash = GetRoomKeyFromEntity(cache.ped)
     local currentRoomId = GetInteriorRoomIndexByHash(interiorId, currentRoomHash)
 
@@ -61,8 +60,6 @@ function GetInteriorData(fromThread)
 end
 
 -- Portals display
-local portalPoly, portalLines, portalCorners, portalInfos = false, false, false, false
-
 RegisterNUICallback('dmt:setPortalCheckbox', function(data, cb)
     local options = {}
     for _, v in pairs(data) do options[v] = true end
@@ -76,7 +73,6 @@ end)
 CreateThread(function()
     while true do
         if portalPoly or portalLines or portalCorners or portalInfos then
-            local interiorId = GetInteriorFromEntity(cache.ped)
             local pedCoords = GetEntityCoords(cache.ped)
 
             if interiorId > 0 then

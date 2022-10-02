@@ -41,8 +41,7 @@ FUNC.Lerp = function(a, b, t)
 end
 
 FUNC.setTimecycle = function(name)
-    local playerPed = PlayerPedId()
-    local interiorId = GetInteriorFromEntity(playerPed)
+    local playerPed = cache.ped
 
     if interiorId ~= 0 then
         local roomHash = GetRoomKeyFromEntity(playerPed)
@@ -57,9 +56,6 @@ FUNC.setTimecycle = function(name)
 end
 
 FUNC.setPortalFlag = function(portal, flag)
-    local playerPed = PlayerPedId()
-    local interiorId = GetInteriorFromEntity(playerPed)
-
     if interiorId ~= 0 then
         local portalIndex = tonumber(portal)
         local newFlag = tonumber(flag)
@@ -70,8 +66,7 @@ FUNC.setPortalFlag = function(portal, flag)
 end
 
 FUNC.setRoomFlag = function(flag)
-    local playerPed = PlayerPedId()
-    local interiorId = GetInteriorFromEntity(playerPed)
+    local playerPed = cache.ped
     local roomHash = GetRoomKeyFromEntity(playerPed)
     local roomId = GetInteriorRoomIndexByHash(interiorId, roomHash)
 
@@ -83,9 +78,6 @@ FUNC.setRoomFlag = function(flag)
 end
 
 FUNC.enableEntitySet = function(value)
-    local playerPed = PlayerPedId()
-    local interiorId = GetInteriorFromEntity(playerPed)
-
     if IsInteriorEntitySetActive(interiorId, value) then
         DeactivateInteriorEntitySet(interiorId, value)
         LastEntitySet = value
@@ -98,9 +90,6 @@ FUNC.enableEntitySet = function(value)
 end
 
 FUNC.toggleLastEntitySet = function()
-    local playerPed = PlayerPedId()
-    local interiorId = GetInteriorFromEntity(playerPed)
-
     if LastEntitySet ~= nil then
         if IsInteriorEntitySetActive(interiorId, LastEntitySet) then
             DeactivateInteriorEntitySet(interiorId, tostring(LastEntitySet))
