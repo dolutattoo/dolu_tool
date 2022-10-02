@@ -1,4 +1,5 @@
 RESOURCE_NAME = GetCurrentResourceName()
+lib.locale()
 
 CreateThread(function()
     if IsDuplicityVersion() then

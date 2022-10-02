@@ -1,12 +1,15 @@
 CreateThread(function()
-    Wait(500) --Todo: Why?!
-    GetInteriorData()
+    Wait(500)
+    GetInteriorData(interiorId)
+end)
 
+-- Send interior data to NUI
+CreateThread(function()
     while true do
-        if not IsNuiFocused() and not IsPauseMenuActive() then
-            if IsControlJustPressed(0, 170) then -- F3
-                FUNC.openUI()
-            end
+        if isMenuOpen and interiorId > 0 then
+            GetInteriorData(interiorId, true)
+        else
+            Wait(500)
         end
         Wait(0)
     end

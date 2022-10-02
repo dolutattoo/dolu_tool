@@ -1,5 +1,11 @@
 local noClip = false
-lib.locale()
+
+RegisterCommand('dmt:open', function()
+    if not IsNuiFocused() and not IsPauseMenuActive() then
+        FUNC.openUI()
+    end
+end)
+RegisterKeyMapping('dmt:open', locale('command_openui', '~o~>~w~'), 'keyboard', 'F3')
 
 RegisterCommand('goback', function()
     if not lastCoords then
