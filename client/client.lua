@@ -1,3 +1,16 @@
+RegisterNUICallback('dmt:tabSelected', function(data, cb)
+    if data == 'world' then
+        FUNC.debug('World tab selected, sending world data')
+        SendNUIMessage({
+            action = 'setWorldData',
+            data = {
+                clock = nil,
+                weather = FUNC.getWeather()
+            }
+        })
+    end
+end)
+
 RegisterNUICallback('dmt:teleport', function(data, cb)
     FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
 
