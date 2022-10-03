@@ -1,10 +1,13 @@
 RegisterNUICallback('dmt:tabSelected', function(data, cb)
+    Client.currentTab = data
+
     if data == 'world' then
-        FUNC.debug('World tab selected, sending world data')
+        local hour, minute = FUNC.getClock()
+
         SendNUIMessage({
             action = 'setWorldData',
             data = {
-                clock = nil,
+                clock = { hour = hour, minute = minute },
                 weather = FUNC.getWeather()
             }
         })
@@ -33,6 +36,7 @@ RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
     Client.isMenuOpen = false
+    Client.currentTab = nil
     cb(1)
 end)
 
@@ -77,13 +81,15 @@ RegisterNUICallback('dmt:setWeather', function(weatherName, cb)
 end)
 
 RegisterNUICallback('dmt:setClock', function(clock, cb)
-    local newTime = FUNC.stringSplit(clock:sub(12, 16), ':')
+    FUNC.setClock(clock.hour, clock.minute)
+    cb(1)
+end)
 
-    CreateThread(function()
-        while true do
-            FUNC.setClock(newTime[1], newTime[2])
-            Wait(0)
-        end
-    end)
+RegisterNUICallback('dmt:getClock', function(_, cb)
+    local hour, minute = FUNC.getClock()
+    SendNUIMessage({
+        action = 'setClockData',
+        data = {hour = hour, minute = minute }
+    })
     cb(1)
 end)

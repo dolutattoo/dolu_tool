@@ -18,7 +18,6 @@ local WEATHER_LIST = {
     [`HALLOWEEN`] = 'halloween'
 }
 
-
 FUNC.openUI = function()
     SendNUIMessage({
         action = 'setMenuVisible',

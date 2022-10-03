@@ -1,18 +1,25 @@
-import { Text, Stack, SimpleGrid, Paper, Group, Select, Tooltip } from '@mantine/core'
-import { TimeInput } from '@mantine/dates'
+import { Text, Stack, SimpleGrid, Paper, Group, Select, NumberInput, Button, Space } from '@mantine/core'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TiWeatherPartlySunny } from 'react-icons/ti'
 import { fetchNui } from '../../../../utils/fetchNui'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import { useRecoilState } from 'recoil'
-import { worldClockAtom, worldWeatherAtom } from '../../../../atoms/world'
+import { worldHourAtom, worldMinuteAtom, worldWeatherAtom } from '../../../../atoms/world'
 
 const World: React.FC = () => {
-  const [clockValue, setClockValue] = useRecoilState(worldClockAtom)
+  const [hourValue, setHourValue] = useRecoilState(worldHourAtom)
+  const [minuteValue, setMinuteValue] = useRecoilState(worldMinuteAtom)
   const [weatherValue, setWeatherValue] = useRecoilState(worldWeatherAtom)
 
   useNuiEvent('setWorldData', (data: any) => {
     setWeatherValue(data.weather)
+    setHourValue(data.clock.hour)
+    setMinuteValue(data.clock.minute)
+  })
+
+  useNuiEvent('setClockData', (data: any) => {
+    setHourValue(data.hour)
+    setMinuteValue(data.minute)
   })
 
   return (
@@ -24,16 +31,43 @@ const World: React.FC = () => {
             <Text size={20} weight={600}>Time</Text>
             <AiOutlineClockCircle size={24} />
           </Group>
+          
+          <Space h="sm" />
             
-          <TimeInput
-            label="What time is it now?"
-            value={new Date(clockValue)}
-            onChange={() => fetchNui('dmt:setClock', clockValue)}
-            rightSection={
-              <Tooltip label="Select and use your keyboard arrows to set time easier!" position="right">
-                <Text color="blue.4">?</Text>
-              </Tooltip>}
-          />
+          <Group grow>
+            <NumberInput
+              value={hourValue}
+              defaultValue={hourValue}
+              placeholder={hourValue.toString()}
+              radius="md"
+              max={24}
+              min={0}
+              onChange={(value: number) => {
+                setHourValue(value)
+                fetchNui('dmt:setClock', { hour: value, minute: minuteValue})
+              }}
+            /> 
+            {':'}
+            <NumberInput
+              value={minuteValue}
+              defaultValue={minuteValue}
+              radius="md"
+              max={60}
+              min={0}
+              onChange={(value: number) => {
+                setMinuteValue(value)
+                fetchNui('dmt:setClock', { hour: hourValue, minute: value})
+              }}
+            />
+
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() => fetchNui('dmt:getClock')}
+            >
+              Get time
+            </Button>
+          </Group>
         </Paper>
 
         {/* Weather */}

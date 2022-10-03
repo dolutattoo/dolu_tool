@@ -1,10 +1,11 @@
-import { atom, useRecoilState, useRecoilValue } from "recoil"
+import { atom, useRecoilValue } from "recoil"
 
-const mockWorldClock: Date = new Date()
 const mockWorldWeather: string = "Neutral"
 
-export const worldClockAtom = atom<Date>({ key: 'worldClock', default: mockWorldClock })
+export const worldHourAtom = atom<number>({ key: 'worldHour', default: 0 })
+export const worldMinuteAtom = atom<number>({ key: 'worldMinute', default: 0 })
 export const worldWeatherAtom = atom<string>({ key: 'worldWeather', default: mockWorldWeather })
 
-export const getWorldClock = () => useRecoilValue(worldClockAtom)
+export const getWorldHour = () => useRecoilValue(worldHourAtom)
+export const getWorldMinute = () => useRecoilValue(worldMinuteAtom)
 export const getWorldWeather = () => useRecoilValue(worldWeatherAtom)

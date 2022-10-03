@@ -8,6 +8,7 @@ CreateThread(function()
     else
         Client = {
             isMenuOpen = false,
+            currentTab = nil,
             lastCoords = nil,
             lastLocation = json.decode(GetResourceKvpString('dmt_lastLocation')),
             portalPoly = false,
