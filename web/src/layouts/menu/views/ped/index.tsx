@@ -22,15 +22,13 @@ const Ped: React.FC = () => {
     setPageCount(pageCount)
     return result
   }
-  const pages = createPages(pedLists, 6)
+  const pages = createPages(pedLists, 5)
   const pageCount = getPedListPageCount()
   const [activePage, setPage] = useRecoilState(pedListActivePageAtom)
 
-  const setActivePage = useSetRecoilState(pedListActivePageAtom)
-
   const [copiedPedName, setCopiedPedName] = useState(false);
   const [copiedPedHash, setCopiedPedHash] = useState(false);
-  const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
+  const [currentAccordionItem, setAccordionItem] = useState<string|null>('0')
 
   const [displayImage, setDisplayImage] = useState<boolean>(false)
   const [imagePath, setImagePath] = useState<string>("")
@@ -49,10 +47,9 @@ const Ped: React.FC = () => {
   }, [copiedPedHash, setCopiedPedHash]);
 
   const PedList = pages[activePage]?.map((pedList: any, index: number) => (
-    <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
-          <Text size="sm">{pedList.name}</Text>
+          <Text size="md" weight={500}>• {pedList.name}</Text>
           <Text size="xs">Hash: {pedList.hash}</Text>
         </Accordion.Control>
         <Accordion.Panel>
@@ -108,7 +105,6 @@ const Ped: React.FC = () => {
           </Group>
         </Accordion.Panel>
       </Accordion.Item>
-    </Accordion>
   ))
 
   return(
@@ -138,7 +134,7 @@ const Ped: React.FC = () => {
       </Transition>
       <Paper p="md">
         <Stack>
-          <PedSearch/>
+          <Text size={20}>Ped Changer</Text>
           <Button
             uppercase
             variant="outline"
@@ -147,13 +143,16 @@ const Ped: React.FC = () => {
           >
             Change by Name
           </Button>
-          <ScrollArea style={{ height: 555 }} scrollbarSize={0}>
+          <PedSearch/>
+          <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
             <Stack>
-              {PedList ? PedList : 
-                <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">No location found</Text>
-                </Paper>
-              }
+              <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+                {PedList ? PedList : 
+                  <Paper p="md">
+                    <Text size="md" weight={600} color="red.4">No location found</Text>
+                  </Paper>
+                }
+               </Accordion>
             </Stack>
           </ScrollArea>
           <Center>
@@ -161,7 +160,10 @@ const Ped: React.FC = () => {
               color="blue.4"
               size='sm'
               page={activePage}
-              onChange={setPage}
+              onChange={(value) => {
+                setPage(value)
+                setAccordionItem("0")
+              }}
               total={pageCount}
             />
           </Center>
