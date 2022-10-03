@@ -1,20 +1,23 @@
-import { Text, Stack, SimpleGrid, Button, Paper, Group, Space } from '@mantine/core'
+import { Text, Stack, SimpleGrid, Button, Paper, Group, Space, TextInput, Switch } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import { useState } from 'react'
 import { GiTeleport } from 'react-icons/gi'
 import { ImLocation } from 'react-icons/im'
+import { FiFastForward } from 'react-icons/fi'
 import { RiHomeGearFill } from 'react-icons/ri'
 import { getInteriorData } from '../../../../atoms/interior'
 import { getLastLocation } from '../../../../atoms/location'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import { fetchNui } from '../../../../utils/fetchNui'
 import CreateLocation from '../locations/components/modals/CreateLocation'
+import { TiTickOutline } from 'react-icons/ti'
 
 const Home: React.FC = () => {
   const lastLocation = getLastLocation()
   const interior = getInteriorData()
   const [currentCoords, setCurrentCoords] = useState('1.000, 2.000, 3.000')
   const [currentHeading, setCurrentHeading] = useState('0.000')
+  const [timeFrozen, setTimeFrozen] = useState<boolean>(false)
 
   useNuiEvent('playerCoords', (data: { coords: string, heading: string }) => {
     setCurrentCoords(data.coords)
@@ -112,6 +115,93 @@ const Home: React.FC = () => {
                 <Text color="red.4">You are not inside any interior.</Text>
               </>
           }
+        </Paper>
+        <Paper p="md">
+          <Group position="apart">
+            <Text size={20} weight={600}>Quick Actions</Text>
+            <FiFastForward size={24} />
+          </Group>
+          <Space h="sm" />
+          <Group grow>
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:cleanZone', {})
+              }
+            >
+              Clean zone
+            </Button>
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:cleanPed', {})
+              }
+            >
+              Clean ped
+            </Button>
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:cleanVehicle', {})
+              }
+            >
+              Clean vehicle
+            </Button>
+          </Group>
+          <Space h="sm" />
+          <Group grow>
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:repairVehicle', {})
+              }
+            >
+              Repair vehicle
+            </Button>
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:giveAllWeapons', {})
+              }
+            >
+              Give weapons
+            </Button>
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:setDay', {})
+              }
+            >
+              Set day
+            </Button>
+          </Group>
+          <Space h="sm" />
+          <Group position='apart'>
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:spawnFavoriteVehicle', {})
+              }
+            >
+              Spawn Favorite Vehicle
+            </Button>
+            <Button
+              color={timeFrozen ? 'red.4' : 'blue.4'}
+              variant='outline'
+              onClick={() => {
+                setTimeFrozen(!timeFrozen)
+              }}
+            >
+              {timeFrozen ? "Disable Freeze Time" : "Enable Freeze Time" }
+            </Button>
+          </Group>          
         </Paper>
       </Stack>
     </SimpleGrid>

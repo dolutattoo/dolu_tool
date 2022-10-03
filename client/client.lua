@@ -93,3 +93,47 @@ RegisterNUICallback('dmt:getClock', function(_, cb)
     })
     cb(1)
 end)
+
+RegisterNUICallback('dmt:cleanZone', function(_, cb)
+    local playerId = cache.ped
+    local playerCoords = GetEntityCoords(playerId)
+    ClearAreaOfEverything(playerCoords.x, playerCoords.y, playerCoords.z, 1000.0, false, false, false, false)
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:cleanPed', function(_, cb)
+    local playerId = cache.ped
+    ClearPedBloodDamage(playerId)
+    ClearPedEnvDirt(playerId)
+    ClearPedWetness(playerId)
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:cleanVehicle', function(_, cb)
+    local vehicle = cache.vehicle
+    SetVehicleDirtLevel(vehicle, 0.0)
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:repairVehicle', function(_, cb)
+    local vehicle = cache.vehicle
+	SetVehicleFixed(vehicle)
+    SetVehicleEngineHealth(vehicle, 1000.0)
+    SetVehicleDirtLevel(vehicle, 0.0)
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:giveAllWeapons', function(_, cb)
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:setDay', function(_, cb)
+    FUNC.setClock(12)
+    FUNC.setWeather('extrasunny')
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:spawnFavoriteVehicle', function(_, cb)
+    FUNC.spawnVehicle('krieger')
+    cb(1)
+end)
