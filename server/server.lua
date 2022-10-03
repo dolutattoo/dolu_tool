@@ -6,12 +6,12 @@ local function updateFileData(path, file, data)
     return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file, json.encode(data, { indent=true }))
 end
 
-local function formatVanillaLocations(vanillaLocations)
+local function formatVanillaInteriors(vanillaInteriors)
     local formatedLocations = {}
     local count = 0
 
-    for i=1, #vanillaLocations do
-        local v = vanillaLocations[i]
+    for i=1, #vanillaInteriors do
+        local v = vanillaInteriors[i]
         if v.Locations[1] then
             count += 1
             formatedLocations[count] = {
@@ -33,10 +33,21 @@ local function formatVanillaLocations(vanillaLocations)
     return formatedLocations
 end
 
+local function filterCustomLocations()
+    -- Filter custom locations to update 'locations.json'
+    local customLocations = {}
+    for _, v in ipairs(Server.locations) do
+        if v.custom then
+            customLocations[#customLocations+1] = v
+        end
+    end
+    return customLocations
+end
+
 lib.callback.register('dmt:getLocations', function()
     if not Server.locations then
         local customLocations = getFileData('shared/data', 'locations')
-        local locations = formatVanillaLocations(getFileData('shared/data', 'mloInteriors'))
+        local locations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors'))
 
         -- Merge locations
         for _, v in ipairs(customLocations) do
@@ -52,16 +63,16 @@ end)
 lib.callback.register('dmt:renameLocation', function(source, data)
     local result
 
-    for index, location in ipairs(Server.locations.custom) do
-        if location.name == data.oldName then
+    for index, location in ipairs(Server.locations) do
+        if location.custom and location.name == data.oldName then
             location.name = data.newName
             result = { index = index, data = location }
         end
     end
-    FUNC.assert(result ~= nil, "Error while trying to rename location. Location not found!")
+    assert(result ~= nil, "Error while trying to rename location. Location not found!")
 
-    local success = updateFileData('shared/data', 'locations.json', Server.locations.custom)
-    FUNC.assert(success == true, "Unable to update 'shared/data/locations.json' file.")
+    local success = updateFileData('shared/data', 'locations.json', filterCustomLocations())
+    assert(success == true, "Unable to update 'shared/data/locations.json' file.")
 
     return result
 end)
@@ -79,14 +90,8 @@ lib.callback.register('dmt:createCustomLocation', function(source, data)
     -- Register new location at index 1
     table.insert(Server.locations, 1, newLocation)
 
-    -- Create new table with custom locations only to update 'locations.json'
-    local customLocations = {}
-    for _, v in ipairs(Server.locations) do
-        if v.custom then
-            customLocations[#customLocations+1] = v
-        end
-    end
-    updateFileData('shared/data', 'locations.json', customLocations)
+    local success = updateFileData('shared/data', 'locations.json', filterCustomLocations())
+    assert(success == true, "Unable to update 'shared/data/locations.json' file.")
 
     return newLocation
 end)

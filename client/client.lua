@@ -25,11 +25,9 @@ end)
 
 RegisterNUICallback('dmt:changeLocationName', function(data, cb)
     lib.callback('dmt:renameLocation', false, function(result)
-        if not result then
-            print('^2[DoluMappingTool] ^1 Error while trying to rename location. Location not found!^7')
-        end
+        if not result then return end
 
-        Client.locations.custom[result.index] = result.data
+        Client.locations[result.index] = result.data
 
         SendNUIMessage({
             action = 'setLocationDatas',
@@ -43,7 +41,7 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
     local playerPed = cache.ped
 
     lib.callback('dmt:createCustomLocation', false, function(result)
-        FUNC.assert(result ~= nil, "Error while trying to create location.")
+        if not result then return end
 
         -- Insert new location at index 1
         table.insert(Client.locations, 1, result)

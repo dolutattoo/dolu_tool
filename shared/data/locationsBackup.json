@@ -1,72 +1,23 @@
 [
     {
+        "name": "Location test 1",
         "x": -68.0,
         "y": -1091.0,
         "z": 27.5,
-        "name": "Location test 1",
         "heading": 50.0
     },
     {
-        "x": -67.0,
-        "y": -1048.0,
-        "z": 28.0,
         "name": "Location test 2",
-        "heading": 230.0
-    },
-    {
         "x": -67.0,
         "y": -1048.0,
         "z": 28.0,
+        "heading": 230.0
+    },
+    {
         "name": "Location test 3",
-        "heading": 230.0
-    },
-    {
         "x": -67.0,
         "y": -1048.0,
         "z": 28.0,
-        "name": "Location test 4",
-        "heading": 230.0
-    },
-    {
-        "x": -67.0,
-        "y": -1048.0,
-        "z": 28.0,
-        "name": "Location test 5",
-        "heading": 230.0
-    },
-    {
-        "x": -67.0,
-        "y": -1048.0,
-        "z": 28.0,
-        "name": "Location test 6",
-        "heading": 230.0
-    },
-    {
-        "x": -67.0,
-        "y": -1048.0,
-        "z": 28.0,
-        "name": "Location test 7",
-        "heading": 230.0
-    },
-    {
-        "x": -67.0,
-        "y": -1048.0,
-        "z": 28.0,
-        "name": "Location test 8",
-        "heading": 230.0
-    },
-    {
-        "x": -67.0,
-        "y": -1048.0,
-        "z": 28.0,
-        "name": "Location test 9",
-        "heading": 230.0
-    },
-    {
-        "x": -67.0,
-        "y": -1048.0,
-        "z": 28.0,
-        "name": "Location test 10",
         "heading": 230.0
     }
 ]

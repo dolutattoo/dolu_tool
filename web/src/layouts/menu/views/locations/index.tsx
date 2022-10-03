@@ -1,13 +1,14 @@
 import { Accordion, Button, Center, Checkbox, Group, Pagination, Paper, ScrollArea, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
-import { getLocationPageCount, locationActivePageAtom, locationCustomFilterAtom, locationsPageCountAtom, locationVanillaFilterAtom, useLocation } from '../../../../atoms/location'
+import { getLocationPageCount, locationActivePageAtom, locationCustomFilterAtom, locationsAtom, locationsPageCountAtom, locationVanillaFilterAtom, useLocation } from '../../../../atoms/location'
 import LocationSearch from './components/LocationSearch'
 import { setClipboard } from '../../../../utils/setClipboard'
 import { useEffect, useState } from 'react'
 import RenameLocation from './components/modals/RenameLocation'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { fetchNui } from '../../../../utils/fetchNui'
+import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 
 const Locations: React.FC = () => {
   // Get Locations (depending on search bar value)
@@ -44,6 +45,12 @@ const Locations: React.FC = () => {
       if (copied) setCopied(false)
     }, 2000)
   }, [copied, setCopied])
+
+  // Get locations data updates
+  const setLocations = useSetRecoilState(locationsAtom)
+  useNuiEvent('setLocationDatas', (data: any) => {
+    setLocations(data)
+  })
 
   const Locationlist = pages[activePage]?.map((location: any, index: number) => (
     <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
@@ -101,20 +108,11 @@ const Locations: React.FC = () => {
     <>
       <Paper p="md">
         <Stack>
-          <Group position='apart'>
-            <Text size={20}>Existing Locations</Text>
+          <Text size={20}>Existing Locations</Text>
+          <Group grow>            
             <Checkbox
-              label='Show Vanilla'
-              color="blue.4"
-              disabled={!checkedCustom}
-              checked={checkedVanilla}
-              onChange={(e) => {
-                setActivePage(1)
-                setCheckedVanilla(e.currentTarget.checked)
-              }}
-            />
-            <Checkbox
-              label='Show Custom'
+              label='Show custom locations'
+              size='sm'
               color="blue.4"
               disabled={!checkedVanilla}
               checked={checkedCustom}
@@ -123,9 +121,19 @@ const Locations: React.FC = () => {
                 setCheckedCustom(e.currentTarget.checked)
               }}
             />
+            <Checkbox
+              label='Show vanilla Interiors'
+              size='sm'
+              color="blue.4"
+              disabled={!checkedCustom}
+              checked={checkedVanilla}
+              onChange={(e) => {
+                setActivePage(1)
+                setCheckedVanilla(e.currentTarget.checked)
+              }}
+            />
           </Group>
           
-          <LocationSearch />
           <Button
             uppercase
             variant="outline"
@@ -140,7 +148,10 @@ const Locations: React.FC = () => {
           >
             Create location
           </Button>
-          <ScrollArea style={{ height: 500 }} scrollbarSize={0}>
+          
+          <LocationSearch />
+
+          <ScrollArea style={{ height: 480 }} scrollbarSize={0}>
             <Stack>
               {Locationlist ? Locationlist :
                 <Paper p="md">
@@ -152,6 +163,7 @@ const Locations: React.FC = () => {
           <Center>
             <Pagination
               color="blue.4"
+              size='sm'
               page={activePage}
               onChange={setPage}
               total={pageCount}
