@@ -1,5 +1,5 @@
 local function getFileData(path, file)
-    return json.decode(LoadResourceFile(RESOURCE_NAME, path .. '/' .. file .. '.json'))
+    return json.decode(LoadResourceFile(RESOURCE_NAME, path .. '/' .. file))
 end
 
 local function updateFileData(path, file, data)
@@ -46,8 +46,8 @@ end
 
 lib.callback.register('dmt:getLocations', function()
     if not Server.locations then
-        local customLocations = getFileData('shared/data', 'locations')
-        local locations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors'))
+        local customLocations = getFileData('shared/data', 'locations.json')
+        local locations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors.json'))
 
         -- Merge locations
         for _, v in ipairs(customLocations) do
