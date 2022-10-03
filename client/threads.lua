@@ -1,13 +1,13 @@
 CreateThread(function()
     Wait(500)
-    GetInteriorData(interiorId)
+    GetInteriorData(Client.interiorId)
 end)
 
 -- Send interior data to NUI
 CreateThread(function()
     while true do
-        if isMenuOpen and interiorId > 0 then
-            GetInteriorData(interiorId, true)
+        if Client.isMenuOpen and Client.interiorId > 0 then
+            GetInteriorData(Client.interiorId, true)
         else
             Wait(500)
         end
@@ -17,9 +17,9 @@ end)
 
 CreateThread(function()
     while true do
-        if interiorId > 0 then
-            if portalPoly or portalLines or portalCorners or portalInfos then
-                DrawPortalInfos(interiorId)
+        if Client.interiorId > 0 then
+            if Client.portalPoly or Client.portalLines or Client.portalCorners or Client.portalInfos then
+                DrawPortalInfos(Client.interiorId)
             end
         else
             Wait(500)
@@ -33,7 +33,7 @@ CreateThread(function()
     local oldCoords = vec3(0, 0, 0)
 
     while true do
-        if isMenuOpen then
+        if Client.isMenuOpen then
             local coords = GetEntityCoords(cache.ped)
 
             if #(coords - oldCoords) > 0.5 then

@@ -13,7 +13,7 @@ FUNC.openUI = function()
     })
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)
-    isMenuOpen = true
+    Client.isMenuOpen = true
 end
 
 FUNC.round = function(num, decimals)
@@ -43,61 +43,61 @@ end
 FUNC.setTimecycle = function(name)
     local playerPed = cache.ped
 
-    if interiorId ~= 0 then
+    if Client.interiorId ~= 0 then
         local roomHash = GetRoomKeyFromEntity(playerPed)
-        local roomId = GetInteriorRoomIndexByHash(interiorId, roomHash)
+        local roomId = GetInteriorRoomIndexByHash(Client.interiorId, roomHash)
         local timecycleHash = GetHashKey(name)
 
-        SetInteriorRoomTimecycle(interiorId, roomId, timecycleHash)
-        RefreshInterior(interiorId)
+        SetInteriorRoomTimecycle(Client.interiorId, roomId, timecycleHash)
+        RefreshInterior(Client.interiorId)
     else
         SetTimecycleModifier(name)
     end
 end
 
 FUNC.setPortalFlag = function(portal, flag)
-    if interiorId ~= 0 then
+    if Client.interiorId ~= 0 then
         local portalIndex = tonumber(portal)
         local newFlag = tonumber(flag)
 
-        SetInteriorPortalFlag(interiorId, portalIndex, newFlag)
-        RefreshInterior(interiorId)
+        SetInteriorPortalFlag(Client.interiorId, portalIndex, newFlag)
+        RefreshInterior(Client.interiorId)
     end
 end
 
 FUNC.setRoomFlag = function(flag)
     local playerPed = cache.ped
     local roomHash = GetRoomKeyFromEntity(playerPed)
-    local roomId = GetInteriorRoomIndexByHash(interiorId, roomHash)
+    local roomId = GetInteriorRoomIndexByHash(Client.interiorId, roomHash)
 
-    if interiorId ~= 0 and roomId ~= -1 then
+    if Client.interiorId ~= 0 and roomId ~= -1 then
         local newFlag = tonumber(flag)
-        SetInteriorRoomFlag(interiorId, roomId, newFlag)
-        RefreshInterior(interiorId)
+        SetInteriorRoomFlag(Client.interiorId, roomId, newFlag)
+        RefreshInterior(Client.interiorId)
     end
 end
 
 FUNC.enableEntitySet = function(value)
-    if IsInteriorEntitySetActive(interiorId, value) then
-        DeactivateInteriorEntitySet(interiorId, value)
+    if IsInteriorEntitySetActive(Client.interiorId, value) then
+        DeactivateInteriorEntitySet(Client.interiorId, value)
         LastEntitySet = value
     else
-        ActivateInteriorEntitySet(interiorId, value)
+        ActivateInteriorEntitySet(Client.interiorId, value)
         LastEntitySet = value
     end
 
-    RefreshInterior(interiorId)
+    RefreshInterior(Client.interiorId)
 end
 
 FUNC.toggleLastEntitySet = function()
     if LastEntitySet ~= nil then
-        if IsInteriorEntitySetActive(interiorId, LastEntitySet) then
-            DeactivateInteriorEntitySet(interiorId, tostring(LastEntitySet))
-            RefreshInterior(interiorId)
+        if IsInteriorEntitySetActive(Client.interiorId, LastEntitySet) then
+            DeactivateInteriorEntitySet(Client.interiorId, tostring(LastEntitySet))
+            RefreshInterior(Client.interiorId)
             print("EntitySet ^5" .. tostring(LastEntitySet) .. " ^1disabled")
         else
-            ActivateInteriorEntitySet(interiorId, tostring(LastEntitySet))
-            RefreshInterior(interiorId)
+            ActivateInteriorEntitySet(Client.interiorId, tostring(LastEntitySet))
+            RefreshInterior(Client.interiorId)
             print("EntitySet ^5" .. tostring(LastEntitySet) .. " ^2enabled")
         end
     else

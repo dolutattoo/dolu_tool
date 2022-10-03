@@ -1,7 +1,7 @@
 -- Controls
 CreateThread(function()
     while true do
-        if isMenuOpen then
+        if Client.isMenuOpen then
             DisableControlAction(0, 0, true) -- Next Camera
             DisableControlAction(0, 1, true) -- Look Left/Right
             DisableControlAction(0, 2, true) -- Look up/Down

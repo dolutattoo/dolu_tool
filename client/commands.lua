@@ -8,7 +8,7 @@ end)
 RegisterKeyMapping('dmt:open', locale('command_openui', '~o~>~w~'), 'keyboard', 'F3')
 
 RegisterCommand('goback', function()
-    if not lastCoords then
+    if not Client.lastCoords then
         lib.notify({
             title = 'Dolu Mapping Tool',
             description = locale('cannot_goback'),
@@ -17,8 +17,8 @@ RegisterCommand('goback', function()
         })
     else
         local currentCoords = GetEntityCoords(cache.ped)
-        FUNC.setPlayerCoords(cache.vehicle, lastCoords.x, lastCoords.y, lastCoords.z)
-        lastCoords = currentCoords
+        FUNC.setPlayerCoords(cache.vehicle, Client.lastCoords.x, Client.lastCoords.y, Client.lastCoords.z)
+        Client.lastCoords = currentCoords
         lib.notify({
             title = 'Dolu Mapping Tool',
             description = locale('teleport_success'),
@@ -45,7 +45,7 @@ RegisterCommand('tpm', function()
         Wait(100)
 
         local vehicle = cache.seat == -1 and cache.vehicle
-        lastCoords = GetEntityCoords(cache.ped)
+        Client.lastCoords = GetEntityCoords(cache.ped)
 
         FUNC.freezePlayer(true, vehicle)
 

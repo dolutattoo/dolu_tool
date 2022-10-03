@@ -39,7 +39,7 @@ local function UpdateCamera()
 		-- Get rotation input
 		local lookX
 		local lookY
-		if isMenuOpen then
+		if Client.isMenuOpen then
 			if IsDisabledControlPressed(0, 25) then
 				lookX = GetSmartControlNormal(CONTROLS.LOOK_X)
 				lookY = GetSmartControlNormal(CONTROLS.LOOK_Y)

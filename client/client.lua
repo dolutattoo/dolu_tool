@@ -11,7 +11,7 @@ end)
 RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
-    isMenuOpen = false
+    Client.isMenuOpen = false
     cb(1)
 end)
 

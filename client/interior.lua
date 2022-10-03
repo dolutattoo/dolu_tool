@@ -61,12 +61,12 @@ end
 
 -- Portals display
 RegisterNUICallback('dmt:setPortalCheckbox', function(data, cb)
-    local options = {}
-    for _, v in pairs(data) do options[v] = true end
-    if options.portalInfos then portalInfos = true else portalInfos = false end
-    if options.portalPoly then portalPoly = true else portalPoly = false end
-    if options.portalLines then portalLines = true else portalLines = false end
-    if options.portalCorners then portalCorners = true else portalCorners = false end
+    local tmp = {}
+    for _, v in pairs(data) do tmp[v] = true end
+    if tmp.portalInfos then Client.portalInfos = true else Client.portalInfos = false end
+    if tmp.portalPoly then Client.portalPoly = true else Client.portalPoly = false end
+    if tmp.portalLines then Client.portalLines = true else Client.portalLines = false end
+    if tmp.portalCorners then Client.portalCorners = true else Client.portalCorners = false end
     cb(1)
 end)
 
@@ -90,14 +90,14 @@ function DrawPortalInfos(interiorId)
         local CrossVector = FUNC.Lerp(corners[0], corners[2], 0.5)
 
         if #(pedCoords - CrossVector) <= 8.0 then
-            if portalPoly then
+            if Client.portalPoly then
                 DrawPoly(corners[0].x, corners[0].y, corners[0].z, corners[1].x, corners[1].y, corners[1].z, corners[2].x, corners[2].y, corners[2].z, 0, 0, 180, 150)
                 DrawPoly(corners[0].x, corners[0].y, corners[0].z, corners[2].x, corners[2].y, corners[2].z, corners[3].x, corners[3].y, corners[3].z, 0, 0, 180, 150)
                 DrawPoly(corners[3].x, corners[3].y, corners[3].z, corners[2].x, corners[2].y, corners[2].z, corners[1].x, corners[1].y, corners[1].z, 0, 0, 180, 150)
                 DrawPoly(corners[3].x, corners[3].y, corners[3].z, corners[1].x, corners[1].y, corners[1].z, corners[0].x, corners[0].y, corners[0].z, 0, 0, 180, 150)
             end
 
-            if portalLines then
+            if Client.portalLines then
                 -- Borders oultine
                 DrawLine(corners[0].x, corners[0].y, corners[0].z, corners[1].x, corners[1].y, corners[1].z, 0, 255, 0, 255)
                 DrawLine(corners[1].x, corners[1].y, corners[1].z, corners[2].x, corners[2].y, corners[2].z, 0, 255, 0, 255)
@@ -108,14 +108,14 @@ function DrawPortalInfos(interiorId)
                 DrawLine(corners[1].x, corners[1].y, corners[1].z, corners[3].x, corners[3].y, corners[3].z, 0, 255, 0, 255)
             end
 
-            if portalCorners then
+            if Client.portalCorners then
                 FUNC.Draw3DText(corners[0], '~b~C0:~w~ ' .. math.round(pureCorners[0].x, 2) .. ' ' .. math.round(pureCorners[0].y, 2) .. ' ' .. math.round(pureCorners[0].z, 2))
                 FUNC.Draw3DText(corners[1], '~b~C1:~w~ ' .. math.round(pureCorners[1].x, 2) .. ' ' .. math.round(pureCorners[1].y, 2) .. ' ' .. math.round(pureCorners[1].z, 2))
                 FUNC.Draw3DText(corners[2], '~b~C2:~w~ ' .. math.round(pureCorners[2].x, 2) .. ' ' .. math.round(pureCorners[2].y, 2) .. ' ' .. math.round(pureCorners[2].z, 2))
                 FUNC.Draw3DText(corners[3], '~b~C3:~w~ ' .. math.round(pureCorners[3].x, 2) .. ' ' .. math.round(pureCorners[3].y, 2) .. ' ' .. math.round(pureCorners[3].z, 2))
             end
 
-            if portalInfos then
+            if Client.portalInfos then
                 local portalFlags = GetInteriorPortalFlag(interiorId, portalId)
                 local portalRoomTo = GetInteriorPortalRoomTo(interiorId, portalId)
                 local portalRoomFrom = GetInteriorPortalRoomFrom(interiorId, portalId)

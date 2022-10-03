@@ -6,20 +6,29 @@ CreateThread(function()
         Server = {}
         TriggerEvent('ox_lib:setLocale', Config.locale)
     else
-        Client = {}
-        isMenuOpen = false
-        lastCoords = nil
-        -- Portal checkboxes
-        portalPoly = false
-        portalLinesportalPoly = false
-        portalCornersportalPoly = false
-        portalInfos = false
+        Client = {
+            isMenuOpen = false,
+            lastCoords = nil,
+            lastLocation = json.decode(GetResourceKvpString('dmt_lastLocation')),
+            portalPoly = false,
+            portalLines = false,
+            portalCorners = false,
+            portalInfos = false,
+            interiorId = GetInteriorFromEntity(cache.ped)
+        }
 
-        interiorId = GetInteriorFromEntity(cache.ped)
+        lib.callback('dmt:getLocations', false, function(locations)
+            Client.locations = locations
+        end)
+
+        lib.callback('dmt:getPedList', false, function(pedLists)
+            Client.pedLists = pedLists
+        end)
+
         CreateThread(function()
             while true do
                 Wait(100)
-                interiorId = GetInteriorFromEntity(cache.ped)
+                Client.interiorId = GetInteriorFromEntity(cache.ped)
             end
         end)
     end
