@@ -1,32 +1,24 @@
-import { Text, Stack, SimpleGrid, Paper, Group, Select, Tooltip, Button } from '@mantine/core'
+import { Text, Stack, SimpleGrid, Paper, Group, Select, Tooltip } from '@mantine/core'
 import { TimeInput } from '@mantine/dates'
-import { useEffect, useState } from 'react'
 import { AiOutlineClockCircle } from 'react-icons/ai'
 import { TiWeatherPartlySunny } from 'react-icons/ti'
 import { fetchNui } from '../../../../utils/fetchNui'
-import { TbLogout } from 'react-icons/tb'
-import NavIcon from '../../components/NavIcon'
-import dayjs from 'dayjs'
+import { useNuiEvent } from '../../../../hooks/useNuiEvent'
+import { useRecoilState } from 'recoil'
+import { worldClockAtom, worldWeatherAtom } from '../../../../atoms/world'
 
 const World: React.FC = () => {
-  const [weatherValue, setweatherValue] = useState<string|null>(null)
-  const [clockValue, setclockValue] = useState(new Date())
+  const [clockValue, setClockValue] = useRecoilState(worldClockAtom)
+  const [weatherValue, setWeatherValue] = useRecoilState(worldWeatherAtom)
 
-  useEffect(() => {
-    if (weatherValue) {
-      fetchNui('dmt:setWeather', weatherValue)
-    }
-  }, [weatherValue, setweatherValue])
-
-  useEffect(() => {
-    if (clockValue) {
-      fetchNui('dmt:setClock', clockValue)
-    }
-  }, [clockValue, setclockValue])
+  useNuiEvent('setWorldData', (data: any) => {
+    setWeatherValue(data.weather)
+  })
 
   return (
     <SimpleGrid cols={1}>
-      <Stack>        
+      <Stack>     
+        {/* Time    */}
         <Paper p="md">  
           <Group position="apart">
             <Text size={20} weight={600}>Time</Text>
@@ -35,8 +27,8 @@ const World: React.FC = () => {
             
           <TimeInput
             label="What time is it now?"
-            value={clockValue}
-            onChange={setclockValue}
+            value={new Date(clockValue)}
+            onChange={() => fetchNui('dmt:setClock', clockValue)}
             rightSection={
               <Tooltip label="Select and use your keyboard arrows to set time easier!" position="right">
                 <Text color="blue.4">?</Text>
@@ -44,6 +36,7 @@ const World: React.FC = () => {
           />
         </Paper>
 
+        {/* Weather */}
         <Paper p="md">
           <Group position="apart">
             <Text size={20} weight={600}>Weather</Text>
@@ -53,23 +46,28 @@ const World: React.FC = () => {
           <Select
             label="Choose a weather type"
             placeholder="Current weather?"
-            value={weatherValue} onChange={setweatherValue}
+            defaultValue={weatherValue}
+            value={weatherValue}
+            onChange={(value) => {
+              value && setWeatherValue(value)
+              fetchNui('dmt:setWeather', value)
+            }}
             data={[
-              { value: 'Clear', label: "Clear" },
-              { value: 'ExtraSunny', label: "ExtraSunny" },
-              { value: 'Neutral', label: "Neutral" },
-              { value: 'Smog', label: "Smog" },
-              { value: 'Foggy', label: "Foggy" },
-              { value: 'Overcast', label: "Overcast" },
-              { value: 'Clouds', label: "Clouds" },
-              { value: 'Clearing', label: "Clearing" },
-              { value: 'Rain', label: "Rain" },
-              { value: 'Thunder', label: "Thunder" },
-              { value: 'Snow', label: "Snow" },
-              { value: 'Blizzard', label: "Blizzard" },
-              { value: 'Snowlight', label: "Snowlight" },
-              { value: 'Xmas', label: "Xmas" },
-              { value: 'Halloween', label: "Halloween" },
+              { value: 'clear', label: "Clear" },
+              { value: 'extraSunny', label: "ExtraSunny" },
+              { value: 'neutral', label: "Neutral" },
+              { value: 'smog', label: "Smog" },
+              { value: 'foggy', label: "Foggy" },
+              { value: 'overcast', label: "Overcast" },
+              { value: 'clouds', label: "Clouds" },
+              { value: 'clearing', label: "Clearing" },
+              { value: 'rain', label: "Rain" },
+              { value: 'thunder', label: "Thunder" },
+              { value: 'snow', label: "Snow" },
+              { value: 'blizzard', label: "Blizzard" },
+              { value: 'snowlight', label: "Snowlight" },
+              { value: 'xmas', label: "Xmas" },
+              { value: 'halloween', label: "Halloween" },
             ]}
           />
         </Paper>

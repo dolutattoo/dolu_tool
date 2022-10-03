@@ -148,8 +148,8 @@ FUNC.setWeather = function(weather)
         end
     end
     FUNC.assert(WEATHER_LIST[found] == nil, locale('command_weather_notfound', tostring(weather)))
-    SetWeatherTypeNowPersist(found)
-    SetWeatherTypePersist(found)
+    SetWeatherTypeNowPersist(weather)
+    SetWeatherTypePersist(weather)
 end
 
 FUNC.QMultiply = function(a, b)
