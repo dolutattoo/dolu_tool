@@ -294,6 +294,7 @@ FUNC.changePed = function(model)
     RequestModel(model)
     while not HasModelLoaded(model) do Wait(0) end
     SetPlayerModel(playerId, model)
+    cache.ped = PlayerPedId()
 end
 
 ---Assert with styling and formatting
