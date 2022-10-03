@@ -67,23 +67,6 @@ export const locationActivePageAtom = atom<number>({ key: 'locationActivePage', 
 
 export const selectedLocationIdAtom = atom<string | null>({ key: 'selectedLocationIndex', default: null })
 
-export const lastLocationUsedAtom = selector({
-  key: 'lastLocationUsed',
-  get: ({ get }) => {
-    const location = Array.from(get(locationsAtom)).find((location) => location.isLastLocationUsed)
-    if (location?.isLastLocationUsed === true) return location
-
-    return {
-      name: "You did not used any location yet",
-      x: 0,
-      y: 0,
-      z: 0,
-      isLastLocationUsed: true
-    }
-  }
-})
-
 export const useLocation = () => useRecoilValue(filteredLocationsAtom)
 export const getLastLocation = () => useRecoilValue(lastLocationsAtom)
-export const getLastLocationUsed = () => useRecoilValue(lastLocationUsedAtom)
 export const getLocationPageCount = () => useRecoilValue(locationsPageCountAtom)

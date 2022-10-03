@@ -4,15 +4,13 @@ import { useState } from 'react'
 import { GiTeleport } from 'react-icons/gi'
 import { ImLocation } from 'react-icons/im'
 import { RiHomeGearFill } from 'react-icons/ri'
-import { useSetRecoilState } from 'recoil'
 import { getInteriorData } from '../../../../atoms/interior'
-import { getLastLocation, getLastLocationUsed, lastLocationsAtom } from '../../../../atoms/location'
+import { getLastLocation } from '../../../../atoms/location'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import { fetchNui } from '../../../../utils/fetchNui'
 import CreateLocation from '../locations/components/modals/CreateLocation'
 
 const Home: React.FC = () => {
-  const location = getLastLocationUsed()
   const lastLocation = getLastLocation()
   const interior = getInteriorData()
   const [currentCoords, setCurrentCoords] = useState('1.000, 2.000, 3.000')
@@ -50,7 +48,6 @@ const Home: React.FC = () => {
                   children: <CreateLocation />,
                 })
               }
-              value={location.name}
             >
               Save
             </Button>
