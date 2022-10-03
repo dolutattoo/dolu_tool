@@ -1,5 +1,4 @@
-import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil'
-import { fetchNui } from '../utils/fetchNui'
+import { atom, selector, useRecoilValue } from 'recoil'
 
 export interface Location {
   name: string,

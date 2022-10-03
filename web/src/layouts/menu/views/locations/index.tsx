@@ -36,7 +36,7 @@ const Locations: React.FC = () => {
   const setActivePage = useSetRecoilState(locationActivePageAtom)
 
   // Accordion
-  const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
+  const [currentAccordionItem, setAccordionItem] = useState<string|null>('0')
 
   // Copied button
   const [copied, setCopied] = useState(false)
@@ -53,7 +53,6 @@ const Locations: React.FC = () => {
   })
 
   const Locationlist = pages[activePage]?.map((location: any, index: number) => (
-    <Accordion value={currentAccordionItem} onChange={setAccordionItem}>
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Stack spacing={0}>
@@ -101,7 +100,6 @@ const Locations: React.FC = () => {
           </Group>
         </Accordion.Panel>
       </Accordion.Item>
-    </Accordion>
   ))
 
   return (
@@ -153,11 +151,13 @@ const Locations: React.FC = () => {
 
           <ScrollArea style={{ height: 480 }} scrollbarSize={0}>
             <Stack>
-              {Locationlist ? Locationlist :
-                <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">No location found</Text>
-                </Paper>
-              }
+              <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
+                {Locationlist ? Locationlist :
+                  <Paper p="md">
+                    <Text size="md" weight={600} color="red.4">No location found</Text>
+                  </Paper>
+                }
+              </Accordion>
             </Stack>
           </ScrollArea>
           <Center>
