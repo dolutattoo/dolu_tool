@@ -4,13 +4,16 @@ import { useState } from 'react'
 import { GiTeleport } from 'react-icons/gi'
 import { ImLocation } from 'react-icons/im'
 import { RiHomeGearFill } from 'react-icons/ri'
+import { useSetRecoilState } from 'recoil'
 import { getInteriorData } from '../../../../atoms/interior'
-import { getLastLocationUsed, teleportToLocation } from '../../../../atoms/location'
+import { getLastLocation, getLastLocationUsed, lastLocationsAtom } from '../../../../atoms/location'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
+import { fetchNui } from '../../../../utils/fetchNui'
 import CreateLocation from '../locations/components/modals/CreateLocation'
 
 const Home: React.FC = () => {
   const location = getLastLocationUsed()
+  const lastLocation = getLastLocation()
   const interior = getInteriorData()
   const [currentCoords, setCurrentCoords] = useState('1.000, 2.000, 3.000')
   const [currentHeading, setCurrentHeading] = useState('0.000')
@@ -23,6 +26,7 @@ const Home: React.FC = () => {
   return (
     <SimpleGrid cols={1}>
       <Stack>
+        {/* Current Coords */}
         <Paper p="md">
           
           <Group position="apart">
@@ -53,7 +57,8 @@ const Home: React.FC = () => {
           </Group>
     
         </Paper>
-          
+        
+        {/* Last location */}
         <Paper p="md">
           <Group position="apart">
             <Text size={20} weight={600}>Last location</Text>
@@ -61,24 +66,36 @@ const Home: React.FC = () => {
           </Group>
           
           <Space h="sm" />
-
-          <Group><Text>Name:</Text><Text color="blue.4" >{location.name}</Text></Group>
           
-          <Group position='apart'>
-            <Group><Text>Coords:</Text><Text color="blue.4" >{location.x}, {location.y}, {location.z}</Text></Group>
-            <Button
-              color='blue.4'
-              variant='outline'
-              onClick={() =>
-                teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
-              }
-              value={location.name}
-            >
-              Teleport
-            </Button>
-          </Group>
+          {
+            lastLocation
+            ? 
+              <>
+                <Group><Text>Name:</Text><Text color="blue.4" >{lastLocation.name}</Text></Group>
+                
+                <Group position='apart'>
+                  <Group><Text>Coords:</Text><Text color="blue.4" >{lastLocation.x}, {lastLocation.y}, {lastLocation.z}</Text></Group>
+                  <Button
+                    color='blue.4'
+                    variant='outline'
+                    onClick={() =>
+                      fetchNui('dmt:teleport', { name: lastLocation.name, x: lastLocation.x, y: lastLocation.y, z: lastLocation.z, heading: lastLocation.heading })
+                    }
+                    value={lastLocation.name}
+                  >
+                    Teleport
+                  </Button>
+                </Group>
+              </>
+            :            
+              <>
+                <Space h="sm" />
+                <Text color="red.4">You did not teleport to any location yet.</Text>
+              </>
+          }
         </Paper>
 
+        {/* Current interior */}
         <Paper p="md">
           <Group position="apart">
             <Text size={20} weight={600}>Current interior</Text>

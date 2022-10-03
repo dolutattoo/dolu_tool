@@ -30,6 +30,7 @@ const mockLocations: Location[] = [
 ]
 
 export const locationsAtom = atom<Location[]>({ key: 'locations', default: mockLocations })
+export const lastLocationsAtom = atom<Location|null>({ key: 'lastLocations', default: null })
 export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', default: 1 })
 
 // Filter search bar input
@@ -82,10 +83,7 @@ export const lastLocationUsedAtom = selector({
   }
 })
 
-export const teleportToLocation = (value: Location) => {
-  fetchNui('dmt:teleport', value)
-}
-
 export const useLocation = () => useRecoilValue(filteredLocationsAtom)
+export const getLastLocation = () => useRecoilValue(lastLocationsAtom)
 export const getLastLocationUsed = () => useRecoilValue(lastLocationUsedAtom)
 export const getLocationPageCount = () => useRecoilValue(locationsPageCountAtom)

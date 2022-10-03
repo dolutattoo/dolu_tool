@@ -7,7 +7,7 @@ import { menuVisibilityAtom } from '../../atoms/visibility'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { useExitListener } from '../../hooks/useExitListener'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { Location, locationsAtom, locationsPageCountAtom } from '../../atoms/location'
+import { lastLocationsAtom, Location, locationsAtom, locationsPageCountAtom } from '../../atoms/location'
 import Interior from './views/interior'
 import Locations from './views/locations'
 import { interiorAtom, InteriorData } from '../../atoms/interior'
@@ -32,11 +32,17 @@ const Menu: React.FC = () => {
   const setLocations = useSetRecoilState(locationsAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
   const setPedList = useSetRecoilState(pedListAtom)
+  const setLastLocation = useSetRecoilState(lastLocationsAtom)
 
-  useNuiEvent('setMenuVisible', (data: {locations: Location[], pedLists: PedProp[]}) => {
+  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[]}) => {   
     setVisible(true)
     setLocations(data.locations)
+    setLastLocation(data.lastLocation)
     setPedList(data.pedLists)
+  })
+
+  useNuiEvent('setLastLocation', (data: any) => {
+    setLastLocation(data)
   })
 
   useNuiEvent('setLocationDatas', (data: Location[]) => {

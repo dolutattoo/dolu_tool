@@ -1,12 +1,13 @@
 import { Accordion, Button, Center, Checkbox, Group, Pagination, Paper, ScrollArea, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
-import { getLocationPageCount, locationActivePageAtom, locationCustomFilterAtom, locationsPageCountAtom, locationVanillaFilterAtom, teleportToLocation, useLocation } from '../../../../atoms/location'
+import { getLocationPageCount, locationActivePageAtom, locationCustomFilterAtom, locationsPageCountAtom, locationVanillaFilterAtom, useLocation } from '../../../../atoms/location'
 import LocationSearch from './components/LocationSearch'
 import { setClipboard } from '../../../../utils/setClipboard'
 import { useEffect, useState } from 'react'
 import RenameLocation from './components/modals/RenameLocation'
 import { useRecoilState, useSetRecoilState } from 'recoil'
+import { fetchNui } from '../../../../utils/fetchNui'
 
 const Locations: React.FC = () => {
   // Get Locations (depending on search bar value)
@@ -60,7 +61,7 @@ const Locations: React.FC = () => {
               color="blue.4"
               size="xs"
               onClick={() =>
-                teleportToLocation({ name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
+                fetchNui('dmt:teleport', { name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
               }
             >
               Teleport

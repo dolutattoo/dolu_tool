@@ -1,5 +1,13 @@
 RegisterNUICallback('dmt:teleport', function(data, cb)
-    FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
+    FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading })
+
+    SendNUIMessage({
+        action = 'setLastLocation',
+        data = data
+    })
+
+    SetResourceKvp('dmt_lastLocation', json.encode(data))
+    Client.lastLocation = json.encode(data)
     cb(1)
 end)
 

@@ -2,13 +2,12 @@ FUNC = {}
 LastEntitySet = nil
 
 FUNC.openUI = function()
-    Client.locations = lib.callback.await('dmt:getLocations')
-    Client.pedLists = lib.callback.await('dmt:getPedList')
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
             locations = Client.locations,
-            pedLists = Client.pedLists
+            lastLocation = Client.lastLocation,
+            pedLists = Client.pedLists,
         }
     })
     SetNuiFocus(true, true)
