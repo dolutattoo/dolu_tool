@@ -16,9 +16,9 @@ local function formatVanillaLocations(vanillaLocations)
             count += 1
             formatedLocations[count] = {
                 name = v.Name,
-                x = v.Locations[1].Position.X,
-                y = v.Locations[1].Position.Y,
-                z = v.Locations[1].Position.Z,
+                x = math.floor(v.Locations[1].Position.X *10^2)/10^2,
+                y = math.floor(v.Locations[1].Position.Y *10^2)/10^2,
+                z = math.floor(v.Locations[1].Position.Z *10^2)/10^2,
                 heading = 0,
                 metadata = {
                     dlc = v.DlcName,
