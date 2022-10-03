@@ -18,11 +18,9 @@ const mockPedList: PedProp[] = [
 ]
 
 export const pedListAtom = atom<PedProp[]>({ key: 'pedList', default: mockPedList })
-
-export const pedListSearchAtom = atom<string>({
-  key: 'pedListSearch',
-  default: '',
-})
+export const pedListPageCountAtom = atom<number>({ key: 'pedListPageCount', default: 1})
+// Filter search bar input
+export const pedListSearchAtom = atom<string>({ key: 'pedListSearch', default: '' })
 
 export const filteredPedListAtom = selector({
   key: 'filteredPedList',
@@ -47,5 +45,9 @@ export const changePed = (value: PedProp) => {
   fetchNui('dmt:changePed', value)
 }
 
+
+export const pedListActivePageAtom = atom<number>({ key: 'pedListActivePage', default: 1 })
+
 export const usePedList = () => useRecoilValue(filteredPedListAtom)
-export const getSearchPedInput = () => useRecoilValue(pedListSearchAtom)
+export const getSearchPedInput = () => useRecoilValue(pedListSearchAtom) as string
+export const getPedListPageCount = () => useRecoilValue(pedListPageCountAtom)
