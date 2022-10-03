@@ -1,5 +1,23 @@
 FUNC = {}
 LastEntitySet = nil
+local WEATHER_LIST = {
+    [`CLEAR`] = 'clear',
+    [`EXTRASUNNY`] = 'extrasunny',
+    [`NEUTRAL`] = 'neutral',
+    [`SMOG`] = 'smog',
+    [`FOGGY`] = 'foggy',
+    [`OVERCAST`] = 'overcast',
+    [`CLOUDS`] = 'clouds',
+    [`CLEARING`] = 'clearing',
+    [`RAIN`] = 'rain',
+    [`THUNDER`] = 'thunder',
+    [`SNOW`] = 'snow',
+    [`BLIZZARD`] = 'blizzard',
+    [`SNOWLIGHT`] = 'snowlight',
+    [`XMAS`] = 'xmas',
+    [`HALLOWEEN`] = 'halloween'
+}
+
 
 FUNC.openUI = function()
     SendNUIMessage({
@@ -118,12 +136,20 @@ end
 FUNC.getWeather = function()
     local weatherType1, weatherType2, percentWeather2 = GetWeatherTypeTransition()
     local currentWeather = percentWeather2 > 0.5 and weatherType2 or weatherType1
-    return currentWeather
+    return WEATHER_LIST[currentWeather]
 end
 
 FUNC.setWeather = function(weather)
-    SetWeatherTypeNowPersist(weather)
-    SetWeatherTypePersist(weather)
+    local found
+    for hash, v in pairs(WEATHER_LIST) do
+        if v == weather:lower() then
+            found = hash
+            break
+        end
+    end
+    FUNC.assert(WEATHER_LIST[found] == nil, locale('command_weather_notfound', tostring(weather)))
+    SetWeatherTypeNowPersist(found)
+    SetWeatherTypePersist(found)
 end
 
 FUNC.QMultiply = function(a, b)

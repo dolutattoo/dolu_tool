@@ -87,3 +87,14 @@ RegisterKeyMapping('noclip', locale('command_noclip', '~o~>~w~'), 'keyboard', ''
 
 -- https://github.com/Deltanic/fivem-freecam/
 -- https://github.com/tabarra/txAdmin/tree/master/scripts/menu/vendor/freecam
+
+RegisterCommand('time', function(_, args)
+    local hour = args[1]
+    local minutes = args[2]
+    FUNC.setClock(hour, minutes)
+end)
+
+RegisterCommand('weather', function(_, args)
+    local weatherType = args[1]
+    FUNC.setWeather(weatherType)
+end)
