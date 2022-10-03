@@ -7,16 +7,17 @@ import { menuVisibilityAtom } from '../../atoms/visibility'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { useExitListener } from '../../hooks/useExitListener'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { lastLocationsAtom, Location, locationsAtom, locationsPageCountAtom } from '../../atoms/location'
-import Interior from './views/interior'
-import Locations from './views/locations'
+import { lastLocationsAtom, Location, locationsAtom } from '../../atoms/location'
 import { interiorAtom, InteriorData } from '../../atoms/interior'
 import NavIcon from './components/NavIcon'
 import { TbLogout } from 'react-icons/tb'
 import { fetchNui } from '../../utils/fetchNui'
-import Ped from './views/ped'
 import { pedListAtom, PedProp } from '../../atoms/ped'
+import Locations from './views/locations'
+import Interior from './views/interior'
+import Ped from './views/ped'
 import World from './views/world'
+import Object from './views/object'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -91,6 +92,7 @@ const Menu: React.FC = () => {
               <Route path="/locations" element={<Locations />} />
               <Route path="/interior" element={<Interior />} />
               <Route path="/ped" element={<Ped />} />
+              <Route path="/object" element={<Object />} />
             </Routes>
           </AppShell>
         </Box>

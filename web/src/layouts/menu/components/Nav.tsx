@@ -1,8 +1,8 @@
 import { Navbar, Stack } from '@mantine/core'
-import { TbHome, TbLogout } from 'react-icons/tb'
+import { TbHome } from 'react-icons/tb'
 import { RiHomeGearFill } from 'react-icons/ri'
 import { FaTshirt } from 'react-icons/fa'
-import { BiWorld } from 'react-icons/bi'
+import { BiCube, BiWorld } from 'react-icons/bi'
 import NavIcon from './NavIcon'
 import { GiTeleport } from 'react-icons/gi'
 import { fetchNui } from '../../../utils/fetchNui'
@@ -25,6 +25,7 @@ const Nav: React.FC = () => {
           <NavIcon color="blue.4" tooltip="Locations" Icon={GiTeleport} to="/locations"  handleClick={() => fetchNui('dmt:tabSelected', 'locations')}/>
           <NavIcon color="blue.4" tooltip="Interior" Icon={RiHomeGearFill} to="/interior"  handleClick={() => fetchNui('dmt:tabSelected', 'interior')}/>
           <NavIcon color="blue.4" tooltip="Ped" Icon={FaTshirt} to="/ped"  handleClick={() => fetchNui('dmt:tabSelected', 'ped')}/>
+          <NavIcon color="blue.4" tooltip="Object" Icon={BiCube} to="/object"  handleClick={() => fetchNui('dmt:tabSelected', 'object')}/>
         </Stack>
       </Navbar.Section>
     </Navbar>
