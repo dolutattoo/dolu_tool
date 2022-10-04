@@ -16,12 +16,16 @@
     "@mantine/dates": "^5.4.1",
     "@mantine/hooks": "^5.4.1",
     "@mantine/modals": "^5.4.1",
+    "@react-three/drei": "^9.32.11",
+    "@react-three/fiber": "^8.8.9",
+    "@types/three": "^0.144.0",
     "dayjs": "^1.11.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
     "react-router-dom": "^6.4.1",
-    "recoil": "^0.7.5"
+    "recoil": "^0.7.5",
+    "three": "^0.145.0"
   },
   "devDependencies": {
     "@types/react": "^18.0.21",
