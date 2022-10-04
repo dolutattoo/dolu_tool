@@ -37,6 +37,10 @@ RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocusKeepInput(false)
     Client.isMenuOpen = false
     Client.currentTab = nil
+    SendNUIMessage({
+        action = 'setObjectEntities',
+        data = { object = nil }
+    });
     cb(1)
 end)
 
@@ -166,6 +170,7 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     FreezeEntityPosition(obj, true)
 
     local rotx, roty, rotz, rotw = GetEntityQuaternion(obj)
+
     table.insert(Client.spawnedEntities, 1, {
         handle = obj,
         name = modelName,
@@ -182,11 +187,33 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
         }
     })
 
+    --[[ 
+        FIXME: Current positions are player pos and rotation.
+    ]]
     SendNUIMessage({
         action = 'setEntities',
         data = Client.spawnedEntities
     })
+
+    SendNUIMessage({
+        action = 'setObjectEntities',
+        data = {
+            object = obj,
+            position = GetEntityCoords(obj),
+            rotation = GetEntityRotation(obj),
+        }
+    });
     cb(1)
+end)
+
+--[[ Moving object params & if not have  ]]
+RegisterNUICallback('dmt:moveEntity', function(data, cb)
+    if ( data.object ) then
+        SetEntityCoords(data.object, data.position.x, data.position.y, data.position.z)
+        SetEntityRotation(data.object, data.rotation.x, data.rotation.y, data.rotation.z)
+    end
+    
+    cb(1);
 end)
 
 RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
@@ -215,7 +242,13 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
         SendNUIMessage({
             action = 'setEntities',
             data = Client.spawnedEntities
-        })
+        });
+
+        --[[ Sending empty object to hidden editor ]]
+        SendNUIMessage({
+            action = 'setObjectEntities',
+            data = { object = nil }
+        });
 
         lib.notify({
             title = 'Dolu Mapping Tool',
@@ -226,4 +259,26 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
     end
 
     cb(1)
+end)
+
+Citizen.CreateThread(function()
+    while true do
+        if ( Client.isMenuOpen ) then
+            Wait(0);
+            --[[ 
+                Updating camera positions 
+                FIXME: Need to disable cinematic camera.
+                TODO: Optimize current loop. Send camera positions only if object is selected.
+            ]]
+            SendNUIMessage({
+                action = 'setCameraPosition',
+                data = {
+                    position = GetGameplayCamCoord(),
+                    rotation = GetGameplayCamRot()
+                }
+            })
+        else
+            Wait(500);
+        end
+    end
 end)

@@ -1,4 +1,5 @@
 import { Box, createStyles } from '@mantine/core';
+import { ThreeComponent } from './layouts/three/ThreeComponent';
 import Menu from './layouts/menu';
 
 const useStyles = createStyles((theme) => ({
@@ -17,6 +18,7 @@ const App: React.FC = () => {
   return (
     <Box className={classes.container}>
       <Menu />
+      <ThreeComponent />
     </Box>
   );
 };
