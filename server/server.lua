@@ -96,6 +96,25 @@ lib.callback.register('dmt:createCustomLocation', function(source, data)
     return newLocation
 end)
 
+lib.callback.register('dmt:deleteLocation', function(source, data)
+    local foundIndex
+    for k, v in ipairs(Server.locations) do
+        if v.custom and v.name == data then
+            foundIndex = k
+            print("Name of location to delete:", v.name, "Index of location to delete:", k)
+            break
+        end
+    end
+    if not foundIndex then return false end
+
+    table.remove(Server.locations, foundIndex)
+
+    local success = updateFileData('shared/data', 'locations.json', filterCustomLocations())
+    assert(success == true, "Unable to update 'shared/data/locations.json' file.")
+    print("Index of location deleted:", foundIndex)
+    return foundIndex
+end)
+
 lib.callback.register('dmt:getPedList', function()
     if not Server.pedLists then
         Server.pedLists = getFileData('shared/data', 'pedList.json')

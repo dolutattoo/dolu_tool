@@ -1,26 +1,37 @@
 [
     {
         "name": "Location test 1",
-        "heading": 50.0,
-        "custom": true,
         "x": -68.0,
         "y": -1091.0,
-        "z": 27.5
+        "z": 27.5,
+        "heading": 50.0
     },
     {
         "name": "Location test 2",
-        "heading": 230.0,
-        "custom": true,
         "x": -67.0,
         "y": -1048.0,
-        "z": 28.0
+        "z": 28.0,
+        "heading": 230.0
     },
     {
         "name": "Location test 3",
-        "heading": 230.0,
-        "custom": true,
         "x": -67.0,
         "y": -1048.0,
-        "z": 28.0
+        "z": 28.0,
+        "heading": 230.0
+    },
+    {
+        "name": "Location test 4",
+        "x": -67.0,
+        "y": -1048.0,
+        "z": 28.0,
+        "heading": 230.0
+    },
+    {
+        "name": "Location test 5",
+        "x": -67.0,
+        "y": -1048.0,
+        "z": 28.0,
+        "heading": 230.0
     }
 ]

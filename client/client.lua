@@ -75,6 +75,20 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
     cb(1)
 end)
 
+RegisterNUICallback('dmt:deleteLocation', function(locationName, cb)
+    local result = lib.callback.await('dmt:deleteLocation', false, locationName)
+    if not result then return end
+
+    -- Remove location from file
+    local deleted = table.remove(Client.locations, result)
+
+    SendNUIMessage({
+        action = 'setLocationDatas',
+        data = Client.locations
+    })
+    cb(1)
+end)
+
 RegisterNUICallback('dmt:setWeather', function(weatherName, cb)
     FUNC.setWeather(weatherName)
     cb(1)

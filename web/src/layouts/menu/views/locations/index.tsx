@@ -9,6 +9,7 @@ import RenameLocation from './components/modals/RenameLocation'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { fetchNui } from '../../../../utils/fetchNui'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
+import DeleteLocation from './components/modals/DeleteLocation'
 
 const Locations: React.FC = () => {
   // Get Locations (depending on search bar value)
@@ -74,20 +75,6 @@ const Locations: React.FC = () => {
             </Button>
             <Button
               variant="outline"
-              color="blue.4"
-              size="xs"
-              onClick={() => {
-                openModal({
-                  title: 'Rename location',
-                  children: <RenameLocation defaultName={location.name} />,
-                  size: 'xs',
-                })
-              }}
-            >
-              Rename
-            </Button>
-            <Button
-              variant="outline"
               color={copied ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -97,6 +84,39 @@ const Locations: React.FC = () => {
             >
               {copied ? 'Copied' : 'Copy'} coords
             </Button>
+            {location.custom &&
+              <Button
+                variant="outline"
+                color="blue.4"
+                size="xs"
+                onClick={() => {
+                  openModal({
+                    title: 'Rename location',
+                    children: <RenameLocation defaultName={location.name} />,
+                    size: 'xs',
+                  })
+                }}
+              >
+                Rename
+              </Button>
+            }
+            {location.custom &&
+              <Button
+                variant="outline"
+                color="blue.4"
+                size="xs"
+                onClick={() => {
+                  openModal({
+                    title: 'Delete this location?',
+                    children: <DeleteLocation name={location.name} />,
+                    size: 'xs',
+                  })
+                  setAccordionItem(null)
+                }}
+              >
+                Delete
+              </Button>
+            }
           </Group>
         </Accordion.Panel>
       </Accordion.Item>
