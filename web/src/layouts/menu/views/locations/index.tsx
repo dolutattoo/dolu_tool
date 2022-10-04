@@ -1,4 +1,4 @@
-import { Accordion, Button, Center, Checkbox, Group, Pagination, Paper, ScrollArea, Stack, Text } from '@mantine/core'
+import { Accordion, Badge, Button, Center, Checkbox, Group, Pagination, Paper, ScrollArea, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
 import { getLocationPageCount, locationActivePageAtom, locationCustomFilterAtom, locationsAtom, locationsPageCountAtom, locationVanillaFilterAtom, useLocation } from '../../../../atoms/location'
@@ -57,7 +57,10 @@ const Locations: React.FC = () => {
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Stack spacing={0}>
-            <Text size="md" weight={500}>• {location.name}</Text>
+            <Group position='apart'>
+              <Text color="blue.4" size="md" weight={500}>{location.name}</Text>
+              <Badge color="blue.2">{location.custom ? "Custom" : "Vanilla"}</Badge>
+            </Group>
             <Text size="xs">Coords: {location.x}, {location.y}, {location.z}</Text>
           </Stack>
         </Accordion.Control>
@@ -171,7 +174,7 @@ const Locations: React.FC = () => {
 
           <ScrollArea style={{ height: 480 }} scrollbarSize={0}>
             <Stack>
-              <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
+              <Accordion chevronPosition="left" variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
                 {Locationlist ? Locationlist :
                   <Paper p="md">
                     <Text size="md" weight={600} color="red.4">No location found</Text>
