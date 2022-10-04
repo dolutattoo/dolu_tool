@@ -80,7 +80,7 @@ RegisterNUICallback('dmt:deleteLocation', function(locationName, cb)
     if not result then return end
 
     -- Remove location from file
-    local deleted = table.remove(Client.locations, result)
+    table.remove(Client.locations, result)
 
     SendNUIMessage({
         action = 'setLocationDatas',
@@ -210,7 +210,6 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
 
     if foundIndex then
         DeleteEntity(entityHandle)
-        Client.spawnedEntities[foundIndex] = nil
         table.remove(Client.spawnedEntities, foundIndex)
 
         SendNUIMessage({
