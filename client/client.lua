@@ -137,3 +137,80 @@ RegisterNUICallback('dmt:spawnFavoriteVehicle', function(_, cb)
     FUNC.spawnVehicle('krieger')
     cb(1)
 end)
+
+RegisterNUICallback('dmt:addEntity', function(modelName, cb)
+    local model = joaat(modelName)
+    FUNC.assert(IsModelInCdimage(model) == false, "Model does not exist")
+
+    local coords = GetEntityCoords(cache.ped)
+
+    RequestModel(model)
+    while not HasModelLoaded(model) do Wait(0) end
+
+    local obj = CreateObject(model, coords.x, coords.y+2, coords.z)
+    PlaceObjectOnGroundProperly(obj)
+    FreezeEntityPosition(obj, true)
+
+    local rotx, roty, rotz, rotw = GetEntityQuaternion(obj)
+    table.insert(Client.spawnedEntities, 1, {
+        handle = obj,
+        name = modelName,
+        position = {
+            x = FUNC.round(coords.x, 3),
+            y = FUNC.round(coords.y, 3),
+            z = FUNC.round(coords.z, 3)
+        },
+        rotation = {
+            x = FUNC.round(rotx, 3),
+            y = FUNC.round(roty, 3),
+            z = FUNC.round(rotz, 3),
+            w = FUNC.round(rotw, 3)
+        }
+    })
+
+    SendNUIMessage({
+        action = 'setEntities',
+        data = Client.spawnedEntities
+    })
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
+    if not DoesEntityExist(entityHandle) then
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Entity does not exist!",
+            type = 'error',
+            position = 'top'
+        })
+        return
+    end
+
+    local foundIndex
+    for k, entity in ipairs(Client.spawnedEntities) do
+        if entity.handle == entityHandle then
+            foundIndex = k
+            break
+        end
+    end
+
+    if foundIndex then
+        DeleteEntity(entityHandle)
+        Client.spawnedEntities[foundIndex] = nil
+        table.remove(Client.spawnedEntities, foundIndex)
+
+        SendNUIMessage({
+            action = 'setEntities',
+            data = Client.spawnedEntities
+        })
+
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Entity succefully deleted",
+            type = 'success',
+            position = 'top'
+        })
+    end
+
+    cb(1)
+end)

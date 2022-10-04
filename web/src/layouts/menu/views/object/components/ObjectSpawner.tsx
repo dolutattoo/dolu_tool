@@ -1,20 +1,48 @@
-import { Accordion, ActionIcon, Group, Paper, ScrollArea, Space, Text } from "@mantine/core"
+import { Accordion, ActionIcon, Button, Group, Paper, ScrollArea, Space, Text } from "@mantine/core"
+import { openModal } from "@mantine/modals"
 import { useState } from "react"
 import { MdLibraryAdd } from "react-icons/md"
-import { Entity, getObjectList } from "../../../../../atoms/object"
+import { useSetRecoilState } from "recoil"
+import { Entity, getObjectList, ObjectListAtom } from "../../../../../atoms/object"
+import { useNuiEvent } from "../../../../../hooks/useNuiEvent"
+import { fetchNui } from "../../../../../utils/fetchNui"
+import AddEntity from "./modals/AddEntity"
 
 const ObjectSpawner: React.FC = () => {
   const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
+  const setEntities = useSetRecoilState(ObjectListAtom)
   const spawnedObjects = getObjectList()
-  // const spawnedObjects: Entity[] = []
+
+  useNuiEvent('setEntities', (data: Entity[]) => {
+    console.log(JSON.stringify(data, null, '\t'))
+    setEntities(data)
+  })
   
-  const ObjectList = spawnedObjects?.map((entity: Entity, index: any) => (
+  const ObjectList = spawnedObjects.map((entity: Entity, index: any) => (
     <Accordion.Item value={index.toString()}>
       <Accordion.Control>
-        <Text size="sm" weight={500}>{index+1} - {entity.name}</Text>
+        <Text size="sm" weight={500}>{entity.name}</Text>
       </Accordion.Control>
       <Accordion.Panel>
-        <Text size="xs">Object infos</Text>
+        <Group position="apart">
+          <Text size="sm">Position:</Text><Text color='blue.4' size="sm"> {entity.position.x}, {entity.position.y}, {entity.position.z}</Text>
+        </Group>
+        <Group position="apart">
+          <Text size="sm">Rotation:</Text><Text color='blue.4' size="sm"> {entity.rotation.x}, {entity.rotation.y}, {entity.rotation.z}, {entity.rotation.w}</Text>
+        </Group>
+
+        <Button
+          uppercase
+          variant="outline"
+          color="blue.4"
+          onClick={() => {
+            fetchNui('dmt:deleteEntity', entity.handle)
+            setAccordionItem(null)
+          }}
+        >
+          Delete
+        </Button>
+
       </Accordion.Panel>
     </Accordion.Item>
   ))
@@ -28,9 +56,13 @@ const ObjectSpawner: React.FC = () => {
           <ActionIcon
             size="xl"
             color="blue.4"
-            onClick={() => {
-              console.log('Spawn object!')
-            }}
+            onClick={() =>
+              openModal({
+                title: 'Add a new entity',
+                size: 'xs',
+                children: <AddEntity />
+              })
+            }
           >
             <MdLibraryAdd fontSize={30} />
           </ActionIcon>
@@ -38,11 +70,11 @@ const ObjectSpawner: React.FC = () => {
 
         <Space h='sm' />
 
-        <ScrollArea style={{ height: 200 }} scrollbarSize={12}>
+        <ScrollArea style={{ height: 300 }} offsetScrollbars scrollbarSize={12}>
           <Accordion variant="separated" radius="sm" value={currentAccordionItem} onChange={setAccordionItem} chevronPosition="left">
             {ObjectList[0] ? ObjectList : 
               <Paper p="md">
-                <Text size="md" weight={600} color="red.4">No spawned object</Text>
+                <Text size="md" weight={400} color="red.4">No spawned object</Text>
               </Paper>
             }
           </Accordion>

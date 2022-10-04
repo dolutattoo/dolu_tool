@@ -25,6 +25,7 @@ FUNC.openUI = function()
             locations = Client.locations,
             lastLocation = Client.lastLocation,
             pedLists = Client.pedLists,
+            spawnedEntities = Client.spawnedEntities
         }
     })
     SetNuiFocus(true, true)

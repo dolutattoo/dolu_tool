@@ -18,6 +18,7 @@ import Interior from './views/interior'
 import Ped from './views/ped'
 import World from './views/world'
 import Object from './views/object'
+import { Entity, ObjectListAtom } from '../../atoms/object'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -34,12 +35,14 @@ const Menu: React.FC = () => {
   const setInteriorData = useSetRecoilState(interiorAtom)
   const setPedList = useSetRecoilState(pedListAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
+  const setEntities = useSetRecoilState(ObjectListAtom)
 
-  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[]}) => {   
+  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], spawnedEntities: Entity[]}) => {   
     setVisible(true)
     setLocations(data.locations)
     setLastLocation(data.lastLocation)
     setPedList(data.pedLists)
+    setEntities(data.spawnedEntities)
   })
 
   useNuiEvent('setLastLocation', (data: any) => {
