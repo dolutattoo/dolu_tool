@@ -3,7 +3,7 @@ import { useNuiEvent } from "../../hooks/useNuiEvent"
 import { useThree } from '@react-three/fiber'
 import { MathUtils } from 'three'
 
-export const CameraComponent = (props: any) => {
+export const CameraComponent = () => {
     const { camera } = useThree()
 
     const zRotationHandler = (t: number,e: number) => {
@@ -24,6 +24,6 @@ export const CameraComponent = (props: any) => {
     })
     
     return (
-        <PerspectiveCamera {...props} makeDefault onUpdate={(self: any) => self.updateProjectionMatrix()} />
+        <PerspectiveCamera position={[0,0,10]} makeDefault onUpdate={(self: any) => self.updateProjectionMatrix()} />
     )
 }

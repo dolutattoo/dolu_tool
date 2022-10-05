@@ -30,18 +30,32 @@ const ObjectSpawner: React.FC = () => {
           <Text size="sm">Rotation:</Text><Text color='blue.4' size="sm"> {entity.rotation.x}, {entity.rotation.y}, {entity.rotation.z}, {entity.rotation.w}</Text>
         </Group>
 
-        <Button
-          uppercase
-          variant="outline"
-          color="blue.4"
-          onClick={() => {
-            fetchNui('dmt:deleteEntity', entity.handle)
-            setAccordionItem(null)
-          }}
-        >
-          Delete
-        </Button>
+        <Space h='xs' />
 
+        <Group position="apart">
+          <Button
+            uppercase
+            variant="outline"
+            color="blue.4"
+            onClick={() => {
+              fetchNui('dmt:deleteEntity', entity.handle)
+              setAccordionItem(null)
+            }}
+          >
+            Delete
+          </Button>
+
+          <Button
+            uppercase
+            variant="outline"
+            color="blue.4"
+            onClick={() => {
+              fetchNui('dmt:setGizmoEntity', entity)
+            }}
+          >
+            Move
+          </Button>
+        </Group>
       </Accordion.Panel>
     </Accordion.Item>
   ))

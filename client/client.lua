@@ -188,9 +188,6 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
         }
     })
 
-    --[[ 
-        FIXME: Current positions are player pos and rotation.
-    ]]
     SendNUIMessage({
         action = 'setEntities',
         data = Client.spawnedEntities
@@ -199,7 +196,8 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     SendNUIMessage({
         action = 'setGizmoEntity',
         data = {
-            object = obj,
+            name = modelName,
+            handle = obj,
             position = GetEntityCoords(obj),
             rotation = GetEntityRotation(obj),
         }
@@ -208,11 +206,38 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     cb(1)
 end)
 
---[[ Moving object params & if not have  ]]
+RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
+    if entity and DoesEntityExist(entity.handle) then
+        SendNUIMessage({
+            action = 'setGizmoEntity',
+            data = {
+                name = entity.name,
+                handle = entity.handle,
+                position = GetEntityCoords(entity.handle),
+                rotation = GetEntityRotation(entity.handle),
+            }
+        })
+        Client.gizmoEntity = entity.handle
+    else
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Entity does not exist!",
+            type = 'error',
+            position = 'top'
+        })
+    end
+    cb(1)
+end)
+
 RegisterNUICallback('dmt:moveEntity', function(data, cb)
-    if data.object then
-        SetEntityCoords(data.object, data.position.x, data.position.y, data.position.z)
-        SetEntityRotation(data.object, data.rotation.x, data.rotation.y, data.rotation.z)
+    if data.handle then
+        SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
+        SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z)
+
+        SendNUIMessage({
+            action = 'setEntities',
+            data = Client.spawnedEntities
+        })
     end
     cb(1)
 end)
@@ -261,21 +286,4 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
     end
 
     cb(1)
-end)
-
-CreateThread(function()
-    while true do
-        if Client.isMenuOpen and Client.gizmoEntity then
-            SendNUIMessage({
-                action = 'setCameraPosition',
-                data = {
-                    position = GetFinalRenderedCamCoord(),
-                    rotation = GetFinalRenderedCamRot()
-                }
-            })
-            Wait(0)
-        else
-            Wait(500)
-        end
-    end
 end)

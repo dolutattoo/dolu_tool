@@ -54,3 +54,32 @@ CreateThread(function()
         Wait(50)
     end
 end)
+
+local outlinedEntity = nil
+CreateThread(function()
+    SetEntityDrawOutlineShader(1)
+    SetEntityDrawOutlineColor(200, 200, 250, 180)
+
+    while true do
+        if Client.isMenuOpen and Client.gizmoEntity then
+            SendNUIMessage({
+                action = 'setCameraPosition',
+                data = {
+                    position = GetFinalRenderedCamCoord(),
+                    rotation = GetFinalRenderedCamRot()
+                }
+            })
+
+            -- Entity outline
+            if not outlinedEntity then
+                outlinedEntity = Client.gizmoEntity
+            elseif outlinedEntity ~= Client.gizmoEntity then
+                SetEntityDrawOutline(outlinedEntity, false)
+                outlinedEntity = nil -- Wait next frame to draw again
+            else
+                SetEntityDrawOutline(outlinedEntity, true)
+            end
+        end
+        Wait(0)
+    end
+end)
