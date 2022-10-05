@@ -38,9 +38,10 @@ RegisterNUICallback('dmt:exit', function(_, cb)
     Client.isMenuOpen = false
     Client.currentTab = nil
     SendNUIMessage({
-        action = 'setObjectEntities',
+        action = 'setGizmoEntity',
         data = { object = nil }
-    });
+    })
+    Client.gizmoEntity = nil
     cb(1)
 end)
 
@@ -196,24 +197,24 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     })
 
     SendNUIMessage({
-        action = 'setObjectEntities',
+        action = 'setGizmoEntity',
         data = {
             object = obj,
             position = GetEntityCoords(obj),
             rotation = GetEntityRotation(obj),
         }
-    });
+    })
+    Client.gizmoEntity = obj
     cb(1)
 end)
 
 --[[ Moving object params & if not have  ]]
 RegisterNUICallback('dmt:moveEntity', function(data, cb)
-    if ( data.object ) then
+    if data.object then
         SetEntityCoords(data.object, data.position.x, data.position.y, data.position.z)
         SetEntityRotation(data.object, data.rotation.x, data.rotation.y, data.rotation.z)
     end
-    
-    cb(1);
+    cb(1)
 end)
 
 RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
@@ -242,13 +243,14 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
         SendNUIMessage({
             action = 'setEntities',
             data = Client.spawnedEntities
-        });
+        })
 
         --[[ Sending empty object to hidden editor ]]
         SendNUIMessage({
-            action = 'setObjectEntities',
+            action = 'setGizmoEntity',
             data = { object = nil }
-        });
+        })
+        Client.gizmoEntity = nil
 
         lib.notify({
             title = 'Dolu Mapping Tool',
@@ -261,15 +263,9 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
     cb(1)
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
-        if ( Client.isMenuOpen ) then
-            Wait(0);
-            --[[ 
-                Updating camera positions 
-                FIXME: Need to disable cinematic camera.
-                TODO: Optimize current loop. Send camera positions only if object is selected.
-            ]]
+        if Client.isMenuOpen and Client.gizmoEntity then
             SendNUIMessage({
                 action = 'setCameraPosition',
                 data = {
@@ -277,8 +273,9 @@ Citizen.CreateThread(function()
                     rotation = GetGameplayCamRot()
                 }
             })
+            Wait(0)
         else
-            Wait(500);
+            Wait(500)
         end
     end
 end)

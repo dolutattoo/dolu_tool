@@ -1,5 +1,5 @@
 import { Box, createStyles } from '@mantine/core'
-import { ThreeComponent } from './layouts/three/ThreeComponent'
+import { ThreeComponent } from './layouts/gizmo/ThreeComponent'
 import Menu from './layouts/menu'
 
 const useStyles = createStyles((theme) => ({

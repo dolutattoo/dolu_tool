@@ -27,7 +27,7 @@ export const TransformComponent = (props: any) => {
         })
     }
 
-    useNuiEvent('setObjectEntities', ({position, rotation, object}: any) => {
+    useNuiEvent('setGizmoEntity', ({position, rotation, object}: any) => {
         
         setObject(object)
 

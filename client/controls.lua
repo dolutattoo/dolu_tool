@@ -1,5 +1,7 @@
 -- Controls
 CreateThread(function()
+    DisableIdleCamera(true)
+
     while true do
         if Client.isMenuOpen then
             DisableControlAction(0, 0, true) -- Next Camera
