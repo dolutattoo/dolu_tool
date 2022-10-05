@@ -269,8 +269,8 @@ CreateThread(function()
             SendNUIMessage({
                 action = 'setCameraPosition',
                 data = {
-                    position = GetGameplayCamCoord(),
-                    rotation = GetGameplayCamRot()
+                    position = GetFinalRenderedCamCoord(),
+                    rotation = GetFinalRenderedCamRot()
                 }
             })
             Wait(0)
