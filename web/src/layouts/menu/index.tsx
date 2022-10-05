@@ -22,7 +22,7 @@ import { Entity, ObjectListAtom } from '../../atoms/object'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
-    width: 1280,
+    width: 600,
     height: 768,
     color: theme.colors.dark[1],
   },
@@ -62,19 +62,13 @@ const Menu: React.FC = () => {
   return (
     <Transition transition="slide-right" mounted={visible}>
       {(style) => (
-        <Box sx={{ position: 'absolute', top: '2%', left: '1.5%' }} style={style} className={classes.wrapper}>
+        <Box sx={{ position: 'absolute', top: '2%', left: '1.5%', zIndex: 2 }} style={style} className={classes.wrapper}>
           <AppShell
             padding="md"
             fixed={false}
             styles={(theme) => ({
-              root: {
-                maxWidth: 600,
-              },
               main: {
                 backgroundColor: 'rgba(24, 24, 27, 0.99)', // backgroundColor: theme.colors.dark[8],
-                width: 1024,
-                height: 768,
-                maxWidth: 600,
                 borderBottomLeftRadius: theme.radius.sm,
                 borderBottomRightRadius: theme.radius.sm,
               },

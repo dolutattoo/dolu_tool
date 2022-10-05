@@ -14,7 +14,6 @@ const ObjectSpawner: React.FC = () => {
   const spawnedObjects = getObjectList()
 
   useNuiEvent('setEntities', (data: Entity[]) => {
-    console.log(JSON.stringify(data, null, '\t'))
     setEntities(data)
   })
   
