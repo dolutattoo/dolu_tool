@@ -6,17 +6,36 @@ local GetSmartControlNormal = GetSmartControlNormal
 local SETTINGS = _G.CONTROL_SETTINGS
 local CONTROLS = _G.CONTROL_MAPPING
 
+
+local speedMultiplier = SETTINGS.BASE_MOVE_MULTIPLIER
 -------------------------------------------------------------------------------
 local function GetSpeedMultiplier()
-	local fastNormal = GetSmartControlNormal(CONTROLS.MOVE_FAST)
-	local slowNormal = GetSmartControlNormal(CONTROLS.MOVE_SLOW)
-
-	local baseSpeed = SETTINGS.BASE_MOVE_MULTIPLIER
-	local fastSpeed = 1 + ((SETTINGS.FAST_MOVE_MULTIPLIER - 1) * fastNormal)
-	local slowSpeed = 1 + ((SETTINGS.SLOW_MOVE_MULTIPLIER - 1) * slowNormal)
-
 	local frameMultiplier = GetFrameTime() * 60
-	local speedMultiplier = baseSpeed * fastSpeed / slowSpeed
+
+	if IsDisabledControlPressed(0, CONTROLS.MOVE_FAST) then -- Scroll Up
+		if speedMultiplier > 1.0 then
+			speedMultiplier = speedMultiplier - 0.5
+		elseif speedMultiplier > 0.2 then
+				speedMultiplier = speedMultiplier - 0.1
+		else
+				speedMultiplier = speedMultiplier - 0.01
+		end
+	elseif IsDisabledControlPressed(0, CONTROLS.MOVE_SLOW) then -- Scroll Down
+			if speedMultiplier < 0.2 then
+					speedMultiplier = speedMultiplier + 0.01
+			elseif speedMultiplier > 1.0 then
+					speedMultiplier = speedMultiplier + 0.5
+			else
+					speedMultiplier = speedMultiplier + 0.1
+			end
+	end
+
+	if speedMultiplier < 0.0 then
+			speedMultiplier = 0.0
+	end
+	if speedMultiplier > 15.0 then
+			speedMultiplier = 15.0
+	end
 
 	return speedMultiplier * frameMultiplier
 end

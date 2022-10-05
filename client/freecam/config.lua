@@ -1,13 +1,13 @@
 local INPUT_LOOK_LR = 1
 local INPUT_LOOK_UD = 2
-local INPUT_CHARACTER_WHEEL = 19
-local INPUT_SPRINT = 21
 local INPUT_MOVE_UD = 31
 local INPUT_MOVE_LR = 30
 local INPUT_VEH_ACCELERATE = 71
 local INPUT_VEH_BRAKE = 72
 local INPUT_PARACHUTE_BRAKE_LEFT = 152
 local INPUT_PARACHUTE_BRAKE_RIGHT = 153
+local INPUT_CELLPHONE_SCROLL_FORWARD = 180
+local INPUT_CELLPHONE_SCROLL_BACKWARD = 181
 
 --------------------------------------------------------------------------------
 
@@ -22,8 +22,8 @@ local BASE_CONTROL_MAPPING = protect({
   MOVE_Z = { INPUT_PARACHUTE_BRAKE_LEFT, INPUT_PARACHUTE_BRAKE_RIGHT },
 
   -- Multiplier
-  MOVE_FAST = INPUT_SPRINT,
-  MOVE_SLOW = INPUT_CHARACTER_WHEEL
+  MOVE_FAST = INPUT_CELLPHONE_SCROLL_BACKWARD,
+  MOVE_SLOW = INPUT_CELLPHONE_SCROLL_FORWARD
 })
 
 --------------------------------------------------------------------------------
@@ -34,9 +34,7 @@ local BASE_CONTROL_SETTINGS = protect({
   LOOK_SENSITIVITY_Y = 5,
 
   -- Position
-  BASE_MOVE_MULTIPLIER = 0.85,
-  FAST_MOVE_MULTIPLIER = 6,
-  SLOW_MOVE_MULTIPLIER = 6,
+  BASE_MOVE_MULTIPLIER = 1.0
 })
 
 --------------------------------------------------------------------------------
