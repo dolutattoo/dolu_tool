@@ -1,9 +1,10 @@
 import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Transition, Center, Pagination } from "@mantine/core"
-import { useEffect, useState } from "react";
-import { useRecoilState, useSetRecoilState } from "recoil";
-import { usePedList, changePed, getSearchPedInput, pedListPageCountAtom, getPedListPageCount, pedListActivePageAtom } from "../../../../atoms/ped";
+import { useEffect, useState} from "react"
+import { useRecoilState, useSetRecoilState } from "recoil"
+import { usePedList, changePed, getSearchPedInput, pedListPageCountAtom, getPedListPageCount, pedListActivePageAtom } from "../../../../atoms/ped"
+import { displayImageAtom, imagePathAtom } from "../../../../atoms/imgPreview"
 import { setClipboard } from '../../../../utils/setClipboard'
-import PedSearch from "./components/pedListSearch";
+import PedSearch from "./components/pedListSearch"
 
 const Ped: React.FC = () => {
   // Get Peds (depending on search bar value)
@@ -30,8 +31,12 @@ const Ped: React.FC = () => {
   const [copiedPedHash, setCopiedPedHash] = useState(false);
   const [currentAccordionItem, setAccordionItem] = useState<string|null>('0')
 
-  const [displayImage, setDisplayImage] = useState<boolean>(false)
-  const [imagePath, setImagePath] = useState<string>("")
+  const displayImage = useSetRecoilState(displayImageAtom)
+  const imagePath = useSetRecoilState(imagePathAtom)
+
+
+  // const [displayImage, setDisplayImage] = useState<boolean>(true)
+  // const [imagePath, setImagePath] = useState<string>("")
 
   // Copied name button
   useEffect(() => {
@@ -56,10 +61,10 @@ const Ped: React.FC = () => {
           <Group grow spacing="xs"> 
             <Image
               onMouseEnter={() => {
-                setDisplayImage(true);
-                setImagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
+                displayImage(true);
+                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
               }}
-              onMouseLeave={() => {setDisplayImage(false)}}
+              onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit="contain"
               alt={`${pedList.name}`}
@@ -109,29 +114,6 @@ const Ped: React.FC = () => {
 
   return(
     <>
-      <Transition transition="slide-right" mounted={displayImage}>
-        {(style) => (
-          <Paper
-            radius="md"
-            p="md"
-            shadow="xs"
-            style={style}
-            sx={{
-              position: 'absolute',
-              top: '0%',
-              left: '46.87%',
-            }}
-          >
-            <Image
-              height={300}
-              fit="contain"
-              alt={"Display selected image"}
-              src={imagePath}
-              withPlaceholder={true}
-            />
-          </Paper>
-        )}
-      </Transition>
       <Paper p="md">
         <Stack>
           <Text size={20}>Ped Changer</Text>
