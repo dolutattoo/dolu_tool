@@ -33,7 +33,7 @@ RegisterNUICallback('dmt:teleport', function(data, cb)
     })
 
     SetResourceKvp('dmt_lastLocation', json.encode(data))
-    Client.lastLocation = json.encode(data)
+    Client.lastLocation = data
     cb(1)
 end)
 
