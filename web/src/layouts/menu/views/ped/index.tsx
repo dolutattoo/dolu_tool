@@ -58,13 +58,13 @@ const Ped: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true);
-                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`)
+                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/ped/${pedList.name}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit="contain"
               alt={`${pedList.name}`}
-              src={`https://cfx-nui-DoluMappingTool/shared/img/${pedList.name}.webp`}
+              src={`https://cfx-nui-DoluMappingTool/shared/img/ped/${pedList.name}.webp`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
