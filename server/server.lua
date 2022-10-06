@@ -127,11 +127,29 @@ lib.callback.register('dmt:getPedList', function()
     return Server.pedLists
 end)
 
-RegisterCommand('xml', function()
-    local data = getXmlFile('shared/data/ymap', 'test.ymap.xml')
-    local entities = data.CMapData.entities
+lib.callback.register('dmt:getYmapEntities', function(_, fileName)
+    local xml = getXmlFile('ymap', fileName..'.ymap.xml')
+    local entities = {}
 
-    for k, v in pairs(entities[1].Item) do
-        print(v.archetypeName[1])
+    for _, v in pairs(xml.CMapData.entities[1].Item) do
+        local isFrozen = tonumber(v.flags[1]['$'].value) == 32 and true or nil
+
+        table.insert(entities, {
+            name = v.archetypeName[1],
+            position = {
+                x = tonumber(v.position[1]['$'].x),
+                y = tonumber(v.position[1]['$'].y),
+                z = tonumber(v.position[1]['$'].z)
+            },
+            rotation = {
+                x = tonumber(v.rotation[1]['$'].x),
+                y = tonumber(v.rotation[1]['$'].y),
+                z = tonumber(v.rotation[1]['$'].z),
+                w = tonumber(v.rotation[1]['$'].w)
+            },
+            frozen = isFrozen
+        })
     end
+
+    return entities
 end)

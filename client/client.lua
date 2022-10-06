@@ -1,7 +1,9 @@
 RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
+    local previousTab = Client.currentTab
+    Client.currentTab = newTab
 
     -- If exiting object tab while gizmo is enabled, set gizmo disabled
-    if Client.currentTab == 'object' and newTab ~= 'object' then
+    if previousTab == 'object' and newTab ~= 'object' then
         SendNUIMessage({
             action = 'setGizmoEntity',
             data = {}
@@ -19,9 +21,13 @@ RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
                 weather = FUNC.getWeather()
             }
         })
-    end
 
-    Client.currentTab = newTab
+    elseif newTab == 'object' then
+        SendNUIMessage({
+            action = 'setYmapList',
+            data = Client.loadedYmap
+        })
+    end
 end)
 
 RegisterNUICallback('dmt:teleport', function(data, cb)
@@ -296,4 +302,125 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
     end
 
     cb(1)
+end)
+
+RegisterNUICallback('dmt:snapEntityToGround', function(entity, cb)
+    if not DoesEntityExist(entity.handle) then
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Entity does not exist!",
+            type = 'error',
+            position = 'top'
+        })
+        return
+    end
+
+    PlaceObjectOnGroundProperly(entity.handle)
+
+    -- Updating gizmo
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {
+            name = entity.name,
+            handle = entity.handle,
+            position = GetEntityCoords(entity.handle),
+            rotation = GetEntityRotation(entity.handle),
+        }
+    })
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:loadYmap', function(fileName, cb)
+    -- Prevent to load Ymap with same name multiple times
+    if Client.loadedYmap then
+        for _, v in ipairs(Client.loadedYmap) do
+            if v.name == fileName then
+                lib.notify({
+                    title = 'Dolu Mapping Tool',
+                    description = "A ymap file with the same name is already loaded.",
+                    type = 'error',
+                    position = 'top'
+                })
+                return
+            end
+        end
+    end
+
+    -- Get entities from xml file
+    local entities = lib.callback.await('dmt:getYmapEntities', false, fileName)
+    if not entities then
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "This file does not contains any entity",
+            type = 'error',
+            position = 'top'
+        })
+        return
+    end
+
+    -- Spawning entities
+    local spawnedEntities = {}
+    for k, v in ipairs(entities) do
+        local model = joaat(v.name)
+
+        if IsModelInCdimage(model) then
+            RequestModel(model)
+            while not HasModelLoaded(model) do Wait(0) end
+
+            local obj = CreateObjectNoOffset(model, v.position.x, v.position.y, v.position.z)
+            SetEntityQuaternion(obj, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
+
+            if v.frozen then
+                FreezeEntityPosition(obj, true)
+            end
+
+            local entityRotation = GetEntityRotation(obj)
+            spawnedEntities[#spawnedEntities+1] = {
+                name = v.name,
+                handle = obj,
+                position = { x = v.position.x, y = v.position.y, z = v.position.z },
+                rotation = { x = entityRotation.x, y = entityRotation.y, z = entityRotation.z },
+                frozen = v.frozen
+            }
+
+            SetModelAsNoLongerNeeded(model)
+        else
+            lib.notify({
+                title = 'Dolu Mapping Tool',
+                description = "Entity with name '" .. v.name .. "' (index " .. k .. ") does not exist",
+                type = 'error',
+                position = 'top'
+            })
+        end
+    end
+
+    -- If no entity spawned, stop the function
+    if #spawnedEntities < 1 then
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "No entity spawned",
+            type = 'error',
+            position = 'top'
+        })
+        return
+    end
+
+    -- Register the ymap in Client.loadedYmap
+    if not Client.loadedYmap then Client.loadedYmap = {} end
+    table.insert(Client.loadedYmap, {
+        name     = fileName,
+        entities = spawnedEntities
+    })
+
+    -- Sending Ymap properties to NUI
+    SendNUIMessage({
+        action = 'setYmapList',
+        data = Client.loadedYmap
+    })
+
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:setYmapName', function(data, cb)
+    print("\nTODO - Edit ymap name.\n Old:", data.oldName, 'New:', data.newName, "\n")
 end)

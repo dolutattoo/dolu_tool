@@ -31,7 +31,8 @@ client_scripts {
 }
 
 server_scripts {
-	'server/server.lua'
+	'server/server.lua',
+	'server/xml.js'
 }
 
 ui_page 'web/build/index.html'
