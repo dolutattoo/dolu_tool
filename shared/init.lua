@@ -9,6 +9,7 @@ CreateThread(function()
         Client = {
             noClip = false,
             isMenuOpen = false,
+            currentTab = 'home',
             lastLocation = json.decode(GetResourceKvpString('dmt_lastLocation')),
             portalPoly = false,
             portalLines = false,

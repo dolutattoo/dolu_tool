@@ -37,7 +37,7 @@ CreateThread(function()
     local oldCoords = vec3(0, 0, 0)
 
     while true do
-        if Client.isMenuOpen then
+        if Client.isMenuOpen and Client.currentTab == 'home' then
             local coords = GetEntityCoords(cache.ped)
 
             if #(coords - oldCoords) > 0.5 then
