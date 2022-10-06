@@ -213,6 +213,11 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
         }
     })
     Client.gizmoEntity = obj
+
+    -- Enabling freecam
+    Client.noClip = true
+    SetFreecamActive(Client.noClip)
+
     cb(1)
 end)
 

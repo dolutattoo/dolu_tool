@@ -7,9 +7,8 @@ CreateThread(function()
         TriggerEvent('ox_lib:setLocale', Config.locale)
     else
         Client = {
+            noClip = false,
             isMenuOpen = false,
-            currentTab = nil,
-            lastCoords = nil,
             lastLocation = json.decode(GetResourceKvpString('dmt_lastLocation')),
             portalPoly = false,
             portalLines = false,

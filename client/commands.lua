@@ -1,5 +1,3 @@
-local noClip = false
-
 RegisterCommand('dmt:open', function()
     if not IsNuiFocused() and not IsPauseMenuActive() then
         FUNC.openUI()
@@ -80,8 +78,8 @@ end)
 RegisterKeyMapping('tpm', locale('command_tpm', '~o~>~w~'), 'keyboard', '')
 
 RegisterCommand('noclip', function()
-    noClip = not noClip
-    SetFreecamActive(noClip)
+    Client.noClip = not Client.noClip
+    SetFreecamActive(Client.noClip)
 end)
 RegisterKeyMapping('noclip', locale('command_noclip', '~o~>~w~'), 'keyboard', '')
 
