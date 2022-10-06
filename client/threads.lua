@@ -55,7 +55,6 @@ CreateThread(function()
     end
 end)
 
-local outlinedEntity = nil
 CreateThread(function()
     SetEntityDrawOutlineShader(1)
     SetEntityDrawOutlineColor(200, 200, 250, 180)
@@ -69,16 +68,19 @@ CreateThread(function()
                     rotation = GetFinalRenderedCamRot()
                 }
             })
+        end
 
-            -- Entity outline
-            if not outlinedEntity then
-                outlinedEntity = Client.gizmoEntity
-            elseif outlinedEntity ~= Client.gizmoEntity then
-                SetEntityDrawOutline(outlinedEntity, false)
-                outlinedEntity = nil -- Wait next frame to draw again
-            else
-                SetEntityDrawOutline(outlinedEntity, true)
+        -- Entity outline
+        if Client.gizmoEntity then
+            if Client.outlinedEntity then
+                SetEntityDrawOutline(Client.outlinedEntity, false)
             end
+            Client.outlinedEntity = Client.gizmoEntity
+            SetEntityDrawOutline(Client.outlinedEntity, true)
+
+        elseif Client.outlinedEntity then
+            SetEntityDrawOutline(Client.outlinedEntity, false)
+            Client.outlinedEntity = nil
         end
         Wait(0)
     end

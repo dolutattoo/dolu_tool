@@ -1,7 +1,15 @@
-RegisterNUICallback('dmt:tabSelected', function(data, cb)
-    Client.currentTab = data
+RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
 
-    if data == 'world' then
+    -- If exiting object tab while gizmo is enabled, set gizmo disabled
+    if Client.currentTab == 'object' and newTab ~= 'object' then
+        SendNUIMessage({
+            action = 'setGizmoEntity',
+            data = {}
+        })
+        Client.gizmoEntity = nil
+    end
+
+    if newTab == 'world' then
         local hour, minute = FUNC.getClock()
 
         SendNUIMessage({
@@ -12,6 +20,8 @@ RegisterNUICallback('dmt:tabSelected', function(data, cb)
             }
         })
     end
+
+    Client.currentTab = newTab
 end)
 
 RegisterNUICallback('dmt:teleport', function(data, cb)
@@ -37,9 +47,10 @@ RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocusKeepInput(false)
     Client.isMenuOpen = false
     Client.currentTab = nil
+
     SendNUIMessage({
         action = 'setGizmoEntity',
-        data = { object = nil }
+        data = {}
     })
     Client.gizmoEntity = nil
     cb(1)
@@ -232,11 +243,6 @@ RegisterNUICallback('dmt:moveEntity', function(data, cb)
     if data.handle then
         SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
         SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z)
-
-        SendNUIMessage({
-            action = 'setEntities',
-            data = Client.spawnedEntities
-        })
     end
     cb(1)
 end)
@@ -272,7 +278,7 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
         --[[ Sending empty object to hidden editor ]]
         SendNUIMessage({
             action = 'setGizmoEntity',
-            data = { object = nil }
+            data = {}
         })
         Client.gizmoEntity = nil
 

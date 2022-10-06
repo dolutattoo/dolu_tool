@@ -3,15 +3,11 @@ import { TransformControls } from '@react-three/drei'
 import { useNuiEvent } from "../../hooks/useNuiEvent"
 import { fetchNui } from "../../utils/fetchNui"
 import { Mesh, MathUtils } from 'three'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
-import { Entity, getObjectList, ObjectListAtom } from '../../atoms/object'
 
 export const TransformComponent = () => {
     const mesh = useRef<Mesh>(null!)
-    const [currentEntity, setCurrentEntity] = useState<any>()
-    const [Mode, setMode] = useState<any>('translate')
-    const setEntities = useSetRecoilState(ObjectListAtom)
-    const spawnedObjects = getObjectList()
+    const [currentEntity, setCurrentEntity] = useState<number>()
+    const [editorMode, setEditorMode] = useState<string>('translate')
 
     const handleObjectDataUpdate = () => {
         const entity = {
@@ -27,30 +23,24 @@ export const TransformComponent = () => {
                 z: MathUtils.radToDeg(mesh.current.rotation.y)
             }
         }
-
-        fetchNui('dmt:moveEntity', entity).catch(error => {console.error(error)})
-
+        fetchNui('dmt:moveEntity', entity)
     }
 
     useNuiEvent('setGizmoEntity', (entity: any) => {
-        if (entity === null) {return}
-
         setCurrentEntity(entity.handle)
-        mesh.current.position.set( entity.position.x, entity.position.z, -entity.position.y )
+        if (entity.handle === undefined) {return}
+
+        mesh.current.position.set(entity.position.x, entity.position.z, -entity.position.y)
         mesh.current.rotation.order = "YZX"
-        mesh.current.rotation.set( 
-            MathUtils.degToRad(entity.rotation.x),
-            MathUtils.degToRad(entity.rotation.z),
-            MathUtils.degToRad(entity.rotation.y)
-        )
+        mesh.current.rotation.set(MathUtils.degToRad(entity.rotation.x), MathUtils.degToRad(entity.rotation.z), MathUtils.degToRad(entity.rotation.y))
     })
 
     useEffect(() => {
         const keyHandler = (e: KeyboardEvent) => {
             if (e.code === 'KeyR') {
-                setMode('rotate')
+                setEditorMode('rotate')
             } else if (e.code === 'KeyW') {
-                setMode('translate')
+                setEditorMode('translate')
             }
         }    
         window.addEventListener('keyup', keyHandler)
@@ -59,8 +49,8 @@ export const TransformComponent = () => {
     
     return (
         <>
-            <Suspense fallback={<p>Loading TransformController</p>}>
-                {currentEntity != null && <TransformControls size={0.5} object={ mesh } mode={ Mode } onObjectChange={ handleObjectDataUpdate } />}
+            <Suspense fallback={<p>Loading Gizmo</p>}>
+                {currentEntity != null && <TransformControls size={0.5} object={ mesh } mode={ editorMode } onObjectChange={ handleObjectDataUpdate } />}
                 <mesh ref={ mesh } />
             </Suspense>
         </>
