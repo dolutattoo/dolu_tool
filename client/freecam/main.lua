@@ -1,4 +1,3 @@
-local Wait = Citizen.Wait
 local vector3 = vector3
 local IsPauseMenuActive = IsPauseMenuActive
 local GetSmartControlNormal = GetSmartControlNormal
@@ -12,29 +11,29 @@ local speedMultiplier = SETTINGS.BASE_MOVE_MULTIPLIER
 local function GetSpeedMultiplier()
 	local frameMultiplier = GetFrameTime() * 60
 
-	if IsDisabledControlPressed(0, CONTROLS.MOVE_FAST) then -- Scroll Up
+	if IsDisabledControlPressed(0, CONTROLS.MOVE_SLOW) then -- Scroll Up
 		if speedMultiplier > 1.0 then
 			speedMultiplier = speedMultiplier - 0.5
 		elseif speedMultiplier > 0.2 then
-				speedMultiplier = speedMultiplier - 0.1
+			speedMultiplier = speedMultiplier - 0.1
 		else
-				speedMultiplier = speedMultiplier - 0.01
+			speedMultiplier = speedMultiplier - 0.01
 		end
-	elseif IsDisabledControlPressed(0, CONTROLS.MOVE_SLOW) then -- Scroll Down
-			if speedMultiplier < 0.2 then
-					speedMultiplier = speedMultiplier + 0.01
-			elseif speedMultiplier > 1.0 then
-					speedMultiplier = speedMultiplier + 0.5
-			else
-					speedMultiplier = speedMultiplier + 0.1
-			end
+	elseif IsDisabledControlPressed(0, CONTROLS.MOVE_FAST) then -- Scroll Down
+		if speedMultiplier < 0.2 then
+			speedMultiplier = speedMultiplier + 0.01
+		elseif speedMultiplier > 1.0 then
+			speedMultiplier = speedMultiplier + 0.5
+		else
+			speedMultiplier = speedMultiplier + 0.1
+		end
 	end
 
-	if speedMultiplier < 0.0 then
-			speedMultiplier = 0.0
+	if speedMultiplier <= 0.0 then
+		speedMultiplier = 0.01
 	end
 	if speedMultiplier > 15.0 then
-			speedMultiplier = 15.0
+		speedMultiplier = 15.0
 	end
 
 	return speedMultiplier * frameMultiplier
@@ -150,7 +149,7 @@ function StartFreecamThread()
 	end
 
 	--Scaleform drawing thread
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		local scaleform = RequestScaleformMovie("instructional_buttons")
 		while not HasScaleformMovieLoaded(scaleform) do
 			Wait(1)
@@ -164,12 +163,12 @@ function StartFreecamThread()
 
 		PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 		PushScaleformMovieFunctionParameterInt(0)
-		InstructionalButton(GetControlInstructionalButton(0, CONTROLS.MOVE_FAST, 1), "Faster")
+		InstructionalButton(GetControlInstructionalButton(0, CONTROLS.MOVE_SLOW, 1), "Slower")
 		PopScaleformMovieFunctionVoid()
 
 		PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 		PushScaleformMovieFunctionParameterInt(1)
-		InstructionalButton(GetControlInstructionalButton(0, CONTROLS.MOVE_SLOW, 1), "Slower")
+		InstructionalButton(GetControlInstructionalButton(0, CONTROLS.MOVE_FAST, 1), "Faster")
 		PopScaleformMovieFunctionVoid()
 
 		PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
@@ -213,8 +212,7 @@ end
 --------------------------------------------------------------------------------
 
 -- When the resource is stopped, make sure to return the camera to the player.
-AddEventHandler('onResourceStop', function(resourceName)
-	if resourceName == GetCurrentResourceName() then
-		SetFreecamActive(false)
-	end
+AddEventHandler('onResourceStop', function(name)
+	if name ~= RESOURCE_NAME then return end
+	SetFreecamActive(false)
 end)
