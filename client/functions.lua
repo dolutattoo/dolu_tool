@@ -247,8 +247,8 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
     assert(type(coords) == 'table', "Trying to teleport player to invalid coords type")
     coords = vec4(coords.x, coords.y, coords.z, coords.heading or 0)
 
-    DoScreenFadeOut(100)
-    Wait(100)
+    DoScreenFadeOut(150)
+    Wait(150)
 
     local vehicle = cache.seat == -1 and cache.vehicle
 
@@ -258,7 +258,7 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
         lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
     end
 
-    local z, inc, int = 0.0, 10.0, 0
+    local z, inc, int = 0.0, 1.0, coords.z - 20
 
     while z < 800.0 do
         Wait(0)
@@ -268,7 +268,7 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
             int = GetInteriorAtCoords(coords.x, coords.y, z)
 
             if int ~= 0 then
-                inc = 2.0
+                inc = 0.1
             end
         end
 
@@ -283,7 +283,7 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
 
     FUNC.freezePlayer(false, vehicle)
     SetGameplayCamRelativeHeading(0)
-    DoScreenFadeIn(750)
+    DoScreenFadeIn(500)
 end
 
 FUNC.changePed = function(model)
