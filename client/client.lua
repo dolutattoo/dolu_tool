@@ -172,7 +172,7 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     local model = joaat(modelName)
     FUNC.assert(IsModelInCdimage(model) == false, "Model does not exist")
 
-    local coords = GetEntityCoords(cache.ped)
+    local coords = GetOffsetFromEntityInWorldCoords(cache.ped, 0, 5, 0)
 
     RequestModel(model)
     while not HasModelLoaded(model) do Wait(0) end
