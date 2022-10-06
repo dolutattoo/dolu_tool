@@ -15,7 +15,7 @@ const Nav: React.FC = () => {
       p="md"
       fixed={false}
       sx={{
-        height: 768
+        height: 775
       }}
     >
       <Navbar.Section grow>

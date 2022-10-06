@@ -18,7 +18,7 @@ const ImgPreview: React.FC = () => {
             zIndex: 2,
             position: 'absolute',
             top: '2%',
-            left: '25.5%',
+            left: '33.5%',
           }}
         >
           <Image

@@ -34,10 +34,6 @@ const Ped: React.FC = () => {
   const displayImage = useSetRecoilState(displayImageAtom)
   const imagePath = useSetRecoilState(imagePathAtom)
 
-
-  // const [displayImage, setDisplayImage] = useState<boolean>(true)
-  // const [imagePath, setImagePath] = useState<string>("")
-
   // Copied name button
   useEffect(() => {
     setTimeout(() => {
@@ -113,45 +109,43 @@ const Ped: React.FC = () => {
   ))
 
   return(
-    <>
-      <Paper p="md">
-        <Stack>
-          <Text size={20}>Ped Changer</Text>
-          <Button
-            uppercase
-            variant="outline"
+    <Paper p="md">
+      <Stack>
+        <Text size={20}>Ped Changer</Text>
+        <Button
+          uppercase
+          variant="outline"
+          color="blue.4"
+          onClick={() => { changePed({ name: `${searchPedValue}` }) }}
+        >
+          Change by Name
+        </Button>
+        <PedSearch/>
+        <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
+          <Stack>
+            <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+              {PedList ? PedList : 
+                <Paper p="md">
+                  <Text size="md" weight={600} color="red.4">No location found</Text>
+                </Paper>
+              }
+              </Accordion>
+          </Stack>
+        </ScrollArea>
+        <Center>
+          <Pagination
             color="blue.4"
-            onClick={() => { changePed({ name: `${searchPedValue}` }) }}
-          >
-            Change by Name
-          </Button>
-          <PedSearch/>
-          <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
-            <Stack>
-              <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
-                {PedList ? PedList : 
-                  <Paper p="md">
-                    <Text size="md" weight={600} color="red.4">No location found</Text>
-                  </Paper>
-                }
-               </Accordion>
-            </Stack>
-          </ScrollArea>
-          <Center>
-            <Pagination
-              color="blue.4"
-              size='sm'
-              page={activePage}
-              onChange={(value) => {
-                setPage(value)
-                setAccordionItem("0")
-              }}
-              total={pageCount}
-            />
-          </Center>
-        </Stack>
-      </Paper>
-    </>
+            size='sm'
+            page={activePage}
+            onChange={(value) => {
+              setPage(value)
+              setAccordionItem("0")
+            }}
+            total={pageCount}
+          />
+        </Center>
+      </Stack>
+    </Paper>
   )
 
 }

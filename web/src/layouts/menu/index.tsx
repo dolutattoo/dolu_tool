@@ -23,7 +23,7 @@ import { Entity, ObjectListAtom } from '../../atoms/object'
 const useStyles = createStyles((theme) => ({
   wrapper: {
     width: 600,
-    height: 768,
+    height: 775,
     color: theme.colors.dark[1],
   },
 }))
