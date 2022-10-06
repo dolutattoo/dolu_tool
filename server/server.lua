@@ -1,3 +1,8 @@
+local function getXmlFile(path, file)
+    local xml = LoadResourceFile(RESOURCE_NAME, path .. '/' .. file)
+    return exports[RESOURCE_NAME]:xmlToTable(xml)
+end
+
 local function getFileData(path, file)
     return json.decode(LoadResourceFile(RESOURCE_NAME, path .. '/' .. file))
 end
@@ -120,4 +125,13 @@ lib.callback.register('dmt:getPedList', function()
         Server.pedLists = getFileData('shared/data', 'pedList.json')
     end
     return Server.pedLists
+end)
+
+RegisterCommand('xml', function()
+    local data = getXmlFile('shared/data/ymap', 'test.ymap.xml')
+    local entities = data.CMapData.entities
+
+    for k, v in pairs(entities[1].Item) do
+        print(v.archetypeName[1])
+    end
 end)

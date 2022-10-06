@@ -1,2 +1,4 @@
 .idea
 shared/data/locations.json
+
+node_modules/
