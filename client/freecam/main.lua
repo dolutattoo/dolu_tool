@@ -5,6 +5,7 @@ local GetSmartControlNormal = GetSmartControlNormal
 local SETTINGS = _G.CONTROL_SETTINGS
 local CONTROLS = _G.CONTROL_MAPPING
 
+local faster, slower = false, false
 
 local speedMultiplier = SETTINGS.BASE_MOVE_MULTIPLIER
 -------------------------------------------------------------------------------
@@ -27,6 +28,26 @@ local function GetSpeedMultiplier()
 		else
 			speedMultiplier = speedMultiplier + 0.1
 		end
+	end
+
+	-- Hold shift to go faster
+	if IsControlJustPressed(0, 21) and not slower then
+		faster = true
+		speedMultiplier = speedMultiplier*5
+	end
+	if IsControlJustReleased(0, 21) and faster and not slower then
+		faster = false
+		speedMultiplier = speedMultiplier/5
+	end
+
+	-- Hold Alt to go slower
+	if IsControlJustPressed(0, 19) and not faster then
+		slower = true
+		speedMultiplier = speedMultiplier/5
+	end
+	if IsControlJustReleased(0, 19) and slower and not faster then
+		slower = false
+		speedMultiplier = speedMultiplier*5
 	end
 
 	if speedMultiplier <= 0.0 then
@@ -107,7 +128,7 @@ end
 -------------------------------------------------------------------------------
 function StartFreecamThread()
 	-- Camera/Pos updating thread
-	Citizen.CreateThread(function()
+	CreateThread(function()
 		local ped = cache.ped
 		SetFreecamPosition(GetEntityCoords(ped))
 
@@ -163,12 +184,12 @@ function StartFreecamThread()
 
 		PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 		PushScaleformMovieFunctionParameterInt(0)
-		InstructionalButton(GetControlInstructionalButton(0, CONTROLS.MOVE_SLOW, 1), "Slower")
+		InstructionalButton(GetControlInstructionalButton(0, 348, 1), "Speed")
 		PopScaleformMovieFunctionVoid()
 
 		PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
 		PushScaleformMovieFunctionParameterInt(1)
-		InstructionalButton(GetControlInstructionalButton(0, CONTROLS.MOVE_FAST, 1), "Faster")
+		InstructionalButton(GetControlInstructionalButton(0, 21, 1), "Faster")
 		PopScaleformMovieFunctionVoid()
 
 		PushScaleformMovieFunction(scaleform, "SET_DATA_SLOT")
