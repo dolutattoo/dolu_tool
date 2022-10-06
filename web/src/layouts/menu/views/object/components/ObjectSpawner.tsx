@@ -23,18 +23,9 @@ const ObjectSpawner: React.FC = () => {
         <Text size="sm" weight={500}>{entity.name}</Text>
       </Accordion.Control>
       <Accordion.Panel>
-        <Group position="apart">
-          <Text size="sm">Position:</Text><Text color='blue.4' size="sm"> {entity.position.x}, {entity.position.y}, {entity.position.z}</Text>
-        </Group>
-        <Group position="apart">
-          <Text size="sm">Rotation:</Text><Text color='blue.4' size="sm"> {entity.rotation.x}, {entity.rotation.y}, {entity.rotation.z}, {entity.rotation.w}</Text>
-        </Group>
-
         <Space h='xs' />
-
         <Group position="apart">
           <Button
-            uppercase
             variant="outline"
             color="blue.4"
             onClick={() => {
@@ -46,14 +37,13 @@ const ObjectSpawner: React.FC = () => {
           </Button>
 
           <Button
-            uppercase
             variant="outline"
             color="blue.4"
             onClick={() => {
               fetchNui('dmt:setGizmoEntity', entity)
             }}
           >
-            Move
+            Move/Rotate
           </Button>
         </Group>
       </Accordion.Panel>

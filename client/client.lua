@@ -170,7 +170,7 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     PlaceObjectOnGroundProperly(obj)
     FreezeEntityPosition(obj, true)
 
-    local rotx, roty, rotz, rotw = GetEntityQuaternion(obj)
+    local entityRotation = GetEntityRotation(obj)
 
     table.insert(Client.spawnedEntities, 1, {
         handle = obj,
@@ -181,10 +181,9 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
             z = FUNC.round(coords.z, 3)
         },
         rotation = {
-            x = FUNC.round(rotx, 3),
-            y = FUNC.round(roty, 3),
-            z = FUNC.round(rotz, 3),
-            w = FUNC.round(rotw, 3)
+            x = FUNC.round(entityRotation.x, 3),
+            y = FUNC.round(entityRotation.y, 3),
+            z = FUNC.round(entityRotation.z, 3)
         }
     })
 
