@@ -126,7 +126,7 @@ const Ped: React.FC = () => {
             <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
               {PedList ? PedList : 
                 <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">No location found</Text>
+                  <Text size="md" weight={600} color="red.4">No ped found</Text>
                 </Paper>
               }
               </Accordion>
