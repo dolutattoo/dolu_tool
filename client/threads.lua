@@ -6,8 +6,12 @@ end)
 -- Send interior data to NUI
 CreateThread(function()
     while true do
-        if Client.isMenuOpen and Client.interiorId > 0 then
-            GetInteriorData(Client.interiorId, true)
+        if Client.isMenuOpen then
+            if Client.interiorId > 0 then
+                GetInteriorData(Client.interiorId, true)
+            else
+                GetInteriorData(Client.interiorId)
+            end
         else
             Wait(500)
         end
