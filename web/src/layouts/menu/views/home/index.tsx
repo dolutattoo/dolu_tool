@@ -1,6 +1,6 @@
-import { Text, Stack, SimpleGrid, Button, Paper, Group, Space, TextInput, Switch } from '@mantine/core'
+import { Text, Stack, SimpleGrid, Button, Paper, Group, Space } from '@mantine/core'
 import { openModal } from '@mantine/modals'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { GiTeleport } from 'react-icons/gi'
 import { ImLocation } from 'react-icons/im'
 import { FiFastForward } from 'react-icons/fi'
@@ -10,7 +10,8 @@ import { getLastLocation } from '../../../../atoms/location'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import { fetchNui } from '../../../../utils/fetchNui'
 import CreateLocation from '../locations/components/modals/CreateLocation'
-import { TiTickOutline } from 'react-icons/ti'
+import { setClipboard } from '../../../../utils/setClipboard'
+import SetCoords from './modals/SetCoords'
 
 const Home: React.FC = () => {
   const lastLocation = getLastLocation()
@@ -18,16 +19,24 @@ const Home: React.FC = () => {
   const [currentCoords, setCurrentCoords] = useState('1.000, 2.000, 3.000')
   const [currentHeading, setCurrentHeading] = useState('0.000')
   const [timeFrozen, setTimeFrozen] = useState<boolean>(false)
+  const [copiedCoords, setCopiedCoords] = useState(false)
 
   useNuiEvent('playerCoords', (data: { coords: string, heading: string }) => {
     setCurrentCoords(data.coords)
     setCurrentHeading(data.heading)
   })
 
+  // Copied coords button
+  useEffect(() => {
+    setTimeout(() => {
+      if (copiedCoords) setCopiedCoords(false)
+    }, 1000)
+  }, [copiedCoords, setCopiedCoords])
+
   return (
     <SimpleGrid cols={1}>
       <Stack>
-        {/* Current Coords */}
+        {/* CURRENT COORDS */}
         <Paper p="md">
           
           <Group position="apart">
@@ -37,28 +46,53 @@ const Home: React.FC = () => {
           
           <Space h="sm" />
 
-          <Group><Text>Coords:</Text><Text color="blue.4" >{currentCoords}</Text></Group>
-          
           <Group position='apart'>
+            <Group><Text>Coords:</Text><Text color="blue.4" >{currentCoords}</Text></Group>
             <Group><Text>Heading:</Text><Text color="blue.4" >{currentHeading}</Text></Group>
+          </Group>
+          
+          <Space h="sm" />
+
+          <Group grow>
+            <Button
+              color={copiedCoords ? 'teal' : "blue.4"}
+              variant='outline'
+              size="xs"
+              onClick={() => {
+                setClipboard(currentCoords + ', ' + currentHeading)
+                setCopiedCoords(true)
+              }}
+            >{copiedCoords ? 'Copied' : 'Copy'} coords</Button>
+
             <Button
               color='blue.4'
               variant='outline'
+              size="xs"
               onClick={() =>
               openModal({
+                  title: 'Set current coords',
+                  size: 'xs',
+                  children: <SetCoords />,
+                })
+              }
+            >Set coords</Button>
+
+            <Button
+              color='blue.4'
+              variant='outline'
+              size="xs"
+              onClick={() =>
+                openModal({
                   title: 'Create location',
                   size: 'xs',
                   children: <CreateLocation />,
                 })
               }
-            >
-              Save
-            </Button>
+            >Save location</Button>
           </Group>
-    
         </Paper>
         
-        {/* Last location */}
+        {/* LAST LOCATION */}
         <Paper p="md">
           <Group position="apart">
             <Text size={20} weight={600}>Last location</Text>
@@ -95,7 +129,7 @@ const Home: React.FC = () => {
           }
         </Paper>
 
-        {/* Current interior */}
+        {/* CURRENT INTERIOR */}
         <Paper p="md">
           <Group position="apart">
             <Text size={20} weight={600}>Current interior</Text>
@@ -116,12 +150,16 @@ const Home: React.FC = () => {
               </>
           }
         </Paper>
+
+        {/* QUICK ACTIONS */}
         <Paper p="md">
           <Group position="apart">
             <Text size={20} weight={600}>Quick Actions</Text>
             <FiFastForward size={24} />
           </Group>
+
           <Space h="sm" />
+
           <Group grow>
             <Button
               color='blue.4'
@@ -129,29 +167,27 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dmt:cleanZone', {})
               }
-            >
-              Clean zone
-            </Button>
+            >Clean zone</Button>
+            
             <Button
               color='blue.4'
               variant='outline'
               onClick={() =>
                 fetchNui('dmt:cleanPed', {})
               }
-            >
-              Clean ped
-            </Button>
+            >Clean ped</Button>
+
             <Button
               color='blue.4'
               variant='outline'
               onClick={() =>
                 fetchNui('dmt:cleanVehicle', {})
               }
-            >
-              Clean vehicle
-            </Button>
+            >Clean vehicle</Button>
           </Group>
+
           <Space h="sm" />
+
           <Group grow>
             <Button
               color='blue.4'
@@ -159,48 +195,51 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dmt:repairVehicle', {})
               }
-            >
-              Repair vehicle
-            </Button>
+            >Repair vehicle</Button>
+
             <Button
               color='blue.4'
               variant='outline'
               onClick={() =>
                 fetchNui('dmt:giveAllWeapons', {})
               }
-            >
-              Give weapons
-            </Button>
+            >Give weapons</Button>
+
             <Button
               color='blue.4'
               variant='outline'
               onClick={() =>
                 fetchNui('dmt:setDay', {})
               }
-            >
-              Set day
-            </Button>
+            >Set sunny day</Button>
           </Group>
+
           <Space h="sm" />
-          <Group position='apart'>
+
+          <Group grow>
             <Button
               color='blue.4'
               variant='outline'
               onClick={() =>
                 fetchNui('dmt:spawnFavoriteVehicle', {})
               }
-            >
-              Spawn Favorite Vehicle
-            </Button>
+            >Spawn Vehicle</Button>
+
+            <Button
+              color='blue.4'
+              variant='outline'
+              onClick={() =>
+                fetchNui('dmt:setMaxHealth', {})
+              }
+            >Max Health</Button>
+            
             <Button
               color={timeFrozen ? 'red.4' : 'blue.4'}
               variant='outline'
               onClick={() => {
                 setTimeFrozen(!timeFrozen)
               }}
-            >
-              {timeFrozen ? "Disable Freeze Time" : "Enable Freeze Time" }
-            </Button>
+            >Time {timeFrozen ? "frozen" : "not frozen" }</Button>
           </Group>          
         </Paper>
       </Stack>

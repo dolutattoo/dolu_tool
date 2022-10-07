@@ -89,6 +89,13 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
             action = 'setLocationDatas',
             data = Client.locations
         })
+
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Custom location succefully created!",
+            type = 'success',
+            position = 'top'
+        })
     end, {
         name = locationName,
         coords = GetEntityCoords(playerPed),
@@ -167,6 +174,18 @@ RegisterNUICallback('dmt:setDay', function(_, cb)
     FUNC.setClock(12)
     FUNC.setWeather('extrasunny')
     cb(1)
+end)
+
+RegisterNUICallback('dmt:setMaxHealth', function(_, cb)
+    local playerPed = PlayerPedId()
+    SetEntityHealth(playerPed, GetEntityMaxHealth(playerPed))
+
+    lib.notify({
+        title = 'Dolu Mapping Tool',
+        description = "Max health succefully set.",
+        type = 'success',
+        position = 'top'
+    })
 end)
 
 RegisterNUICallback('dmt:spawnFavoriteVehicle', function(_, cb)
@@ -423,4 +442,22 @@ end)
 
 RegisterNUICallback('dmt:setYmapName', function(data, cb)
     print("\nTODO - Edit ymap name.\n Old:", data.oldName, 'New:', data.newName, "\n")
+end)
+
+RegisterNUICallback('dmt:setCustomCoords', function(data, cb)
+    local formatedCoords
+    if data.coordString then
+        local coordString = (data.coordString:gsub(',', '')):gsub('  ', ' ')
+
+        local coords = {}
+        for match in (coordString..' '):gmatch("(.-) ") do
+            table.insert(coords, match)
+        end
+        formatedCoords = vec3(tonumber(coords[1]), tonumber(coords[2]), tonumber(coords[3]))
+
+    elseif data.coords then
+        formatedCoords = vec3(data.coords.x, data.coords.y, data.coords.z)
+    end
+
+    FUNC.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
 end)
