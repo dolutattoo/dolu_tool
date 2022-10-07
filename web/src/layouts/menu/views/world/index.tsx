@@ -42,6 +42,8 @@ const World: React.FC = () => {
               radius="md"
               max={24}
               min={0}
+              stepHoldDelay={500}
+              stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
               onChange={(value: number) => {
                 setHourValue(value)
                 fetchNui('dmt:setClock', { hour: value, minute: minuteValue})
@@ -54,6 +56,8 @@ const World: React.FC = () => {
               radius="md"
               max={60}
               min={0}
+              stepHoldDelay={500}
+              stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
               onChange={(value: number) => {
                 setMinuteValue(value)
                 fetchNui('dmt:setClock', { hour: hourValue, minute: value})
