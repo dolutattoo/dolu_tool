@@ -247,6 +247,38 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
 end)
 
 RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
+    -- If entity param is nil, hide gizmo
+    if not entity then
+        SendNUIMessage({
+            action = 'setGizmoEntity',
+            data = {}
+        })
+        Client.gizmoEntity = nil
+    end
+
+    -- If entity param is the entity handle, find it in spawnedEntities
+    if type(entity) == "number" then
+        local found
+        for _, v in ipairs(Client.spawnedEntities) do
+            if v.handle == entity then
+                entity = v
+                found = true
+                break
+            end
+        end
+
+        if not found then
+            lib.notify({
+                title = 'Dolu Mapping Tool',
+                description = "Entity not found!",
+                type = 'error',
+                position = 'top'
+            })
+            return
+        end
+    end
+
+    -- Set entity gizmo
     if entity and DoesEntityExist(entity.handle) then
         SendNUIMessage({
             action = 'setGizmoEntity',
@@ -423,6 +455,8 @@ RegisterNUICallback('dmt:loadYmap', function(fileName, cb)
         })
         return
     end
+
+    Client.spawnedEntities = spawnedEntities
 
     -- Register the ymap in Client.loadedYmap
     if not Client.loadedYmap then Client.loadedYmap = {} end

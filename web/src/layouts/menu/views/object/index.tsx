@@ -15,7 +15,7 @@ const Object: React.FC = () => {
     const ymaps = useRecoilValue(YmapListAtom)
     const setYmapTabs = useSetRecoilState(YmapListAtom)
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
-    const currentYmap = ymaps ? ymaps.find(e => e.name == activeTab) : { name: "New" }
+    const currentYmap = ymaps ? ymaps.find(e => e.name == activeTab) : { name: "new" }
     const [renameYmapValue, setRenameYmapValue] = useState(currentYmap?.name)
 
     const ymapTabs = ymaps?.map((ymap: Ymap, index: any) => (
@@ -31,10 +31,21 @@ const Object: React.FC = () => {
                 <Space h='sm' />
 
                 <ScrollArea style={{ height: 300 }} offsetScrollbars scrollbarSize={12}>
-                    <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem} chevronPosition="left">
+                    <Accordion
+                        variant="contained"
+                        radius="sm"
+                        value={currentAccordionItem}
+                        defaultValue={currentAccordionItem}
+                        onChange={(value) => {
+                                setAccordionItem(value)                                
+                                fetchNui('dmt:setGizmoEntity', parseInt(value as string))
+                            }
+                        }
+                        chevronPosition="left"
+                    >
                         {currentYmap?.entities?.map((entity: Entity, index: any) => {                            
                             return (
-                                <Accordion.Item value={index.toString()}>
+                                <Accordion.Item value={entity.handle.toString()}>
                                     <Accordion.Control>
                                         <Text size="sm" weight={500}>{entity.name}</Text>
                                     </Accordion.Control>
@@ -108,7 +119,14 @@ const Object: React.FC = () => {
             
             {/* YMAP TABS */}
             <Paper p="md" sx={{ height:500 }}>
-                <Tabs value={activeTab} onTabChange={setActiveTab}>
+                <Tabs 
+                    value={activeTab} 
+                    onTabChange={(value) => {
+                            setActiveTab(value)
+                            setAccordionItem(null)
+                        }
+                    }
+                >
                     <Tabs.List>
                         <Tabs.Tab value="new">
                             New
