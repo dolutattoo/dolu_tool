@@ -1,18 +1,19 @@
 import { atom, useRecoilValue } from "recoil"
 
 export interface Entity {
-    handle: number,
-    name: string,
+    handle: number
+    name: string
     position: {
-        x: number,
-        y: number,
+        x: number
+        y: number
         z: number
     },
     rotation: {
-        x: number,
-        y: number,
+        x: number
+        y: number
         z: number
     },
+    ymap?: string
     frozen?: boolean
 }
 

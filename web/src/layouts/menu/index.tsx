@@ -35,14 +35,12 @@ const Menu: React.FC = () => {
   const setInteriorData = useSetRecoilState(interiorAtom)
   const setPedList = useSetRecoilState(pedListAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
-  const setEntities = useSetRecoilState(ObjectListAtom)
 
   useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], spawnedEntities: Entity[]}) => {   
     setVisible(true)
     setLocations(data.locations)
     setLastLocation(data.lastLocation)
     setPedList(data.pedLists)
-    setEntities(data.spawnedEntities)
   })
 
   useNuiEvent('setLastLocation', (data: any) => {

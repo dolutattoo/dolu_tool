@@ -22,11 +22,17 @@ const Object: React.FC = () => {
         <Tabs.Tab value={ymap.name}>{ymap.name}</Tabs.Tab>
     ))
 
+    useNuiEvent('setYmapList', (ymapList: Ymap[]|null) => {
+        if (ymapList) {
+            setYmapTabs(ymapList)
+        }
+    })
+
     // LOOPING TROUGH YMAPS FILES AND THEIR CONTENT TO BUILD TABS
     const ymapPanels = () => {
         if (ymaps === null || ymaps === undefined) { return null }
 
-        return ymaps.map((ymap:Ymap, index: any) => (
+        return ymaps.map((ymap:Ymap, ymapIndex: any) => (
             <Tabs.Panel value={ymap.name}>
                 <Space h='sm' />
 
@@ -43,7 +49,8 @@ const Object: React.FC = () => {
                         }
                         chevronPosition="left"
                     >
-                        {currentYmap?.entities?.map((entity: Entity, index: any) => {                            
+                        {/* {currentYmap?.entities?.map((entity: Entity, index: any) => {                             */}
+                        {ymap.entities?.map((entity: Entity, entityIndex: any) => {                            
                             return (
                                 <Accordion.Item value={entity.handle.toString()}>
                                     <Accordion.Control>
@@ -89,12 +96,6 @@ const Object: React.FC = () => {
         ))
     }
 
-    useNuiEvent('setYmapList', (ymapList: Ymap[]|null) => {
-        if (ymapList) {
-            setYmapTabs(ymapList)
-        }
-    })
-
     return (
         <>
             {/* TITLE */}
@@ -131,7 +132,7 @@ const Object: React.FC = () => {
                         <Tabs.Tab value="new">
                             New
                         </Tabs.Tab>
-                        {ymapTabs ? ymapTabs : null}
+                        {ymapTabs}
                     </Tabs.List>
 
                     <Tabs.Panel value="new">

@@ -4,7 +4,7 @@ import { Stack, Button, TextInput } from '@mantine/core'
 import { fetchNui } from '../../../../../../utils/fetchNui'
 
 const LoadYmap: React.FC = () => {
-  const [fileName, setFileName] = useState('test')
+  const [fileName, setFileName] = useState('legion_square_parking')
 
   return (
     <Stack>
