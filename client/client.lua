@@ -493,5 +493,6 @@ RegisterNUICallback('dmt:setCustomCoords', function(data, cb)
         formatedCoords = vec3(data.coords.x, data.coords.y, data.coords.z)
     end
 
+    if not formatedCoords then return end
     FUNC.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
 end)
