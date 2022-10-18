@@ -10,7 +10,6 @@ end
 CreateThread(function()
     if IsDuplicityVersion() then
         Server = {}
-        TriggerEvent('ox_lib:setLocale', Config.locale)
     else
         Client = {
             noClip = false,
