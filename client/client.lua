@@ -31,15 +31,17 @@ RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
 end)
 
 RegisterNUICallback('dmt:teleport', function(data, cb)
-    FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
+    if data then
+        FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
 
-    SendNUIMessage({
-        action = 'setLastLocation',
-        data = data
-    })
+        SendNUIMessage({
+            action = 'setLastLocation',
+            data = data
+        })
 
-    SetResourceKvp('dmt_lastLocation', json.encode(data))
-    Client.lastLocation = data
+        SetResourceKvp('dmt_lastLocation', json.encode(data))
+        Client.lastLocation = data
+    end
     cb(1)
 end)
 
@@ -418,12 +420,16 @@ RegisterNUICallback('dmt:loadYmap', function(fileName, cb)
             RequestModel(model)
             while not HasModelLoaded(model) do Wait(0) end
 
-            local obj = CreateObjectNoOffset(model, v.position.x, v.position.y, v.position.z)
-            SetEntityQuaternion(obj, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
+            local obj = CreateObjectNoOffset(model, v.position.x, v.position.y, v.position.z, true, true)
 
             if v.frozen then
                 FreezeEntityPosition(obj, true)
             end
+
+            Wait(250)
+            print(v.name, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
+            SetEntityQuaternion(obj, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
+            Wait(500)
 
             local entityRotation = GetEntityRotation(obj)
             spawnedEntities[#spawnedEntities+1] = {
@@ -431,6 +437,7 @@ RegisterNUICallback('dmt:loadYmap', function(fileName, cb)
                 handle = obj,
                 position = { x = v.position.x, y = v.position.y, z = v.position.z },
                 rotation = { x = entityRotation.x, y = entityRotation.y, z = entityRotation.z },
+                ymap = fileName,
                 frozen = v.frozen
             }
 
