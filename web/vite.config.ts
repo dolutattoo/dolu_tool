@@ -6,6 +6,7 @@ export default defineConfig({
   plugins: [react()],
   base: './',
   build: {
+    chunkSizeWarningLimit: 1500,
     outDir: 'build',
   },
   esbuild: {
