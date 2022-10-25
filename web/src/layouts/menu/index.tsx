@@ -45,7 +45,7 @@ const Menu: React.FC = () => {
     setLastLocation(data.lastLocation)
     setPedList(data.pedLists)
     setVehicleList(data.vehicleLists)
-    setEntities(data.spawnedEntities)
+    // setEntities(data.spawnedEntities) //todo - Later, spawned entities should be saved in kvp and respawned if resource is restarted
   })
 
   useNuiEvent('setLastLocation', (data: any) => {
