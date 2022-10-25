@@ -127,6 +127,22 @@ lib.callback.register('dmt:getPedList', function()
     return Server.pedLists
 end)
 
+lib.callback.register('dmt:getVehicleList', function()
+    if not Server.vehicleLists then
+        Server.vehicleLists = getFileData('shared/data', 'vehicleList.json')
+    end
+    return Server.vehicleLists
+end)
+
+RegisterCommand('xml', function()
+    local data = getXmlFile('shared/data/ymap', 'test.ymap.xml')
+    local entities = data.CMapData.entities
+
+    for k, v in pairs(entities[1].Item) do
+        print(v.archetypeName[1])
+    end
+end)
+
 lib.callback.register('dmt:getYmapEntities', function(_, fileName)
     local xml = getXmlFile('ymap', fileName..'.ymap.xml')
     local entities = {}

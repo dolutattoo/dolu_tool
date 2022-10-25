@@ -32,6 +32,10 @@ CreateThread(function()
             Client.pedLists = pedLists
         end)
 
+        lib.callback('dmt:getVehicleList', false, function(vehicleLists)
+            Client.vehicleLists = vehicleLists
+        end)
+
         CreateThread(function()
             while true do
                 Wait(100)

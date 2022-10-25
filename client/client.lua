@@ -50,6 +50,11 @@ RegisterNUICallback('dmt:changePed', function(data, cb)
     cb(1)
 end)
 
+RegisterNUICallback('dmt:spawnVehicle', function(data, cb)
+    FUNC.spawnVehicle(data)
+    cb(1)
+end)
+
 RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)

@@ -18,7 +18,9 @@ import Interior from './views/interior'
 import Ped from './views/ped'
 import World from './views/world'
 import Object from './views/object'
+import Vehicle from './views/vehicle'
 import { Entity, ObjectListAtom } from '../../atoms/object'
+import { vehicleListAtom, VehicleProp } from '../../atoms/vehicle'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -34,13 +36,16 @@ const Menu: React.FC = () => {
   const setLocations = useSetRecoilState(locationsAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
   const setPedList = useSetRecoilState(pedListAtom)
+  const setVehicleList = useSetRecoilState(vehicleListAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
 
-  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], spawnedEntities: Entity[]}) => {   
+  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], vehicleLists: VehicleProp[], spawnedEntities: Entity[]}) => {   
     setVisible(true)
     setLocations(data.locations)
     setLastLocation(data.lastLocation)
     setPedList(data.pedLists)
+    setVehicleList(data.vehicleLists)
+    setEntities(data.spawnedEntities)
   })
 
   useNuiEvent('setLastLocation', (data: any) => {
@@ -86,8 +91,9 @@ const Menu: React.FC = () => {
               <Route path="/world" element={<World />} />
               <Route path="/locations" element={<Locations />} />
               <Route path="/interior" element={<Interior />} />
-              <Route path="/ped" element={<Ped />} />
               <Route path="/object" element={<Object />} />
+              <Route path="/ped" element={<Ped />} />
+              <Route path="/vehicle" element={<Vehicle />} />
             </Routes>
           </AppShell>
         </Box>
