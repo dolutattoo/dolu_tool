@@ -11,6 +11,7 @@ CreateThread(function()
                 GetInteriorData(Client.interiorId, true)
             else
                 GetInteriorData(Client.interiorId)
+                Wait(200)
             end
         else
             Wait(500)
