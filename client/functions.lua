@@ -321,6 +321,20 @@ FUNC.spawnVehicle = function(model)
     cache.vehicle = vehicle
 end
 
+FUNC.quat2Euler = function(x, y, z, w)
+    local q0 = w
+    local q1 = x
+    local q2 = y
+    local q3 = z
+
+    local Rx = math.atan2(2 * (q0 * q1 + q2 * q3), 1 - (2 * (q1 * q1 + q2 * q2)))
+    local Ry = math.asin(2 * (q0 * q2 - q3 * q1))
+    local Rz = math.atan2(2 * (q0 * q3 + q1 * q2), 1 - (2  * (q2 * q2 + q3 * q3)))
+
+    local euler = vec3(Rx, Ry, Rz) * 180 / math.pi
+    return euler
+end
+
 ---Assert with styling and formatting
 ---@param v any
 ---@param msg string
