@@ -14,7 +14,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const App: React.FC = () => {
-  const { classes } = useStyles()
+  const { classes } = useStyles()  
 
   return (
     <>

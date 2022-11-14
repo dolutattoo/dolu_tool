@@ -39,13 +39,12 @@ const Menu: React.FC = () => {
   const setVehicleList = useSetRecoilState(vehicleListAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
 
-  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], vehicleLists: VehicleProp[], spawnedEntities: Entity[]}) => {   
+  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], vehicleLists: VehicleProp[]}) => {   
     setVisible(true)
     setLocations(data.locations)
     setLastLocation(data.lastLocation)
     setPedList(data.pedLists)
     setVehicleList(data.vehicleLists)
-    // setEntities(data.spawnedEntities) //todo - Later, spawned entities should be saved in kvp and respawned if resource is restarted
   })
 
   useNuiEvent('setLastLocation', (data: any) => {
