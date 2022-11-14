@@ -231,11 +231,6 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     })
 
     SendNUIMessage({
-        action = 'setEntities',
-        data = Client.spawnedEntities
-    })
-
-    SendNUIMessage({
         action = 'setGizmoEntity',
         data = {
             name = modelName,
@@ -266,11 +261,13 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
     -- If entity param is the entity handle, find it in spawnedEntities
     if type(entity) == "number" then
         local found
-        for _, v in ipairs(Client.spawnedEntities) do
-            if v.handle == entity then
-                entity = v
-                found = true
-                break
+        for _, v in ipairs(Client.loadedYmap) do
+            for _, ymapEntity  in ipairs(v.entities) do
+                if ymapEntity.handle == entity then
+                    entity = ymapEntity
+                    found = true
+                    break
+                end
             end
         end
 
@@ -339,12 +336,7 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
         DeleteEntity(entityHandle)
         table.remove(Client.spawnedEntities, foundIndex)
 
-        SendNUIMessage({
-            action = 'setEntities',
-            data = Client.spawnedEntities
-        })
-
-        --[[ Sending empty object to hidden editor ]]
+        -- Sending empty object to hide editor
         SendNUIMessage({
             action = 'setGizmoEntity',
             data = {}
@@ -425,16 +417,19 @@ RegisterNUICallback('dmt:loadYmap', function(fileName, cb)
             RequestModel(model)
             while not HasModelLoaded(model) do Wait(0) end
 
-            local obj = CreateObjectNoOffset(model, v.position.x, v.position.y, v.position.z, true, true)
+            local obj = CreateObject(model, v.position.x, v.position.y, v.position.z, true, true)
 
             if v.frozen then
                 FreezeEntityPosition(obj, true)
             end
 
-            Wait(250)
-            print(v.name, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
-            SetEntityQuaternion(obj, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
-            Wait(500)
+            -- SetEntityQuaternion(obj, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
+            -- if v.rotation.w < 0 then
+            --     local rot = GetEntityRotation(obj)
+            --     SetEntityRotation(obj, rot.x, rot.y, rot.z*(-1))
+            -- end
+            local euler = FUNC.quat2Euler(v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
+            SetEntityRotation(obj, euler.x, euler.y, euler.z)
 
             local entityRotation = GetEntityRotation(obj)
             spawnedEntities[#spawnedEntities+1] = {

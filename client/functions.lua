@@ -25,8 +25,7 @@ FUNC.openUI = function()
             locations = Client.locations,
             lastLocation = Client.lastLocation,
             pedLists = Client.pedLists,
-            vehicleLists = Client.vehicleLists,
-            spawnedEntities = Client.spawnedEntities
+            vehicleLists = Client.vehicleLists
         }
     })
     SetNuiFocus(true, true)
