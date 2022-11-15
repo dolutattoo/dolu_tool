@@ -256,6 +256,7 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
             data = {}
         })
         Client.gizmoEntity = nil
+        return
     end
 
     -- If entity param is the entity handle, find it in spawnedEntities
