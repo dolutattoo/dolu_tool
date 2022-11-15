@@ -36,7 +36,7 @@ const Object: React.FC = () => {
             <Tabs.Panel value={ymap.name}>
                 <Space h='sm' />
 
-                <ScrollArea style={{ height: 300 }} offsetScrollbars scrollbarSize={12}>
+                <ScrollArea style={{ height: 420 }} offsetScrollbars scrollbarSize={12}>
                     <Accordion
                         variant="contained"
                         radius="sm"
