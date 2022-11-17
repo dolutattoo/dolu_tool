@@ -19,8 +19,8 @@ import Ped from './views/ped'
 import World from './views/world'
 import Object from './views/object'
 import Vehicle from './views/vehicle'
-import { Entity, ObjectListAtom } from '../../atoms/object'
 import { vehicleListAtom, VehicleProp } from '../../atoms/vehicle'
+import { positionAtom } from '../../atoms/position'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -38,13 +38,15 @@ const Menu: React.FC = () => {
   const setPedList = useSetRecoilState(pedListAtom)
   const setVehicleList = useSetRecoilState(vehicleListAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
+  const setPosition = useSetRecoilState(positionAtom)
 
-  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], vehicleLists: VehicleProp[]}) => {   
+  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], vehicleLists: VehicleProp[], position: string}) => {   
     setVisible(true)
     setLocations(data.locations)
     setLastLocation(data.lastLocation)
     setPedList(data.pedLists)
     setVehicleList(data.vehicleLists)
+    setPosition(data.position)
   })
 
   useNuiEvent('setLastLocation', (data: any) => {

@@ -12,11 +12,13 @@ import { fetchNui } from '../../../../utils/fetchNui'
 import CreateLocation from '../locations/components/modals/CreateLocation'
 import { setClipboard } from '../../../../utils/setClipboard'
 import SetCoords from './modals/SetCoords'
+import { useRecoilState } from 'recoil'
+import { positionAtom } from '../../../../atoms/position'
 
 const Home: React.FC = () => {
   const lastLocation = getLastLocation()
   const interior = getInteriorData()
-  const [currentCoords, setCurrentCoords] = useState('1.000, 2.000, 3.000')
+  const [currentCoords, setCurrentCoords] = useRecoilState(positionAtom)
   const [currentHeading, setCurrentHeading] = useState('0.000')
   const [timeFrozen, setTimeFrozen] = useState<boolean>(false)
   const [copiedCoords, setCopiedCoords] = useState(false)

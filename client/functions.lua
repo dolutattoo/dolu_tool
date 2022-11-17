@@ -19,13 +19,15 @@ local WEATHER_LIST = {
 }
 
 FUNC.openUI = function()
+    local coords = GetEntityCoords(cache.ped)
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
             locations = Client.locations,
             lastLocation = Client.lastLocation,
             pedLists = Client.pedLists,
-            vehicleLists = Client.vehicleLists
+            vehicleLists = Client.vehicleLists,
+            position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z
         }
     })
     SetNuiFocus(true, true)
