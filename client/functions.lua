@@ -299,24 +299,25 @@ FUNC.changePed = function(model)
     cache.ped = PlayerPedId()
 end
 
-FUNC.spawnVehicle = function(model)
+FUNC.spawnVehicle = function(model, coords)
     if type(model) == 'string' then model = joaat(model) end
     -- FUNC.assert(IsModelInCdimage(model), "Model %s does not exists", model)
 
-    local playerId = PlayerPedId()
-    local playerCoords = GetEntityCoords(playerId)
-    local playerHeading = GetEntityHeading(playerId)
+    local playerPed = cache.ped
 
-    local oldVehicle = GetVehiclePedIsIn(playerId, false)
-    if oldVehicle ~= nil then
-        SetEntityAsMissionEntity(oldVehicle, true, true)
+    local oldVehicle = GetVehiclePedIsIn(playerPed, false)
+    if oldVehicle > 0 and GetPedInVehicleSeat(oldVehicle, -1) == playerPed then
         DeleteVehicle(oldVehicle)
+    end
+
+    if not coords then
+        coords = GetEntityCoords(playerPed)
     end
 
     RequestModel(model)
     while not HasModelLoaded(model) do Wait(0) end
-    local vehicle = CreateVehicle(model, playerCoords.x, playerCoords.y, playerCoords.z, playerHeading, true, true)
-    TaskWarpPedIntoVehicle(playerId, vehicle, -1)
+    local vehicle = CreateVehicle(model, coords.x, coords.y, coords.z, GetEntityHeading(playerPed), true, true)
+    TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
     SetVehicleRadioEnabled(vehicle, false)
     SetVehicleDirtLevel(vehicle, 0.0)
     SetVehicleNumberPlateText(vehicle, " ~DMT~ ")

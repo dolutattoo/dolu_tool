@@ -78,7 +78,7 @@ const Vehicle: React.FC = () => {
               variant="outline"
               color={"blue.4"}
               size="xs"
-              onClick={() => { fetchNui('dmt:spawnVehicle', vehicleList.name) }}
+              onClick={() => fetchNui('dmt:spawnVehicle', vehicleList.name)}
             >
               Spawn Vehicle
             </Button>
@@ -117,7 +117,7 @@ const Vehicle: React.FC = () => {
           uppercase
           variant="outline"
           color="blue.4"
-          onClick={() => { }}
+          onClick={() => fetchNui('dmt:spawnVehicle', searchVehicleValue)}
         >
           Spawn by Name
         </Button>
