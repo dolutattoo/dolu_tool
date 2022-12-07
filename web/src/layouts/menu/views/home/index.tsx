@@ -183,9 +183,9 @@ const Home: React.FC = () => {
               color='blue.4'
               variant='outline'
               onClick={() =>
-                fetchNui('dmt:cleanVehicle', {})
+                fetchNui('dmt:upgradeVehicle', {})
               }
-            >Clean vehicle</Button>
+            >Upgrade vehicle</Button>
           </Group>
 
           <Space h="sm" />

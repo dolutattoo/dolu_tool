@@ -159,9 +159,22 @@ RegisterNUICallback('dmt:cleanPed', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:cleanVehicle', function(_, cb)
+RegisterNUICallback('dmt:upgradeVehicle', function(_, cb)
     local vehicle = cache.vehicle
-    SetVehicleDirtLevel(vehicle, 0.0)
+    if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
+        local max
+        for _, modType in ipairs({11, 12, 13, 16}) do
+            max = GetNumVehicleMods(vehicle, modType) - 1
+            SetVehicleMod(vehicle, modType, max, customWheels)
+        end
+        ToggleVehicleMod(vehicle, 18, true) -- Turbo
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Vehicle succefully upgraded!",
+            type = 'success',
+            position = 'top'
+        })
+    end
     cb(1)
 end)
 
