@@ -88,7 +88,7 @@ function DrawPortalInfos(interiorId)
             pureCorners[cornerIndex] = vec3(cornerX, cornerY, cornerZ)
         end
         local CrossVector = FUNC.Lerp(corners[0], corners[2], 0.5)
-
+        
         if #(pedCoords - CrossVector) <= 8.0 then
             if Client.portalPoly then
                 DrawPoly(corners[0].x, corners[0].y, corners[0].z, corners[1].x, corners[1].y, corners[1].z, corners[2].x, corners[2].y, corners[2].z, 0, 0, 180, 150)
@@ -126,3 +126,30 @@ function DrawPortalInfos(interiorId)
         end
     end
 end
+
+RegisterNUICallback('dmt:setTimecycle', function(data, cb)
+    print(json.encode(data, {indent=true}))
+    if data.roomId then
+        FUNC.setTimecycle(data.value)
+        print("Timecycle applied: ", GetInteriorRoomTimecycle(Client.interiorId, data.roomId))
+    end
+    cb(1)
+end)
+
+-- Temporary development stuff
+local autotime = false
+RegisterCommand('autotime', function(source, args)
+    autotime = not autotime
+end, false)
+
+CreateThread(function()
+    local h = 0
+    while true do
+        if autotime then
+            h += 1
+            if h > 22 then h = 0 end
+            FUNC.setClock(h, 0, 0)
+        end
+        Wait(75)
+    end
+end)
