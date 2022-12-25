@@ -1,6 +1,7 @@
 import { Stack, SimpleGrid, Paper, Text, Space } from '@mantine/core'
 import { getInteriorData } from '../../../../atoms/interior'
 import InteriorElement from './components/InteriorElement'
+import RoomsElement from './components/RoomsElement'
 
 const Interior: React.FC = () => {
   const interior = getInteriorData()
@@ -17,7 +18,10 @@ const Interior: React.FC = () => {
               <Text color="red.4">You are not inside any interior.</Text>
           </Paper>
           :
-          <InteriorElement/>
+          <>
+            <InteriorElement/>
+            <RoomsElement/>
+          </>
         }
       </Stack>
     </SimpleGrid>
