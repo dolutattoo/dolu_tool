@@ -31,6 +31,8 @@ RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
             data = Client.loadedYmap
         })
     end
+    
+    cb(1)
 end)
 
 RegisterNUICallback('dmt:teleport', function(data, cb)
@@ -45,16 +47,19 @@ RegisterNUICallback('dmt:teleport', function(data, cb)
         SetResourceKvp('dmt_lastLocation', json.encode(data))
         Client.lastLocation = data
     end
+    
     cb(1)
 end)
 
 RegisterNUICallback('dmt:changePed', function(data, cb)
     FUNC.changePed(data.name)
+    
     cb(1)
 end)
 
 RegisterNUICallback('dmt:spawnVehicle', function(data, cb)
     FUNC.spawnVehicle(data)
+    
     cb(1)
 end)
 
@@ -68,6 +73,7 @@ RegisterNUICallback('dmt:exit', function(_, cb)
         data = {}
     })
     Client.gizmoEntity = nil
+    
     cb(1)
 end)
 
@@ -82,6 +88,7 @@ RegisterNUICallback('dmt:changeLocationName', function(data, cb)
             data = Client.locations
         })
     end, data)
+    
     cb(1)
 end)
 
@@ -110,6 +117,7 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
         coords = GetEntityCoords(playerPed),
         heading = GetEntityHeading(playerPed)
     })
+    
     cb(1)
 end)
 
@@ -124,16 +132,19 @@ RegisterNUICallback('dmt:deleteLocation', function(locationName, cb)
         action = 'setLocationDatas',
         data = Client.locations
     })
+    
     cb(1)
 end)
 
 RegisterNUICallback('dmt:setWeather', function(weatherName, cb)
     FUNC.setWeather(weatherName)
+    
     cb(1)
 end)
 
 RegisterNUICallback('dmt:setClock', function(clock, cb)
     FUNC.setClock(clock.hour, clock.minute)
+    
     cb(1)
 end)
 
@@ -143,6 +154,7 @@ RegisterNUICallback('dmt:getClock', function(_, cb)
         action = 'setClockData',
         data = {hour = hour, minute = minute }
     })
+    
     cb(1)
 end)
 
@@ -150,6 +162,7 @@ RegisterNUICallback('dmt:cleanZone', function(_, cb)
     local playerId = cache.ped
     local playerCoords = GetEntityCoords(playerId)
     ClearAreaOfEverything(playerCoords.x, playerCoords.y, playerCoords.z, 1000.0, false, false, false, false)
+    
     cb(1)
 end)
 
@@ -158,6 +171,7 @@ RegisterNUICallback('dmt:cleanPed', function(_, cb)
     ClearPedBloodDamage(playerId)
     ClearPedEnvDirt(playerId)
     ClearPedWetness(playerId)
+    
     cb(1)
 end)
 
@@ -185,6 +199,7 @@ RegisterNUICallback('dmt:repairVehicle', function(_, cb)
 	SetVehicleFixed(vehicle)
     SetVehicleEngineHealth(vehicle, 1000.0)
     SetVehicleDirtLevel(vehicle, 0.0)
+    
     cb(1)
 end)
 
@@ -195,6 +210,7 @@ end)
 RegisterNUICallback('dmt:setDay', function(_, cb)
     FUNC.setClock(12)
     FUNC.setWeather('extrasunny')
+    
     cb(1)
 end)
 
@@ -208,10 +224,13 @@ RegisterNUICallback('dmt:setMaxHealth', function(_, cb)
         type = 'success',
         position = 'top'
     })
+    
+    cb(1)
 end)
 
 RegisterNUICallback('dmt:spawnFavoriteVehicle', function(_, cb)
     FUNC.spawnVehicle('krieger')
+    
     cb(1)
 end)
 
@@ -246,6 +265,11 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     })
 
     SendNUIMessage({
+        action = 'setObjectList',
+        data = Client.spawnedEntities
+    })
+
+    SendNUIMessage({
         action = 'setGizmoEntity',
         data = {
             name = modelName,
@@ -256,19 +280,83 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     })
     Client.gizmoEntity = obj
 
-    -- Enabling freecam
-    Client.noClip = true
-    SetFreecamActive(Client.noClip)
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
+    -- Make sure entity exists in spawnedEntities
+    local foundIndex
+    for k, v in ipairs(Client.spawnedEntities) do
+        if v.handle == entityHandle then
+            foundIndex = k
+            break
+        end
+    end
+
+    if not foundIndex or not DoesEntityExist(entityHandle) then
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Entity does not exist!",
+            type = 'error',
+            position = 'top'
+        })
+        return
+    end
+
+    DeleteEntity(entityHandle)
+    table.remove(Client.spawnedEntities, foundIndex)
+
+    -- Sending empty object to hide editor
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {}
+    })
+    Client.gizmoEntity = nil
+
+    -- Updating nui object list
+    SendNUIMessage({
+        action = 'setObjectList',
+        data = Client.spawnedEntities
+    })
+
+    lib.notify({
+        title = 'Dolu Mapping Tool',
+        description = "Entity succefully deleted",
+        type = 'success',
+        position = 'top'
+    })
 
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
-    print(entity)
+RegisterNUICallback('dmt:deleteAllEntities', function(_, cb)
+    -- Sending empty object to hide editor
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {}
+    })
+    Client.gizmoEntity = nil
 
+    -- Remove all spawned entities
+    for _, v in ipairs(Client.spawnedEntities) do
+        if DoesEntityExist(v.handle) then
+            DeleteEntity(v.handle)
+        end
+    end
+    Client.spawnedEntities = {}
 
+    -- Updating nui object list
+    SendNUIMessage({
+        action = 'setObjectList',
+        data = Client.spawnedEntities
+    })
+
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:setGizmoEntity', function(entityHandle, cb)
     -- If entity param is nil, hide gizmo
-    if not entity then
+    if not entityHandle then
         SendNUIMessage({
             action = 'setGizmoEntity',
             data = {}
@@ -277,50 +365,37 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
         return
     end
 
-    -- If entity param is the entity handle, find it in spawnedEntities
-    if type(entity) == "number" then
-        local found
-        for _, v in ipairs(Client.spawnedEntities) do --Todo: get rid of fucking ymap stuff
-            for _, ymapEntity  in ipairs(v.entities) do
-                if ymapEntity.handle == entity then
-                    entity = ymapEntity
-                    found = true
-                    break
-                end
-            end
-        end
-
-        if not found then
-            lib.notify({
-                title = 'Dolu Mapping Tool',
-                description = "Entity not found!",
-                type = 'error',
-                position = 'top'
-            })
-            return
+    -- Make sure entity exists in spawnedEntities
+    local entity
+    for _, v in ipairs(Client.spawnedEntities) do
+        if v.handle == entityHandle then
+            entity = v
+            break
         end
     end
 
-    -- Set entity gizmo
-    if entity and DoesEntityExist(entity.handle) then
-        SendNUIMessage({
-            action = 'setGizmoEntity',
-            data = {
-                name = entity.name,
-                handle = entity.handle,
-                position = GetEntityCoords(entity.handle),
-                rotation = GetEntityRotation(entity.handle),
-            }
-        })
-        Client.gizmoEntity = entity.handle
-    else
+    if not entity or not DoesEntityExist(entityHandle) then
         lib.notify({
             title = 'Dolu Mapping Tool',
             description = "Entity does not exist!",
             type = 'error',
             position = 'top'
         })
+        return
     end
+
+    -- Set entity gizmo
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {
+            name = entity.name,
+            handle = entity.handle,
+            position = GetEntityCoords(entity.handle),
+            rotation = GetEntityRotation(entity.handle),
+        }
+    })
+    Client.gizmoEntity = entity.handle
+
     cb(1)
 end)
 
@@ -329,47 +404,7 @@ RegisterNUICallback('dmt:moveEntity', function(data, cb)
         SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
         SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z)
     end
-    cb(1)
-end)
-
-RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
-    if not DoesEntityExist(entityHandle) then
-        lib.notify({
-            title = 'Dolu Mapping Tool',
-            description = "Entity does not exist!",
-            type = 'error',
-            position = 'top'
-        })
-        return
-    end
-
-    local foundIndex
-    for k, entity in ipairs(Client.spawnedEntities) do
-        if entity.handle == entityHandle then
-            foundIndex = k
-            break
-        end
-    end
-
-    if foundIndex then
-        DeleteEntity(entityHandle)
-        table.remove(Client.spawnedEntities, foundIndex)
-
-        -- Sending empty object to hide editor
-        SendNUIMessage({
-            action = 'setGizmoEntity',
-            data = {}
-        })
-        Client.gizmoEntity = nil
-
-        lib.notify({
-            title = 'Dolu Mapping Tool',
-            description = "Entity succefully deleted",
-            type = 'success',
-            position = 'top'
-        })
-    end
-
+    
     cb(1)
 end)
 
@@ -396,112 +431,8 @@ RegisterNUICallback('dmt:snapEntityToGround', function(entity, cb)
             rotation = GetEntityRotation(entity.handle),
         }
     })
+    
     cb(1)
-end)
-
-RegisterNUICallback('dmt:loadYmap', function(fileName, cb)
-    -- Prevent to load Ymap with same name multiple times
-    if Client.loadedYmap then
-        for _, v in ipairs(Client.loadedYmap) do
-            if v.name == fileName then
-                lib.notify({
-                    title = 'Dolu Mapping Tool',
-                    description = "A ymap file with the same name is already loaded.",
-                    type = 'error',
-                    position = 'top'
-                })
-                return
-            end
-        end
-    end
-
-    -- Get entities from xml file
-    local entities = lib.callback.await('dmt:getYmapEntities', false, fileName)
-    if not entities then
-        lib.notify({
-            title = 'Dolu Mapping Tool',
-            description = "This file does not contains any entity",
-            type = 'error',
-            position = 'top'
-        })
-        return
-    end
-
-    -- Spawning entities
-    local spawnedEntities = {}
-    for k, v in ipairs(entities) do
-        local model = joaat(v.name)
-
-        if IsModelInCdimage(model) then
-            RequestModel(model)
-            while not HasModelLoaded(model) do Wait(0) end
-
-            local obj = CreateObject(model, v.position.x, v.position.y, v.position.z, true, true)
-
-            if v.frozen then
-                FreezeEntityPosition(obj, true)
-            end
-
-            -- SetEntityQuaternion(obj, v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
-            -- if v.rotation.w < 0 then
-            --     local rot = GetEntityRotation(obj)
-            --     SetEntityRotation(obj, rot.x, rot.y, rot.z*(-1))
-            -- end
-            local euler = FUNC.quat2Euler(v.rotation.x, v.rotation.y, v.rotation.z, v.rotation.w)
-            SetEntityRotation(obj, euler.x, euler.y, euler.z)
-
-            local entityRotation = GetEntityRotation(obj)
-            spawnedEntities[#spawnedEntities+1] = {
-                name = v.name,
-                handle = obj,
-                position = { x = v.position.x, y = v.position.y, z = v.position.z },
-                rotation = { x = entityRotation.x, y = entityRotation.y, z = entityRotation.z },
-                ymap = fileName,
-                frozen = v.frozen
-            }
-
-            SetModelAsNoLongerNeeded(model)
-        else
-            lib.notify({
-                title = 'Dolu Mapping Tool',
-                description = "Entity with name '" .. v.name .. "' (index " .. k .. ") does not exist",
-                type = 'error',
-                position = 'top'
-            })
-        end
-    end
-
-    -- If no entity spawned, stop the function
-    if #spawnedEntities < 1 then
-        lib.notify({
-            title = 'Dolu Mapping Tool',
-            description = "No entity spawned",
-            type = 'error',
-            position = 'top'
-        })
-        return
-    end
-
-    Client.spawnedEntities = spawnedEntities
-
-    -- Register the ymap in Client.loadedYmap
-    if not Client.loadedYmap then Client.loadedYmap = {} end
-    table.insert(Client.loadedYmap, {
-        name     = fileName,
-        entities = spawnedEntities
-    })
-
-    -- Sending Ymap properties to NUI
-    SendNUIMessage({
-        action = 'setYmapList',
-        data = Client.loadedYmap
-    })
-
-    cb(1)
-end)
-
-RegisterNUICallback('dmt:setYmapName', function(data, cb)
-    print("\nTODO - Edit ymap name.\n Old:", data.oldName, 'New:', data.newName, "\n")
 end)
 
 RegisterNUICallback('dmt:setCustomCoords', function(data, cb)
@@ -521,4 +452,6 @@ RegisterNUICallback('dmt:setCustomCoords', function(data, cb)
 
     if not formatedCoords then return end
     FUNC.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
+    
+    cb(1)
 end)
