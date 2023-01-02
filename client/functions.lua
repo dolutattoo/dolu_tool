@@ -247,6 +247,17 @@ FUNC.setPlayerCoords = function(vehicle, x, y, z, heading)
     end
 end
 
+FUNC.setMenuPlayerCoords = function()
+    local coords = GetEntityCoords(cache.ped)
+    SendNUIMessage({
+        action = 'playerCoords',
+        data = {
+            coords = FUNC.round(coords.x, 3) .. ", " .. FUNC.round(coords.y, 3) .. ", " .. FUNC.round(coords.z, 3),
+            heading = tostring(FUNC.round(GetEntityHeading(cache.ped), 3))
+        }
+    })
+end
+
 FUNC.teleportPlayer = function(coords, updateLastCoords)
     assert(type(coords) == 'table', "Trying to teleport player to invalid coords type")
     coords = vec4(coords.x, coords.y, coords.z, coords.heading or 0)

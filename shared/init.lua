@@ -37,6 +37,8 @@ CreateThread(function()
         end)
 
         CreateThread(function()
+            FUNC.setMenuPlayerCoords()
+
             while true do
                 Wait(100)
                 Client.interiorId = GetInteriorFromEntity(cache.ped)

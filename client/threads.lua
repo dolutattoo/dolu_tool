@@ -42,16 +42,14 @@ CreateThread(function()
             local coords = GetEntityCoords(cache.ped)
 
             if #(coords - oldCoords) > 0.5 then
-                oldCoords = coords
-                local formatedCoords = FUNC.round(coords.x, 3) .. ", " .. FUNC.round(coords.y, 3) .. ", " .. FUNC.round(coords.z, 3)
-
                 SendNUIMessage({
                     action = 'playerCoords',
                     data = {
-                        coords = formatedCoords,
+                        coords = FUNC.round(coords.x, 3) .. ", " .. FUNC.round(coords.y, 3) .. ", " .. FUNC.round(coords.z, 3),
                         heading = tostring(FUNC.round(GetEntityHeading(cache.ped), 3))
                     }
                 })
+                oldCoords = coords
             end
         else
             Wait(200)

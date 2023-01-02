@@ -11,7 +11,10 @@ RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
         Client.gizmoEntity = nil
     end
 
-    if newTab == 'world' then
+    if newTab == 'home' then
+        FUNC.setMenuPlayerCoords()
+    
+    elseif newTab == 'world' then
         local hour, minute = FUNC.getClock()
 
         SendNUIMessage({
@@ -59,7 +62,6 @@ RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
     Client.isMenuOpen = false
-    Client.currentTab = nil
 
     SendNUIMessage({
         action = 'setGizmoEntity',
@@ -262,6 +264,9 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
 end)
 
 RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
+    print(entity)
+
+
     -- If entity param is nil, hide gizmo
     if not entity then
         SendNUIMessage({
@@ -275,7 +280,7 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entity, cb)
     -- If entity param is the entity handle, find it in spawnedEntities
     if type(entity) == "number" then
         local found
-        for _, v in ipairs(Client.loadedYmap) do
+        for _, v in ipairs(Client.spawnedEntities) do --Todo: get rid of fucking ymap stuff
             for _, ymapEntity  in ipairs(v.entities) do
                 if ymapEntity.handle == entity then
                     entity = ymapEntity
