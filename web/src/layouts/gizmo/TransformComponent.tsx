@@ -39,8 +39,16 @@ export const TransformComponent = () => {
         const keyHandler = (e: KeyboardEvent) => {
             if (e.code === 'KeyR') {
                 setEditorMode('rotate')
-            } else if (e.code === 'KeyW') {
-                setEditorMode('translate')
+            } else {
+                if (navigator.language.startsWith('fr')) {
+                    if (e.code === 'KeyW') { // AZERTY
+                        setEditorMode('translate')
+                    }
+                } else {
+                    if (e.code === 'KeyZ') { // QWERTY
+                        setEditorMode('translate')
+                    }
+                }
             }
         }    
         window.addEventListener('keyup', keyHandler)
