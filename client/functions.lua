@@ -30,6 +30,9 @@ FUNC.openUI = function()
             position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z
         }
     })
+    if Client.currentTab == 'home' then
+        FUNC.setMenuPlayerCoords()
+    end
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)
     Client.isMenuOpen = true
