@@ -4,7 +4,7 @@ import { RiHomeGearFill } from 'react-icons/ri'
 import { FaCar, FaTshirt } from 'react-icons/fa'
 import { BiCube, BiWorld } from 'react-icons/bi'
 import NavIcon from './NavIcon'
-import { GiTeleport } from 'react-icons/gi'
+import { GiPistolGun, GiTeleport } from 'react-icons/gi'
 import { fetchNui } from '../../../utils/fetchNui'
 
 const Nav: React.FC = () => {
@@ -27,6 +27,7 @@ const Nav: React.FC = () => {
           <NavIcon color="blue.4" tooltip="Object" Icon={BiCube} to="/object"  handleClick={() => fetchNui('dmt:tabSelected', 'object')}/>
           <NavIcon color="blue.4" tooltip="Ped" Icon={FaTshirt} to="/ped"  handleClick={() => fetchNui('dmt:tabSelected', 'ped')}/>
           <NavIcon color="blue.4" tooltip="Vehicle" Icon={FaCar} to="/vehicle"  handleClick={() => fetchNui('dmt:tabSelected', 'vehicle')}/>
+          <NavIcon color="blue.4" tooltip="Weapon" Icon={GiPistolGun} to="/weapon"  handleClick={() => fetchNui('dmt:tabSelected', 'weapon')}/>
         </Stack>
       </Navbar.Section>
     </Navbar>

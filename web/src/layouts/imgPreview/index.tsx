@@ -4,7 +4,7 @@ import { displayImageAtom, imagePathAtom } from "../../atoms/imgPreview"
 
 const ImgPreview: React.FC = () => {
   const isDisplayImage = useRecoilValue(displayImageAtom)
-  const pedListImagePath = useRecoilValue(imagePathAtom)
+  const imagePath = useRecoilValue(imagePathAtom)
 
   return (
     <Transition transition="slide-right" mounted={isDisplayImage}>
@@ -25,7 +25,7 @@ const ImgPreview: React.FC = () => {
             height={300}
             fit="contain"
             alt={"Display selected image"}
-            src={pedListImagePath}
+            src={imagePath}
             withPlaceholder={true}
           />
         </Paper>

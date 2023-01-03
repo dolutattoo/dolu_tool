@@ -1,19 +1,20 @@
 import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Transition, Center, Pagination } from "@mantine/core"
 import { useEffect, useState} from "react"
 import { useRecoilState, useSetRecoilState } from "recoil"
-import { usePedList, changePed, getSearchPedInput, pedListPageCountAtom, getPedListPageCount, pedListActivePageAtom } from "../../../../atoms/ped"
+import { useWeaponList, getSearchWeaponInput, weaponListPageCountAtom, getWeaponListPageCount, weaponListActivePageAtom } from "../../../../atoms/weapon"
 import { displayImageAtom, imagePathAtom } from "../../../../atoms/imgPreview"
 import { setClipboard } from '../../../../utils/setClipboard'
-import PedSearch from "./components/pedListSearch"
+import WeaponSearch from "./components/weaponListSearch"
+import { fetchNui } from "../../../../utils/fetchNui"
 
-const Ped: React.FC = () => {
-  // Get Peds (depending on search bar value)
-  const pedLists = usePedList()
-  // Get search bar value (used for change ped by name)
-  const searchPedValue = getSearchPedInput()
+const Weapon: React.FC = () => {
+  // Get Weapons (depending on search bar value)
+  const weaponLists = useWeaponList()
+  // Get search bar value (used for give weapon by name)
+  const searchWeaponValue = getSearchWeaponInput()
 
   const createPages = (arr: any, size: number) => {
-    const setPageCount = useSetRecoilState(pedListPageCountAtom)
+    const setPageCount = useSetRecoilState(weaponListPageCountAtom)
     var result = []
     var pageCount = -1
     for (var i = size*-1; i < arr.length; i += size) {
@@ -23,12 +24,12 @@ const Ped: React.FC = () => {
     setPageCount(pageCount)
     return result
   }
-  const pages = createPages(pedLists, 5)
-  const pageCount = getPedListPageCount()
-  const [activePage, setPage] = useRecoilState(pedListActivePageAtom)
+  const pages = createPages(weaponLists, 5)
+  const pageCount = getWeaponListPageCount()
+  const [activePage, setPage] = useRecoilState(weaponListActivePageAtom)
 
-  const [copiedPedName, setCopiedPedName] = useState(false);
-  const [copiedPedHash, setCopiedPedHash] = useState(false);
+  const [copiedWeaponName, setCopiedWeaponName] = useState(false);
+  const [copiedWeaponHash, setCopiedWeaponHash] = useState(false);
   const [currentAccordionItem, setAccordionItem] = useState<string|null>('0')
 
   const displayImage = useSetRecoilState(displayImageAtom)
@@ -37,34 +38,34 @@ const Ped: React.FC = () => {
   // Copied name button
   useEffect(() => {
     setTimeout(() => {
-      if (copiedPedName) setCopiedPedName(false);
+      if (copiedWeaponName) setCopiedWeaponName(false);
     }, 1000);
-  }, [copiedPedName, setCopiedPedName]);
+  }, [copiedWeaponName, setCopiedWeaponName]);
   // Copied hash button
   useEffect(() => {
     setTimeout(() => {
-      if (copiedPedHash) setCopiedPedHash(false);
+      if (copiedWeaponHash) setCopiedWeaponHash(false);
     }, 1000);
-  }, [copiedPedHash, setCopiedPedHash]);
+  }, [copiedWeaponHash, setCopiedWeaponHash]);
 
-  const PedList = pages[activePage]?.map((pedList: any, index: number) => (
+  const WeaponList = pages[activePage]?.map((weaponList: any, index: number) => (
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
-          <Text size="md" weight={500}>• {pedList.name}</Text>
-          <Text size="xs">Hash: {pedList.hash}</Text>
+          <Text size="md" weight={500}>• {weaponList.name}</Text>
+          <Text size="xs">Hash: {weaponList.hash}</Text>
         </Accordion.Control>
         <Accordion.Panel>
           <Group grow spacing="xs"> 
             <Image
               onMouseEnter={() => {
                 displayImage(true);
-                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/ped/${pedList.name}.webp`)
+                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/weapon/${weaponList.name}.png`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit="contain"
-              alt={`${pedList.name}`}
-              src={`https://cfx-nui-DoluMappingTool/shared/img/ped/${pedList.name}.webp`}
+              alt={`${weaponList.name}`}
+              src={`https://cfx-nui-DoluMappingTool/shared/img/weapon/${weaponList.name}.png`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
@@ -77,31 +78,31 @@ const Ped: React.FC = () => {
               variant="outline"
               color={"blue.4"}
               size="xs"
-              onClick={() => { changePed({ name: pedList.name, hash: pedList.hash }) }}
+              onClick={() => fetchNui('dmt:giveWeapon', weaponList.name)}
             >
-              Change Ped
+              Give Weapon
             </Button>
             <Button
               variant="outline"
-              color={copiedPedName ? 'teal' : "blue.4"}
+              color={copiedWeaponName ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
-                setClipboard(pedList.name);
-                setCopiedPedName(true);
+                setClipboard(weaponList.name);
+                setCopiedWeaponName(true);
               }}
             >
-              {copiedPedName ? 'Copied' : 'Copy'} Name
+              {copiedWeaponName ? 'Copied' : 'Copy'} Name
             </Button>
             <Button
               variant="outline"
-              color={copiedPedHash ? 'teal' : "blue.4"}
+              color={copiedWeaponHash ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
-                setClipboard(pedList.hash ? `${pedList.hash}` : '');
-                setCopiedPedHash(true);
+                setClipboard(weaponList.hash ? `${weaponList.hash}` : '');
+                setCopiedWeaponHash(true);
               }}
             >
-              {copiedPedHash ? 'Copied' : 'Copy'} Hash
+              {copiedWeaponHash ? 'Copied' : 'Copy'} Hash
             </Button>                     
           </Group>
         </Accordion.Panel>
@@ -111,22 +112,22 @@ const Ped: React.FC = () => {
   return(
     <Paper p="md">
       <Stack>
-        <Text size={20}>Ped</Text>
+        <Text size={20}>Weapon</Text>
         <Button
           uppercase
           variant="outline"
           color="blue.4"
-          onClick={() => { changePed({ name: `${searchPedValue}` }) }}
+          onClick={() => fetchNui('dmt:giveWeapon', searchWeaponValue)}
         >
-          Change by Name
+          Give by Name
         </Button>
-        <PedSearch/>
+        <WeaponSearch/>
         <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
           <Stack>
             <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
-              {PedList ? PedList : 
+              {WeaponList ? WeaponList : 
                 <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">No ped found</Text>
+                  <Text size="md" weight={600} color="red.4">No weapon found</Text>
                 </Paper>
               }
               </Accordion>
@@ -150,4 +151,4 @@ const Ped: React.FC = () => {
 
 }
 
-export default Ped
+export default Weapon

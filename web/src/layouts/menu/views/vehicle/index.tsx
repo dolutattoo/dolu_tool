@@ -112,7 +112,7 @@ const Vehicle: React.FC = () => {
   return(
     <Paper p="md">
       <Stack>
-        <Text size={20}>Vehicle Spawner</Text>
+        <Text size={20}>Vehicle</Text>
         <Button
           uppercase
           variant="outline"

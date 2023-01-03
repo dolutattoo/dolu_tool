@@ -134,6 +134,13 @@ lib.callback.register('dmt:getVehicleList', function()
     return Server.vehicleLists
 end)
 
+lib.callback.register('dmt:getWeaponList', function()
+    if not Server.weaponLists then
+        Server.weaponLists = getFileData('shared/data', 'weaponList.json')
+    end
+    return Server.weaponLists
+end)
+
 lib.callback.register('dmt:getYmapEntities', function(_, fileName)
     local xml = getXmlFile('ymap', fileName..'.ymap.xml')
     local entities = {}

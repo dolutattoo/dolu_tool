@@ -38,6 +38,10 @@ CreateThread(function()
             Client.vehicleLists = vehicleLists
         end)
 
+        lib.callback('dmt:getWeaponList', false, function(weaponLists)
+            Client.weaponLists = weaponLists
+        end)
+
         CreateThread(function()
             FUNC.setMenuPlayerCoords()
 

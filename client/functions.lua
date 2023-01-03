@@ -27,7 +27,8 @@ FUNC.openUI = function()
             lastLocation = Client.lastLocation,
             pedLists = Client.pedLists,
             vehicleLists = Client.vehicleLists,
-            position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z
+            position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z,
+            weaponLists = Client.weaponLists
         }
     })
     if Client.currentTab == 'home' then

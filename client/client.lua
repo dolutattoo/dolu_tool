@@ -63,6 +63,12 @@ RegisterNUICallback('dmt:spawnVehicle', function(data, cb)
     cb(1)
 end)
 
+RegisterNUICallback('dmt:deleteVehicle', function(_, cb)
+    DeleteVehicle(cache.vehicle)
+    
+    cb(1)
+end)
+
 RegisterNUICallback('dmt:exit', function(_, cb)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
@@ -215,7 +221,8 @@ RegisterNUICallback('dmt:repairVehicle', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:giveAllWeapons', function(_, cb)
+RegisterNUICallback('dmt:giveWeapon', function(weaponName, cb)
+    print(weaponName)
     cb(1)
 end)
 
