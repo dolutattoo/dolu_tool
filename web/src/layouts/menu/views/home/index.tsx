@@ -204,9 +204,9 @@ const Home: React.FC = () => {
               color='blue.4'
               variant='outline'
               onClick={() =>
-                fetchNui('dmt:giveAllWeapons', {})
+                fetchNui('dmt:deleteVehicle', {})
               }
-            >Give weapons</Button>
+            >Delete Vehicle</Button>
 
             <Button
               color='blue.4'
