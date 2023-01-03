@@ -1,12 +1,13 @@
 import { Text, Paper, Group, Checkbox, Space } from "@mantine/core"
-import { useEffect, useState } from "react"
-import { getInteriorData } from "../../../../../atoms/interior"
+import { useEffect } from "react"
+import { useRecoilState } from "recoil"
+import { getInteriorData, portalDebuggingAtom } from "../../../../../atoms/interior"
 import { fetchNui } from "../../../../../utils/fetchNui"
 
 const InteriorElement: React.FC = () => {
   const interior = getInteriorData()
   
-  const [checkboxesValue, setCheckboxesValue] = useState<string[]>([])
+  const [checkboxesValue, setCheckboxesValue] = useRecoilState(portalDebuggingAtom)
   useEffect(() => {
     if (checkboxesValue) fetchNui('dmt:setPortalCheckbox', checkboxesValue)
   }, [checkboxesValue, setCheckboxesValue])
