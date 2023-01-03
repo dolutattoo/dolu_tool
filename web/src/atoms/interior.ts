@@ -31,6 +31,7 @@ const mockInterior: InteriorData = {
 
 export const interiorAtom = atom<InteriorData>({ key: 'interior', default: mockInterior })
 export const portalDebuggingAtom = atom<string[]>({ key: 'portalDebugging', default: [] })
+export const portalEditingIndexAtom = atom<number>({ key: 'portalEditingIndex', default: 0 })
 
 export const getInteriorAtom = selector({
     key: 'getInterior',

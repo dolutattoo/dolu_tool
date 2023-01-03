@@ -14,7 +14,7 @@ const RoomsElement: React.FC = () => {
 
     return (
         <Paper p="md">
-            <Text size={24} weight={600}>Current room infos</Text>
+            <Text size={24} weight={600}>Current room</Text>
             <Space h="xs" />
             <Paper p="md">
                 <Group><Text>Index:</Text><Text color="blue.4" > { interior.currentRoom?.index }</Text></Group>
