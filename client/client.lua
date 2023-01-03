@@ -222,7 +222,20 @@ RegisterNUICallback('dmt:repairVehicle', function(_, cb)
 end)
 
 RegisterNUICallback('dmt:giveWeapon', function(weaponName, cb)
-    print(weaponName)
+    if Shared.ox_inventory then
+        lib.callback('dmt:giveWeaponToPlayer', false, function(result)
+            if result then
+                lib.notify({type = "success", description = "You just receive a weapon"})
+            else
+                lib.notify({type = "error", description = "You cannot receive this weapon"})
+            end
+        end, weaponName)
+        
+        return
+    else
+        GiveWeaponToPed(cache.ped, joaat(weaponName), 999, false, true)
+    end
+
     cb(1)
 end)
 

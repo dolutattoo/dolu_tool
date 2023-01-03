@@ -1,12 +1,16 @@
 RESOURCE_NAME = GetCurrentResourceName()
 lib.locale()
 
-local ox_lib = 'ox_lib'
+Shared = {}
 
-if not GetResourceState(ox_lib):find('start') then
+if not GetResourceState('ox_lib'):find('start') then
     print('^1ox_lib should be started before this resource^0', 2)
 end
 
+if GetResourceState('ox_inventory'):find('start') then
+    Shared.ox_inventory = true
+end
+    
 CreateThread(function()
     if IsDuplicityVersion() then
         Server = {}

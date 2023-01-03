@@ -310,8 +310,7 @@ FUNC.changePed = function(model)
     FUNC.assert(IsModelInCdimage(model), "Model %s does not exists", model)
 
     local playerId = cache.playerId
-    RequestModel(model)
-    while not HasModelLoaded(model) do Wait(0) end
+    lib.requestModel(model)
     SetPlayerModel(playerId, model)
     cache.ped = PlayerPedId()
 end
@@ -331,9 +330,9 @@ FUNC.spawnVehicle = function(model, coords)
         coords = GetEntityCoords(playerPed)
     end
 
-    RequestModel(model)
-    while not HasModelLoaded(model) do Wait(0) end
+    lib.requestModel(model)
     local vehicle = CreateVehicle(model, coords.x, coords.y, coords.z, GetEntityHeading(playerPed), true, true)
+    
     TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
     SetVehicleRadioEnabled(vehicle, false)
     SetVehicleDirtLevel(vehicle, 0.0)

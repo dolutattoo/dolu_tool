@@ -106,7 +106,6 @@ lib.callback.register('dmt:deleteLocation', function(source, data)
     for k, v in ipairs(Server.locations) do
         if v.custom and v.name == data then
             foundIndex = k
-            print("Name of location to delete:", v.name, "Index of location to delete:", k)
             break
         end
     end
@@ -116,7 +115,6 @@ lib.callback.register('dmt:deleteLocation', function(source, data)
 
     local success = updateFileData('shared/data', 'locations.json', filterCustomLocations())
     assert(success == true, "Unable to update 'shared/data/locations.json' file.")
-    print("Index of location deleted:", foundIndex)
     return foundIndex
 end)
 
@@ -141,41 +139,43 @@ lib.callback.register('dmt:getWeaponList', function()
     return Server.weaponLists
 end)
 
-lib.callback.register('dmt:getYmapEntities', function(_, fileName)
-    local xml = getXmlFile('ymap', fileName..'.ymap.xml')
-    local entities = {}
+if Shared.ox_inventory then
+    local function getAmmo(weaponName)
+        local file = ('data/%s.lua'):format('weapons')
+        local datafile = LoadResourceFile("ox_inventory", file)
+        local path = ('@@%s/%s'):format("ox_inventory", file)
 
-    for _, v in pairs(xml.CMapData.entities[1].Item) do
-        local isFrozen = tonumber(v.flags[1]['$'].value) == 32 and true or nil
+        if not datafile then
+            warn(('no datafile found at path %s'):format(path:gsub('@@', '')))
+            return {}
+        end
 
-        table.insert(entities, {
-            name = v.archetypeName[1],
-            position = {
-                x = tonumber(v.position[1]['$'].x),
-                y = tonumber(v.position[1]['$'].y),
-                z = tonumber(v.position[1]['$'].z)
-            },
-            rotation = {
-                x = tonumber(v.rotation[1]['$'].x),
-                y = tonumber(v.rotation[1]['$'].y),
-                z = tonumber(v.rotation[1]['$'].z),
-                w = tonumber(v.rotation[1]['$'].w)
-            },
-            frozen = isFrozen
-        })
+        local func, err = load(datafile, path)
+
+        if not func or err then
+            return error(err, 0)
+        end
+
+        return func().Weapons[weaponName:upper()].ammoname
     end
 
-    return entities
-end)
+    lib.callback.register('dmt:giveWeaponToPlayer', function(source, weaponName)
+        local success = false
 
--- Dev
+        local ammoName = getAmmo(weaponName)
 
--- List entities from a ymap
-RegisterCommand('xml', function()
-    local data = getXmlFile('ymap', 'test.ymap.xml')
-    local entities = data.CMapData.entities
+        if exports.ox_inventory:CanCarryItem(source, weaponName, 1) then
+            exports.ox_inventory:AddItem(source, weaponName, 1, { ammo = 100 })
+            success = true
 
-    for k, v in pairs(entities[1].Item) do
-        print(v.archetypeName[1])
-    end
-end)
+            if exports.ox_inventory:CanCarryItem(source, ammoName, 1) then
+                local ammoCount = exports.ox_inventory:Search(source, 'count', ammoName)
+                if ammoCount < 100 then
+                    exports.ox_inventory:AddItem(source, ammoName, 100 - ammoCount)
+                end
+            end
+        end
+        
+        return success
+    end)
+end
