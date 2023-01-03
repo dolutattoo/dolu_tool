@@ -1,13 +1,14 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useRecoilState } from "recoil"
 import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, ActionIcon } from "@mantine/core"
-import { getInteriorData, portalDebuggingAtom, portalEditingIndexAtom } from "../../../../../atoms/interior"
+import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom } from "../../../../../atoms/interior"
 import { fetchNui } from "../../../../../utils/fetchNui"
 
 const InteriorElement: React.FC = () => {
   const interior = getInteriorData()
   const [portalEditingIndex, setPortalEditingIndex] = useRecoilState(portalEditingIndexAtom)
   const handlers = useRef<NumberInputHandlers>()
+  const [portalData, setPortalData] = useRecoilState(portalDataAtom)
 
   const [checkboxesValue, setCheckboxesValue] = useRecoilState(portalDebuggingAtom)
   useEffect(() => {
@@ -61,7 +62,7 @@ const InteriorElement: React.FC = () => {
               max={interior.portalCount && interior.portalCount-1}
               min={0}
               step={1}
-              onChange={(val) => {val && setPortalEditingIndex(val)}}
+              onChange={(val) => {val && setPortalEditingIndex(val); setPortalData(interior.portals![val!])}}
               styles={{ input: { width: 58, textAlign: 'center' } }}
               parser={(value) => value?.replace(/\$\s?|(,*)/g, '')}
               formatter={(value) =>
@@ -75,15 +76,11 @@ const InteriorElement: React.FC = () => {
               +
             </ActionIcon>
           </Group>
-
-          {/* PORTAL FLAG */}
-          <Text size={16} weight={600}>Flag: {interior.portals![portalEditingIndex].flag}</Text>
-
-          {/* PORTAL ROOM FROM */}
-          <Text size={16} weight={600}>, Room from: {interior.portals![portalEditingIndex].roomFrom}</Text>
-
-          {/* PORTAL ROOM TO */}
-          <Text size={16} weight={600}>, Room to: {interior.portals![portalEditingIndex].roomTo}</Text>
+          { portalData && <Group position="apart">
+            <Text size={16} weight={600}>Flag: {portalData? portalData.flag : 'null'}</Text>
+            <Text size={16} weight={600}>, Room from: {portalData? portalData.roomFrom : 'null'}</Text>
+            <Text size={16} weight={600}>, Room to: {portalData? portalData.roomTo : 'null'}</Text>
+          </Group> }
         </Group>
       </Paper>
     </>
