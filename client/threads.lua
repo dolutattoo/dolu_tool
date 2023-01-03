@@ -88,3 +88,22 @@ CreateThread(function()
         Wait(0)
     end
 end)
+
+CreateThread(function()
+    while true do
+        if Client.freezeTime then
+            local hour, minute, second = FUNC.getClock()
+            FUNC.setClock(hour, minute, second)
+        end
+
+        if Client.freezeWeather then
+            local currentWeather = FUNC.getWeather()
+            FUNC.setWeather(currentWeather)
+        end
+
+        if not Client.freezeTime and not Client.freezeWeather then
+            Wait(500)
+        end
+        Wait(0)
+    end
+end)

@@ -158,6 +158,18 @@ RegisterNUICallback('dmt:getClock', function(_, cb)
     cb(1)
 end)
 
+RegisterNUICallback('dmt:freezeTime', function(state, cb)
+    Client.freezeTime = state
+    
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:freezeWeather', function(state, cb)
+    Client.freezeWeather = state
+    
+    cb(1)
+end)
+
 RegisterNUICallback('dmt:cleanZone', function(_, cb)
     local playerId = cache.ped
     local playerCoords = GetEntityCoords(playerId)

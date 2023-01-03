@@ -21,7 +21,9 @@ CreateThread(function()
             portalCorners = false,
             portalInfos = false,
             interiorId = GetInteriorFromEntity(cache.ped),
-            spawnedEntities = {}
+            spawnedEntities = {},
+            freezeTime = false,
+            freezeWeather = false
         }
 
         lib.callback('dmt:getLocations', false, function(locations)

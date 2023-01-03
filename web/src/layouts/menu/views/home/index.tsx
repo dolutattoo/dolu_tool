@@ -14,13 +14,14 @@ import { setClipboard } from '../../../../utils/setClipboard'
 import SetCoords from './modals/SetCoords'
 import { useRecoilState } from 'recoil'
 import { positionAtom } from '../../../../atoms/position'
+import { worldFreezeTimeAtom } from '../../../../atoms/world'
 
 const Home: React.FC = () => {
   const lastLocation = getLastLocation()
   const interior = getInteriorData()
   const [currentCoords, setCurrentCoords] = useRecoilState(positionAtom)
   const [currentHeading, setCurrentHeading] = useState('0.000')
-  const [timeFrozen, setTimeFrozen] = useState<boolean>(false)
+  const [timeFrozen, setTimeFrozen] = useRecoilState(worldFreezeTimeAtom)
   const [copiedCoords, setCopiedCoords] = useState(false)
 
   useNuiEvent('playerCoords', (data: { coords: string, heading: string }) => {
@@ -240,6 +241,7 @@ const Home: React.FC = () => {
               variant='outline'
               onClick={() => {
                 setTimeFrozen(!timeFrozen)
+                fetchNui('dmt:freezeTime', !timeFrozen)
               }}
             >Time {timeFrozen ? "frozen" : "not frozen" }</Button>
           </Group>          
