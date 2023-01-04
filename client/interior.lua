@@ -11,22 +11,30 @@ function GetInteriorData(interiorId, fromThread)
 
         local rooms = {}
         for i = 1, roomCount do
+            local totalFlags = GetInteriorRoomFlag(interiorId, i)
             rooms[i] = {
                 index = i,
                 name = GetInteriorRoomName(interiorId, i),
-                flag = GetInteriorRoomFlag(interiorId, i),
                 timecycle = tostring(GetInteriorRoomTimecycle(interiorId, i)),
-                isCurrent = currentRoomId == i and true or nil
+                isCurrent = currentRoomId == i and true or nil,
+                flags = {
+                    list = FUNC.listFlags(totalFlags, 'room'),
+                    total = totalFlags
+                }
             }
         end
 
         local portals = {}
         for i = 0, portalCount - 1 do
+            local totalFlags = GetInteriorPortalFlag(interiorId, i)
             portals[i] = {
                 index = i,
-                flag = GetInteriorPortalFlag(interiorId, i),
                 roomFrom = GetInteriorPortalRoomFrom(interiorId, i),
-                roomTo = GetInteriorPortalRoomTo(interiorId, i)
+                roomTo = GetInteriorPortalRoomTo(interiorId, i),
+                flags = {
+                    list = FUNC.listFlags(totalFlags, 'portal'),
+                    total = totalFlags
+                }
             }
         end
 
@@ -39,8 +47,8 @@ function GetInteriorData(interiorId, fromThread)
             currentRoom = {
                 index = currentRoomId > 0 and currentRoomId or 0,
                 name = currentRoomId > 0 and rooms[currentRoomId].name or 'none',
-                flag = currentRoomId > 0 and rooms[currentRoomId].flag or 0,
-                timecycle = currentRoomId > 0 and rooms[currentRoomId].timecycle or 0
+                timecycle = currentRoomId > 0 and rooms[currentRoomId].timecycle or 0,
+                flags = currentRoomId > 0 and rooms[currentRoomId].flags or {list = {}, total = 0},
             }
         }
 
@@ -61,12 +69,19 @@ end
 
 -- Portals display
 RegisterNUICallback('dmt:setPortalCheckbox', function(data, cb)
+    print(json.encode(data, {indent=true}))
     local tmp = {}
     for _, v in pairs(data) do tmp[v] = true end
     if tmp.portalInfos then Client.portalInfos = true else Client.portalInfos = false end
     if tmp.portalPoly then Client.portalPoly = true else Client.portalPoly = false end
     if tmp.portalLines then Client.portalLines = true else Client.portalLines = false end
     if tmp.portalCorners then Client.portalCorners = true else Client.portalCorners = false end
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:setPortalFlagCheckbox', function(data, cb)
+    print(json.encode(data, {indent=true}))
+
     cb(1)
 end)
 

@@ -19,7 +19,7 @@ const RoomsElement: React.FC = () => {
             <Paper p="md">
                 <Group><Text>Index:</Text><Text color="blue.4" > { interior.currentRoom?.index }</Text></Group>
                 <Group><Text>Name:</Text><Text color="blue.4" > { interior.currentRoom?.name }</Text></Group>
-                <Group><Text>Flag:</Text><Text color="blue.4" > { interior.currentRoom?.flag }</Text></Group>
+                <Group><Text>Flag:</Text><Text color="blue.4" > { interior.currentRoom?.flags.total }</Text></Group>
                 <Group>
                     <Text>Timecycle:</Text>
                     {timecycle && <Select 

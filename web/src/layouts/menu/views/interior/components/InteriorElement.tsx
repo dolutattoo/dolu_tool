@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from "react"
 import { useRecoilState } from "recoil"
-import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, ActionIcon } from "@mantine/core"
-import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom } from "../../../../../atoms/interior"
+import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, ActionIcon, Menu, Popover } from "@mantine/core"
+import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom, portalFlagsAtom } from "../../../../../atoms/interior"
 import { fetchNui } from "../../../../../utils/fetchNui"
+import { AiFillEdit } from "react-icons/ai"
 
 const InteriorElement: React.FC = () => {
   const interior = getInteriorData()
@@ -14,6 +15,11 @@ const InteriorElement: React.FC = () => {
   useEffect(() => {
     if (checkboxesValue) fetchNui('dmt:setPortalCheckbox', checkboxesValue)
   }, [checkboxesValue, setCheckboxesValue])
+
+  const [portalFlagCheckboxesValue, setPortalFlagCheckboxesValue] = useRecoilState(portalFlagsAtom)
+  useEffect(() => {
+    if (portalFlagCheckboxesValue) fetchNui('dmt:setPortalFlagCheckbox', portalFlagCheckboxesValue)
+  }, [portalFlagCheckboxesValue, setPortalFlagCheckboxesValue])
   
   return (
     <>
@@ -45,10 +51,8 @@ const InteriorElement: React.FC = () => {
         </Checkbox.Group>
 
         <Space h="sm" />
-        
-        <Text size={16} weight={400}>Edit portal</Text>
-
-        <Group>
+      
+        <Paper p="md">
           {/* PORTAL INDEX INPUT */}
           <Group spacing={5}>
             <ActionIcon size={36} variant="default" onClick={() => handlers.current?.decrement()}>
@@ -76,12 +80,74 @@ const InteriorElement: React.FC = () => {
               +
             </ActionIcon>
           </Group>
-          { portalData && <Group position="apart">
-            <Text size={16} weight={600}>Flag: {portalData? portalData.flag : 'null'}</Text>
-            <Text size={16} weight={600}>, Room from: {portalData? portalData.roomFrom : 'null'}</Text>
-            <Text size={16} weight={600}>, Room to: {portalData? portalData.roomTo : 'null'}</Text>
-          </Group> }
-        </Group>
+          <Space h="sm" />
+          {
+            portalData && <>
+            <Group>
+              <Text size={16} weight={600}>
+                Flag:
+              </Text>
+              <Text size={16} weight={600} color="blue.4">
+                {portalData ? portalData.flags.total : 'null'}
+              </Text>
+              
+              <Popover position="right-start" withArrow shadow="md">
+                <Popover.Target>
+                  <ActionIcon size="md" variant="default">
+                    <AiFillEdit fontSize={20}/>
+                  </ActionIcon>
+                </Popover.Target>
+
+                <Popover.Dropdown>
+                  <Checkbox.Group
+                    orientation='vertical'
+                    spacing="xs"
+                    size="sm"
+                    value={portalFlagCheckboxesValue}
+                    onChange={setPortalFlagCheckboxesValue}
+                  >
+                    <Checkbox color="blue.4" value="1" label="1 - Disables exterior rendering" />
+                    <Checkbox color="blue.4" value="2" label="2 - Disables interior rendering" />
+                    <Checkbox color="blue.4" value="4" label="4 - Mirror" />
+                    <Checkbox color="blue.4" value="8" label="8 - Extra bloom" />
+                    <Checkbox color="blue.4" value="16" label="16 - Unknown 5" />
+                    <Checkbox color="blue.4" value="32" label="32 - Use exterior LOD" />
+                    <Checkbox color="blue.4" value="64" label="64 - Hide when door closed" />
+                    <Checkbox color="blue.4" value="128" label="128 - Unknown 8" />
+                    <Checkbox color="blue.4" value="256" label="256 - Mirror exterior portals" />
+                    <Checkbox color="blue.4" value="512" label="512 - Unknown 10" />
+                    <Checkbox color="blue.4" value="1024" label="1024 - Mirror limbo entities" />
+                    <Checkbox color="blue.4" value="2048" label="2048 - Unknown 12" />
+                    <Checkbox color="blue.4" value="4096" label="4096 - Unknown 13" />
+                    <Checkbox color="blue.4" value="8196" label="8196 - Disable farclipping" />
+                  </Checkbox.Group>
+                </Popover.Dropdown>
+              </Popover>
+            </Group>
+            
+            <Space h="xs" />
+
+            <Group>
+              <Text size={16} weight={600}>
+                Room from:
+              </Text>
+              <Text size={16} weight={600} color="blue.4">
+                {portalData ? portalData.roomFrom : 'null'}
+              </Text>
+            </Group>
+            
+            <Space h="xs" />
+            
+            <Group>
+              <Text size={16} weight={600}>
+                Room to:
+              </Text>
+              <Text size={16} weight={600} color="blue.4">
+                {portalData ? portalData.roomTo : 'null'}
+              </Text>
+            </Group>
+          </>}
+        </Paper>
       </Paper>
     </>
     )

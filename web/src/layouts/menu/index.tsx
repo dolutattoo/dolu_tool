@@ -1,5 +1,5 @@
 import { AppShell, Box, createStyles, Group, Header, Title, Transition } from '@mantine/core'
-import { Route } from 'react-router-dom'
+import { json, Route } from 'react-router-dom'
 import { Routes } from 'react-router-dom'
 import Nav from './components/Nav'
 import Home from './views/home'
@@ -8,7 +8,7 @@ import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { useExitListener } from '../../hooks/useExitListener'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { lastLocationsAtom, Location, locationsAtom } from '../../atoms/location'
-import { interiorAtom, InteriorData } from '../../atoms/interior'
+import { getPortalFlagsList, interiorAtom, InteriorData, portalFlagsAtom } from '../../atoms/interior'
 import NavIcon from './components/NavIcon'
 import { TbLogout } from 'react-icons/tb'
 import { fetchNui } from '../../utils/fetchNui'
@@ -37,6 +37,7 @@ const Menu: React.FC = () => {
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
   const setLocations = useSetRecoilState(locationsAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
+  const setPortalFlags = useSetRecoilState(portalFlagsAtom)
   const setPedList = useSetRecoilState(pedListAtom)
   const setVehicleList = useSetRecoilState(vehicleListAtom)
   const setweaponList = useSetRecoilState(weaponListAtom)
@@ -62,7 +63,9 @@ const Menu: React.FC = () => {
   })
 
   useNuiEvent('setIntData', (data: InteriorData) => {
-    setInteriorData(data)
+    setInteriorData(data)  
+    if (data.portals?.length !== 0) setPortalFlags(getPortalFlagsList()) //todo: looks like there is an error when entering/exiting interior
+    
   })
 
   useExitListener(setVisible)

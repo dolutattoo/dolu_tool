@@ -340,6 +340,29 @@ FUNC.spawnVehicle = function(model, coords)
     cache.vehicle = vehicle
 end
 
+FUNC.listFlags = function(totalFlags, type)
+    local all_flags = { 
+        portal = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192 },
+        room = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 }
+    }
+    
+    if not all_flags[type] then return end
+    
+    local flags = {}
+    for _, flag in ipairs(all_flags[type]) do
+        if totalFlags & flag ~= 0 then
+            flags[#flags+1] = tostring(flag)
+        end
+    end
+
+    local result = {}
+    for i, flag in ipairs(flags) do
+        result[#result+1] = tostring(flag)
+    end
+
+    return result
+end
+
 FUNC.quat2Euler = function(x, y, z, w)
     local q0 = w
     local q1 = x
