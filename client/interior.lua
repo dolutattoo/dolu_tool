@@ -69,7 +69,6 @@ end
 
 -- Portals display
 RegisterNUICallback('dmt:setPortalCheckbox', function(data, cb)
-    print(json.encode(data, {indent=true}))
     local tmp = {}
     for _, v in pairs(data) do tmp[v] = true end
     if tmp.portalInfos then Client.portalInfos = true else Client.portalInfos = false end
@@ -80,7 +79,13 @@ RegisterNUICallback('dmt:setPortalCheckbox', function(data, cb)
 end)
 
 RegisterNUICallback('dmt:setPortalFlagCheckbox', function(data, cb)
-    print(json.encode(data, {indent=true}))
+    local flag = 0
+    for _, v in ipairs(data.flags) do
+        flag += tonumber(v)
+    end
+    
+    SetInteriorPortalFlag(Client.interiorId, data.portalIndex, flag)
+    RefreshInterior(Client.interiorId)
 
     cb(1)
 end)
@@ -143,10 +148,8 @@ function DrawPortalInfos(interiorId)
 end
 
 RegisterNUICallback('dmt:setTimecycle', function(data, cb)
-    print(json.encode(data, {indent=true}))
     if data.roomId then
         FUNC.setTimecycle(data.value)
-        print("Timecycle applied: ", GetInteriorRoomTimecycle(Client.interiorId, data.roomId))
     end
     cb(1)
 end)

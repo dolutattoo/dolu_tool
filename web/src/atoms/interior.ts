@@ -42,7 +42,7 @@ export const interiorAtom = atom<InteriorData>({ key: 'interior', default: mockI
 export const portalDebuggingAtom = atom<string[]>({ key: 'portalDebugging', default: [] })
 export const portalEditingIndexAtom = atom<number>({ key: 'portalEditingIndex', default: 0 })
 export const portalDataAtom = atom<any>({ key: 'portalData', default: null })
-export const portalFlagsAtom = atom<string[]>({ key: 'portalFlags', default: [] })
+export const portalFlagsAtom = atom<string[]|null>({ key: 'portalFlags', default: null })
 
 export const getInteriorAtom = selector({
     key: 'getInterior',

@@ -4,6 +4,7 @@ import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, 
 import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom, portalFlagsAtom } from "../../../../../atoms/interior"
 import { fetchNui } from "../../../../../utils/fetchNui"
 import { AiFillEdit } from "react-icons/ai"
+import { useNuiEvent } from "../../../../../hooks/useNuiEvent"
 
 const InteriorElement: React.FC = () => {
   const interior = getInteriorData()
@@ -18,10 +19,28 @@ const InteriorElement: React.FC = () => {
 
   const [portalFlagCheckboxesValue, setPortalFlagCheckboxesValue] = useRecoilState(portalFlagsAtom)
   useEffect(() => {
-    if (portalFlagCheckboxesValue) fetchNui('dmt:setPortalFlagCheckbox', portalFlagCheckboxesValue)
+    if (portalFlagCheckboxesValue) {
+      // Get total flag value from checkboxes
+      let flag = 0;
+      for (const v of portalFlagCheckboxesValue) {
+        flag += Number(v);
+      }      
+
+      // If total flag is different than current portal index total flag
+      if (flag !== interior.portals![portalEditingIndex].flags.total) {
+        fetchNui('dmt:setPortalFlagCheckbox', { flags: portalFlagCheckboxesValue, portalIndex: portalEditingIndex })
+      }
+    }
   }, [portalFlagCheckboxesValue, setPortalFlagCheckboxesValue])
 
-
+  const getFlag = () => {
+    if (!portalFlagCheckboxesValue) return 0 
+    let flag = 0;
+      for (const v of portalFlagCheckboxesValue) {
+        flag += Number(v);
+      }
+    return flag
+  }
 
   return (
     <>
@@ -68,7 +87,7 @@ const InteriorElement: React.FC = () => {
               max={interior.portalCount && interior.portalCount-1}
               min={0}
               step={1}
-              onChange={(val) => {val && setPortalEditingIndex(val); setPortalData(interior.portals![val!]); setPortalFlagCheckboxesValue(interior.portals![val!].flags.list)}}
+              onChange={(val) => {val && setPortalEditingIndex(val); setPortalFlagCheckboxesValue(interior.portals![val!].flags.list); setPortalData(interior.portals![val!])}}
               styles={{ input: { width: 58, textAlign: 'center' } }}
               parser={(value) => value?.replace(/\$\s?|(,*)/g, '')}
               formatter={(value) =>
@@ -90,7 +109,7 @@ const InteriorElement: React.FC = () => {
                 Flag:
               </Text>
               <Text size={16} weight={600} color="blue.4">
-                {portalData ? portalData.flags.total : 'null'}
+                {portalData ? getFlag() : 'null'}
               </Text>
               
               <Popover position="right-start" withArrow shadow="md">
@@ -105,7 +124,7 @@ const InteriorElement: React.FC = () => {
                     orientation='vertical'
                     spacing="xs"
                     size="sm"
-                    value={portalFlagCheckboxesValue}
+                    value={portalFlagCheckboxesValue!}
                     onChange={setPortalFlagCheckboxesValue}
                   >
                     <Checkbox color="blue.4" value="1" label="1 - Disables exterior rendering" />
