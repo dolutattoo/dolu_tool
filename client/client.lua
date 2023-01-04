@@ -268,14 +268,34 @@ end)
 
 RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     local model = joaat(modelName)
-    FUNC.assert(IsModelInCdimage(model) == false, "Model does not exist")
+    if not IsModelInCdimage(model) then
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "This entity does not exist in the game!",
+            type = 'error',
+            position = 'top'
+        })
+        cb(1)
+        return
+    end
 
+    
+    lib.requestModel(model)
     local coords = GetOffsetFromEntityInWorldCoords(cache.ped, 0, 5, 0)
-
-    RequestModel(model)
-    while not HasModelLoaded(model) do Wait(0) end
-
     local obj = CreateObject(model, coords.x, coords.y+2, coords.z)
+    
+    Wait(50)
+    if not DoesEntityExist(obj) then 
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Looks like the cannot be loaded.",
+            type = 'error',
+            position = 'top'
+        })
+        cb(1)
+        return
+    end
+
     PlaceObjectOnGroundProperly(obj)
     FreezeEntityPosition(obj, true)
 
