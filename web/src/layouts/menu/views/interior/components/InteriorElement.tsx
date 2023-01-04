@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import { useRecoilState } from "recoil"
-import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, ActionIcon, Menu, Popover } from "@mantine/core"
+import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, ActionIcon, Popover } from "@mantine/core"
 import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom, portalFlagsAtom } from "../../../../../atoms/interior"
 import { fetchNui } from "../../../../../utils/fetchNui"
 import { AiFillEdit } from "react-icons/ai"
@@ -20,7 +20,9 @@ const InteriorElement: React.FC = () => {
   useEffect(() => {
     if (portalFlagCheckboxesValue) fetchNui('dmt:setPortalFlagCheckbox', portalFlagCheckboxesValue)
   }, [portalFlagCheckboxesValue, setPortalFlagCheckboxesValue])
-  
+
+
+
   return (
     <>
       {/* Current interior infos */}
@@ -55,7 +57,7 @@ const InteriorElement: React.FC = () => {
         <Paper p="md">
           {/* PORTAL INDEX INPUT */}
           <Group spacing={5}>
-            <ActionIcon size={36} variant="default" onClick={() => handlers.current?.decrement()}>
+            <ActionIcon size={36} variant="default" onClick={() => {handlers.current?.decrement();}}>
               –
             </ActionIcon>
 
@@ -66,7 +68,7 @@ const InteriorElement: React.FC = () => {
               max={interior.portalCount && interior.portalCount-1}
               min={0}
               step={1}
-              onChange={(val) => {val && setPortalEditingIndex(val); setPortalData(interior.portals![val!])}}
+              onChange={(val) => {val && setPortalEditingIndex(val); setPortalData(interior.portals![val!]); setPortalFlagCheckboxesValue(interior.portals![val!].flags.list)}}
               styles={{ input: { width: 58, textAlign: 'center' } }}
               parser={(value) => value?.replace(/\$\s?|(,*)/g, '')}
               formatter={(value) =>
@@ -76,7 +78,7 @@ const InteriorElement: React.FC = () => {
               }
             />
 
-            <ActionIcon size={36} variant="default" onClick={() => handlers.current?.increment()}>
+            <ActionIcon size={36} variant="default" onClick={() => {handlers.current?.increment()}}>
               +
             </ActionIcon>
           </Group>
@@ -119,7 +121,7 @@ const InteriorElement: React.FC = () => {
                     <Checkbox color="blue.4" value="1024" label="1024 - Mirror limbo entities" />
                     <Checkbox color="blue.4" value="2048" label="2048 - Unknown 12" />
                     <Checkbox color="blue.4" value="4096" label="4096 - Unknown 13" />
-                    <Checkbox color="blue.4" value="8196" label="8196 - Disable farclipping" />
+                    <Checkbox color="blue.4" value="8192" label="8192 - Disable farclipping" />
                   </Checkbox.Group>
                 </Popover.Dropdown>
               </Popover>
