@@ -50,7 +50,7 @@ end)
 -- Right click to move camera
 CreateThread(function()
     while true do
-        if IsDisabledControlPressed(0, 25) then
+        if (Client.isMenuOpen or Client.gizmoEntity) and IsDisabledControlPressed(0, 25) then
             EnableControlAction(0, 1, true) -- Look Left/Right
             EnableControlAction(0, 2, true) -- Look up/Down
 
