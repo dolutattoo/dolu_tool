@@ -133,17 +133,22 @@ function StartFreecamThread()
 		SetFreecamPosition(GetEntityCoords(ped))
 
 		local function updatePos(pos, rotZ)
-			-- Update ped
-			SetEntityCoords(ped, pos.x, pos.y, pos.z)
+			if pos then
+				-- Update ped
+				SetEntityCoords(ped, pos.x, pos.y, pos.z)
 
-			-- Update veh
-			local veh = cache.seat == -1 and cache.vehicle
+				-- Update veh
+				local veh = cache.seat == -1 and cache.vehicle
 
-			if veh then
-				SetEntityCoords(veh, pos.x, pos.y, pos.z)
+				if veh then
+					SetEntityCoords(veh, pos.x, pos.y, pos.z)
+				end
+
+				SetEntityHeading(ped, rotZ)
+
+				-- God mode
+				SetEntityHealth(ped, GetEntityMaxHealth(ped))
 			end
-
-			SetEntityHeading(ped, rotZ)
 		end
 
 		local frameCounter = 0
