@@ -84,6 +84,14 @@ const Object: React.FC = () => {
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
+                                                    fetchNui('dmt:goToEntity', entity)
+                                                }}
+                                            >Go to</Button>
+                                            <Button
+                                                variant="outline"
+                                                color="blue.4"
+                                                size="xs"
+                                                onClick={() => {
                                                     fetchNui('dmt:snapEntityToGround', entity)
                                                 }}
                                             >Snap to ground</Button>
