@@ -451,6 +451,31 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entityHandle, cb)
     cb(1)
 end)
 
+RegisterNUICallback('dmt:goToEntity', function(data, cb)
+    print(json.encode(data, {indent=true}))
+
+    if data?.position and data.handle and DoesEntityExist(data.handle) then
+        local coords = GetEntityCoords(data.handle)
+        FUNC.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
+        
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Succefully teleported! Use /goback to go back to last location",
+            type = 'success',
+            position = 'top'
+        })
+    else
+        lib.notify({
+            title = 'Dolu Mapping Tool',
+            description = "Entity does not exist!",
+            type = 'error',
+            position = 'top'
+        })
+    end
+    
+    cb(1)
+end)
+
 RegisterNUICallback('dmt:moveEntity', function(data, cb)
     if data.handle then
         SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)

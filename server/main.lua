@@ -160,3 +160,29 @@ if Shared.ox_inventory then
         return success
     end)
 end
+
+RegisterCommand('flag', function(source, args)
+    local totalFlags = tonumber(args[1])
+    local type = 'ytyp'
+    local all_flags = { 
+        portal = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192 },
+        room = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 },
+        ytyp = { 2,4,8,16,32,64,128,256,512,1024,2048,4096,8192,16384,32768,65536,131072,262144,524288,1048576,2097152,4194304,8388608,16777216,33554432,67108864,134217728,268435456,536870912,1073741824,2147483648 }
+    }
+    
+    if not all_flags[type] then return end
+    
+    local flags = {}
+    for _, flag in ipairs(all_flags[type]) do
+        if totalFlags & flag ~= 0 then
+            flags[#flags+1] = tostring(flag)
+        end
+    end
+
+    local result = {}
+    for i, flag in ipairs(flags) do
+        result[#result+1] = tostring(flag)
+    end
+
+    print(json.encode(result , {indent=true}))
+end)
