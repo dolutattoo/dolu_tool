@@ -14,7 +14,7 @@ const Object: React.FC = () => {
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
 
     useNuiEvent('setObjectList', (entitiesList: Entity[]|null) => {
-        if (entitiesList) setObjectList(entitiesList)
+        if (entitiesList !== null) setObjectList(entitiesList)
     })
 
     return (

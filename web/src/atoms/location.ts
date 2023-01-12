@@ -31,6 +31,8 @@ const mockLocations: Location[] = [
 export const locationsAtom = atom<Location[]>({ key: 'locations', default: mockLocations })
 export const lastLocationsAtom = atom<Location|null>({ key: 'lastLocations', default: null })
 export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', default: 1 })
+export const locationActivePageAtom = atom<number>({ key: 'locationActivePage', default: 1 })
+export const selectedLocationIdAtom = atom<string | null>({ key: 'selectedLocationIndex', default: null })
 
 // Filter search bar input
 export const locationSearchAtom = atom<string>({ key: 'locationSearch', default: '' })
@@ -61,10 +63,6 @@ export const filteredLocationsAtom = selector({
     return searchedLocations
   }
 })
-
-export const locationActivePageAtom = atom<number>({ key: 'locationActivePage', default: 1 })
-
-export const selectedLocationIdAtom = atom<string | null>({ key: 'selectedLocationIndex', default: null })
 
 export const useLocation = () => useRecoilValue(filteredLocationsAtom)
 export const getLastLocation = () => useRecoilValue(lastLocationsAtom)

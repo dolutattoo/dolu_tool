@@ -27,6 +27,7 @@ const Locations: React.FC = () => {
     setPageCount(pageCount)
     return result
   }
+  
   const pages = createPages(locations, 5)
   const pageCount = getLocationPageCount()
   const [activePage, setPage] = useRecoilState(locationActivePageAtom)
