@@ -3,7 +3,7 @@ CreateThread(function()
     DisableIdleCamera(true)
 
     while true do
-        if Client.isMenuOpen then
+        if Client.isMenuOpen or Client.gizmoEntity then
             DisableControlAction(0, 0, true) -- Next Camera
             DisableControlAction(0, 1, true) -- Look Left/Right
             DisableControlAction(0, 2, true) -- Look up/Down
