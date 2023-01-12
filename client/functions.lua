@@ -23,12 +23,12 @@ FUNC.openUI = function()
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
-            locations = Client.locations,
             lastLocation = Client.lastLocation,
-            pedLists = Client.pedLists,
-            vehicleLists = Client.vehicleLists,
+            locations = Client.data.locations,
+            pedLists = Client.data.peds,
+            vehicleLists = Client.data.vehicles,
             position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z,
-            weaponLists = Client.weaponLists
+            weaponLists = Client.data.weapons
         }
     })
     if Client.currentTab == 'home' then

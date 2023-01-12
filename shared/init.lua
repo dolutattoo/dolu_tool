@@ -10,7 +10,7 @@ end
 if GetResourceState('ox_inventory'):find('start') then
     Shared.ox_inventory = true
 end
-    
+
 CreateThread(function()
     if IsDuplicityVersion() then
         Server = {}
@@ -27,28 +27,17 @@ CreateThread(function()
             interiorId = GetInteriorFromEntity(cache.ped),
             spawnedEntities = {},
             freezeTime = false,
-            freezeWeather = false
+            freezeWeather = false,
+            data = {}
         }
 
-        lib.callback('dmt:getLocations', false, function(locations)
-            Client.locations = locations
-        end)
-
-        lib.callback('dmt:getPedList', false, function(pedLists)
-            Client.pedLists = pedLists
-        end)
-
-        lib.callback('dmt:getVehicleList', false, function(vehicleLists)
-            Client.vehicleLists = vehicleLists
-        end)
-
-        lib.callback('dmt:getWeaponList', false, function(weaponLists)
-            Client.weaponLists = weaponLists
+        -- Get data from shared/data json files
+        lib.callback('dmt:getData', false, function(data)
+            Client.data = data
         end)
 
         CreateThread(function()
             FUNC.setMenuPlayerCoords()
-
             while true do
                 Wait(100)
                 Client.interiorId = GetInteriorFromEntity(cache.ped)

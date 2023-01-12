@@ -1,11 +1,11 @@
-local function getXmlFile(path, file)
-    local xml = LoadResourceFile(RESOURCE_NAME, path .. '/' .. file)
-    return exports[RESOURCE_NAME]:xmlToTable(xml)
-end
-
 local function getFileData(path, file)
     return json.decode(LoadResourceFile(RESOURCE_NAME, path .. '/' .. file))
 end
+
+--[[ local function getXmlFile(path, file)
+    local xml = LoadResourceFile(RESOURCE_NAME, path .. '/' .. file)
+    return exports[RESOURCE_NAME]:xmlToTable(xml)
+end ]]--
 
 local function updateFileData(path, file, data)
     return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file, json.encode(data, { indent=true }))
@@ -49,20 +49,22 @@ local function filterCustomLocations()
     return customLocations
 end
 
-lib.callback.register('dmt:getLocations', function()
-    if not Server.locations then
-        local customLocations = getFileData('shared/data', 'locations.json')
-        local locations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors.json'))
-
-        -- Merge locations
-        for _, v in ipairs(customLocations) do
-            v.custom = true
-            table.insert(locations, v)
-        end
-
-        Server.locations = locations
+lib.callback.register('dmt:getData', function()
+    local data = {}
+    
+    local customLocations = getFileData('shared/data', 'locations.json')
+    local locations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors.json'))
+    for _, v in ipairs(customLocations) do
+        v.custom = true
+        table.insert(locations, v)
     end
-    return Server.locations
+
+    return {
+        locations = locations,
+        peds = getFileData('shared/data', 'pedList.json'),
+        vehicles = getFileData('shared/data', 'vehicleList.json'),
+        weapons = getFileData('shared/data', 'weaponList.json')
+    }
 end)
 
 lib.callback.register('dmt:renameLocation', function(source, data)
@@ -116,27 +118,6 @@ lib.callback.register('dmt:deleteLocation', function(source, data)
     local success = updateFileData('shared/data', 'locations.json', filterCustomLocations())
     assert(success == true, "Unable to update 'shared/data/locations.json' file.")
     return foundIndex
-end)
-
-lib.callback.register('dmt:getPedList', function()
-    if not Server.pedLists then
-        Server.pedLists = getFileData('shared/data', 'pedList.json')
-    end
-    return Server.pedLists
-end)
-
-lib.callback.register('dmt:getVehicleList', function()
-    if not Server.vehicleLists then
-        Server.vehicleLists = getFileData('shared/data', 'vehicleList.json')
-    end
-    return Server.vehicleLists
-end)
-
-lib.callback.register('dmt:getWeaponList', function()
-    if not Server.weaponLists then
-        Server.weaponLists = getFileData('shared/data', 'weaponList.json')
-    end
-    return Server.weaponLists
 end)
 
 if Shared.ox_inventory then
