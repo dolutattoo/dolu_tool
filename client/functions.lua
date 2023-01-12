@@ -377,6 +377,66 @@ FUNC.quat2Euler = function(x, y, z, w)
     return euler
 end
 
+FUNC.initTarget = function()
+    if not Config.target then return end
+
+    exports.ox_target:addGlobalObject({
+        {
+            name = 'ox:option1',
+            icon = 'fa-solid fa-clipboard-list',
+            label = 'Copy coords',
+            distance = 10,
+            onSelect = function(data)
+                lib.setClipboard(data.coords.x .. ', ' .. data.coords.y .. ', ' .. data.coords.z)
+                lib.notify({type="success", description="Coords copied to clipboard!"})
+            end
+        },
+        {
+            name = 'ox:option2',
+            icon = 'fa-solid fa-maximize',
+            label = 'Move object',
+            distance = 10,
+            canInteract = function()
+                return Client.gizmoEntity == nil
+            end,
+            onSelect = function(data)
+                SendNUIMessage({
+                    action = 'setGizmoEntity',
+                    data = {
+                        name = 'Unknown Game Object',
+                        handle = data.entity,
+                        position = GetEntityCoords(data.entity),
+                        rotation = GetEntityRotation(data.entity),
+                    }
+                })
+                Client.gizmoEntity = data.entity
+                SetNuiFocus(true, true)
+                SetNuiFocusKeepInput(true)
+                lib.notify({type="inform", description="Press 'Escape' to exit edit mode!"})
+            end
+        },
+        {
+            name = 'ox:option4',
+            icon = 'fa-solid fa-down-long',
+            label = 'Snap to ground',
+            distance = 10,
+            onSelect = function(data)
+                PlaceObjectOnGroundProperly(data.entity)
+            end
+        },
+        {
+            name = 'ox:option5',
+            icon = 'fa-solid fa-trash',
+            label = 'Delete entity',
+            distance = 10,
+            onSelect = function(data)
+                SetEntityAsMissionEntity(data.entity)
+                DeleteEntity(data.entity)
+            end
+        }
+    })
+end
+
 ---Assert with styling and formatting
 ---@param v any
 ---@param msg string

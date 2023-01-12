@@ -43,6 +43,10 @@ CreateThread(function()
                 Client.interiorId = GetInteriorFromEntity(cache.ped)
             end
         end)
+        
+        if Config.target and GetResourceState('ox_target'):find('start') then
+            FUNC.initTarget()
+        end
     end
 end)
 
