@@ -109,43 +109,41 @@ const Ped: React.FC = () => {
   ))
 
   return(
-    <Paper p="md">
-      <Stack>
-        <Text size={20}>Ped</Text>
-        <Button
-          uppercase
-          variant="outline"
+    <Stack>
+      <Text size={20}>Peds</Text>
+      <Button
+        uppercase
+        variant="outline"
+        color="blue.4"
+        onClick={() => { changePed({ name: `${searchPedValue}` }) }}
+      >
+        Change by Name
+      </Button>
+      <PedSearch/>
+      <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
+        <Stack>
+          <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+            {PedList ? PedList : 
+              <Paper p="md">
+                <Text size="md" weight={600} color="red.4">No ped found</Text>
+              </Paper>
+            }
+            </Accordion>
+        </Stack>
+      </ScrollArea>
+      <Center>
+        <Pagination
           color="blue.4"
-          onClick={() => { changePed({ name: `${searchPedValue}` }) }}
-        >
-          Change by Name
-        </Button>
-        <PedSearch/>
-        <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
-          <Stack>
-            <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
-              {PedList ? PedList : 
-                <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">No ped found</Text>
-                </Paper>
-              }
-              </Accordion>
-          </Stack>
-        </ScrollArea>
-        <Center>
-          <Pagination
-            color="blue.4"
-            size='sm'
-            page={activePage}
-            onChange={(value) => {
-              setPage(value)
-              setAccordionItem("0")
-            }}
-            total={pageCount}
-          />
-        </Center>
-      </Stack>
-    </Paper>
+          size='sm'
+          page={activePage}
+          onChange={(value) => {
+            setPage(value)
+            setAccordionItem("0")
+          }}
+          total={pageCount}
+        />
+      </Center>
+    </Stack>
   )
 
 }

@@ -60,7 +60,7 @@ const Locations: React.FC = () => {
           <Stack spacing={0}>
             <Group position='apart'>
               <Text color="blue.4" size="md" weight={500}>{location.name}</Text>
-              <Badge color="blue.2">{location.custom ? "Custom" : "Vanilla"}</Badge>
+              <Badge color={location.custom ? "green.4" : "blue.4"}>{location.custom ? "Custom" : "Vanilla"}</Badge>
             </Group>
             <Text size="xs">Coords: {location.x}, {location.y}, {location.z}</Text>
           </Stack>
@@ -128,73 +128,71 @@ const Locations: React.FC = () => {
 
   return (
     <>
-      <Paper p="md">
-        <Stack>
-          <Text size={20}>Existing Locations</Text>
-          <Group grow>            
-            <Checkbox
-              label='Show custom locations'
-              size='sm'
-              color="blue.4"
-              disabled={!checkedVanilla}
-              checked={checkedCustom}
-              onChange={(e) => {
-                setActivePage(1)
-                setCheckedCustom(e.currentTarget.checked)
-              }}
-            />
-            <Checkbox
-              label='Show vanilla Interiors'
-              size='sm'
-              color="blue.4"
-              disabled={!checkedCustom}
-              checked={checkedVanilla}
-              onChange={(e) => {
-                setActivePage(1)
-                setCheckedVanilla(e.currentTarget.checked)
-              }}
-            />
-          </Group>
-          
-          <Button
-            uppercase
-            variant="outline"
+      <Stack>
+        <Text size={20}>Locations</Text>
+        <Group grow>            
+          <Checkbox
+            label='Show custom locations'
+            size='sm'
             color="blue.4"
-            onClick={() =>
-              openModal({
-                title: 'Create location',
-                size: 'xs',
-                children: <CreateLocation />,
-              })
-            }
-          >
-            Create location
-          </Button>
-          
-          <LocationSearch />
+            disabled={!checkedVanilla}
+            checked={checkedCustom}
+            onChange={(e) => {
+              setActivePage(1)
+              setCheckedCustom(e.currentTarget.checked)
+            }}
+          />
+          <Checkbox
+            label='Show vanilla Interiors'
+            size='sm'
+            color="blue.4"
+            disabled={!checkedCustom}
+            checked={checkedVanilla}
+            onChange={(e) => {
+              setActivePage(1)
+              setCheckedVanilla(e.currentTarget.checked)
+            }}
+          />
+        </Group>
+        
+        <Button
+          uppercase
+          variant="outline"
+          color="blue.4"
+          onClick={() =>
+            openModal({
+              title: 'Create location',
+              size: 'xs',
+              children: <CreateLocation />,
+            })
+          }
+        >
+          Create Custom Location
+        </Button>
+        
+        <LocationSearch />
 
-          <ScrollArea style={{ height: 480 }} scrollbarSize={0}>
-            <Stack>
-              <Accordion chevronPosition="left" variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
-                {Locationlist ? Locationlist :
-                  <Paper p="md">
-                    <Text size="md" weight={600} color="red.4">No location found</Text>
-                  </Paper>
-                }
-              </Accordion>
-            </Stack>
-          </ScrollArea>
-          <Center>
-            <Pagination
-              color="blue.4"
-              size='sm'
-              page={activePage}
-              onChange={setPage}
-              total={pageCount}
-            />
-          </Center>
-        </Stack>
-      </Paper>
+        {/* <ScrollArea style={{ height: 480 }} scrollbarSize={0}> */}
+          <Stack>
+            <Accordion chevronPosition="left" variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+              {Locationlist ? Locationlist :
+                <Paper p="md">
+                  <Text size="md" weight={600} color="red.4">No location found</Text>
+                </Paper>
+              }
+            </Accordion>
+          </Stack>
+        {/* </ScrollArea> */}
+        <Center>
+          <Pagination
+            color="blue.4"
+            size='sm'
+            page={activePage}
+            onChange={setPage}
+            total={pageCount}
+          />
+        </Center>
+      </Stack>
     </>
   )
 }

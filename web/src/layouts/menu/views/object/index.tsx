@@ -21,7 +21,7 @@ const Object: React.FC = () => {
         <>
             {/* TITLE */}
             <Group position='apart'>
-                <Text size={20}>Object spawner</Text>
+                <Text size={20}>Object Spawner</Text>
                 <Group position='apart'>
                     <ActionIcon
                         size="xl"
@@ -55,7 +55,7 @@ const Object: React.FC = () => {
             <Space h='sm' />
             
             {/* OBJECT LIST*/}
-            <Paper p="md" sx={{ height:500 }}>
+            <Paper p="md" sx={{ height:685 }}>
                 <Space h='sm' />
 
                 <ScrollArea style={{ height: 420 }} offsetScrollbars scrollbarSize={12}>

@@ -1,11 +1,12 @@
 import { Navbar, Stack } from '@mantine/core'
-import { TbHome } from 'react-icons/tb'
 import { RiHomeGearFill } from 'react-icons/ri'
-import { FaCar, FaTshirt } from 'react-icons/fa'
-import { BiCube, BiWorld } from 'react-icons/bi'
+import { FaCar, FaMapMarkerAlt, FaTshirt } from 'react-icons/fa'
+import { BiWorld } from 'react-icons/bi'
+import { IoMdCube } from 'react-icons/io'
 import NavIcon from './NavIcon'
-import { GiPistolGun, GiTeleport } from 'react-icons/gi'
+import { GiPistolGun } from 'react-icons/gi'
 import { fetchNui } from '../../../utils/fetchNui'
+import { AiFillHome } from 'react-icons/ai'
 
 const Nav: React.FC = () => {
 
@@ -20,14 +21,14 @@ const Nav: React.FC = () => {
     >
       <Navbar.Section grow>
         <Stack justify="center" spacing={5}>
-          <NavIcon color="blue.4" tooltip="Home" Icon={TbHome} to="/" handleClick={() => fetchNui('dmt:tabSelected', 'home')} />
+          <NavIcon color="blue.4" tooltip="Home" Icon={AiFillHome} to="/" handleClick={() => fetchNui('dmt:tabSelected', 'home')} />
           <NavIcon color="blue.4" tooltip="World" Icon={BiWorld} to="/world" handleClick={() => fetchNui('dmt:tabSelected', 'world')} />
-          <NavIcon color="blue.4" tooltip="Locations" Icon={GiTeleport} to="/locations"  handleClick={() => fetchNui('dmt:tabSelected', 'locations')}/>
           <NavIcon color="blue.4" tooltip="Interior" Icon={RiHomeGearFill} to="/interior"  handleClick={() => fetchNui('dmt:tabSelected', 'interior')}/>
-          <NavIcon color="blue.4" tooltip="Object" Icon={BiCube} to="/object"  handleClick={() => fetchNui('dmt:tabSelected', 'object')}/>
-          <NavIcon color="blue.4" tooltip="Ped" Icon={FaTshirt} to="/ped"  handleClick={() => fetchNui('dmt:tabSelected', 'ped')}/>
-          <NavIcon color="blue.4" tooltip="Vehicle" Icon={FaCar} to="/vehicle"  handleClick={() => fetchNui('dmt:tabSelected', 'vehicle')}/>
-          <NavIcon color="blue.4" tooltip="Weapon" Icon={GiPistolGun} to="/weapon"  handleClick={() => fetchNui('dmt:tabSelected', 'weapon')}/>
+          <NavIcon color="blue.4" tooltip="Object Spawner" Icon={IoMdCube} to="/object"  handleClick={() => fetchNui('dmt:tabSelected', 'object')}/>
+          <NavIcon color="blue.4" tooltip="Locations" Icon={FaMapMarkerAlt} to="/locations"  handleClick={() => fetchNui('dmt:tabSelected', 'locations')}/>
+          <NavIcon color="blue.4" tooltip="Peds" Icon={FaTshirt} to="/ped"  handleClick={() => fetchNui('dmt:tabSelected', 'ped')}/>
+          <NavIcon color="blue.4" tooltip="Vehicles" Icon={FaCar} to="/vehicle"  handleClick={() => fetchNui('dmt:tabSelected', 'vehicle')}/>
+          <NavIcon color="blue.4" tooltip="Weapons" Icon={GiPistolGun} to="/weapon"  handleClick={() => fetchNui('dmt:tabSelected', 'weapon')}/>
         </Stack>
       </Navbar.Section>
     </Navbar>

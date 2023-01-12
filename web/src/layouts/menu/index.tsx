@@ -97,9 +97,9 @@ const Menu: React.FC = () => {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/world" element={<World />} />
-              <Route path="/locations" element={<Locations />} />
               <Route path="/interior" element={<Interior />} />
               <Route path="/object" element={<Object />} />
+              <Route path="/locations" element={<Locations />} />
               <Route path="/ped" element={<Ped />} />
               <Route path="/vehicle" element={<Vehicle />} />
               <Route path="/weapon" element={<Weapon />} />

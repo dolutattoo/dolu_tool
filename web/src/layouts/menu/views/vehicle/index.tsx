@@ -80,7 +80,7 @@ const Vehicle: React.FC = () => {
               size="xs"
               onClick={() => fetchNui('dmt:spawnVehicle', vehicleList.name)}
             >
-              Spawn Vehicle
+              Spawn
             </Button>
             <Button
               variant="outline"
@@ -110,43 +110,41 @@ const Vehicle: React.FC = () => {
   ))
 
   return(
-    <Paper p="md">
-      <Stack>
-        <Text size={20}>Vehicle</Text>
-        <Button
-          uppercase
-          variant="outline"
+    <Stack>
+      <Text size={20}>Vehicles</Text>
+      <Button
+        uppercase
+        variant="outline"
+        color="blue.4"
+        onClick={() => fetchNui('dmt:spawnVehicle', searchVehicleValue)}
+      >
+        Spawn by Name
+      </Button>
+      <VehicleSearch/>
+      <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
+        <Stack>
+          <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+            {VehicleList ? VehicleList : 
+              <Paper p="md">
+                <Text size="md" weight={600} color="red.4">No vehicle found</Text>
+              </Paper>
+            }
+            </Accordion>
+        </Stack>
+      </ScrollArea>
+      <Center>
+        <Pagination
           color="blue.4"
-          onClick={() => fetchNui('dmt:spawnVehicle', searchVehicleValue)}
-        >
-          Spawn by Name
-        </Button>
-        <VehicleSearch/>
-        <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
-          <Stack>
-            <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
-              {VehicleList ? VehicleList : 
-                <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">No vehicle found</Text>
-                </Paper>
-              }
-              </Accordion>
-          </Stack>
-        </ScrollArea>
-        <Center>
-          <Pagination
-            color="blue.4"
-            size='sm'
-            page={activePage}
-            onChange={(value) => {
-              setPage(value)
-              setAccordionItem("0")
-            }}
-            total={pageCount}
-          />
-        </Center>
-      </Stack>
-    </Paper>
+          size='sm'
+          page={activePage}
+          onChange={(value) => {
+            setPage(value)
+            setAccordionItem("0")
+          }}
+          total={pageCount}
+        />
+      </Center>
+    </Stack>
   )
 
 }
