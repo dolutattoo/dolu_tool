@@ -63,7 +63,7 @@ CreateThread(function()
     SetEntityDrawOutlineColor(200, 200, 250, 180)
 
     while true do
-        if Client.isMenuOpen and Client.gizmoEntity then
+        if Client.gizmoEntity then
             SendNUIMessage({
                 action = 'setCameraPosition',
                 data = {
