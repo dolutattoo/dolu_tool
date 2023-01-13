@@ -83,9 +83,13 @@ RegisterNUICallback('dmt:setPortalFlagCheckbox', function(data, cb)
     for _, v in ipairs(data.flags) do
         flag += tonumber(v)
     end
-    
+
     SetInteriorPortalFlag(Client.interiorId, data.portalIndex, flag)
+    Wait(10)
     RefreshInterior(Client.interiorId)
+
+    -- Update flag back in nui
+    GetInteriorData(Client.interiorId)
 
     cb(1)
 end)

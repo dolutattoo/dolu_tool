@@ -6,7 +6,7 @@ import { fetchNui } from '../../utils/fetchNui'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { useExitListener } from '../../hooks/useExitListener'
 import { menuVisibilityAtom } from '../../atoms/visibility'
-import { getPortalFlagsList, interiorAtom, InteriorData, portalFlagsAtom } from '../../atoms/interior'
+import { interiorAtom, InteriorData } from '../../atoms/interior'
 import { lastLocationsAtom, Location } from '../../atoms/location'
 import { positionAtom } from '../../atoms/position'
 import Nav from './components/Nav'
@@ -32,7 +32,6 @@ const Menu: React.FC = () => {
   const { classes } = useStyles()
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
-  const setPortalFlags = useSetRecoilState(portalFlagsAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
   const setPosition = useSetRecoilState(positionAtom)
 
@@ -47,8 +46,7 @@ const Menu: React.FC = () => {
   })
 
   useNuiEvent('setIntData', (data: InteriorData) => {
-    setInteriorData(data)  
-    if (data.portals?.length !== 0) setPortalFlags(getPortalFlagsList()) //todo: looks like there is an error when entering/exiting interior
+    setInteriorData(data)
   })
 
   useExitListener(setVisible)
