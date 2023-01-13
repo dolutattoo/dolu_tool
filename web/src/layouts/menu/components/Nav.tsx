@@ -26,9 +26,9 @@ const Nav: React.FC = () => {
           <NavIcon color="blue.4" tooltip="Interior" Icon={RiHomeGearFill} to="/interior"  handleClick={() => fetchNui('dmt:tabSelected', 'interior')}/>
           <NavIcon color="blue.4" tooltip="Object Spawner" Icon={IoMdCube} to="/object"  handleClick={() => fetchNui('dmt:tabSelected', 'object')}/>
           <NavIcon color="blue.4" tooltip="Locations" Icon={FaMapMarkerAlt} to="/locations"  handleClick={() => fetchNui('dmt:tabSelected', 'locations')}/>
-          <NavIcon color="blue.4" tooltip="Peds" Icon={FaTshirt} to="/ped"  handleClick={() => fetchNui('dmt:tabSelected', 'ped')}/>
-          <NavIcon color="blue.4" tooltip="Vehicles" Icon={FaCar} to="/vehicle"  handleClick={() => fetchNui('dmt:tabSelected', 'vehicle')}/>
-          <NavIcon color="blue.4" tooltip="Weapons" Icon={GiPistolGun} to="/weapon"  handleClick={() => fetchNui('dmt:tabSelected', 'weapon')}/>
+          <NavIcon color="blue.4" tooltip="Peds" Icon={FaTshirt} to="/ped"  handleClick={() => {fetchNui('dmt:tabSelected', 'peds')}}/>
+          <NavIcon color="blue.4" tooltip="Vehicles" Icon={FaCar} to="/vehicle"  handleClick={() => fetchNui('dmt:tabSelected', 'vehicles')}/>
+          <NavIcon color="blue.4" tooltip="Weapons" Icon={GiPistolGun} to="/weapon"  handleClick={() => fetchNui('dmt:tabSelected', 'weapons')}/>
         </Stack>
       </Navbar.Section>
     </Navbar>

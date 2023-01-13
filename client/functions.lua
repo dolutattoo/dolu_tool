@@ -437,6 +437,68 @@ FUNC.initTarget = function()
     })
 end
 
+FUNC.getPages = function(page, table)
+    local perPage = 5 -- number of entries per page
+    local start = (page - 1) * perPage + 1 -- start index of the page
+    local finish = start + perPage - 1 -- end index of the page
+    local pageContent = {}
+
+    for i = start, math.min(finish, #table) do
+        pageContent[#pageContent+1] = table[i]
+    end
+
+    return pageContent
+end
+
+FUNC.loadPage = function(listType, activePage, filter, checkboxes)
+    local totalList = Client.data[listType]
+    local filteredList = {}
+
+    if listType == 'locations' and not checkboxes then
+        checkboxes = Client.locationsCheckboxes
+    end
+    
+    -- Filter list from search input
+    if filter and filter ~= "" or checkboxes ~= nil then
+        local searchResult = {}
+
+        Client.locationsCheckboxes = checkboxes
+
+        if listType == 'locations' then
+            for i, value in pairs(totalList) do
+                if (value.custom and checkboxes.custom) or (not value.custom and checkboxes.vanilla) then
+                    if (not filter or filter == "") or string.match(string.lower(value.name), string.lower(filter)) then
+                        table.insert(searchResult, value)
+                    end
+                end
+            end
+        else
+            for i, value in ipairs(totalList) do
+                if string.match(string.lower(value.name), string.lower(filter)) then
+                    table.insert(searchResult, value)
+                end
+            end
+        end
+
+        filteredList = searchResult
+    else
+        filteredList = totalList
+    end
+    
+    local result = {}
+    local total = #totalList   
+    local result = FUNC.getPages(activePage, filteredList)
+
+    SendNUIMessage({
+        action = 'setPageContent',
+        data = {
+            type = listType,
+            content = result,
+            maxPages = math.ceil(#filteredList/5)
+        }
+    })
+end
+
 ---Assert with styling and formatting
 ---@param v any
 ---@param msg string

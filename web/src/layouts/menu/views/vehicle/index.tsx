@@ -1,32 +1,25 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Transition, Center, Pagination } from "@mantine/core"
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from "@mantine/core"
 import { useEffect, useState} from "react"
 import { useRecoilState, useSetRecoilState } from "recoil"
-import { useVehicleList, changeVehicle, getSearchVehicleInput, vehicleListPageCountAtom, getVehicleListPageCount, vehicleListActivePageAtom } from "../../../../atoms/vehicle"
+import { getSearchVehicleInput, vehiclesPageCountAtom, vehiclesActivePageAtom, vehiclesPageContentAtom, VehicleProp } from "../../../../atoms/vehicle"
 import { displayImageAtom, imagePathAtom } from "../../../../atoms/imgPreview"
 import { setClipboard } from '../../../../utils/setClipboard'
 import VehicleSearch from "./components/vehicleListSearch"
 import { fetchNui } from "../../../../utils/fetchNui"
+import { useNuiEvent } from "../../../../hooks/useNuiEvent"
 
 const Vehicle: React.FC = () => {
-  // Get Vehicles (depending on search bar value)
-  const vehicleLists = useVehicleList()
-  // Get search bar value (used for change vehicle by name)
   const searchVehicleValue = getSearchVehicleInput()
+  const [pageContent, setPageContent] = useRecoilState(vehiclesPageContentAtom)
+  const [pageCount, setPageCount] = useRecoilState(vehiclesPageCountAtom)
+  const [activePage, setPage] = useRecoilState(vehiclesActivePageAtom)
 
-  const createPages = (arr: any, size: number) => {
-    const setPageCount = useSetRecoilState(vehicleListPageCountAtom)
-    var result = []
-    var pageCount = -1
-    for (var i = size*-1; i < arr.length; i += size) {
-      if (i < arr.length) { pageCount += 1 }
-      result.push(arr.slice(i, i+size))
+  useNuiEvent('setPageContent', (data: {type: string, content: VehicleProp[], maxPages: number}) => {
+    if (data.type === 'vehicles') {
+      setPageContent(data.content)
+      setPageCount(data.maxPages)
     }
-    setPageCount(pageCount)
-    return result
-  }
-  const pages = createPages(vehicleLists, 5)
-  const pageCount = getVehicleListPageCount()
-  const [activePage, setPage] = useRecoilState(vehicleListActivePageAtom)
+  })
 
   const [copiedVehicleName, setCopiedVehicleName] = useState(false);
   const [copiedVehicleHash, setCopiedVehicleHash] = useState(false);
@@ -48,7 +41,7 @@ const Vehicle: React.FC = () => {
     }, 1000);
   }, [copiedVehicleHash, setCopiedVehicleHash]);
 
-  const VehicleList = pages[activePage]?.map((vehicleList: any, index: number) => (
+  const VehicleList = pageContent?.map((vehicleList: any, index: number) => (
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Text size="md" weight={500}>• {vehicleList.name}</Text>
@@ -138,6 +131,7 @@ const Vehicle: React.FC = () => {
           size='sm'
           page={activePage}
           onChange={(value) => {
+            fetchNui('dmt:loadPages', { type: 'vehicles', activePage: value, filter: searchVehicleValue })
             setPage(value)
             setAccordionItem("0")
           }}

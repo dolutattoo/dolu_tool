@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilValue } from 'recoil'
+import { atom, useRecoilValue } from 'recoil'
 
 export interface Location {
   name: string,
@@ -28,42 +28,17 @@ const mockLocations: Location[] = [
     }
 ]
 
-export const locationsAtom = atom<Location[]>({ key: 'locations', default: mockLocations })
 export const lastLocationsAtom = atom<Location|null>({ key: 'lastLocations', default: null })
-export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', default: 1 })
-export const locationActivePageAtom = atom<number>({ key: 'locationActivePage', default: 1 })
-export const selectedLocationIdAtom = atom<string | null>({ key: 'selectedLocationIndex', default: null })
+export const selectedLocationIdAtom = atom<string | null>({ key: 'selectedLocationId', default: null })
 
-// Filter search bar input
 export const locationSearchAtom = atom<string>({ key: 'locationSearch', default: '' })
+export const locationsActivePageAtom = atom<number>({ key: 'locationsActivePage', default: 1 })
+export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', default: 1 })
+export const locationsPageContentAtom = atom<Location[]>({ key: 'locationsPageContent', default: mockLocations })
 
 // Filter Checkboxes
 export const locationVanillaFilterAtom = atom<boolean>({ key: 'locationVanillaFilter', default: true })
 export const locationCustomFilterAtom = atom<boolean>({ key: 'locationCustomFilter', default: true })
 
-export const filteredLocationsAtom = selector({
-  key: 'filteredLocations',
-  get: ({ get }) => {
-    const search = get(locationSearchAtom)
-    const locations = get(locationsAtom)
-    const isCustomChecked = get(locationCustomFilterAtom)
-    const isVanillaChecked = get(locationVanillaFilterAtom)
-
-    const searchedLocations = locations.filter((location) => {
-      if (search !== '') {
-        const regEx = new RegExp(search, 'gi')
-        if (!location.name.match(regEx)) return false      
-      }
-      if (isCustomChecked && location.custom) return true
-      if (isVanillaChecked && !location.custom) return true
-
-      return false
-    })
-
-    return searchedLocations
-  }
-})
-
-export const useLocation = () => useRecoilValue(filteredLocationsAtom)
 export const getLastLocation = () => useRecoilValue(lastLocationsAtom)
-export const getLocationPageCount = () => useRecoilValue(locationsPageCountAtom)
+export const getSearchLocationInput = () => useRecoilValue(locationSearchAtom) as string

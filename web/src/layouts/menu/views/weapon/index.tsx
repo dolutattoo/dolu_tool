@@ -1,32 +1,25 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Transition, Center, Pagination } from "@mantine/core"
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from "@mantine/core"
 import { useEffect, useState} from "react"
 import { useRecoilState, useSetRecoilState } from "recoil"
-import { useWeaponList, getSearchWeaponInput, weaponListPageCountAtom, getWeaponListPageCount, weaponListActivePageAtom } from "../../../../atoms/weapon"
+import { getSearchWeaponInput, weaponsPageCountAtom, weaponsActivePageAtom, weaponsPageContentAtom, WeaponProp } from "../../../../atoms/weapon"
 import { displayImageAtom, imagePathAtom } from "../../../../atoms/imgPreview"
 import { setClipboard } from '../../../../utils/setClipboard'
 import WeaponSearch from "./components/weaponListSearch"
 import { fetchNui } from "../../../../utils/fetchNui"
+import { useNuiEvent } from "../../../../hooks/useNuiEvent"
 
 const Weapon: React.FC = () => {
-  // Get Weapons (depending on search bar value)
-  const weaponLists = useWeaponList()
-  // Get search bar value (used for give weapon by name)
   const searchWeaponValue = getSearchWeaponInput()
+  const [pageContent, setPageContent] = useRecoilState(weaponsPageContentAtom)
+  const [pageCount, setPageCount] = useRecoilState(weaponsPageCountAtom)
+  const [activePage, setPage] = useRecoilState(weaponsActivePageAtom)
 
-  const createPages = (arr: any, size: number) => {
-    const setPageCount = useSetRecoilState(weaponListPageCountAtom)
-    var result = []
-    var pageCount = -1
-    for (var i = size*-1; i < arr.length; i += size) {
-      if (i < arr.length) { pageCount += 1 }
-      result.push(arr.slice(i, i+size))
+  useNuiEvent('setPageContent', (data: {type: string, content: WeaponProp[], maxPages: number}) => {
+    if (data.type === 'weapons') {
+      setPageContent(data.content)
+      setPageCount(data.maxPages)
     }
-    setPageCount(pageCount)
-    return result
-  }
-  const pages = createPages(weaponLists, 5)
-  const pageCount = getWeaponListPageCount()
-  const [activePage, setPage] = useRecoilState(weaponListActivePageAtom)
+  })
 
   const [copiedWeaponName, setCopiedWeaponName] = useState(false);
   const [copiedWeaponHash, setCopiedWeaponHash] = useState(false);
@@ -48,7 +41,7 @@ const Weapon: React.FC = () => {
     }, 1000);
   }, [copiedWeaponHash, setCopiedWeaponHash]);
 
-  const WeaponList = pages[activePage]?.map((weaponList: any, index: number) => (
+  const WeaponList = pageContent?.map((weaponList: any, index: number) => (
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Text size="md" weight={500}>• {weaponList.name}</Text>
@@ -138,6 +131,7 @@ const Weapon: React.FC = () => {
           size='sm'
           page={activePage}
           onChange={(value) => {
+            fetchNui('dmt:loadPages', { type: 'weapons', activePage: value, filter: searchWeaponValue })
             setPage(value)
             setAccordionItem("0")
           }}

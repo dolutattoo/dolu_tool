@@ -1,31 +1,25 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Transition, Center, Pagination } from "@mantine/core"
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from "@mantine/core"
 import { useEffect, useState} from "react"
 import { useRecoilState, useSetRecoilState } from "recoil"
-import { usePedList, changePed, getSearchPedInput, pedListPageCountAtom, getPedListPageCount, pedListActivePageAtom } from "../../../../atoms/ped"
+import { getSearchPedInput, PedProp, pedsActivePageAtom, pedsPageContentAtom, pedsPageCountAtom } from "../../../../atoms/ped"
 import { displayImageAtom, imagePathAtom } from "../../../../atoms/imgPreview"
 import { setClipboard } from '../../../../utils/setClipboard'
 import PedSearch from "./components/pedListSearch"
+import { fetchNui } from "../../../../utils/fetchNui"
+import { useNuiEvent } from "../../../../hooks/useNuiEvent"
 
 const Ped: React.FC = () => {
-  // Get Peds (depending on search bar value)
-  const pedLists = usePedList()
-  // Get search bar value (used for change ped by name)
   const searchPedValue = getSearchPedInput()
+  const [pageContent, setPageContent] = useRecoilState(pedsPageContentAtom)
+  const [pageCount, setPageCount] = useRecoilState(pedsPageCountAtom)
+  const [activePage, setPage] = useRecoilState(pedsActivePageAtom)
 
-  const createPages = (arr: any, size: number) => {
-    const setPageCount = useSetRecoilState(pedListPageCountAtom)
-    var result = []
-    var pageCount = -1
-    for (var i = size*-1; i < arr.length; i += size) {
-      if (i < arr.length) { pageCount += 1 }
-      result.push(arr.slice(i, i+size))
+  useNuiEvent('setPageContent', (data: {type: string, content: PedProp[], maxPages: number}) => {
+    if (data.type === 'peds') {
+      setPageContent(data.content)
+      setPageCount(data.maxPages)
     }
-    setPageCount(pageCount)
-    return result
-  }
-  const pages = createPages(pedLists, 5)
-  const pageCount = getPedListPageCount()
-  const [activePage, setPage] = useRecoilState(pedListActivePageAtom)
+  })
 
   const [copiedPedName, setCopiedPedName] = useState(false);
   const [copiedPedHash, setCopiedPedHash] = useState(false);
@@ -47,7 +41,7 @@ const Ped: React.FC = () => {
     }, 1000);
   }, [copiedPedHash, setCopiedPedHash]);
 
-  const PedList = pages[activePage]?.map((pedList: any, index: number) => (
+  const PedList = pageContent?.map((pedList: any, index: number) => (
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Text size="md" weight={500}>• {pedList.name}</Text>
@@ -77,7 +71,7 @@ const Ped: React.FC = () => {
               variant="outline"
               color={"blue.4"}
               size="xs"
-              onClick={() => { changePed({ name: pedList.name, hash: pedList.hash }) }}
+              onClick={() => { fetchNui('dmt:changePed', { name: pedList.name, hash: pedList.hash }) }}
             >
               Change Ped
             </Button>
@@ -115,7 +109,7 @@ const Ped: React.FC = () => {
         uppercase
         variant="outline"
         color="blue.4"
-        onClick={() => { changePed({ name: `${searchPedValue}` }) }}
+        onClick={() => { fetchNui('dmt:changePed', { name: `${searchPedValue}` }) }}
       >
         Change by Name
       </Button>
@@ -134,9 +128,10 @@ const Ped: React.FC = () => {
       <Center>
         <Pagination
           color="blue.4"
-          size='sm'
+          size='md'
           page={activePage}
           onChange={(value) => {
+            fetchNui('dmt:loadPages', { type: 'peds', activePage: value, filter: searchPedValue })
             setPage(value)
             setAccordionItem("0")
           }}

@@ -25,11 +25,21 @@ RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
             }
         })
 
-    elseif newTab == 'object' then
-        SendNUIMessage({
-            action = 'setYmapList',
-            data = Client.loadedYmap
-        })
+    elseif newTab == 'locations' and not Client.locationsLoaded then
+        FUNC.loadPage('locations', 1)
+        Client.locationsLoaded = true
+
+    elseif newTab == 'peds' and not Client.pedsLoaded then
+        FUNC.loadPage('peds', 1)
+        Client.pedsLoaded = true
+
+    elseif newTab == 'vehicles' and not Client.vehiclesLoaded then
+        FUNC.loadPage('vehicles', 1)
+        Client.vehiclesLoaded = true
+
+    elseif newTab == 'weapons' and not Client.weaponsLoaded then
+        FUNC.loadPage('weapons', 1)
+        Client.weaponsLoaded = true
     end
     
     cb(1)
@@ -87,12 +97,11 @@ RegisterNUICallback('dmt:changeLocationName', function(data, cb)
     lib.callback('dmt:renameLocation', false, function(result)
         if not result then return end
 
-        Client.locations[result.index] = result.data
+        Client.data.locations[result.index] = result.data
 
-        SendNUIMessage({
-            action = 'setLocationDatas',
-            data = Client.locations
-        })
+        if Client.isMenuOpen and Client.currentTab == 'locations' then
+            FUNC.loadPage('locations', 1)
+        end
     end, data)
     
     cb(1)
@@ -105,12 +114,11 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
         if not result then return end
 
         -- Insert new location at index 1
-        table.insert(Client.locations, 1, result)
+        table.insert(Client.data.locations, 1, result)
 
-        SendNUIMessage({
-            action = 'setLocationDatas',
-            data = Client.locations
-        })
+        if Client.isMenuOpen and Client.currentTab == 'locations' then
+            FUNC.loadPage('locations', 1)
+        end
 
         lib.notify({
             title = 'Dolu Mapping Tool',
@@ -132,12 +140,11 @@ RegisterNUICallback('dmt:deleteLocation', function(locationName, cb)
     if not result then return end
 
     -- Remove location from file
-    table.remove(Client.locations, result)
+    table.remove(Client.data.locations, result)
 
-    SendNUIMessage({
-        action = 'setLocationDatas',
-        data = Client.locations
-    })
+    if Client.isMenuOpen and Client.currentTab == 'locations' then
+        FUNC.loadPage('locations', 1)
+    end
     
     cb(1)
 end)
@@ -452,8 +459,6 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entityHandle, cb)
 end)
 
 RegisterNUICallback('dmt:goToEntity', function(data, cb)
-    print(json.encode(data, {indent=true}))
-
     if data?.position and data.handle and DoesEntityExist(data.handle) then
         local coords = GetEntityCoords(data.handle)
         FUNC.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
@@ -530,5 +535,10 @@ RegisterNUICallback('dmt:setCustomCoords', function(data, cb)
     if not formatedCoords then return end
     FUNC.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
     
+    cb(1)
+end)
+
+RegisterNUICallback('dmt:loadPages', function(data, cb)
+    FUNC.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
     cb(1)
 end)

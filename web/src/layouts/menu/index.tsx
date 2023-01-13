@@ -1,28 +1,24 @@
 import { AppShell, Box, createStyles, Group, Header, Title, Transition } from '@mantine/core'
-import { json, Route } from 'react-router-dom'
-import { Routes } from 'react-router-dom'
-import Nav from './components/Nav'
-import Home from './views/home'
-import { menuVisibilityAtom } from '../../atoms/visibility'
-import { useNuiEvent } from '../../hooks/useNuiEvent'
-import { useExitListener } from '../../hooks/useExitListener'
 import { useRecoilState, useSetRecoilState } from 'recoil'
-import { lastLocationsAtom, Location, locationsAtom } from '../../atoms/location'
-import { getPortalFlagsList, interiorAtom, InteriorData, portalFlagsAtom } from '../../atoms/interior'
-import NavIcon from './components/NavIcon'
+import { Route, Routes } from 'react-router-dom'
 import { TbLogout } from 'react-icons/tb'
 import { fetchNui } from '../../utils/fetchNui'
-import { pedListAtom, PedProp } from '../../atoms/ped'
-import Locations from './views/locations'
-import Interior from './views/interior'
-import Ped from './views/ped'
-import World from './views/world'
-import Object from './views/object'
-import Vehicle from './views/vehicle'
-import { vehicleListAtom, VehicleProp } from '../../atoms/vehicle'
+import { useNuiEvent } from '../../hooks/useNuiEvent'
+import { useExitListener } from '../../hooks/useExitListener'
+import { menuVisibilityAtom } from '../../atoms/visibility'
+import { getPortalFlagsList, interiorAtom, InteriorData, portalFlagsAtom } from '../../atoms/interior'
+import { lastLocationsAtom, Location } from '../../atoms/location'
 import { positionAtom } from '../../atoms/position'
+import Nav from './components/Nav'
+import NavIcon from './components/NavIcon'
+import Home from './views/home'
+import World from './views/world'
+import Interior from './views/interior'
+import Object from './views/object'
+import Locations from './views/locations'
+import Ped from './views/ped'
+import Vehicle from './views/vehicle'
 import Weapon from './views/weapon'
-import { weaponListAtom, WeaponProp } from '../../atoms/weapon'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -35,37 +31,24 @@ const useStyles = createStyles((theme) => ({
 const Menu: React.FC = () => {
   const { classes } = useStyles()
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
-  const setLocations = useSetRecoilState(locationsAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
   const setPortalFlags = useSetRecoilState(portalFlagsAtom)
-  const setPedList = useSetRecoilState(pedListAtom)
-  const setVehicleList = useSetRecoilState(vehicleListAtom)
-  const setweaponList = useSetRecoilState(weaponListAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
   const setPosition = useSetRecoilState(positionAtom)
 
-  useNuiEvent('setMenuVisible', (data: {locations: Location[], lastLocation: Location, pedLists: PedProp[], vehicleLists: VehicleProp[], position: string, weaponLists: WeaponProp[]}) => {   
+  useNuiEvent('setMenuVisible', (data: {lastLocation: Location, position: string}) => {   
     setVisible(true)
-    setLocations(data.locations)
     setLastLocation(data.lastLocation)
-    setPedList(data.pedLists)
-    setVehicleList(data.vehicleLists)
     setPosition(data.position)
-    setweaponList(data.weaponLists)
   })
 
   useNuiEvent('setLastLocation', (data: any) => {
     setLastLocation(data)
   })
 
-  useNuiEvent('setLocationDatas', (data: Location[]) => {
-    setLocations(data)
-  })
-
   useNuiEvent('setIntData', (data: InteriorData) => {
     setInteriorData(data)  
     if (data.portals?.length !== 0) setPortalFlags(getPortalFlagsList()) //todo: looks like there is an error when entering/exiting interior
-    
   })
 
   useExitListener(setVisible)

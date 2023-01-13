@@ -1,5 +1,4 @@
-import { atom, selector, useRecoilValue } from 'recoil'
-import { fetchNui } from '../utils/fetchNui'
+import { atom, useRecoilValue } from 'recoil'
 
 export interface VehicleProp {
   hash: number,
@@ -32,37 +31,9 @@ const mockVehicleList: VehicleProp[] = [
     },
 ]
 
-export const vehicleListAtom = atom<VehicleProp[]>({ key: 'vehicleList', default: mockVehicleList })
-export const vehicleListPageCountAtom = atom<number>({ key: 'vehicleListPageCount', default: 1})
-// Filter search bar input
 export const vehicleListSearchAtom = atom<string>({ key: 'vehicleListSearch', default: '' })
+export const vehiclesActivePageAtom = atom<number>({ key: 'vehicleActivePage', default: 1 })
+export const vehiclesPageCountAtom = atom<number>({ key: 'vehiclePageCount', default: 1})
+export const vehiclesPageContentAtom = atom<VehicleProp[]>({ key: 'vehiclesPageContent', default: mockVehicleList })
 
-export const filteredVehicleListAtom = selector({
-  key: 'filteredVehicleList',
-  get: ({ get }) => {
-    const search = get(vehicleListSearchAtom)
-    const vehicleList = get(vehicleListAtom)
-
-    if (search === '') return vehicleList
-
-    const searchVehicleList = vehicleList.filter((vehicleList) => {
-      const regEx = new RegExp(search, 'gi')
-      if (!vehicleList.name.match(regEx)) return false
-
-      return true
-    })
-
-    return searchVehicleList
-  }
-})
-
-export const changeVehicle = (value: VehicleProp) => {
-  fetchNui('dmt:changeVehicle', value)
-}
-
-
-export const vehicleListActivePageAtom = atom<number>({ key: 'vehicleListActivePage', default: 1 })
-
-export const useVehicleList = () => useRecoilValue(filteredVehicleListAtom)
 export const getSearchVehicleInput = () => useRecoilValue(vehicleListSearchAtom) as string
-export const getVehicleListPageCount = () => useRecoilValue(vehicleListPageCountAtom)

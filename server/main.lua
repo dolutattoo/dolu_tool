@@ -58,6 +58,7 @@ lib.callback.register('dmt:getData', function()
         v.custom = true
         table.insert(locations, v)
     end
+    Server.locations = locations
 
     return {
         locations = locations,

@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilValue } from 'recoil'
+import { atom, useRecoilValue } from 'recoil'
 
 export interface WeaponProp {
   hash: number,
@@ -16,32 +16,9 @@ const mockWeaponList: WeaponProp[] = [
     },
 ]
 
-export const weaponListAtom = atom<WeaponProp[]>({ key: 'weaponList', default: mockWeaponList })
-export const weaponListPageCountAtom = atom<number>({ key: 'weaponListPageCount', default: 1})
-// Filter search bar input
-export const weaponListSearchAtom = atom<string>({ key: 'weaponListSearch', default: '' })
+export const weaponsListSearchAtom = atom<string>({ key: 'weaponsListSearch', default: '' })
+export const weaponsActivePageAtom = atom<number>({ key: 'weaponsActivePage', default: 1 })
+export const weaponsPageCountAtom = atom<number>({ key: 'weaponsPageCount', default: 1})
+export const weaponsPageContentAtom = atom<WeaponProp[]>({ key: 'weaponsPageContent', default: mockWeaponList })
 
-export const filteredWeaponListAtom = selector({
-  key: 'filteredWeaponList',
-  get: ({ get }) => {
-    const search = get(weaponListSearchAtom)
-    const weaponList = get(weaponListAtom)
-
-    if (search === '') return weaponList
-
-    const searchWeaponList = weaponList.filter((weaponList) => {
-      const regEx = new RegExp(search, 'gi')
-      if (!weaponList.name.match(regEx)) return false
-
-      return true
-    })
-
-    return searchWeaponList
-  }
-})
-
-export const weaponListActivePageAtom = atom<number>({ key: 'weaponListActivePage', default: 1 })
-
-export const useWeaponList = () => useRecoilValue(filteredWeaponListAtom)
-export const getSearchWeaponInput = () => useRecoilValue(weaponListSearchAtom) as string
-export const getWeaponListPageCount = () => useRecoilValue(weaponListPageCountAtom)
+export const getSearchWeaponInput = () => useRecoilValue(weaponsListSearchAtom) as string

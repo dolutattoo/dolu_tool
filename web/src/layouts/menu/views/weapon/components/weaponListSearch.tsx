@@ -2,12 +2,12 @@ import { TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { TbSearch } from 'react-icons/tb'
 import { useSetRecoilState } from 'recoil'
-import { weaponListSearchAtom } from '../../../../../atoms/weapon'
+import { weaponsListSearchAtom } from '../../../../../atoms/weapon'
 import { useEffect, useState } from 'react'
 
 const WeaponSearch: React.FC = () => {
   const [searchWeapon, setSearchWeapon] = useState('')
-  const setWeaponSearch = useSetRecoilState(weaponListSearchAtom)
+  const setWeaponSearch = useSetRecoilState(weaponsListSearchAtom)
   const [debouncedWeaponSearch] = useDebouncedValue(searchWeapon, 200)
 
   useEffect(() => {

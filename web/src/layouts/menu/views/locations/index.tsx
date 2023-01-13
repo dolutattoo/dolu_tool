@@ -1,41 +1,32 @@
-import { Accordion, Badge, Button, Center, Checkbox, Group, Pagination, Paper, ScrollArea, Stack, Text } from '@mantine/core'
+import { Accordion, Badge, Button, Center, Checkbox, Group, Pagination, Paper, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
-import { getLocationPageCount, locationActivePageAtom, locationCustomFilterAtom, locationsAtom, locationsPageCountAtom, locationVanillaFilterAtom, useLocation } from '../../../../atoms/location'
+import { Location, getSearchLocationInput, locationsActivePageAtom, locationCustomFilterAtom, locationsPageCountAtom, locationVanillaFilterAtom, locationsPageContentAtom } from '../../../../atoms/location'
 import LocationSearch from './components/LocationSearch'
 import { setClipboard } from '../../../../utils/setClipboard'
 import { useEffect, useState } from 'react'
 import RenameLocation from './components/modals/RenameLocation'
-import { useRecoilState, useSetRecoilState } from 'recoil'
+import { useRecoilState } from 'recoil'
 import { fetchNui } from '../../../../utils/fetchNui'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import DeleteLocation from './components/modals/DeleteLocation'
 
 const Locations: React.FC = () => {
-  // Get Locations (depending on search bar value)
-  const locations = useLocation()
+  const searchLocationValue = getSearchLocationInput()
+  const [pageContent, setPageContent] = useRecoilState(locationsPageContentAtom)
+  const [pageCount, setPageCount] = useRecoilState(locationsPageCountAtom)
+  const [activePage, setPage] = useRecoilState(locationsActivePageAtom)
 
-  // Pagination
-  const createPages = (arr: any, size: number) => {
-    const setPageCount = useSetRecoilState(locationsPageCountAtom)
-    var result = []
-    var pageCount = -1
-    for (var i = size*-1; i < arr.length; i += size) {
-      if (i < arr.length) { pageCount += 1 }
-      result.push(arr.slice(i, i+size))
+  useNuiEvent('setPageContent', (data: {type: string, content: Location[], maxPages: number}) => {
+    if (data.type === 'locations') {
+      setPageContent(data.content)
+      setPageCount(data.maxPages)
     }
-    setPageCount(pageCount)
-    return result
-  }
-  
-  const pages = createPages(locations, 5)
-  const pageCount = getLocationPageCount()
-  const [activePage, setPage] = useRecoilState(locationActivePageAtom)
+  })
 
   // Checkboxes
   const [checkedVanilla, setCheckedVanilla] = useRecoilState(locationVanillaFilterAtom)
   const [checkedCustom, setCheckedCustom] = useRecoilState(locationCustomFilterAtom)
-  const setActivePage = useSetRecoilState(locationActivePageAtom)
 
   // Accordion
   const [currentAccordionItem, setAccordionItem] = useState<string|null>('0')
@@ -48,13 +39,7 @@ const Locations: React.FC = () => {
     }, 2000)
   }, [copied, setCopied])
 
-  // Get locations data updates
-  const setLocations = useSetRecoilState(locationsAtom)
-  useNuiEvent('setLocationDatas', (data: any) => {
-    setLocations(data)
-  })
-
-  const Locationlist = pages[activePage]?.map((location: any, index: number) => (
+  const Locationlist = pageContent?.map((location: any, index: number) => (
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Stack spacing={0}>
@@ -138,7 +123,8 @@ const Locations: React.FC = () => {
             disabled={!checkedVanilla}
             checked={checkedCustom}
             onChange={(e) => {
-              setActivePage(1)
+              fetchNui('dmt:loadPages', { type: 'locations', activePage: 1, filter: searchLocationValue, checkboxes: {vanilla: checkedVanilla, custom: e.currentTarget.checked} })
+              setPage(1)
               setCheckedCustom(e.currentTarget.checked)
             }}
           />
@@ -149,7 +135,8 @@ const Locations: React.FC = () => {
             disabled={!checkedCustom}
             checked={checkedVanilla}
             onChange={(e) => {
-              setActivePage(1)
+              fetchNui('dmt:loadPages', { type: 'locations', activePage: 1, filter: searchLocationValue, checkboxes: {vanilla: e.currentTarget.checked, custom: checkedCustom} })
+              setPage(1)
               setCheckedVanilla(e.currentTarget.checked)
             }}
           />
@@ -188,7 +175,11 @@ const Locations: React.FC = () => {
             color="blue.4"
             size='sm'
             page={activePage}
-            onChange={setPage}
+            onChange={(value) => {
+              fetchNui('dmt:loadPages', { type: 'locations', activePage: value, filter: searchLocationValue, checkboxes: {vanilla: checkedVanilla, custom: checkedCustom} })
+              setPage(value)
+              setAccordionItem("0")
+            }}
             total={pageCount}
           />
         </Center>
