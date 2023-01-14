@@ -4,7 +4,7 @@ import { Stack, Button, TextInput } from '@mantine/core'
 import { fetchNui } from '../../../../../../utils/fetchNui'
 
 const AddEntity: React.FC = () => {
-  const [entityName, setEntityName] = useState('apa_mp_h_stn_sofa_daybed_01')
+  const [entityName, setEntityName] = useRecoilState(ObjectNameAtom)
 
   return (
     <Stack>
