@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
 import { Accordion, ActionIcon, Button, Group, Paper, ScrollArea, Space, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
@@ -8,14 +8,42 @@ import { fetchNui } from '../../../../utils/fetchNui'
 import AddEntity from './components/modals/AddEntity'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import DeleteAllEntities from './components/modals/DeleteAllEntities'
+import { setClipboard } from '../../../../utils/setClipboard'
 
 const Object: React.FC = () => {
     const [objectList, setObjectList] = useRecoilState(ObjectListAtom);
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
-
+    
     useNuiEvent('setObjectList', (entitiesList: Entity[]|null) => {
-        if (entitiesList !== null) setObjectList(entitiesList)
+        if (entitiesList !== null) {
+            setObjectList(entitiesList)
+            setAccordionItem(entitiesList[0].handle.toString())
+        }
     })
+    
+    useNuiEvent('setObjectData', (data: {index: number, entity: Entity}) => {
+        if (data.entity !== null) {
+            const updatedObject = [...objectList]
+            updatedObject[data.index] = data.entity
+            setObjectList(updatedObject)
+        }
+    })
+
+    // Copied name button
+    const [copiedName, setCopiedName] = useState(false)
+    useEffect(() => {
+        setTimeout(() => {
+        if (copiedName) setCopiedName(false)
+        }, 1000)
+    }, [copiedName, setCopiedName])
+
+    // Copied coords button
+    const [copiedCoords, setCopiedCoords] = useState(false)
+    useEffect(() => {
+        setTimeout(() => {
+        if (copiedCoords) setCopiedCoords(false)
+        }, 1000)
+    }, [copiedCoords, setCopiedCoords])
 
     return (
         <>
@@ -71,7 +99,7 @@ const Object: React.FC = () => {
                         }
                         chevronPosition="left"
                     >
-                        {objectList.map((entity: Entity, entityIndex: any) => {                            
+                        {objectList.map((entity: Entity, entityIndex: any) => {                        
                             return (
                                 <Accordion.Item value={entity.handle.toString()}>
                                     <Accordion.Control>
@@ -88,6 +116,27 @@ const Object: React.FC = () => {
                                                 }}
                                             >Go to</Button>
                                             <Button
+                                                variant='outline'
+                                                color={copiedCoords ? 'teal' : "blue.4"}
+                                                size="xs"
+                                                onClick={() => {
+                                                    setClipboard(entity.position.x + ', ' + entity.position.y + ', ' + entity.position.z)
+                                                    setCopiedCoords(true)
+                                                }}
+                                            >{copiedCoords ? 'Copied' : 'Copy'} coords</Button>
+                                            <Button
+                                                variant='outline'
+                                                color={copiedName ? 'teal' : "blue.4"}
+                                                size="xs"
+                                                onClick={() => {
+                                                    setClipboard(entity.name)
+                                                    setCopiedName(true)
+                                                }}
+                                            >{copiedName ? 'Copied' : 'Copy'} name</Button>
+                                        </Group>
+                                        <Space h='xs' />
+                                        <Group grow>
+                                            <Button
                                                 variant="outline"
                                                 color="blue.4"
                                                 size="xs"
@@ -95,7 +144,14 @@ const Object: React.FC = () => {
                                                     fetchNui('dmt:snapEntityToGround', entity)
                                                 }}
                                             >Snap to ground</Button>
-                                            
+                                            <Button
+                                                variant='outline'
+                                                color="blue.4"
+                                                size="xs"
+                                                onClick={() => {
+                                                    fetchNui('dmt:addEntity', entity.name)
+                                                }}
+                                            >Duplicate</Button>                                            
                                             <Button
                                                 variant="outline"
                                                 color="blue.4"

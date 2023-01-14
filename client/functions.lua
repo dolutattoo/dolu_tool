@@ -384,6 +384,20 @@ FUNC.quat2Euler = function(x, y, z, w)
     return euler
 end
 
+FUNC.rotationToDirection = function(rotation)
+	local adjustedRotation = vec3(
+        (math.pi / 180) * rotation.x,
+        (math.pi / 180) * rotation.y,
+        (math.pi / 180) * rotation.z
+    )
+	local direction = vec3(
+        -math.sin(adjustedRotation.z) * math.abs(math.cos(adjustedRotation.x)),
+        math.cos(adjustedRotation.z) * math.abs(math.cos(adjustedRotation.x)),
+        math.sin(adjustedRotation.x)
+    )
+	return direction
+end
+
 FUNC.initTarget = function()
     if not Config.target then return end
 

@@ -288,8 +288,13 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
 
     
     lib.requestModel(model)
-    local coords = GetOffsetFromEntityInWorldCoords(cache.ped, 0, 5, 0)
-    local obj = CreateObject(model, coords.x, coords.y+2, coords.z)
+
+    local distance = 5 -- Distance to spawn object from the camera
+    local cameraRotation = GetFinalRenderedCamRot()
+    local cameraCoord = GetFinalRenderedCamCoord()
+	local direction = FUNC.rotationToDirection(cameraRotation)
+	local coords =  vec3(cameraCoord.x + direction.x * distance, cameraCoord.y + direction.y * distance, cameraCoord.z + direction.z * distance)
+    local obj = CreateObject(model, coords.x, coords.y, coords.z)
     
     Wait(50)
     if not DoesEntityExist(obj) then 
@@ -303,7 +308,6 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
         return
     end
 
-    PlaceObjectOnGroundProperly(obj)
     FreezeEntityPosition(obj, true)
 
     local entityRotation = GetEntityRotation(obj)
@@ -483,8 +487,44 @@ end)
 
 RegisterNUICallback('dmt:moveEntity', function(data, cb)
     if data.handle then
-        SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
-        SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z)
+
+        -- Check if entity was spawned using Object Spawner
+        local index, entity
+        for k, v in ipairs(Client.spawnedEntities) do
+            if v.handle == data.handle then
+                index = k-1
+                entity = v
+                break
+            end
+        end
+
+        if DoesEntityExist(entity.handle) then
+            SetEntityCoords(entity.handle, data.position.x, data.position.y, data.position.z)
+            SetEntityRotation(entity.handle, data.rotation.x, data.rotation.y, data.rotation.z)
+
+            -- If entity was spawned using Object Spawner, send updated data to nui
+            if index and entity then
+                local newPos = GetEntityCoords(entity.handle)
+                local newRot = GetEntityRotation(entity.handle)
+                entity.position = { x = newPos.x, y = newPos.y, z = newPos.z }
+                entity.rotation = { x = newRot.x, y = newRot.y, z = newRot.z }
+
+                SendNUIMessage({
+                    action = 'setObjectData',
+                    data = {
+                        index = index,
+                        entity = entity
+                    }
+                })
+            end
+        else
+            lib.notify({
+                title = 'Dolu Mapping Tool',
+                description = "Entity does not exist!",
+                type = 'error',
+                position = 'top'
+            })
+        end
     end
     
     cb(1)

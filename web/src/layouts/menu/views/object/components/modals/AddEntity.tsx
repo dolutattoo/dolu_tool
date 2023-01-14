@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { closeAllModals } from '@mantine/modals'
 import { Stack, Button, TextInput } from '@mantine/core'
+import { closeAllModals } from '@mantine/modals'
+import { useRecoilState } from 'recoil'
+import { ObjectNameAtom } from '../../../../../../atoms/object'
 import { fetchNui } from '../../../../../../utils/fetchNui'
 
 const AddEntity: React.FC = () => {
