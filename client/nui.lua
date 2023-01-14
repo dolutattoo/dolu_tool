@@ -346,6 +346,67 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     cb(1)
 end)
 
+RegisterNUICallback('dmt:setEntityModel', function(data, cb)
+    local model = joaat(data.modelName)
+    if not IsModelInCdimage(model) then
+        SendNUIMessage({
+            action = 'setObjectNameError',
+            data = "Invalid model"
+        })
+        cb(1)
+        return
+    else
+        SendNUIMessage({
+            action = 'setObjectNameError',
+            data = false
+        })
+    end
+
+    -- Check if entity was spawned using Object Spawner
+    local index, entity
+    for k, v in ipairs(Client.spawnedEntities) do
+        if v.handle == data.entity.handle then
+            index = k-1
+            entity = v
+            break
+        end
+    end
+
+    -- If entity was spawned using Object Spawner, send updated data to nui
+    if index and entity and DoesEntityExist(entity.handle) then
+        entity.name = data.modelName
+        
+        -- Remove current entity
+        SetEntityAsMissionEntity(entity.handle)
+        DeleteEntity(entity.handle)
+        
+        -- Create new entity
+        lib.requestModel(model)
+        local obj = CreateObject(model, entity.position.x, entity.position.y, entity.position.z)
+        Wait(5)
+        SetEntityRotation(obj, entity.rotation.x, entity.rotation.y, entity.rotation.z)
+        
+        SetModelAsNoLongerNeeded(model)
+        entity.handle = obj
+
+        SendNUIMessage({
+            action = 'setObjectData',
+            data = {
+                index = index,
+                entity = entity
+            }
+        })
+
+        SendNUIMessage({
+            action = 'setGizmoEntity',
+            data = entity
+        })
+        Client.gizmoEntity = entity.handle
+    end
+
+    cb(1)
+end)
+
 RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
     -- Make sure entity exists in spawnedEntities
     local foundIndex

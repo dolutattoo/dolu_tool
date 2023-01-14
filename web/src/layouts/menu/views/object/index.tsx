@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useRecoilState } from 'recoil'
-import { Accordion, ActionIcon, Button, Group, Paper, ScrollArea, Space, Text } from '@mantine/core'
+import { Accordion, ActionIcon, Button, Group, Paper, ScrollArea, Space, Text, TextInput } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import { MdLibraryAdd, MdDeleteForever } from 'react-icons/md'
 import { Entity, ObjectListAtom } from '../../../../atoms/object'
@@ -13,6 +13,7 @@ import { setClipboard } from '../../../../utils/setClipboard'
 const Object: React.FC = () => {
     const [objectList, setObjectList] = useRecoilState(ObjectListAtom);
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
+    const [objectNameError, setObjectNameError] = useState<string|boolean>(false)
     
     useNuiEvent('setObjectList', (entitiesList: Entity[]|null) => {
         if (entitiesList !== null) {
@@ -26,8 +27,11 @@ const Object: React.FC = () => {
             const updatedObject = [...objectList]
             updatedObject[data.index] = data.entity
             setObjectList(updatedObject)
+            setAccordionItem(updatedObject[data.index].handle.toString())
         }
     })
+    
+    useNuiEvent('setObjectNameError', (error: string|boolean) => {setObjectNameError(error)})
 
     // Copied name button
     const [copiedName, setCopiedName] = useState(false)
@@ -99,11 +103,12 @@ const Object: React.FC = () => {
                         }
                         chevronPosition="left"
                     >
-                        {objectList.map((entity: Entity, entityIndex: any) => {                        
+                        {objectList.map((entity: Entity, entityIndex: any) => { 
+                            
                             return (
                                 <Accordion.Item value={entity.handle.toString()}>
                                     <Accordion.Control>
-                                        <Text size="sm" weight={500}>{entity.name}</Text>
+                                        <TextInput error={objectNameError} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== "" && fetchNui('dmt:setEntityModel', {entity: entity, modelName: event.currentTarget.value})} />
                                     </Accordion.Control>
                                     <Accordion.Panel>
                                         <Group grow>
