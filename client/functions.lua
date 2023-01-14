@@ -266,6 +266,13 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
     assert(type(coords) == 'table', "Trying to teleport player to invalid coords type")
     coords = vec4(coords.x, coords.y, coords.z, coords.heading or 0)
 
+    if Client.noClip then
+        if updateLastCoords then
+            lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
+        end
+        setGameplayCamCoords(coords)
+    end
+
     DoScreenFadeOut(150)
     Wait(150)
 

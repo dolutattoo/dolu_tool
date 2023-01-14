@@ -133,7 +133,7 @@ function StartFreecamThread()
 		SetFreecamPosition(GetEntityCoords(ped))
 
 		local function updatePos(pos, rotZ)
-			if pos then
+			if pos and DoesEntityExist(ped) then
 				-- Update ped
 				SetEntityCoords(ped, pos.x, pos.y, pos.z)
 
