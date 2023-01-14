@@ -530,29 +530,51 @@ RegisterNUICallback('dmt:moveEntity', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:snapEntityToGround', function(entity, cb)
-    if not DoesEntityExist(entity.handle) then
+RegisterNUICallback('dmt:snapEntityToGround', function(data, cb)
+    if not DoesEntityExist(data.handle) then
         lib.notify({
             title = 'Dolu Mapping Tool',
             description = "Entity does not exist!",
             type = 'error',
             position = 'top'
         })
+        cb(1)
         return
     end
 
-    PlaceObjectOnGroundProperly(entity.handle)
+    -- Check if entity was spawned using Object Spawner
+    local index, entity
+    for k, v in ipairs(Client.spawnedEntities) do
+        if v.handle == data.handle then
+            index = k-1
+            entity = v
+            break
+        end
+    end
 
-    -- Updating gizmo
-    SendNUIMessage({
-        action = 'setGizmoEntity',
-        data = {
-            name = entity.name,
-            handle = entity.handle,
-            position = GetEntityCoords(entity.handle),
-            rotation = GetEntityRotation(entity.handle),
-        }
-    })
+    -- If entity was spawned using Object Spawner, send updated data to nui
+    if index and entity and DoesEntityExist(entity.handle) then
+        PlaceObjectOnGroundProperly(entity.handle)
+
+        local newPos = GetEntityCoords(entity.handle)
+        local newRot = GetEntityRotation(entity.handle)
+        entity.position = { x = newPos.x, y = newPos.y, z = newPos.z }
+        entity.rotation = { x = newRot.x, y = newRot.y, z = newRot.z }
+
+        SendNUIMessage({
+            action = 'setObjectData',
+            data = {
+                index = index,
+                entity = entity
+            }
+        })
+
+        SendNUIMessage({
+            action = 'setGizmoEntity',
+            data = entity
+        })
+        Client.gizmoEntity = entity.handle
+    end
     
     cb(1)
 end)
