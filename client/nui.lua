@@ -548,6 +548,19 @@ end)
 
 RegisterNUICallback('dmt:moveEntity', function(data, cb)
     if data.handle then
+        if DoesEntityExist(data.handle) then
+            SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
+            SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z)
+        else
+            lib.notify({
+                title = 'Dolu Mapping Tool',
+                description = "Entity does not exist!",
+                type = 'error',
+                position = 'top'
+            })
+            cb(1)
+            return
+        end
 
         -- Check if entity was spawned using Object Spawner
         local index, entity
@@ -559,31 +572,19 @@ RegisterNUICallback('dmt:moveEntity', function(data, cb)
             end
         end
 
-        if DoesEntityExist(entity.handle) then
-            SetEntityCoords(entity.handle, data.position.x, data.position.y, data.position.z)
-            SetEntityRotation(entity.handle, data.rotation.x, data.rotation.y, data.rotation.z)
+        -- If entity was spawned using Object Spawner, send updated data to nui
+        if index and entity then
+            local newPos = GetEntityCoords(entity.handle)
+            local newRot = GetEntityRotation(entity.handle)
+            entity.position = { x = newPos.x, y = newPos.y, z = newPos.z }
+            entity.rotation = { x = newRot.x, y = newRot.y, z = newRot.z }
 
-            -- If entity was spawned using Object Spawner, send updated data to nui
-            if index and entity then
-                local newPos = GetEntityCoords(entity.handle)
-                local newRot = GetEntityRotation(entity.handle)
-                entity.position = { x = newPos.x, y = newPos.y, z = newPos.z }
-                entity.rotation = { x = newRot.x, y = newRot.y, z = newRot.z }
-
-                SendNUIMessage({
-                    action = 'setObjectData',
-                    data = {
-                        index = index,
-                        entity = entity
-                    }
-                })
-            end
-        else
-            lib.notify({
-                title = 'Dolu Mapping Tool',
-                description = "Entity does not exist!",
-                type = 'error',
-                position = 'top'
+            SendNUIMessage({
+                action = 'setObjectData',
+                data = {
+                    index = index,
+                    entity = entity
+                }
             })
         end
     end
