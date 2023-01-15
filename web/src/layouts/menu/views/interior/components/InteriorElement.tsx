@@ -90,13 +90,8 @@ const InteriorElement: React.FC = () => {
           {
             portalData && <>
               <Group>
-                <Text size={16} weight={600}>
-                  Flag:
-                </Text>
-                <Text size={16} weight={600} color="blue.4">
-                  {/* {portalData ? getFlag() : 'null'} */}
-                  {portalData ? portalData.flags.total : 'null'}
-                </Text>
+                <Text>Flag:</Text>
+                <Text color="blue.4">{portalData ? portalData.flags.total : 'Unknown'}</Text>
                 
                 <Popover position="right-start" withArrow shadow="md">
                   <Popover.Target>
@@ -131,27 +126,15 @@ const InteriorElement: React.FC = () => {
                   </Popover.Dropdown>
                 </Popover>
               </Group>
-              
-              <Space h="xs" />
 
               <Group>
-                <Text size={16} weight={600}>
-                  Room from:
-                </Text>
-                <Text size={16} weight={600} color="blue.4">
-                  {portalData ? portalData.roomFrom : 'null'}
-                </Text>
+                <Text>Room from:</Text>
+                <Text color="blue.4">{portalData ? portalData.roomFrom : 'Unknown'}</Text>
               </Group>
               
-              <Space h="xs" />
-              
               <Group>
-                <Text size={16} weight={600}>
-                  Room to:
-                </Text>
-                <Text size={16} weight={600} color="blue.4">
-                  {portalData ? portalData.roomTo : 'null'}
-                </Text>
+                <Text>Room to:</Text>
+                <Text color="blue.4">{portalData ? portalData.roomTo : 'Unknown'}</Text>
               </Group>
             </>
           }
