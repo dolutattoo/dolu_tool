@@ -1,5 +1,4 @@
 RESOURCE_NAME = GetCurrentResourceName()
-lib.locale()
 
 Shared = {}
 
@@ -11,7 +10,9 @@ if GetResourceState('ox_inventory'):find('start') then
     Shared.ox_inventory = true
 end
 
-CreateThread(function()
+lib.locale()
+
+CreateThread(function()    
     if IsDuplicityVersion() then
         Server = {}
     else

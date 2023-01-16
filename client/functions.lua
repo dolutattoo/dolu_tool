@@ -548,21 +548,3 @@ FUNC.assert = function(v, msg, value)
         })
     end
 end
-
----Debug with styling and formatting
----@param msg string
----@param value? boolean|string|number|table
-FUNC.debug = function(msg, value)
-    if not msg then return end
-
-    if Config.debug then
-        if value then
-            if type(value) == "table" then
-                value = json.decode(value, {indent=true})
-            end
-            print('^5[' .. RESOURCE_NAME .. '] ^7' .. msg:format('^5' .. tostring(value) .. '^7'))
-        else
-            print('^5[' .. RESOURCE_NAME .. '] ^7' .. msg .. '^7')
-        end
-    end
-end
