@@ -73,7 +73,7 @@ const Ped: React.FC = () => {
               size="xs"
               onClick={() => { fetchNui('dolu_tool:changePed', { name: pedList.name, hash: pedList.hash }) }}
             >
-              Change Ped
+              Set Ped
             </Button>
             <Button
               variant='light'
@@ -111,7 +111,7 @@ const Ped: React.FC = () => {
         color="blue.4"
         onClick={() => { fetchNui('dolu_tool:changePed', { name: `${searchPedValue}` }) }}
       >
-        Change by Name
+        Set by Name
       </Button>
       <PedSearch/>
       <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
