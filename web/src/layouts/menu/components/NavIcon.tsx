@@ -1,14 +1,14 @@
-import { ActionIcon, createStyles, Tooltip } from '@mantine/core';
-import { IconBaseProps } from 'react-icons';
-import { Link, useLocation } from 'react-router-dom';
+import { ActionIcon, createStyles, Tooltip } from '@mantine/core'
+import { IconBaseProps } from 'react-icons'
+import { Link, useLocation } from 'react-router-dom'
 
 interface Props {
-  tooltip: string;
-  to: string;
-  Icon: React.ComponentType<IconBaseProps>;
-  color?: string;
-  hoverColor?: string;
-  handleClick?: () => void;
+  tooltip: string
+  to: string
+  Icon: React.ComponentType<IconBaseProps>
+  color?: string
+  hoverColor?: string
+  handleClick?: () => void
 }
 
 const useStyles = createStyles((theme, color) => ({
@@ -17,19 +17,19 @@ const useStyles = createStyles((theme, color) => ({
     height: 50,
     transition: '300ms',
   },
-}));
+}))
 
 const NavIcon: React.FC<Props> = ({ tooltip, Icon, color, to, handleClick }) => {
-  const { classes } = useStyles();
-  const location = useLocation();
+  const { classes } = useStyles()
+  const location = useLocation()
 
   return (
-    <Tooltip label={tooltip} position="right">
+    <Tooltip label={tooltip} position='right'>
       <ActionIcon
         onClick={() => {
-          if (handleClick) return handleClick();
+          if (handleClick) return handleClick()
         }}
-        size="xl"
+        size='xl'
         component={Link}
         to={to}
         color={color ? color : 'blue.4'}
@@ -37,7 +37,7 @@ const NavIcon: React.FC<Props> = ({ tooltip, Icon, color, to, handleClick }) => 
         variant={location.pathname === to ? 'light' : 'transparent'}
         sx={(theme) => ({
           '&:hover': {
-            color: theme.colors.gray[6] ? color  : "blue.4",
+            color: theme.colors.gray[6] ? color  : 'blue.4',
             backgroundColor: location.pathname !== to ? theme.colors.dark[6] : undefined,
           },
         })}
@@ -45,7 +45,7 @@ const NavIcon: React.FC<Props> = ({ tooltip, Icon, color, to, handleClick }) => 
         <Icon fontSize={24} />
       </ActionIcon>
     </Tooltip>
-  );
-};
+  )
+}
 
-export default NavIcon;
+export default NavIcon

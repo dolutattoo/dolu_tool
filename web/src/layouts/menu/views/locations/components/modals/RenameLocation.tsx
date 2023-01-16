@@ -1,13 +1,13 @@
-import { Button, Stack, TextInput } from '@mantine/core';
-import { closeAllModals } from '@mantine/modals';
-import { useState } from 'react';
-import { fetchNui } from '../../../../../../utils/fetchNui';
-import { useLocales } from '../../../../../../providers/LocaleProvider';
+import { Button, Stack, TextInput } from '@mantine/core'
+import { closeAllModals } from '@mantine/modals'
+import { useState } from 'react'
+import { fetchNui } from '../../../../../../utils/fetchNui'
+import { useLocales } from '../../../../../../providers/LocaleProvider'
 
 const RenameLocation = (props: {defaultName: string}) => {
   const { locale } = useLocales()
   const { defaultName } = props
-  const [newName, setNewName] = useState(defaultName);
+  const [newName, setNewName] = useState(defaultName)
 
   return (
     <Stack>
@@ -16,10 +16,10 @@ const RenameLocation = (props: {defaultName: string}) => {
         uppercase
         disabled={newName === '' || newName === defaultName}
         variant='light'
-        color="blue.4"
+        color='blue.4'
         placeholder={defaultName}
         onClick={() => {
-          closeAllModals();
+          closeAllModals()
           if (newName !== '') {
             fetchNui('dolu_tool:changeLocationName', {oldName: defaultName, newName: newName})
           }
@@ -28,7 +28,7 @@ const RenameLocation = (props: {defaultName: string}) => {
         {locale.ui_confirm}
       </Button>
     </Stack>
-  );
-};
+  )
+}
 
-export default RenameLocation;
+export default RenameLocation

@@ -1,8 +1,8 @@
-import { Button, Divider, Group, NumberInput, Stack, Text, TextInput } from "@mantine/core"
-import { closeAllModals } from "@mantine/modals"
-import { useState } from "react"
-import { useLocales } from "../../../../../providers/LocaleProvider"
-import { fetchNui } from "../../../../../utils/fetchNui"
+import { Button, Divider, Group, NumberInput, Stack, Text, TextInput } from '@mantine/core'
+import { closeAllModals } from '@mantine/modals'
+import { useState } from 'react'
+import { useLocales } from '../../../../../providers/LocaleProvider'
+import { fetchNui } from '../../../../../utils/fetchNui'
 
 const SetCoords: React.FC = () => {
     const { locale } = useLocales()
@@ -19,14 +19,14 @@ const SetCoords: React.FC = () => {
                 uppercase
                 disabled={coordString === ''}
                 variant='light'
-                color="blue.4"
+                color='blue.4'
                 onClick={() => {
                     closeAllModals()
                     fetchNui('dolu_tool:setCustomCoords', { coordString: coordString })
                 }}
             >{locale.ui_confirm}</Button>
             
-            <Divider my="sm" />
+            <Divider my='sm' />
             <Text weight={500}>{locale.ui_set_coords_separate}</Text>
             
             <Group grow sx={{ maxWidth:300 }}>
@@ -39,7 +39,7 @@ const SetCoords: React.FC = () => {
                 uppercase
                 disabled={coordString === ''}
                 variant='light'
-                color="blue.4"
+                color='blue.4'
                 onClick={() => {
                     closeAllModals()
                     fetchNui('dolu_tool:setCustomCoords', { coords: { x: coordX, y: coordY, z: coordZ } })

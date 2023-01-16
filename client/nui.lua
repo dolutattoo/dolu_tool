@@ -648,7 +648,7 @@ RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
         local coordString = (data.coordString:gsub(',', '')):gsub('  ', ' ')
 
         local coords = {}
-        for match in (coordString..' '):gmatch("(.-) ") do
+        for match in (coordString..' '):gmatch('(.-) ') do
             table.insert(coords, match)
         end
         formatedCoords = vec3(tonumber(coords[1]), tonumber(coords[2]), tonumber(coords[3]))

@@ -1,4 +1,4 @@
-import { atom, useRecoilValue } from "recoil"
+import { atom, useRecoilValue } from 'recoil'
 
 export interface Entity {
     handle: number

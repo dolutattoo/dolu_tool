@@ -42,27 +42,27 @@ const Home: React.FC = () => {
     <SimpleGrid cols={1}>
       <Stack>
         {/* CURRENT COORDS */}
-        <Paper p="md">
+        <Paper p='md'>
           
-          <Group position="apart">
+          <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_current_coords}</Text>
             <ImLocation size={24}/>
           </Group>
           
-          <Space h="sm" />
+          <Space h='sm' />
 
           <Group position='apart'>
-            <Group><Text>{locale.ui_coords}:</Text><Text color="blue.4" >{currentCoords}</Text></Group>
-            <Group><Text>Heading:</Text><Text color="blue.4" >{currentHeading}</Text></Group>
+            <Group><Text>{locale.ui_coords}:</Text><Text color='blue.4' >{currentCoords}</Text></Group>
+            <Group><Text>Heading:</Text><Text color='blue.4' >{currentHeading}</Text></Group>
           </Group>
           
-          <Space h="sm" />
+          <Space h='sm' />
 
           <Group grow>
             <Button
-              color={copiedCoords ? 'teal' : "blue.4"}
+              color={copiedCoords ? 'teal' : 'blue.4'}
               variant='light'
-              size="xs"
+              size='xs'
               onClick={() => {
                 setClipboard(currentCoords + ', ' + currentHeading)
                 setCopiedCoords(true)
@@ -72,7 +72,7 @@ const Home: React.FC = () => {
             <Button
               color='blue.4'
               variant='light'
-              size="xs"
+              size='xs'
               onClick={() =>
               openModal({
                   title: 'Set current coords',
@@ -85,7 +85,7 @@ const Home: React.FC = () => {
             <Button
               color='blue.4'
               variant='light'
-              size="xs"
+              size='xs'
               onClick={() =>
                 openModal({
                   title: 'Create location',
@@ -98,22 +98,22 @@ const Home: React.FC = () => {
         </Paper>
         
         {/* LAST LOCATION */}
-        <Paper p="md">
-          <Group position="apart">
+        <Paper p='md'>
+          <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_last_location}</Text>
             <GiTeleport size={24} />
           </Group>
           
-          <Space h="sm" />
+          <Space h='sm' />
           
           {
             lastLocation
             ? 
               <>
-                <Group><Text>{locale.ui_name}:</Text><Text color="blue.4" >{lastLocation.name}</Text></Group>
+                <Group><Text>{locale.ui_name}:</Text><Text color='blue.4' >{lastLocation.name}</Text></Group>
                 
                 <Group position='apart'>
-                  <Group><Text>{locale.ui_coords}:</Text><Text color="blue.4" >{lastLocation.x}, {lastLocation.y}, {lastLocation.z}</Text></Group>
+                  <Group><Text>{locale.ui_coords}:</Text><Text color='blue.4' >{lastLocation.x}, {lastLocation.y}, {lastLocation.z}</Text></Group>
                   <Button
                     color='blue.4'
                     variant='light'
@@ -128,15 +128,15 @@ const Home: React.FC = () => {
               </>
             :            
               <>
-                <Space h="sm" />
-                <Text color="red.4">{locale.ui_no_last_location}</Text>
+                <Space h='sm' />
+                <Text color='red.4'>{locale.ui_no_last_location}</Text>
               </>
           }
         </Paper>
 
         {/* CURRENT INTERIOR */}
-        <Paper p="md">
-          <Group position="apart">
+        <Paper p='md'>
+          <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_current_interior}</Text>
             <RiHomeGearFill size={24} />
           </Group>
@@ -145,25 +145,25 @@ const Home: React.FC = () => {
             interior.interiorId > 0
             ? 
               <>
-                <Group><Text>{locale.ui_interior_id}:</Text><Text color="blue.4" >{interior.interiorId}</Text></Group>
-                <Group><Text>{locale.ui_current_room}:</Text><Text color="blue.4" >{interior.currentRoom?.index} - {interior.currentRoom?.name}</Text></Group>
+                <Group><Text>{locale.ui_interior_id}:</Text><Text color='blue.4' >{interior.interiorId}</Text></Group>
+                <Group><Text>{locale.ui_current_room}:</Text><Text color='blue.4' >{interior.currentRoom?.index} - {interior.currentRoom?.name}</Text></Group>
               </>
             : 
               <>
-                <Space h="sm" />
-                <Text color="red.4">{locale.ui_not_in_interior}</Text>
+                <Space h='sm' />
+                <Text color='red.4'>{locale.ui_not_in_interior}</Text>
               </>
           }
         </Paper>
 
         {/* QUICK ACTIONS */}
-        <Paper p="md">
-          <Group position="apart">
+        <Paper p='md'>
+          <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_quick_actions}</Text>
             <FiFastForward size={24} />
           </Group>
 
-          <Space h="sm" />
+          <Space h='sm' />
 
           <Group grow>
             <Button
@@ -191,7 +191,7 @@ const Home: React.FC = () => {
             >{locale.ui_upgrade_vehicle}</Button>
           </Group>
 
-          <Space h="sm" />
+          <Space h='sm' />
 
           <Group grow>
             <Button
@@ -219,7 +219,7 @@ const Home: React.FC = () => {
             >{locale.ui_set_sunny_day}</Button>
           </Group>
 
-          <Space h="sm" />
+          <Space h='sm' />
 
           <Group grow>
             <Button

@@ -18,7 +18,7 @@ const CreateLocation: React.FC = () => {
         uppercase
         disabled={locationName === ''}
         variant='light'
-        color="blue.4"
+        color='blue.4'
         onClick={() => {
           closeAllModals()
           fetchNui('dolu_tool:createCustomLocation', locationName)

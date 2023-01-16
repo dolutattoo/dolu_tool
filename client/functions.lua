@@ -46,12 +46,12 @@ end
 
 FUNC.stringSplit = function(input, seperator)
     if seperator == nil then
-        seperator = "%s"
+        seperator = '%s'
     end
 
     local t, i = {}, 1
 
-    for str in string.gmatch(input, "([^" .. seperator .. "]+)") do
+    for str in string.gmatch(input, '([^' .. seperator .. ']+)') do
         t[i] = str
         i = i + 1
     end
@@ -119,14 +119,10 @@ FUNC.toggleLastEntitySet = function()
         if IsInteriorEntitySetActive(Client.interiorId, LastEntitySet) then
             DeactivateInteriorEntitySet(Client.interiorId, tostring(LastEntitySet))
             RefreshInterior(Client.interiorId)
-            print("EntitySet ^5" .. tostring(LastEntitySet) .. " ^1disabled")
         else
             ActivateInteriorEntitySet(Client.interiorId, tostring(LastEntitySet))
             RefreshInterior(Client.interiorId)
-            print("EntitySet ^5" .. tostring(LastEntitySet) .. " ^2enabled")
         end
-    else
-        print("EntitySet not applied")
     end
 end
 
@@ -193,7 +189,7 @@ FUNC.Draw3DText = function(DrawCoords, text)
         SetTextEdge(2, 0, 0, 0, 150)
         SetTextDropShadow()
         SetTextOutline()
-        BeginTextCommandDisplayText("STRING")
+        BeginTextCommandDisplayText('STRING')
         SetTextCentre(1)
         AddTextComponentSubstringPlayerName(text)
         EndTextCommandDisplayText(_x, _y)
@@ -219,7 +215,7 @@ FUNC.drawText = function(string, coords)
     SetTextOutline()
     SetTextRightJustify(false)
     SetTextWrap(0, 0.55)
-    SetTextEntry("STRING")
+    SetTextEntry('STRING')
 
     AddTextComponentString(string)
     DrawText(coords.x, coords.y)
@@ -256,7 +252,7 @@ FUNC.setMenuPlayerCoords = function()
     SendNUIMessage({
         action = 'playerCoords',
         data = {
-            coords = FUNC.round(coords.x, 3) .. ", " .. FUNC.round(coords.y, 3) .. ", " .. FUNC.round(coords.z, 3),
+            coords = FUNC.round(coords.x, 3) .. ', ' .. FUNC.round(coords.y, 3) .. ', ' .. FUNC.round(coords.z, 3),
             heading = tostring(FUNC.round(GetEntityHeading(cache.ped), 3))
         }
     })
@@ -481,7 +477,7 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
     end
     
     -- Filter list from search input
-    if filter and filter ~= "" or checkboxes ~= nil then
+    if filter and filter ~= '' or checkboxes ~= nil then
         local searchResult = {}
 
         Client.locationsCheckboxes = checkboxes
@@ -489,7 +485,7 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
         if listType == 'locations' then
             for i, value in pairs(totalList) do
                 if (value.custom and checkboxes.custom) or (not value.custom and checkboxes.vanilla) then
-                    if (not filter or filter == "") or string.match(string.lower(value.name), string.lower(filter)) then
+                    if (not filter or filter == '') or string.match(string.lower(value.name), string.lower(filter)) then
                         table.insert(searchResult, value)
                     end
                 end
@@ -529,7 +525,7 @@ FUNC.assert = function(v, msg, value)
     if not v or not msg then return end
 
     if value then
-        if type(value) == "table" then
+        if type(value) == 'table' then
             value = json.decode(value, { indent = true })
         end
         assert(v, '^5[' .. RESOURCE_NAME .. '] ^1' .. msg:format('^5' .. tostring(value) .. '^7'))

@@ -46,18 +46,18 @@ const Locations: React.FC = () => {
         <Accordion.Control>
           <Stack spacing={0}>
             <Group position='apart'>
-              <Text color="blue.4" size="md" weight={500}>{location.name}</Text>
-              <Badge color={location.custom ? "green.4" : "blue.4"}>{location.custom ? "Custom" : "Vanilla"}</Badge>
+              <Text color='blue.4' size='md' weight={500}>{location.name}</Text>
+              <Badge color={location.custom ? 'green.4' : 'blue.4'}>{location.custom ? locale.ui_custom : locale.ui_vanilla}</Badge>
             </Group>
-            <Text size="xs">{locale.ui_coords}: {location.x}, {location.y}, {location.z}</Text>
+            <Text size='xs'>{locale.ui_coords}: {location.x}, {location.y}, {location.z}</Text>
           </Stack>
         </Accordion.Control>
         <Accordion.Panel>
-          <Group grow spacing="xs">
+          <Group grow spacing='xs'>
             <Button
               variant='light'
-              color="blue.4"
-              size="xs"
+              color='blue.4'
+              size='xs'
               onClick={() =>
                 fetchNui('dolu_tool:teleport', { name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
               }
@@ -66,8 +66,8 @@ const Locations: React.FC = () => {
             </Button>
             <Button
               variant='light'
-              color={copied ? 'teal' : "blue.4"}
-              size="xs"
+              color={copied ? 'teal' : 'blue.4'}
+              size='xs'
               onClick={() => {
                 setClipboard(location.x + ', ' + location.y + ', ' + location.z)
                 setCopied(true)
@@ -78,8 +78,8 @@ const Locations: React.FC = () => {
             {location.custom &&
               <Button
                 variant='light'
-                color="blue.4"
-                size="xs"
+                color='blue.4'
+                size='xs'
                 onClick={() => {
                   openModal({
                     title: 'Rename location',
@@ -94,8 +94,8 @@ const Locations: React.FC = () => {
             {location.custom &&
               <Button
                 variant='light'
-                color="blue.4"
-                size="xs"
+                color='blue.4'
+                size='xs'
                 onClick={() => {
                   openModal({
                     title: 'Delete this location?',
@@ -121,7 +121,7 @@ const Locations: React.FC = () => {
           <Checkbox
             label='Show custom locations'
             size='sm'
-            color="blue.4"
+            color='blue.4'
             disabled={!checkedVanilla}
             checked={checkedCustom}
             onChange={(e) => {
@@ -133,7 +133,7 @@ const Locations: React.FC = () => {
           <Checkbox
             label='Show vanilla Interiors'
             size='sm'
-            color="blue.4"
+            color='blue.4'
             disabled={!checkedCustom}
             checked={checkedVanilla}
             onChange={(e) => {
@@ -147,7 +147,7 @@ const Locations: React.FC = () => {
         <Button
           uppercase
           variant='light'
-          color="blue.4"
+          color='blue.4'
           onClick={() =>
             openModal({
               title: 'Create location',
@@ -163,10 +163,10 @@ const Locations: React.FC = () => {
 
         {/* <ScrollArea style={{ height: 480 }} scrollbarSize={0}> */}
           <Stack>
-            <Accordion chevronPosition="left" variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+            <Accordion chevronPosition='left' variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
               {Locationlist ? Locationlist :
-                <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">{locale.ui_no_location_found}</Text>
+                <Paper p='md'>
+                  <Text size='md' weight={600} color='red.4'>{locale.ui_no_location_found}</Text>
                 </Paper>
               }
             </Accordion>
@@ -174,13 +174,13 @@ const Locations: React.FC = () => {
         {/* </ScrollArea> */}
         <Center>
           <Pagination
-            color="blue.4"
+            color='blue.4'
             size='sm'
             page={activePage}
             onChange={(value) => {
               fetchNui('dolu_tool:loadPages', { type: 'locations', activePage: value, filter: searchLocationValue, checkboxes: {vanilla: checkedVanilla, custom: checkedCustom} })
               setPage(value)
-              setAccordionItem("0")
+              setAccordionItem('0')
             }}
             total={pageCount}
           />

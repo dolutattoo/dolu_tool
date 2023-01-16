@@ -1,13 +1,13 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from "@mantine/core"
-import { useEffect, useState} from "react"
-import { useRecoilState, useSetRecoilState } from "recoil"
-import { getSearchWeaponInput, weaponsPageCountAtom, weaponsActivePageAtom, weaponsPageContentAtom, WeaponProp } from "../../../../atoms/weapon"
-import { displayImageAtom, imagePathAtom } from "../../../../atoms/imgPreview"
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from '@mantine/core'
+import { useEffect, useState} from 'react'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { getSearchWeaponInput, weaponsPageCountAtom, weaponsActivePageAtom, weaponsPageContentAtom, WeaponProp } from '../../../../atoms/weapon'
+import { displayImageAtom, imagePathAtom } from '../../../../atoms/imgPreview'
 import { setClipboard } from '../../../../utils/setClipboard'
-import WeaponSearch from "./components/weaponListSearch"
-import { fetchNui } from "../../../../utils/fetchNui"
-import { useNuiEvent } from "../../../../hooks/useNuiEvent"
-import { useLocales } from "../../../../providers/LocaleProvider"
+import WeaponSearch from './components/weaponListSearch'
+import { fetchNui } from '../../../../utils/fetchNui'
+import { useNuiEvent } from '../../../../hooks/useNuiEvent'
+import { useLocales } from '../../../../providers/LocaleProvider'
 
 const Weapon: React.FC = () => {
   const { locale } = useLocales()
@@ -23,8 +23,8 @@ const Weapon: React.FC = () => {
     }
   })
 
-  const [copiedWeaponName, setCopiedWeaponName] = useState(false);
-  const [copiedWeaponHash, setCopiedWeaponHash] = useState(false);
+  const [copiedWeaponName, setCopiedWeaponName] = useState(false)
+  const [copiedWeaponHash, setCopiedWeaponHash] = useState(false)
   const [currentAccordionItem, setAccordionItem] = useState<string|null>('0')
 
   const displayImage = useSetRecoilState(displayImageAtom)
@@ -33,32 +33,32 @@ const Weapon: React.FC = () => {
   // Copied name button
   useEffect(() => {
     setTimeout(() => {
-      if (copiedWeaponName) setCopiedWeaponName(false);
-    }, 1000);
-  }, [copiedWeaponName, setCopiedWeaponName]);
+      if (copiedWeaponName) setCopiedWeaponName(false)
+    }, 1000)
+  }, [copiedWeaponName, setCopiedWeaponName])
   // Copied hash button
   useEffect(() => {
     setTimeout(() => {
-      if (copiedWeaponHash) setCopiedWeaponHash(false);
-    }, 1000);
-  }, [copiedWeaponHash, setCopiedWeaponHash]);
+      if (copiedWeaponHash) setCopiedWeaponHash(false)
+    }, 1000)
+  }, [copiedWeaponHash, setCopiedWeaponHash])
 
   const WeaponList = pageContent?.map((weaponList: any, index: number) => (
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
-          <Text size="md" weight={500}>• {weaponList.name}</Text>
-          <Text size="xs">{locale.ui_hash}: {weaponList.hash}</Text>
+          <Text size='md' weight={500}>• {weaponList.name}</Text>
+          <Text size='xs'>{locale.ui_hash}: {weaponList.hash}</Text>
         </Accordion.Control>
         <Accordion.Panel>
-          <Group grow spacing="xs"> 
+          <Group grow spacing='xs'> 
             <Image
               onMouseEnter={() => {
-                displayImage(true);
+                displayImage(true)
                 imagePath(`https://cfx-nui-dolu_tool/shared/img/weapon/${weaponList.name}.png`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
-              fit="contain"
+              fit='contain'
               alt={`${weaponList.name}`}
               src={`https://cfx-nui-dolu_tool/shared/img/weapon/${weaponList.name}.png`}
               withPlaceholder={true}
@@ -71,30 +71,30 @@ const Weapon: React.FC = () => {
             />
             <Button
               variant='light'
-              color={"blue.4"}
-              size="xs"
+              color={'blue.4'}
+              size='xs'
               onClick={() => fetchNui('dolu_tool:giveWeapon', weaponList.name)}
             >
               {locale.ui_give_weapon}
             </Button>
             <Button
               variant='light'
-              color={copiedWeaponName ? 'teal' : "blue.4"}
-              size="xs"
+              color={copiedWeaponName ? 'teal' : 'blue.4'}
+              size='xs'
               onClick={() => {
-                setClipboard(weaponList.name);
-                setCopiedWeaponName(true);
+                setClipboard(weaponList.name)
+                setCopiedWeaponName(true)
               }}
             >
               {copiedWeaponName ? locale.ui_copied_name : locale.ui_copy_name}
             </Button>
             <Button
               variant='light'
-              color={copiedWeaponHash ? 'teal' : "blue.4"}
-              size="xs"
+              color={copiedWeaponHash ? 'teal' : 'blue.4'}
+              size='xs'
               onClick={() => {
-                setClipboard(weaponList.hash ? `${weaponList.hash}` : '');
-                setCopiedWeaponHash(true);
+                setClipboard(weaponList.hash ? `${weaponList.hash}` : '')
+                setCopiedWeaponHash(true)
               }}
             >
               {copiedWeaponHash ? locale.ui_copied_hash : locale.ui_copy_hash}
@@ -110,7 +110,7 @@ const Weapon: React.FC = () => {
       <Button
         uppercase
         variant='light'
-        color="blue.4"
+        color='blue.4'
         onClick={() => fetchNui('dolu_tool:giveWeapon', searchWeaponValue)}
       >
         {locale.ui_give_weapon_by_name}
@@ -118,10 +118,10 @@ const Weapon: React.FC = () => {
       <WeaponSearch/>
       <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
         <Stack>
-          <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+          <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
             {WeaponList ? WeaponList : 
-              <Paper p="md">
-                <Text size="md" weight={600} color="red.4">{locale.ui_no_weapon_found}</Text>
+              <Paper p='md'>
+                <Text size='md' weight={600} color='red.4'>{locale.ui_no_weapon_found}</Text>
               </Paper>
             }
             </Accordion>
@@ -129,13 +129,13 @@ const Weapon: React.FC = () => {
       </ScrollArea>
       <Center>
         <Pagination
-          color="blue.4"
+          color='blue.4'
           size='sm'
           page={activePage}
           onChange={(value) => {
             fetchNui('dolu_tool:loadPages', { type: 'weapons', activePage: value, filter: searchWeaponValue })
             setPage(value)
-            setAccordionItem("0")
+            setAccordionItem('0')
           }}
           total={pageCount}
         />

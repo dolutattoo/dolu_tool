@@ -30,20 +30,20 @@ const World: React.FC = () => {
     <SimpleGrid cols={1}>
       <Stack>     
         {/* Time    */}
-        <Paper p="md">  
-          <Group position="apart">
+        <Paper p='md'>  
+          <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_time}</Text>
             <AiOutlineClockCircle size={24} />
           </Group>
           
-          <Space h="sm" />
+          <Space h='sm' />
             
           <Group grow>
             <NumberInput
               value={hourValue}
               defaultValue={hourValue}
               placeholder={hourValue.toString()}
-              radius="md"
+              radius='md'
               max={24}
               min={0}
               stepHoldDelay={500}
@@ -57,7 +57,7 @@ const World: React.FC = () => {
             <NumberInput
               value={minuteValue}
               defaultValue={minuteValue}
-              radius="md"
+              radius='md'
               max={60}
               min={0}
               stepHoldDelay={500}
@@ -77,10 +77,10 @@ const World: React.FC = () => {
             </Button>
           </Group>
 
-          <Space h="sm" />
+          <Space h='sm' />
 
           <Group>
-            <Checkbox label="Freeze time" checked={timeFrozen} onChange={(e) => {
+            <Checkbox label={locale.ui_freeze_time} checked={timeFrozen} onChange={(e) => {
               setTimeFrozen(e.currentTarget.checked)
               fetchNui('dolu_tool:freezeTime', e.currentTarget.checked)
             }} />
@@ -88,8 +88,8 @@ const World: React.FC = () => {
         </Paper>
 
         {/* Weather */}
-        <Paper p="md">
-          <Group position="apart">
+        <Paper p='md'>
+          <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_weather}</Text>
             <TiWeatherPartlySunny size={24} />
           </Group>
@@ -124,7 +124,7 @@ const World: React.FC = () => {
             />
           </Group>
 
-          <Space h="sm" />
+          <Space h='sm' />
           
           <Group>
             <Checkbox label={locale.ui_freeze_weather} checked={weatherFrozen} onChange={(e) => {

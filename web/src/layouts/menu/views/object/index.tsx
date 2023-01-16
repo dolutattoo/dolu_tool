@@ -13,7 +13,7 @@ import { useLocales } from '../../../../providers/LocaleProvider'
 
 const Object: React.FC = () => {
     const { locale } = useLocales()
-    const [objectList, setObjectList] = useRecoilState(ObjectListAtom);
+    const [objectList, setObjectList] = useRecoilState(ObjectListAtom)
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
     
     useNuiEvent('setObjectList', (entitiesList: Entity[]|null) => {
@@ -55,8 +55,8 @@ const Object: React.FC = () => {
                 <Text size={20}>{locale.ui_object_spawner}</Text>
                 <Group position='apart'>
                     <ActionIcon
-                        size="xl"
-                        color="blue.4"
+                        size='xl'
+                        color='blue.4'
                         onClick={() =>
                             openModal({
                                 title: 'Load .ymap.xml file',
@@ -68,8 +68,8 @@ const Object: React.FC = () => {
                         <MdLibraryAdd fontSize={30} />
                     </ActionIcon>
                     <ActionIcon
-                        size="xl"
-                        color="red.4"
+                        size='xl'
+                        color='red.4'
                         onClick={() =>
                             openModal({
                                 title: 'Delete all spawned entities',
@@ -86,13 +86,13 @@ const Object: React.FC = () => {
             <Space h='sm' />
             
             {/* OBJECT LIST*/}
-            <Paper p="md" sx={{ height:685 }}>
+            <Paper p='md' sx={{ height:685 }}>
                 <Space h='sm' />
 
                 <ScrollArea style={{ height: 420 }} offsetScrollbars scrollbarSize={12}>
                     <Accordion
-                        variant="contained"
-                        radius="sm"
+                        variant='contained'
+                        radius='sm'
                         value={currentAccordionItem}
                         defaultValue={currentAccordionItem}
                         onChange={(value) => {
@@ -100,28 +100,28 @@ const Object: React.FC = () => {
                                 fetchNui('dolu_tool:setGizmoEntity', parseInt(value as string))
                             }
                         }
-                        chevronPosition="left"
+                        chevronPosition='left'
                     >
                         {objectList.map((entity: Entity, entityIndex: any) => {
                             return (
                                 <Accordion.Item value={entity.handle.toString()}>
                                     <Accordion.Control>
-                                        <TextInput error={entity.invalid} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== "" && fetchNui('dolu_tool:setEntityModel', {entity: entity, index: entityIndex, modelName: event.currentTarget.value})} />
+                                        <TextInput error={entity.invalid} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== '' && fetchNui('dolu_tool:setEntityModel', {entity: entity, index: entityIndex, modelName: event.currentTarget.value})} />
                                     </Accordion.Control>
                                     <Accordion.Panel>
                                         <Group grow>
                                             <Button
                                                 variant='light'
-                                                color="blue.4"
-                                                size="xs"
+                                                color='blue.4'
+                                                size='xs'
                                                 onClick={() => {
                                                     fetchNui('dolu_tool:goToEntity', entity)
                                                 }}
                                             >{locale.ui_goto}</Button>
                                             <Button
                                                 variant='light'
-                                                color={copiedCoords ? 'teal' : "blue.4"}
-                                                size="xs"
+                                                color={copiedCoords ? 'teal' : 'blue.4'}
+                                                size='xs'
                                                 onClick={() => {
                                                     setClipboard(entity.position.x + ', ' + entity.position.y + ', ' + entity.position.z)
                                                     setCopiedCoords(true)
@@ -129,8 +129,8 @@ const Object: React.FC = () => {
                                             >{copiedCoords ? locale.ui_copied_coords : locale.ui_copy_coords}</Button>
                                             <Button
                                                 variant='light'
-                                                color={copiedName ? 'teal' : "blue.4"}
-                                                size="xs"
+                                                color={copiedName ? 'teal' : 'blue.4'}
+                                                size='xs'
                                                 onClick={() => {
                                                     setClipboard(entity.name)
                                                     setCopiedName(true)
@@ -141,24 +141,24 @@ const Object: React.FC = () => {
                                         <Group grow>
                                             <Button
                                                 variant='light'
-                                                color="blue.4"
-                                                size="xs"
+                                                color='blue.4'
+                                                size='xs'
                                                 onClick={() => {
                                                     fetchNui('dolu_tool:snapEntityToGround', entity)
                                                 }}
                                             >{locale.ui_snap_to_ground}</Button>
                                             <Button
                                                 variant='light'
-                                                color="blue.4"
-                                                size="xs"
+                                                color='blue.4'
+                                                size='xs'
                                                 onClick={() => {
                                                     fetchNui('dolu_tool:addEntity', entity.name)
                                                 }}
                                             >{locale.ui_duplicate}</Button>                                            
                                             <Button
                                                 variant='light'
-                                                color="blue.4"
-                                                size="xs"
+                                                color='blue.4'
+                                                size='xs'
                                                 onClick={() => {
                                                     fetchNui('dolu_tool:deleteEntity', entity.handle)
                                                     setAccordionItem(null)

@@ -17,7 +17,7 @@ const DeleteLocation = (props: {name: string}) => {
         <Button
           uppercase
           variant='light'
-          color="green.4"
+          color='green.4'
           onClick={() => {
             closeAllModals()
             fetchNui('dolu_tool:deleteLocation', name)
@@ -29,7 +29,7 @@ const DeleteLocation = (props: {name: string}) => {
         <Button
           uppercase
           variant='light'
-          color="red.4"
+          color='red.4'
           onClick={() => {
             closeAllModals()
           }}

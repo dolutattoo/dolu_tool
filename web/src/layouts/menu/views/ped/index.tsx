@@ -1,13 +1,13 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from "@mantine/core"
-import { useEffect, useState} from "react"
-import { useRecoilState, useSetRecoilState } from "recoil"
-import { getSearchPedInput, PedProp, pedsActivePageAtom, pedsPageContentAtom, pedsPageCountAtom } from "../../../../atoms/ped"
-import { displayImageAtom, imagePathAtom } from "../../../../atoms/imgPreview"
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from '@mantine/core'
+import { useEffect, useState} from 'react'
+import { useRecoilState, useSetRecoilState } from 'recoil'
+import { getSearchPedInput, PedProp, pedsActivePageAtom, pedsPageContentAtom, pedsPageCountAtom } from '../../../../atoms/ped'
+import { displayImageAtom, imagePathAtom } from '../../../../atoms/imgPreview'
 import { setClipboard } from '../../../../utils/setClipboard'
-import PedSearch from "./components/pedListSearch"
-import { fetchNui } from "../../../../utils/fetchNui"
-import { useNuiEvent } from "../../../../hooks/useNuiEvent"
-import { useLocales } from "../../../../providers/LocaleProvider"
+import PedSearch from './components/pedListSearch'
+import { fetchNui } from '../../../../utils/fetchNui'
+import { useNuiEvent } from '../../../../hooks/useNuiEvent'
+import { useLocales } from '../../../../providers/LocaleProvider'
 
 const Ped: React.FC = () => {
   const { locale } = useLocales()
@@ -23,8 +23,8 @@ const Ped: React.FC = () => {
     }
   })
 
-  const [copiedPedName, setCopiedPedName] = useState(false);
-  const [copiedPedHash, setCopiedPedHash] = useState(false);
+  const [copiedPedName, setCopiedPedName] = useState(false)
+  const [copiedPedHash, setCopiedPedHash] = useState(false)
   const [currentAccordionItem, setAccordionItem] = useState<string|null>('0')
 
   const displayImage = useSetRecoilState(displayImageAtom)
@@ -33,32 +33,32 @@ const Ped: React.FC = () => {
   // Copied name button
   useEffect(() => {
     setTimeout(() => {
-      if (copiedPedName) setCopiedPedName(false);
-    }, 1000);
-  }, [copiedPedName, setCopiedPedName]);
+      if (copiedPedName) setCopiedPedName(false)
+    }, 1000)
+  }, [copiedPedName, setCopiedPedName])
   // Copied hash button
   useEffect(() => {
     setTimeout(() => {
-      if (copiedPedHash) setCopiedPedHash(false);
-    }, 1000);
-  }, [copiedPedHash, setCopiedPedHash]);
+      if (copiedPedHash) setCopiedPedHash(false)
+    }, 1000)
+  }, [copiedPedHash, setCopiedPedHash])
 
   const PedList = pageContent?.map((pedList: any, index: number) => (
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
-          <Text size="md" weight={500}>• {pedList.name}</Text>
-          <Text size="xs">{locale.ui_hash}: {pedList.hash}</Text>
+          <Text size='md' weight={500}>• {pedList.name}</Text>
+          <Text size='xs'>{locale.ui_hash}: {pedList.hash}</Text>
         </Accordion.Control>
         <Accordion.Panel>
-          <Group grow spacing="xs"> 
+          <Group grow spacing='xs'> 
             <Image
               onMouseEnter={() => {
-                displayImage(true);
+                displayImage(true)
                 imagePath(`https://cfx-nui-dolu_tool/shared/img/ped/${pedList.name}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
-              fit="contain"
+              fit='contain'
               alt={`${pedList.name}`}
               src={`https://cfx-nui-dolu_tool/shared/img/ped/${pedList.name}.webp`}
               withPlaceholder={true}
@@ -71,30 +71,30 @@ const Ped: React.FC = () => {
             />
             <Button
               variant='light'
-              color={"blue.4"}
-              size="xs"
+              color={'blue.4'}
+              size='xs'
               onClick={() => { fetchNui('dolu_tool:changePed', { name: pedList.name, hash: pedList.hash }) }}
             >
               {locale.ui_set_ped}
             </Button>
             <Button
               variant='light'
-              color={copiedPedName ? 'teal' : "blue.4"}
-              size="xs"
+              color={copiedPedName ? 'teal' : 'blue.4'}
+              size='xs'
               onClick={() => {
-                setClipboard(pedList.name);
-                setCopiedPedName(true);
+                setClipboard(pedList.name)
+                setCopiedPedName(true)
               }}
             >
               {copiedPedName ? locale.ui_copied_name : locale.ui_copy_name}
             </Button>
             <Button
               variant='light'
-              color={copiedPedHash ? 'teal' : "blue.4"}
-              size="xs"
+              color={copiedPedHash ? 'teal' : 'blue.4'}
+              size='xs'
               onClick={() => {
-                setClipboard(pedList.hash ? `${pedList.hash}` : '');
-                setCopiedPedHash(true);
+                setClipboard(pedList.hash ? `${pedList.hash}` : '')
+                setCopiedPedHash(true)
               }}
             >
               {copiedPedHash ? locale.ui_copied_hash : locale.ui_copy_hash}
@@ -110,7 +110,7 @@ const Ped: React.FC = () => {
       <Button
         uppercase
         variant='light'
-        color="blue.4"
+        color='blue.4'
         onClick={() => { fetchNui('dolu_tool:changePed', { name: `${searchPedValue}` }) }}
       >
         {locale.ui_set_by_name}
@@ -118,10 +118,10 @@ const Ped: React.FC = () => {
       <PedSearch/>
       <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
         <Stack>
-          <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
+          <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
             {PedList ? PedList : 
-              <Paper p="md">
-                <Text size="md" weight={600} color="red.4">{locale.ui_no_ped_found}</Text>
+              <Paper p='md'>
+                <Text size='md' weight={600} color='red.4'>{locale.ui_no_ped_found}</Text>
               </Paper>
             }
             </Accordion>
@@ -129,13 +129,13 @@ const Ped: React.FC = () => {
       </ScrollArea>
       <Center>
         <Pagination
-          color="blue.4"
+          color='blue.4'
           size='md'
           page={activePage}
           onChange={(value) => {
             fetchNui('dolu_tool:loadPages', { type: 'peds', activePage: value, filter: searchPedValue })
             setPage(value)
-            setAccordionItem("0")
+            setAccordionItem('0')
           }}
           total={pageCount}
         />

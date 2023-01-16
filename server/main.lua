@@ -124,8 +124,8 @@ end)
 if Shared.ox_inventory then
     local function getAmmo(weaponName)
         local file = ('data/%s.lua'):format('weapons')
-        local datafile = LoadResourceFile("ox_inventory", file)
-        local path = ('@@%s/%s'):format("ox_inventory", file)
+        local datafile = LoadResourceFile('ox_inventory', file)
+        local path = ('@@%s/%s'):format('ox_inventory', file)
 
         if not datafile then
             warn(('no datafile found at path %s'):format(path:gsub('@@', '')))

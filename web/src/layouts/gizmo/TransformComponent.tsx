@@ -1,13 +1,13 @@
 import { Suspense, useRef, useState, useEffect } from 'react'
 import { TransformControls } from '@react-three/drei'
-import { useNuiEvent } from "../../hooks/useNuiEvent"
-import { fetchNui } from "../../utils/fetchNui"
+import { useNuiEvent } from '../../hooks/useNuiEvent'
+import { fetchNui } from '../../utils/fetchNui'
 import { Mesh, MathUtils } from 'three'
 
 export const TransformComponent = () => {
     const mesh = useRef<Mesh>(null!)
     const [currentEntity, setCurrentEntity] = useState<number>()
-    const [editorMode, setEditorMode] = useState<"translate" | "rotate" | "scale" | undefined>('translate')
+    const [editorMode, setEditorMode] = useState<'translate' | 'rotate' | 'scale' | undefined>('translate')
 
     const handleObjectDataUpdate = () => {
         const entity = {
@@ -31,7 +31,7 @@ export const TransformComponent = () => {
         if (entity.handle === undefined) {return}
 
         mesh.current.position.set(entity.position.x, entity.position.z, -entity.position.y)
-        mesh.current.rotation.order = "YZX"
+        mesh.current.rotation.order = 'YZX'
         mesh.current.rotation.set(MathUtils.degToRad(entity.rotation.x), MathUtils.degToRad(entity.rotation.z), MathUtils.degToRad(entity.rotation.y))
     })
 

@@ -13,7 +13,7 @@ const Nav: React.FC = () => {
   return (
     <Navbar
       width={{ base: 80 }}
-      p="md"
+      p='md'
       fixed={false}
       sx={{
         height: 775

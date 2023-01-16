@@ -1,4 +1,4 @@
-import { atom, useRecoilValue } from "recoil"
+import { atom, useRecoilValue } from 'recoil'
 
 const mockPosition: string = "0, 0, 0"
 

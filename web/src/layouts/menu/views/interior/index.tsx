@@ -14,10 +14,10 @@ const Interior: React.FC = () => {
         {
           interior?.interiorId <= 0
           ?
-          <Paper p="md">
+          <Paper p='md'>
               <Text size={24} weight={600}>{locale.ui_current_interior}</Text>
-              <Space h="sm" />
-              <Text color="red.4">{locale.ui_not_in_interior}</Text>
+              <Space h='sm' />
+              <Text color='red.4'>{locale.ui_not_in_interior}</Text>
           </Paper>
           :
           <>

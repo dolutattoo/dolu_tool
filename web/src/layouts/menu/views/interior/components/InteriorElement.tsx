@@ -1,10 +1,10 @@
-import { useEffect, useRef } from "react"
-import { useRecoilState } from "recoil"
-import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, ActionIcon, Popover } from "@mantine/core"
-import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom, portalFlagsAtom } from "../../../../../atoms/interior"
-import { fetchNui } from "../../../../../utils/fetchNui"
-import { AiFillEdit } from "react-icons/ai"
-import { useLocales } from "../../../../../providers/LocaleProvider"
+import { useEffect, useRef } from 'react'
+import { useRecoilState } from 'recoil'
+import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, ActionIcon, Popover } from '@mantine/core'
+import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom, portalFlagsAtom } from '../../../../../atoms/interior'
+import { fetchNui } from '../../../../../utils/fetchNui'
+import { AiFillEdit } from 'react-icons/ai'
+import { useLocales } from '../../../../../providers/LocaleProvider'
 
 const InteriorElement: React.FC = () => {
   const { locale } = useLocales()
@@ -28,23 +28,23 @@ const InteriorElement: React.FC = () => {
   return (
     <>
       {/* Current interior infos */}
-      <Paper p="md">
+      <Paper p='md'>
         <Text size={24} weight={600}>Current interior</Text>
-        <Space h="xs" />
-        <Group><Text>{locale.ui_interior_id}:</Text><Text color="blue.4" > { interior.interiorId }</Text></Group>
-        <Group><Text>{locale.ui_current_room}:</Text><Text color="blue.4" > { interior.roomCount }</Text></Group>
-        <Group><Text>{locale.ui_portal_count}:</Text><Text color="blue.4" > { interior.portalCount }</Text></Group>
-        <Group><Text>{locale.ui_current_room}:</Text><Text color="blue.4" > { interior.currentRoom?.index } - { interior.currentRoom?.name }</Text></Group>
+        <Space h='xs' />
+        <Group><Text>{locale.ui_interior_id}:</Text><Text color='blue.4' > { interior.interiorId }</Text></Group>
+        <Group><Text>{locale.ui_current_room}:</Text><Text color='blue.4' > { interior.roomCount }</Text></Group>
+        <Group><Text>{locale.ui_portal_count}:</Text><Text color='blue.4' > { interior.portalCount }</Text></Group>
+        <Group><Text>{locale.ui_current_room}:</Text><Text color='blue.4' > { interior.currentRoom?.index } - { interior.currentRoom?.name }</Text></Group>
       </Paper>
 
       {/* Portal drawing */}
-      <Paper p="md">
+      <Paper p='md'>
         <Text size={24} weight={600}>{locale.ui_portals}</Text>
         
         <Checkbox.Group
           orientation='horizontal'
-          spacing="xs"
-          size="md"
+          spacing='xs'
+          size='md'
           value={portalDebugCheckboxesValue}
           onChange={setPortalDebugCheckboxesValue}
         >
@@ -54,12 +54,12 @@ const InteriorElement: React.FC = () => {
           <Checkbox color='blue.4' value='portalCorners' label={locale.ui_corcers_portals} />
         </Checkbox.Group>
 
-        <Space h="sm" />
+        <Space h='sm' />
       
-        <Paper p="md">
+        <Paper p='md'>
           {/* PORTAL INDEX INPUT */}
           <Group spacing={5}>
-            <ActionIcon size={36} variant="default" onClick={() => {handlers.current?.decrement();}}>
+            <ActionIcon size={36} variant='default' onClick={() => {handlers.current?.decrement()}}>
               –
             </ActionIcon>
 
@@ -71,8 +71,8 @@ const InteriorElement: React.FC = () => {
               min={0}
               step={1}
               onChange={(val) => {val !== undefined &&
-                setPortalEditingIndex(val);
-                setPortalFlagCheckboxesValue(interior.portals![val!].flags.list);
+                setPortalEditingIndex(val)
+                setPortalFlagCheckboxesValue(interior.portals![val!].flags.list)
                 setPortalData(interior.portals![val!])
               }}
               styles={{ input: { width: 58, textAlign: 'center' } }}
@@ -84,20 +84,20 @@ const InteriorElement: React.FC = () => {
               }
             />
 
-            <ActionIcon size={36} variant="default" onClick={() => {handlers.current?.increment()}}>
+            <ActionIcon size={36} variant='default' onClick={() => {handlers.current?.increment()}}>
               +
             </ActionIcon>
           </Group>
-          <Space h="sm" />
+          <Space h='sm' />
           {
             portalData && <>
               <Group>
                 <Text>{locale.ui_flag}:</Text>
-                <Text color="blue.4">{portalData ? portalData.flags.total : 'Unknown'}</Text>
+                <Text color='blue.4'>{portalData ? portalData.flags.total : 'Unknown'}</Text>
                 
-                <Popover position="right-start" withArrow shadow="md">
+                <Popover position='right-start' withArrow shadow='md'>
                   <Popover.Target>
-                    <ActionIcon size="md" variant="default">
+                    <ActionIcon size='md' variant='default'>
                       <AiFillEdit fontSize={20}/>
                     </ActionIcon>
                   </Popover.Target>
@@ -105,10 +105,13 @@ const InteriorElement: React.FC = () => {
                   <Popover.Dropdown>
                     <Checkbox.Group
                       orientation='vertical'
-                      spacing="xs"
-                      size="sm"
+                      spacing='xs'
+                      size='sm'
                       value={portalFlagCheckboxesValue!}
-                      onChange={(v) => {setPortalFlagCheckboxesValue(v); fetchNui('dolu_tool:setPortalFlagCheckbox', { flags: v, portalIndex: portalEditingIndex })}}
+                      onChange={(v) => {
+                        setPortalFlagCheckboxesValue(v)
+                        fetchNui('dolu_tool:setPortalFlagCheckbox', { flags: v, portalIndex: portalEditingIndex })
+                      }}
                     >
                       <Checkbox color='blue.4' value='1' label={"1 - " + locale.ui_portal_flag_1} />
                       <Checkbox color='blue.4' value='2' label={"2 - " + locale.ui_portal_flag_2} />
@@ -131,12 +134,12 @@ const InteriorElement: React.FC = () => {
 
               <Group>
                 <Text>{locale.ui_room_from}:</Text>
-                <Text color="blue.4">{portalData ? portalData.roomFrom : 'Unknown'}</Text>
+                <Text color='blue.4'>{portalData ? portalData.roomFrom : 'Unknown'}</Text>
               </Group>
               
               <Group>
                 <Text>{locale.ui_room_to}:</Text>
-                <Text color="blue.4">{portalData ? portalData.roomTo : 'Unknown'}</Text>
+                <Text color='blue.4'>{portalData ? portalData.roomTo : 'Unknown'}</Text>
               </Group>
             </>
           }

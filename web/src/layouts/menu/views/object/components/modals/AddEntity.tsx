@@ -16,7 +16,7 @@ const AddEntity: React.FC = () => {
         uppercase
         disabled={entityName === ''}
         variant='light'
-        color="blue.4"
+        color='blue.4'
         onClick={() => {
           closeAllModals()
           fetchNui('dolu_tool:addEntity', entityName)

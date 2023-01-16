@@ -54,11 +54,11 @@ const Menu: React.FC = () => {
   useExitListener(setVisible)
 
   return (
-    <Transition duration={100} transition="slide-right" mounted={visible}>
+    <Transition duration={100} transition='slide-right' mounted={visible}>
       {(style) => (
         <Box sx={{ position: 'absolute', top: '2%', left: '1.5%', zIndex: 3 }} style={style} className={classes.wrapper}>
           <AppShell
-            padding="md"
+            padding='md'
             fixed={false}
             navbar={<Nav />}
             header={
@@ -71,14 +71,14 @@ const Menu: React.FC = () => {
             }
           >
             <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/world" element={<World />} />
-              <Route path="/interior" element={<Interior />} />
-              <Route path="/object" element={<Object />} />
-              <Route path="/locations" element={<Locations />} />
-              <Route path="/ped" element={<Ped />} />
-              <Route path="/vehicle" element={<Vehicle />} />
-              <Route path="/weapon" element={<Weapon />} />
+              <Route path='/' element={<Home />} />
+              <Route path='/world' element={<World />} />
+              <Route path='/interior' element={<Interior />} />
+              <Route path='/object' element={<Object />} />
+              <Route path='/locations' element={<Locations />} />
+              <Route path='/ped' element={<Ped />} />
+              <Route path='/vehicle' element={<Vehicle />} />
+              <Route path='/weapon' element={<Weapon />} />
             </Routes>
           </AppShell>
         </Box>

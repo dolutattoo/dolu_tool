@@ -45,7 +45,7 @@ CreateThread(function()
                 SendNUIMessage({
                     action = 'playerCoords',
                     data = {
-                        coords = FUNC.round(coords.x, 3) .. ", " .. FUNC.round(coords.y, 3) .. ", " .. FUNC.round(coords.z, 3),
+                        coords = FUNC.round(coords.x, 3) .. ', ' .. FUNC.round(coords.y, 3) .. ', ' .. FUNC.round(coords.z, 3),
                         heading = tostring(FUNC.round(GetEntityHeading(cache.ped), 3))
                     }
                 })

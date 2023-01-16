@@ -1,13 +1,13 @@
-import { MantineProvider } from '@mantine/core';
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
-import './index.css';
-import { customTheme } from './theme';
-import { HashRouter } from 'react-router-dom';
-import { ModalsProvider } from '@mantine/modals';
-import { RecoilRoot } from 'recoil';
-import LocaleProvider from './providers/LocaleProvider';
+import { MantineProvider } from '@mantine/core'
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import App from './App'
+import './index.css'
+import { customTheme } from './theme'
+import { HashRouter } from 'react-router-dom'
+import { ModalsProvider } from '@mantine/modals'
+import { RecoilRoot } from 'recoil'
+import LocaleProvider from './providers/LocaleProvider'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
@@ -30,4 +30,4 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
       </LocaleProvider>
     </HashRouter>
   </React.StrictMode>
-);
+)
