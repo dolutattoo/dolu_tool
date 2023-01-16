@@ -1,12 +1,14 @@
 import { Button, Group, Stack, Text } from '@mantine/core'
 import { closeAllModals } from '@mantine/modals'
 import { fetchNui } from '../../../../../../utils/fetchNui'
+import { useLocales } from '../../../../../../providers/LocaleProvider'
 
 const DeleteAllEntities = () => {
+  const { locale } = useLocales()
 
   return (
     <Stack>
-      <Text>Delete all spawned entities ?</Text>
+      <Text>{locale.ui_delete_all_entities}</Text>
       <Group grow>
         <Button
           uppercase
@@ -17,7 +19,7 @@ const DeleteAllEntities = () => {
             fetchNui('dolu_tool:deleteAllEntities')
           }}
         >
-          Confirm
+          {locale.ui_confirm}
         </Button>
         <Button
           uppercase
@@ -27,7 +29,7 @@ const DeleteAllEntities = () => {
             closeAllModals()
           }}
         >
-          Cancel
+          {locale.ui_cancel}
         </Button>
       </Group>
     </Stack>

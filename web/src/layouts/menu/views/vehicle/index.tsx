@@ -7,8 +7,10 @@ import { setClipboard } from '../../../../utils/setClipboard'
 import VehicleSearch from "./components/vehicleListSearch"
 import { fetchNui } from "../../../../utils/fetchNui"
 import { useNuiEvent } from "../../../../hooks/useNuiEvent"
+import { useLocales } from "../../../../providers/LocaleProvider"
 
 const Vehicle: React.FC = () => {
+  const { locale } = useLocales()
   const searchVehicleValue = getSearchVehicleInput()
   const [pageContent, setPageContent] = useRecoilState(vehiclesPageContentAtom)
   const [pageCount, setPageCount] = useRecoilState(vehiclesPageCountAtom)
@@ -45,7 +47,7 @@ const Vehicle: React.FC = () => {
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Text size="md" weight={500}>• {vehicleList.name}</Text>
-          <Text size="xs">Hash: {vehicleList.hash}</Text>
+          <Text size="xs">{locale.ui_hash}: {vehicleList.hash}</Text>
         </Accordion.Control>
         <Accordion.Panel>
           <Group grow spacing="xs"> 
@@ -73,7 +75,7 @@ const Vehicle: React.FC = () => {
               size="xs"
               onClick={() => fetchNui('dolu_tool:spawnVehicle', vehicleList.name)}
             >
-              Spawn
+              {locale.ui_spawn}
             </Button>
             <Button
               variant='light'
@@ -84,7 +86,7 @@ const Vehicle: React.FC = () => {
                 setCopiedVehicleName(true);
               }}
             >
-              {copiedVehicleName ? 'Copied' : 'Copy'} Name
+              {copiedVehicleName ? locale.ui_copied_name : locale.ui_copy_name}
             </Button>
             <Button
               variant='light'
@@ -95,7 +97,7 @@ const Vehicle: React.FC = () => {
                 setCopiedVehicleHash(true);
               }}
             >
-              {copiedVehicleHash ? 'Copied' : 'Copy'} Hash
+              {copiedVehicleHash ? locale.ui_copied_hash : locale.ui_copy_hash}
             </Button>                     
           </Group>
         </Accordion.Panel>
@@ -104,14 +106,14 @@ const Vehicle: React.FC = () => {
 
   return(
     <Stack>
-      <Text size={20}>Vehicles</Text>
+      <Text size={20}>{locale.ui_vehicles}</Text>
       <Button
         uppercase
         variant='light'
         color="blue.4"
         onClick={() => fetchNui('dolu_tool:spawnVehicle', searchVehicleValue)}
       >
-        Spawn by Name
+        {locale.ui_spawn_by_name}
       </Button>
       <VehicleSearch/>
       <ScrollArea style={{ height: 516 }} scrollbarSize={0}>

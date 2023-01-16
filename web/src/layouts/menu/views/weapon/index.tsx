@@ -7,8 +7,10 @@ import { setClipboard } from '../../../../utils/setClipboard'
 import WeaponSearch from "./components/weaponListSearch"
 import { fetchNui } from "../../../../utils/fetchNui"
 import { useNuiEvent } from "../../../../hooks/useNuiEvent"
+import { useLocales } from "../../../../providers/LocaleProvider"
 
 const Weapon: React.FC = () => {
+  const { locale } = useLocales()
   const searchWeaponValue = getSearchWeaponInput()
   const [pageContent, setPageContent] = useRecoilState(weaponsPageContentAtom)
   const [pageCount, setPageCount] = useRecoilState(weaponsPageCountAtom)
@@ -45,7 +47,7 @@ const Weapon: React.FC = () => {
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Text size="md" weight={500}>• {weaponList.name}</Text>
-          <Text size="xs">Hash: {weaponList.hash}</Text>
+          <Text size="xs">{locale.ui_hash}: {weaponList.hash}</Text>
         </Accordion.Control>
         <Accordion.Panel>
           <Group grow spacing="xs"> 
@@ -73,7 +75,7 @@ const Weapon: React.FC = () => {
               size="xs"
               onClick={() => fetchNui('dolu_tool:giveWeapon', weaponList.name)}
             >
-              Give Weapon
+              {locale.ui_give_weapon}
             </Button>
             <Button
               variant='light'
@@ -84,7 +86,7 @@ const Weapon: React.FC = () => {
                 setCopiedWeaponName(true);
               }}
             >
-              {copiedWeaponName ? 'Copied' : 'Copy'} Name
+              {copiedWeaponName ? locale.ui_copied_name : locale.ui_copy_name}
             </Button>
             <Button
               variant='light'
@@ -95,7 +97,7 @@ const Weapon: React.FC = () => {
                 setCopiedWeaponHash(true);
               }}
             >
-              {copiedWeaponHash ? 'Copied' : 'Copy'} Hash
+              {copiedWeaponHash ? locale.ui_copied_hash : locale.ui_copy_hash}
             </Button>                     
           </Group>
         </Accordion.Panel>
@@ -104,14 +106,14 @@ const Weapon: React.FC = () => {
 
   return(
     <Stack>
-      <Text size={20}>Weapons</Text>
+      <Text size={20}>{locale.ui_weapons}</Text>
       <Button
         uppercase
         variant='light'
         color="blue.4"
         onClick={() => fetchNui('dolu_tool:giveWeapon', searchWeaponValue)}
       >
-        Give by Name
+        {locale.ui_give_weapon_by_name}
       </Button>
       <WeaponSearch/>
       <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
@@ -119,7 +121,7 @@ const Weapon: React.FC = () => {
           <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
             {WeaponList ? WeaponList : 
               <Paper p="md">
-                <Text size="md" weight={600} color="red.4">No weapon found</Text>
+                <Text size="md" weight={600} color="red.4">{locale.ui_no_weapon_found}</Text>
               </Paper>
             }
             </Accordion>

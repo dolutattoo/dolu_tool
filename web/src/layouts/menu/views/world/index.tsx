@@ -5,8 +5,10 @@ import { fetchNui } from '../../../../utils/fetchNui'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import { useRecoilState } from 'recoil'
 import { worldFreezeTimeAtom, worldFreezeWeatherAtom, worldHourAtom, worldMinuteAtom, worldWeatherAtom } from '../../../../atoms/world'
+import { useLocales } from '../../../../providers/LocaleProvider'
 
 const World: React.FC = () => {
+  const { locale } = useLocales()
   const [hourValue, setHourValue] = useRecoilState(worldHourAtom)
   const [minuteValue, setMinuteValue] = useRecoilState(worldMinuteAtom)
   const [weatherValue, setWeatherValue] = useRecoilState(worldWeatherAtom)
@@ -30,7 +32,7 @@ const World: React.FC = () => {
         {/* Time    */}
         <Paper p="md">  
           <Group position="apart">
-            <Text size={20} weight={600}>Time</Text>
+            <Text size={20} weight={600}>{locale.ui_time}</Text>
             <AiOutlineClockCircle size={24} />
           </Group>
           
@@ -71,7 +73,7 @@ const World: React.FC = () => {
               variant='light'
               onClick={() => fetchNui('dolu_tool:getClock')}
             >
-              Get time
+              {locale.ui_sync}
             </Button>
           </Group>
 
@@ -88,7 +90,7 @@ const World: React.FC = () => {
         {/* Weather */}
         <Paper p="md">
           <Group position="apart">
-            <Text size={20} weight={600}>Weather</Text>
+            <Text size={20} weight={600}>{locale.ui_weather}</Text>
             <TiWeatherPartlySunny size={24} />
           </Group>
 

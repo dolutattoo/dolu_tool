@@ -3,8 +3,10 @@ import { closeAllModals } from '@mantine/modals'
 import { useRecoilState } from 'recoil'
 import { ObjectNameAtom } from '../../../../../../atoms/object'
 import { fetchNui } from '../../../../../../utils/fetchNui'
+import { useLocales } from '../../../../../../providers/LocaleProvider'
 
 const AddEntity: React.FC = () => {
+  const { locale } = useLocales()
   const [entityName, setEntityName] = useRecoilState(ObjectNameAtom)
 
   return (
@@ -20,7 +22,7 @@ const AddEntity: React.FC = () => {
           fetchNui('dolu_tool:addEntity', entityName)
         }}
       >
-        Confirm
+        {locale.ui_confirm}
       </Button>
     </Stack>
   )

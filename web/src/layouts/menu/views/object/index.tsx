@@ -9,8 +9,10 @@ import AddEntity from './components/modals/AddEntity'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import DeleteAllEntities from './components/modals/DeleteAllEntities'
 import { setClipboard } from '../../../../utils/setClipboard'
+import { useLocales } from '../../../../providers/LocaleProvider'
 
 const Object: React.FC = () => {
+    const { locale } = useLocales()
     const [objectList, setObjectList] = useRecoilState(ObjectListAtom);
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
     
@@ -50,7 +52,7 @@ const Object: React.FC = () => {
         <>
             {/* TITLE */}
             <Group position='apart'>
-                <Text size={20}>Object Spawner</Text>
+                <Text size={20}>{locale.ui_object_spawner}</Text>
                 <Group position='apart'>
                     <ActionIcon
                         size="xl"
@@ -115,7 +117,7 @@ const Object: React.FC = () => {
                                                 onClick={() => {
                                                     fetchNui('dolu_tool:goToEntity', entity)
                                                 }}
-                                            >Go to</Button>
+                                            >{locale.ui_goto}</Button>
                                             <Button
                                                 variant='light'
                                                 color={copiedCoords ? 'teal' : "blue.4"}
@@ -124,7 +126,7 @@ const Object: React.FC = () => {
                                                     setClipboard(entity.position.x + ', ' + entity.position.y + ', ' + entity.position.z)
                                                     setCopiedCoords(true)
                                                 }}
-                                            >{copiedCoords ? 'Copied' : 'Copy'} coords</Button>
+                                            >{copiedCoords ? locale.ui_copied_coords : locale.ui_copy_coords}</Button>
                                             <Button
                                                 variant='light'
                                                 color={copiedName ? 'teal' : "blue.4"}
@@ -133,7 +135,7 @@ const Object: React.FC = () => {
                                                     setClipboard(entity.name)
                                                     setCopiedName(true)
                                                 }}
-                                            >{copiedName ? 'Copied' : 'Copy'} name</Button>
+                                            >{copiedName ? locale.ui_copied_name : locale.ui_copy_name}</Button>
                                         </Group>
                                         <Space h='xs' />
                                         <Group grow>
@@ -144,7 +146,7 @@ const Object: React.FC = () => {
                                                 onClick={() => {
                                                     fetchNui('dolu_tool:snapEntityToGround', entity)
                                                 }}
-                                            >Snap to ground</Button>
+                                            >{locale.ui_snap_to_ground}</Button>
                                             <Button
                                                 variant='light'
                                                 color="blue.4"
@@ -152,7 +154,7 @@ const Object: React.FC = () => {
                                                 onClick={() => {
                                                     fetchNui('dolu_tool:addEntity', entity.name)
                                                 }}
-                                            >Duplicate</Button>                                            
+                                            >{locale.ui_duplicate}</Button>                                            
                                             <Button
                                                 variant='light'
                                                 color="blue.4"
@@ -161,7 +163,7 @@ const Object: React.FC = () => {
                                                     fetchNui('dolu_tool:deleteEntity', entity.handle)
                                                     setAccordionItem(null)
                                                 }}
-                                            >Delete</Button>
+                                            >{locale.ui_delete}</Button>
                                         </Group>
                                     </Accordion.Panel>
                                 </Accordion.Item>

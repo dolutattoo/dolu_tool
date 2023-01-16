@@ -48,6 +48,17 @@ CreateThread(function()
         if Config.target and GetResourceState('ox_target'):find('start') then
             FUNC.initTarget()
         end
+
+        RegisterNUICallback('loadLocale', function(_, cb)
+            cb(1)
+            local resource = GetCurrentResourceName()
+            local locale = GetConvar('ox:locale', 'en')
+            local JSON = LoadResourceFile(resource, ('locales/%s.json'):format(locale)) or LoadResourceFile(resource, ('locales/en.json'):format(locale))
+            SendNUIMessage({
+                action = 'setLocale',
+                data = json.decode(JSON)
+            })
+        end)
     end
 end)
 

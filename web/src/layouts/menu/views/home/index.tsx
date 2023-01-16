@@ -15,8 +15,10 @@ import SetCoords from './modals/SetCoords'
 import { useRecoilState } from 'recoil'
 import { positionAtom } from '../../../../atoms/position'
 import { worldFreezeTimeAtom } from '../../../../atoms/world'
+import { useLocales } from '../../../../providers/LocaleProvider'
 
 const Home: React.FC = () => {
+  const { locale } = useLocales()
   const lastLocation = getLastLocation()
   const interior = getInteriorData()
   const [currentCoords, setCurrentCoords] = useRecoilState(positionAtom)
@@ -43,14 +45,14 @@ const Home: React.FC = () => {
         <Paper p="md">
           
           <Group position="apart">
-            <Text size={20} weight={600}>Current Coords</Text>
+            <Text size={20} weight={600}>{locale.ui_current_coords}</Text>
             <ImLocation size={24}/>
           </Group>
           
           <Space h="sm" />
 
           <Group position='apart'>
-            <Group><Text>Coords:</Text><Text color="blue.4" >{currentCoords}</Text></Group>
+            <Group><Text>{locale.ui_coords}:</Text><Text color="blue.4" >{currentCoords}</Text></Group>
             <Group><Text>Heading:</Text><Text color="blue.4" >{currentHeading}</Text></Group>
           </Group>
           
@@ -65,7 +67,7 @@ const Home: React.FC = () => {
                 setClipboard(currentCoords + ', ' + currentHeading)
                 setCopiedCoords(true)
               }}
-            >{copiedCoords ? 'Copied' : 'Copy'} coords</Button>
+            >{copiedCoords ? locale.ui_copied_coords : locale.ui_copy_coords}</Button>
 
             <Button
               color='blue.4'
@@ -78,7 +80,7 @@ const Home: React.FC = () => {
                   children: <SetCoords />,
                 })
               }
-            >Set coords</Button>
+            >{locale.ui_set_coords}</Button>
 
             <Button
               color='blue.4'
@@ -91,14 +93,14 @@ const Home: React.FC = () => {
                   children: <CreateLocation />,
                 })
               }
-            >Save location</Button>
+            >{locale.ui_save_location}</Button>
           </Group>
         </Paper>
         
         {/* LAST LOCATION */}
         <Paper p="md">
           <Group position="apart">
-            <Text size={20} weight={600}>Last location</Text>
+            <Text size={20} weight={600}>{locale.ui_last_location}</Text>
             <GiTeleport size={24} />
           </Group>
           
@@ -108,10 +110,10 @@ const Home: React.FC = () => {
             lastLocation
             ? 
               <>
-                <Group><Text>Name:</Text><Text color="blue.4" >{lastLocation.name}</Text></Group>
+                <Group><Text>{locale.ui_name}:</Text><Text color="blue.4" >{lastLocation.name}</Text></Group>
                 
                 <Group position='apart'>
-                  <Group><Text>Coords:</Text><Text color="blue.4" >{lastLocation.x}, {lastLocation.y}, {lastLocation.z}</Text></Group>
+                  <Group><Text>{locale.ui_coords}:</Text><Text color="blue.4" >{lastLocation.x}, {lastLocation.y}, {lastLocation.z}</Text></Group>
                   <Button
                     color='blue.4'
                     variant='light'
@@ -120,14 +122,14 @@ const Home: React.FC = () => {
                     }
                     value={lastLocation.name}
                   >
-                    Teleport
+                    {locale.ui_teleport}
                   </Button>
                 </Group>
               </>
             :            
               <>
                 <Space h="sm" />
-                <Text color="red.4">You did not teleport to any location yet.</Text>
+                <Text color="red.4">{locale.ui_no_last_location}</Text>
               </>
           }
         </Paper>
@@ -135,7 +137,7 @@ const Home: React.FC = () => {
         {/* CURRENT INTERIOR */}
         <Paper p="md">
           <Group position="apart">
-            <Text size={20} weight={600}>Current interior</Text>
+            <Text size={20} weight={600}>{locale.ui_current_interior}</Text>
             <RiHomeGearFill size={24} />
           </Group>
          
@@ -143,13 +145,13 @@ const Home: React.FC = () => {
             interior.interiorId > 0
             ? 
               <>
-                <Group><Text>Interior ID:</Text><Text color="blue.4" >{interior.interiorId}</Text></Group>
-                <Group><Text>Current room:</Text><Text color="blue.4" >{interior.currentRoom?.index} - {interior.currentRoom?.name}</Text></Group>
+                <Group><Text>{locale.ui_interior_id}:</Text><Text color="blue.4" >{interior.interiorId}</Text></Group>
+                <Group><Text>{locale.ui_current_room}:</Text><Text color="blue.4" >{interior.currentRoom?.index} - {interior.currentRoom?.name}</Text></Group>
               </>
             : 
               <>
                 <Space h="sm" />
-                <Text color="red.4">You are not inside any interior.</Text>
+                <Text color="red.4">{locale.ui_not_in_interior}</Text>
               </>
           }
         </Paper>
@@ -157,7 +159,7 @@ const Home: React.FC = () => {
         {/* QUICK ACTIONS */}
         <Paper p="md">
           <Group position="apart">
-            <Text size={20} weight={600}>Quick Actions</Text>
+            <Text size={20} weight={600}>{locale.ui_quick_actions}</Text>
             <FiFastForward size={24} />
           </Group>
 
@@ -170,7 +172,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:cleanZone', {})
               }
-            >Clean zone</Button>
+            >{locale.ui_clean_zone}</Button>
             
             <Button
               color='blue.4'
@@ -178,7 +180,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:cleanPed', {})
               }
-            >Clean ped</Button>
+            >{locale.ui_clean_ped}</Button>
 
             <Button
               color='blue.4'
@@ -186,7 +188,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:upgradeVehicle', {})
               }
-            >Upgrade vehicle</Button>
+            >{locale.ui_upgrade_vehicle}</Button>
           </Group>
 
           <Space h="sm" />
@@ -198,7 +200,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:repairVehicle', {})
               }
-            >Repair vehicle</Button>
+            >{locale.ui_repair_vehicle}</Button>
 
             <Button
               color='blue.4'
@@ -206,7 +208,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:deleteVehicle', {})
               }
-            >Delete Vehicle</Button>
+            >{locale.ui_delete_vehicle}</Button>
 
             <Button
               color='blue.4'
@@ -214,7 +216,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:setDay', {})
               }
-            >Set sunny day</Button>
+            >{locale.ui_set_sunny_day}</Button>
           </Group>
 
           <Space h="sm" />
@@ -226,7 +228,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:spawnFavoriteVehicle', {})
               }
-            >Spawn Vehicle</Button>
+            >{locale.ui_spawn_vehicle}</Button>
 
             <Button
               color='blue.4'
@@ -234,7 +236,7 @@ const Home: React.FC = () => {
               onClick={() =>
                 fetchNui('dolu_tool:setMaxHealth', {})
               }
-            >Max Health</Button>
+            >{locale.ui_max_health}</Button>
             
             <Button
               color={timeFrozen ? 'red.4' : 'blue.4'}
@@ -243,7 +245,7 @@ const Home: React.FC = () => {
                 setTimeFrozen(!timeFrozen)
                 fetchNui('dolu_tool:freezeTime', !timeFrozen)
               }}
-            >Time {timeFrozen ? "frozen" : "not frozen" }</Button>
+            >{timeFrozen ? locale.ui_time_freeze : locale.ui_time_not_freeze }</Button>
           </Group>          
         </Paper>
       </Stack>

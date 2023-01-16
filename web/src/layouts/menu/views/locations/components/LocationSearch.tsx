@@ -4,8 +4,10 @@ import { TbSearch } from 'react-icons/tb'
 import { useSetRecoilState } from 'recoil'
 import { locationsActivePageAtom, locationSearchAtom } from '../../../../../atoms/location'
 import { useEffect, useState } from 'react'
+import { useLocales } from '../../../../../providers/LocaleProvider'
 
 const LocationSearch: React.FC = () => {
+  const { locale } = useLocales()
   const [search, setSearch] = useState('')
   const setLocationsSearch = useSetRecoilState(locationSearchAtom)
   const [debouncedSearch] = useDebouncedValue(search, 100)
@@ -18,7 +20,7 @@ const LocationSearch: React.FC = () => {
   return (
     <>
       <TextInput
-        placeholder="Search"
+        placeholder={locale.ui_search}
         icon={<TbSearch size={20} />}
         value={search}
         onChange={(e) => {

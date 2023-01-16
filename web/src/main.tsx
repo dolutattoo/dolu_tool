@@ -12,20 +12,22 @@ import LocaleProvider from './providers/LocaleProvider';
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <HashRouter>
-      <MantineProvider withNormalizeCSS withGlobalStyles theme={customTheme}>
-        <RecoilRoot>
-          <ModalsProvider
-            modalProps={{
-              size: 'xs',
-              transition: 'slide-up',
-              // Modals would overflow the page with slide-up transition
-              styles: { inner: { overflow: 'hidden' } },
-            }}
-          >
-            <App />
-          </ModalsProvider>
-        </RecoilRoot>
-      </MantineProvider>
+      <LocaleProvider>
+        <MantineProvider withNormalizeCSS withGlobalStyles theme={customTheme}>
+          <RecoilRoot>
+            <ModalsProvider
+              modalProps={{
+                size: 'xs',
+                transition: 'slide-up',
+                // Modals would overflow the page with slide-up transition
+                styles: { inner: { overflow: 'hidden' } },
+              }}
+            >
+              <App />
+            </ModalsProvider>
+          </RecoilRoot>
+        </MantineProvider>
+      </LocaleProvider>
     </HashRouter>
   </React.StrictMode>
 );

@@ -7,8 +7,10 @@ import { setClipboard } from '../../../../utils/setClipboard'
 import PedSearch from "./components/pedListSearch"
 import { fetchNui } from "../../../../utils/fetchNui"
 import { useNuiEvent } from "../../../../hooks/useNuiEvent"
+import { useLocales } from "../../../../providers/LocaleProvider"
 
 const Ped: React.FC = () => {
+  const { locale } = useLocales()
   const searchPedValue = getSearchPedInput()
   const [pageContent, setPageContent] = useRecoilState(pedsPageContentAtom)
   const [pageCount, setPageCount] = useRecoilState(pedsPageCountAtom)
@@ -45,7 +47,7 @@ const Ped: React.FC = () => {
       <Accordion.Item value={index.toString()}>
         <Accordion.Control>
           <Text size="md" weight={500}>• {pedList.name}</Text>
-          <Text size="xs">Hash: {pedList.hash}</Text>
+          <Text size="xs">{locale.ui_hash}: {pedList.hash}</Text>
         </Accordion.Control>
         <Accordion.Panel>
           <Group grow spacing="xs"> 
@@ -73,7 +75,7 @@ const Ped: React.FC = () => {
               size="xs"
               onClick={() => { fetchNui('dolu_tool:changePed', { name: pedList.name, hash: pedList.hash }) }}
             >
-              Set Ped
+              {locale.ui_set_ped}
             </Button>
             <Button
               variant='light'
@@ -84,7 +86,7 @@ const Ped: React.FC = () => {
                 setCopiedPedName(true);
               }}
             >
-              {copiedPedName ? 'Copied' : 'Copy'} Name
+              {copiedPedName ? locale.ui_copied_name : locale.ui_copy_name}
             </Button>
             <Button
               variant='light'
@@ -95,7 +97,7 @@ const Ped: React.FC = () => {
                 setCopiedPedHash(true);
               }}
             >
-              {copiedPedHash ? 'Copied' : 'Copy'} Hash
+              {copiedPedHash ? locale.ui_copied_hash : locale.ui_copy_hash}
             </Button>                     
           </Group>
         </Accordion.Panel>
@@ -104,14 +106,14 @@ const Ped: React.FC = () => {
 
   return(
     <Stack>
-      <Text size={20}>Peds</Text>
+      <Text size={20}>{locale.ui_peds}</Text>
       <Button
         uppercase
         variant='light'
         color="blue.4"
         onClick={() => { fetchNui('dolu_tool:changePed', { name: `${searchPedValue}` }) }}
       >
-        Set by Name
+        {locale.ui_set_by_name}
       </Button>
       <PedSearch/>
       <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
@@ -119,7 +121,7 @@ const Ped: React.FC = () => {
           <Accordion variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
             {PedList ? PedList : 
               <Paper p="md">
-                <Text size="md" weight={600} color="red.4">No ped found</Text>
+                <Text size="md" weight={600} color="red.4">{locale.ui_no_ped_found}</Text>
               </Paper>
             }
             </Accordion>

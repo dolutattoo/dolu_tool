@@ -10,8 +10,10 @@ import { useRecoilState } from 'recoil'
 import { fetchNui } from '../../../../utils/fetchNui'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import DeleteLocation from './components/modals/DeleteLocation'
+import { useLocales } from '../../../../providers/LocaleProvider'
 
 const Locations: React.FC = () => {
+  const { locale } = useLocales()
   const searchLocationValue = getSearchLocationInput()
   const [pageContent, setPageContent] = useRecoilState(locationsPageContentAtom)
   const [pageCount, setPageCount] = useRecoilState(locationsPageCountAtom)
@@ -47,7 +49,7 @@ const Locations: React.FC = () => {
               <Text color="blue.4" size="md" weight={500}>{location.name}</Text>
               <Badge color={location.custom ? "green.4" : "blue.4"}>{location.custom ? "Custom" : "Vanilla"}</Badge>
             </Group>
-            <Text size="xs">Coords: {location.x}, {location.y}, {location.z}</Text>
+            <Text size="xs">{locale.ui_coords}: {location.x}, {location.y}, {location.z}</Text>
           </Stack>
         </Accordion.Control>
         <Accordion.Panel>
@@ -60,7 +62,7 @@ const Locations: React.FC = () => {
                 fetchNui('dolu_tool:teleport', { name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
               }
             >
-              Teleport
+              {locale.ui_teleport}
             </Button>
             <Button
               variant='light'
@@ -71,7 +73,7 @@ const Locations: React.FC = () => {
                 setCopied(true)
               }}
             >
-              {copied ? 'Copied' : 'Copy'} coords
+              {copied ? locale.ui_copied_coords : locale.ui_copy_coords}
             </Button>
             {location.custom &&
               <Button
@@ -86,7 +88,7 @@ const Locations: React.FC = () => {
                   })
                 }}
               >
-                Rename
+                {locale.ui_rename}
               </Button>
             }
             {location.custom &&
@@ -103,7 +105,7 @@ const Locations: React.FC = () => {
                   setAccordionItem(null)
                 }}
               >
-                Delete
+                {locale.ui_delete}
               </Button>
             }
           </Group>
@@ -114,7 +116,7 @@ const Locations: React.FC = () => {
   return (
     <>
       <Stack>
-        <Text size={20}>Locations</Text>
+        <Text size={20}>{locale.ui_locations}</Text>
         <Group grow>            
           <Checkbox
             label='Show custom locations'
@@ -154,7 +156,7 @@ const Locations: React.FC = () => {
             })
           }
         >
-          Create Custom Location
+          {locale.ui_create_custom_location}
         </Button>
         
         <LocationSearch />
@@ -164,7 +166,7 @@ const Locations: React.FC = () => {
             <Accordion chevronPosition="left" variant="contained" radius="sm" value={currentAccordionItem} onChange={setAccordionItem}>
               {Locationlist ? Locationlist :
                 <Paper p="md">
-                  <Text size="md" weight={600} color="red.4">No location found</Text>
+                  <Text size="md" weight={600} color="red.4">{locale.ui_no_location_found}</Text>
                 </Paper>
               }
             </Accordion>

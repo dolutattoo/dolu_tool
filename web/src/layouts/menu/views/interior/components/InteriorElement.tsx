@@ -4,8 +4,10 @@ import { Text, Paper, Group, Checkbox, Space, NumberInput, NumberInputHandlers, 
 import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingIndexAtom, portalFlagsAtom } from "../../../../../atoms/interior"
 import { fetchNui } from "../../../../../utils/fetchNui"
 import { AiFillEdit } from "react-icons/ai"
+import { useLocales } from "../../../../../providers/LocaleProvider"
 
 const InteriorElement: React.FC = () => {
+  const { locale } = useLocales()
   const interior = getInteriorData()
   const [portalEditingIndex, setPortalEditingIndex] = useRecoilState(portalEditingIndexAtom)
   const handlers = useRef<NumberInputHandlers>()
@@ -29,15 +31,15 @@ const InteriorElement: React.FC = () => {
       <Paper p="md">
         <Text size={24} weight={600}>Current interior</Text>
         <Space h="xs" />
-        <Group><Text>Interior ID:</Text><Text color="blue.4" > { interior.interiorId }</Text></Group>
-        <Group><Text>Room count:</Text><Text color="blue.4" > { interior.roomCount }</Text></Group>
-        <Group><Text>Portal count:</Text><Text color="blue.4" > { interior.portalCount }</Text></Group>
-        <Group><Text>Current room:</Text><Text color="blue.4" > { interior.currentRoom?.index } - { interior.currentRoom?.name }</Text></Group>
+        <Group><Text>{locale.ui_interior_id}:</Text><Text color="blue.4" > { interior.interiorId }</Text></Group>
+        <Group><Text>{locale.ui_current_room}:</Text><Text color="blue.4" > { interior.roomCount }</Text></Group>
+        <Group><Text>{locale.ui_portal_count}:</Text><Text color="blue.4" > { interior.portalCount }</Text></Group>
+        <Group><Text>{locale.ui_current_room}:</Text><Text color="blue.4" > { interior.currentRoom?.index } - { interior.currentRoom?.name }</Text></Group>
       </Paper>
 
       {/* Portal drawing */}
       <Paper p="md">
-        <Text size={24} weight={600}>Portals</Text>
+        <Text size={24} weight={600}>{locale.ui_portals}</Text>
         
         <Checkbox.Group
           orientation='horizontal'
@@ -90,7 +92,7 @@ const InteriorElement: React.FC = () => {
           {
             portalData && <>
               <Group>
-                <Text>Flag:</Text>
+                <Text>{locale.ui_flag}:</Text>
                 <Text color="blue.4">{portalData ? portalData.flags.total : 'Unknown'}</Text>
                 
                 <Popover position="right-start" withArrow shadow="md">
@@ -128,12 +130,12 @@ const InteriorElement: React.FC = () => {
               </Group>
 
               <Group>
-                <Text>Room from:</Text>
+                <Text>{locale.ui_room_from}:</Text>
                 <Text color="blue.4">{portalData ? portalData.roomFrom : 'Unknown'}</Text>
               </Group>
               
               <Group>
-                <Text>Room to:</Text>
+                <Text>{locale.ui_room_to}:</Text>
                 <Text color="blue.4">{portalData ? portalData.roomTo : 'Unknown'}</Text>
               </Group>
             </>

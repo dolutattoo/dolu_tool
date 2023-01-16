@@ -1,9 +1,11 @@
 import { Button, Divider, Group, NumberInput, Stack, Text, TextInput } from "@mantine/core"
 import { closeAllModals } from "@mantine/modals"
 import { useState } from "react"
+import { useLocales } from "../../../../../providers/LocaleProvider"
 import { fetchNui } from "../../../../../utils/fetchNui"
 
 const SetCoords: React.FC = () => {
+    const { locale } = useLocales()
     const [coordString, setCoordString] = useState('0.0, 0.0, 0.0')
     const [coordX, setCoordX] = useState(0)
     const [coordY, setCoordY] = useState(0)
@@ -11,7 +13,7 @@ const SetCoords: React.FC = () => {
     
     return (
         <Stack>
-            <Text weight={500}>Set as string</Text>
+            <Text weight={500}>{locale.ui_set_coords_as_string}</Text>
             <TextInput value={coordString} onChange={(e) => setCoordString(e.target.value)} />
             <Button
                 uppercase
@@ -22,10 +24,10 @@ const SetCoords: React.FC = () => {
                     closeAllModals()
                     fetchNui('dolu_tool:setCustomCoords', { coordString: coordString })
                 }}
-            > Confirm</Button>
+            >{locale.ui_confirm}</Button>
             
             <Divider my="sm" />
-            <Text weight={500}>Set as separated values</Text>
+            <Text weight={500}>{locale.ui_set_coords_separate}</Text>
             
             <Group grow sx={{ maxWidth:300 }}>
                 <NumberInput noClampOnBlur defaultValue={0.0} label="X" value={coordX} onChange={(value) => value && setCoordX(value)} step={0.5} stepHoldDelay={500} stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)} />
@@ -42,7 +44,7 @@ const SetCoords: React.FC = () => {
                     closeAllModals()
                     fetchNui('dolu_tool:setCustomCoords', { coords: { x: coordX, y: coordY, z: coordZ } })
                 }}
-            >Confirm</Button>
+            >{locale.ui_confirm}</Button>
         </Stack>
         )
     }
