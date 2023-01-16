@@ -4,8 +4,10 @@ import { TbSearch } from 'react-icons/tb'
 import { useSetRecoilState } from 'recoil'
 import { weaponsListSearchAtom } from '../../../../../atoms/weapon'
 import { useEffect, useState } from 'react'
+import { useLocales } from '../../../../../providers/LocaleProvider'
 
 const WeaponSearch: React.FC = () => {
+  const { locale } = useLocales()
   const [searchWeapon, setSearchWeapon] = useState('')
   const setWeaponSearch = useSetRecoilState(weaponsListSearchAtom)
   const [debouncedWeaponSearch] = useDebouncedValue(searchWeapon, 200)
@@ -17,7 +19,7 @@ const WeaponSearch: React.FC = () => {
   return (
     <>
       <TextInput
-        placeholder="Search"
+        placeholder={locale.ui_search}
         icon={<TbSearch size={20} />}
         value={searchWeapon}
         onChange={(e) => setSearchWeapon(e.target.value)}

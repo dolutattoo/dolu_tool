@@ -96,8 +96,8 @@ const World: React.FC = () => {
 
           <Group>
             <Select
-              label="Choose a weather type"
-              placeholder="Current weather?"
+              label={locale.ui_choose_weather}
+              placeholder={locale.ui_current_weather}
               defaultValue={weatherValue}
               value={weatherValue}
               onChange={(value) => {
@@ -127,7 +127,7 @@ const World: React.FC = () => {
           <Space h="sm" />
           
           <Group>
-            <Checkbox label="Freeze weather" checked={weatherFrozen} onChange={(e) => {
+            <Checkbox label={locale.ui_freeze_weather} checked={weatherFrozen} onChange={(e) => {
               setWeatherFrozen(e.currentTarget.checked)
               fetchNui('dolu_tool:freezeWeather', e.currentTarget.checked)
             }} />

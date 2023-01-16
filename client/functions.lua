@@ -263,7 +263,7 @@ FUNC.setMenuPlayerCoords = function()
 end
 
 FUNC.teleportPlayer = function(coords, updateLastCoords)
-    assert(type(coords) == 'table', "Trying to teleport player to invalid coords type")
+    assert(type(coords) == 'table', locale('teleport_invalid_coords'))
     coords = vec4(coords.x, coords.y, coords.z, coords.heading or 0)
 
     if Client.noClip then
@@ -314,7 +314,10 @@ end
 
 FUNC.changePed = function(model)
     if type(model) == 'string' then model = joaat(model) end
-    FUNC.assert(IsModelInCdimage(model), "Model %s does not exists", model)
+    if not IsModelInCdimage(model) then
+        lib.notify({ type='error', description=locale('model_doesnt_exist', model)})
+        return
+    end
 
     local playerId = cache.playerId
     lib.requestModel(model)
@@ -324,10 +327,8 @@ end
 
 FUNC.spawnVehicle = function(model, coords)
     if type(model) == 'string' then model = joaat(model) end
-    -- FUNC.assert(IsModelInCdimage(model), "Model %s does not exists", model)
 
     local playerPed = cache.ped
-
     local oldVehicle = GetVehiclePedIsIn(playerPed, false)
     if oldVehicle > 0 and GetPedInVehicleSeat(oldVehicle, -1) == playerPed then
         DeleteVehicle(oldVehicle)
@@ -343,7 +344,7 @@ FUNC.spawnVehicle = function(model, coords)
     TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
     SetVehicleRadioEnabled(vehicle, false)
     SetVehicleDirtLevel(vehicle, 0.0)
-    SetVehicleNumberPlateText(vehicle, " ~DMT~ ")
+    SetVehicleNumberPlateText(vehicle, '~DOLU~')
     cache.vehicle = vehicle
 end
 
@@ -409,7 +410,7 @@ FUNC.initTarget = function()
             distance = 10,
             onSelect = function(data)
                 lib.setClipboard(data.coords.x .. ', ' .. data.coords.y .. ', ' .. data.coords.z)
-                lib.notify({type="success", description="Coords copied to clipboard!"})
+                lib.notify({type='success', description=locale('copied_coords_clipboard')})
             end
         },
         {
@@ -433,7 +434,7 @@ FUNC.initTarget = function()
                 Client.gizmoEntity = data.entity
                 SetNuiFocus(true, true)
                 SetNuiFocusKeepInput(true)
-                lib.notify({type="inform", description="Press 'Escape' to exit edit mode!"})
+                lib.notify({type='inform', description=locale('press_escape_exit')})
             end
         },
         {

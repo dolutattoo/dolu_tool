@@ -4,12 +4,25 @@ import { fetchNui } from '../utils/fetchNui'
 
 interface Locale {
   cannot_goback: string
-  teleport_success: string
   no_marker: string
   command_tpm: string
   command_noclip: string
   command_openui: string
   command_weather_notfound: string
+  teleport_invalid_coords: string
+  model_doesnt_exist: string
+  copied_coords_clipboard: string
+  press_escape_exit: string
+  custom_location_created: string
+  vehicle_upgraded: string
+  weapon_gave: string
+  weapon_cant_carry: string
+  max_health_set: string
+  entity_cant_be_loaded: string
+  entity_doesnt_exist: string
+  entity_deleted: string
+  teleport_success: string
+  ui_exit: string
   ui_copy_coords: string
   ui_copied_coords: string
   ui_copy_name: string
@@ -60,6 +73,7 @@ interface Locale {
   ui_room_to: string
   ui_index: string
   ui_timecycle: string
+  ui_no_timecycle_found: string
   ui_object_spawner: string
   ui_locations: string
   ui_snap_to_ground: string
@@ -95,6 +109,21 @@ interface Locale {
   ui_add_entity: string
   ui_add_entity_description: string
   ui_delete_all_entities: string
+  ui_amount: string
+  ui_portal_flag_1: string
+  ui_portal_flag_2: string
+  ui_portal_flag_4: string
+  ui_portal_flag_8: string
+  ui_portal_flag_16: string
+  ui_portal_flag_32: string
+  ui_portal_flag_64: string
+  ui_portal_flag_128: string
+  ui_portal_flag_256: string
+  ui_portal_flag_512: string
+  ui_portal_flag_1024: string
+  ui_portal_flag_2048: string
+  ui_portal_flag_4096: string
+  ui_portal_flag_8192: string
 }
 
 interface LocaleContextValue {
@@ -107,12 +136,25 @@ const LocaleCtx = createContext<LocaleContextValue | null>(null)
 const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [locale, setLocale] = useState<Locale>({
     cannot_goback: '',
-    teleport_success: '',
     no_marker: '',
     command_tpm: '',
     command_noclip: '',
     command_openui: '',
     command_weather_notfound: '',
+    teleport_invalid_coords: '',
+    model_doesnt_exist: '',
+    copied_coords_clipboard: '',
+    press_escape_exit: '',
+    custom_location_created: '',
+    vehicle_upgraded: '',
+    weapon_gave: '',
+    weapon_cant_carry: '',
+    max_health_set: '',
+    entity_cant_be_loaded: '',
+    entity_doesnt_exist: '',
+    entity_deleted: '',
+    teleport_success: '',
+    ui_exit: '',
     ui_copy_coords: '',
     ui_copied_coords: '',
     ui_copy_name: '',
@@ -163,6 +205,7 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_room_to: '',
     ui_index: '',
     ui_timecycle: '',
+    ui_no_timecycle_found: '',
     ui_object_spawner: '',
     ui_locations: '',
     ui_snap_to_ground: '',
@@ -197,7 +240,22 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_create_location_description: '',
     ui_add_entity: '',
     ui_add_entity_description: '',
-    ui_delete_all_entities: ''
+    ui_delete_all_entities: '',
+    ui_amount: '',
+    ui_portal_flag_1: '',
+    ui_portal_flag_2: '',
+    ui_portal_flag_4: '',
+    ui_portal_flag_8: '',
+    ui_portal_flag_16: '',
+    ui_portal_flag_32: '',
+    ui_portal_flag_64: '',
+    ui_portal_flag_128: '',
+    ui_portal_flag_256: '',
+    ui_portal_flag_512: '',
+    ui_portal_flag_1024: '',
+    ui_portal_flag_2048: '',
+    ui_portal_flag_4096: '',
+    ui_portal_flag_8192: ''
   })
 
   useEffect(() => {

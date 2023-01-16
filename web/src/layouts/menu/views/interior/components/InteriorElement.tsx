@@ -48,10 +48,10 @@ const InteriorElement: React.FC = () => {
           value={portalDebugCheckboxesValue}
           onChange={setPortalDebugCheckboxesValue}
         >
-          <Checkbox color="blue.4" value="portalInfos" label="Infos" />
-          <Checkbox color="blue.4" value="portalPoly" label="Fill portals" />
-          <Checkbox color="blue.4" value="portalLines" label="Outline" />
-          <Checkbox color="blue.4" value="portalCorners" label="Corners" />
+          <Checkbox color='blue.4' value='portalInfos' label={locale.ui_infos} />
+          <Checkbox color='blue.4' value='portalPoly' label={locale.ui_fill_portals} />
+          <Checkbox color='blue.4' value='portalLines' label={locale.ui_outline_portals} />
+          <Checkbox color='blue.4' value='portalCorners' label={locale.ui_corcers_portals} />
         </Checkbox.Group>
 
         <Space h="sm" />
@@ -110,20 +110,20 @@ const InteriorElement: React.FC = () => {
                       value={portalFlagCheckboxesValue!}
                       onChange={(v) => {setPortalFlagCheckboxesValue(v); fetchNui('dolu_tool:setPortalFlagCheckbox', { flags: v, portalIndex: portalEditingIndex })}}
                     >
-                      <Checkbox color="blue.4" value="1" label="1 - Disables exterior rendering" />
-                      <Checkbox color="blue.4" value="2" label="2 - Disables interior rendering" />
-                      <Checkbox color="blue.4" value="4" label="4 - Mirror" />
-                      <Checkbox color="blue.4" value="8" label="8 - Extra bloom" />
-                      <Checkbox color="blue.4" value="16" label="16 - Unknown 5" />
-                      <Checkbox color="blue.4" value="32" label="32 - Use exterior LOD" />
-                      <Checkbox color="blue.4" value="64" label="64 - Hide when door closed" />
-                      <Checkbox color="blue.4" value="128" label="128 - Unknown 8" />
-                      <Checkbox color="blue.4" value="256" label="256 - Mirror exterior portals" />
-                      <Checkbox color="blue.4" value="512" label="512 - Unknown 10" />
-                      <Checkbox color="blue.4" value="1024" label="1024 - Mirror limbo entities" />
-                      <Checkbox color="blue.4" value="2048" label="2048 - Unknown 12" />
-                      <Checkbox color="blue.4" value="4096" label="4096 - Unknown 13" />
-                      <Checkbox color="blue.4" value="8192" label="8192 - Disable farclipping" />
+                      <Checkbox color='blue.4' value='1' label={"1 - " + locale.ui_portal_flag_1} />
+                      <Checkbox color='blue.4' value='2' label={"2 - " + locale.ui_portal_flag_2} />
+                      <Checkbox color='blue.4' value='4' label={"4 - " + locale.ui_portal_flag_4} />
+                      <Checkbox color='blue.4' value='8' label={"8 - " + locale.ui_portal_flag_8} />
+                      <Checkbox color='blue.4' value='16' label={"16 -" + locale.ui_portal_flag_16} />
+                      <Checkbox color='blue.4' value='32' label={"32 -" + locale.ui_portal_flag_32} />
+                      <Checkbox color='blue.4' value='64' label={"64 -" + locale.ui_portal_flag_64} />
+                      <Checkbox color='blue.4' value='128' label={"128 - " + locale.ui_portal_flag_128} />
+                      <Checkbox color='blue.4' value='256' label={"256 - " + locale.ui_portal_flag_256} />
+                      <Checkbox color='blue.4' value='512' label={"512 - " + locale.ui_portal_flag_512} />
+                      <Checkbox color='blue.4' value='1024' label={"1024 - " + locale.ui_portal_flag_1024} />
+                      <Checkbox color='blue.4' value='2048' label={"2048 - " + locale.ui_portal_flag_2048} />
+                      <Checkbox color='blue.4' value='4096' label={"4096 - " + locale.ui_portal_flag_4096} />
+                      <Checkbox color='blue.4' value='8192' label={"8192 - " + locale.ui_portal_flag_8192} />
                     </Checkbox.Group>
                   </Popover.Dropdown>
                 </Popover>

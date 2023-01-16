@@ -1,5 +1,6 @@
 import { NumberInput } from '@mantine/core';
 import { TbCurrencyDollar } from 'react-icons/tb';
+import { useLocales } from '../../../providers/LocaleProvider'
 
 interface Props {
   onChange: (value: number | undefined) => void;
@@ -8,9 +9,11 @@ interface Props {
 }
 
 const FormattedInput: React.FC<Props> = ({ value, onChange, description }) => {
+  const { locale } = useLocales()
+
   return (
     <NumberInput
-      label="Amount"
+      label={locale.ui_amount}
       value={value}
       onChange={onChange}
       hideControls

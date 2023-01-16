@@ -19,6 +19,7 @@ import Locations from './views/locations'
 import Ped from './views/ped'
 import Vehicle from './views/vehicle'
 import Weapon from './views/weapon'
+import { useLocales } from '../../providers/LocaleProvider'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -29,6 +30,7 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const Menu: React.FC = () => {
+  const { locale } = useLocales()
   const { classes } = useStyles()
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
@@ -63,7 +65,7 @@ const Menu: React.FC = () => {
               <Header sx={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} height={60}>
                 <Group px={20} position='apart'>
                   <Title order={3}>Dolu Tool v4</Title>
-                  <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('dolu_tool:exit')}} />
+                  <NavIcon tooltip={locale.ui_exit} Icon={TbLogout} color='red.4' to='' handleClick={() => {setVisible(false); fetchNui('dolu_tool:exit')}} />
                 </Group>
               </Header>
             }

@@ -122,7 +122,7 @@ RegisterNUICallback('dolu_tool:createCustomLocation', function(locationName, cb)
 
         lib.notify({
             title = 'Dolu Tool',
-            description = "Custom location succefully created!",
+            description = locale('custom_location_created'),
             type = 'success',
             position = 'top'
         })
@@ -211,7 +211,7 @@ RegisterNUICallback('dolu_tool:upgradeVehicle', function(_, cb)
         ToggleVehicleMod(vehicle, 18, true) -- Turbo
         lib.notify({
             title = 'Dolu Tool',
-            description = "Vehicle succefully upgraded!",
+            description = locale('vehicle_upgraded'),
             type = 'success',
             position = 'top'
         })
@@ -232,9 +232,9 @@ RegisterNUICallback('dolu_tool:giveWeapon', function(weaponName, cb)
     if Shared.ox_inventory then
         lib.callback('dolu_tool:giveWeaponToPlayer', false, function(result)
             if result then
-                lib.notify({type = "success", description = "You just receive a weapon"})
+                lib.notify({type = 'success', description = locale('weapon_gave')})
             else
-                lib.notify({type = "error", description = "You cannot receive this weapon"})
+                lib.notify({type = 'error', description = locale('weapon_cant_carry')})
             end
         end, weaponName)
         
@@ -259,7 +259,7 @@ RegisterNUICallback('dolu_tool:setMaxHealth', function(_, cb)
 
     lib.notify({
         title = 'Dolu Tool',
-        description = "Max health succefully set.",
+        description = locale('max_health_set'),
         type = 'success',
         position = 'top'
     })
@@ -278,7 +278,7 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     if not IsModelInCdimage(model) then
         lib.notify({
             title = 'Dolu Tool',
-            description = "This entity does not exist in the game!",
+            description = locale('entity_doesnt_exist'),
             type = 'error',
             position = 'top'
         })
@@ -300,7 +300,7 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     if not DoesEntityExist(obj) then 
         lib.notify({
             title = 'Dolu Tool',
-            description = "Looks like the cannot be loaded.",
+            description = locale('entity_cant_be_loaded'),
             type = 'error',
             position = 'top'
         })
@@ -421,7 +421,7 @@ RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
     if not foundIndex or not DoesEntityExist(entityHandle) then
         lib.notify({
             title = 'Dolu Tool',
-            description = "Entity does not exist!",
+            description = locale('entity_doesnt_exist'),
             type = 'error',
             position = 'top'
         })
@@ -446,7 +446,7 @@ RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
 
     lib.notify({
         title = 'Dolu Tool',
-        description = "Entity succefully deleted",
+        description = locale('entity_deleted'),
         type = 'success',
         position = 'top'
     })
@@ -502,7 +502,7 @@ RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
     if not entity or not DoesEntityExist(entityHandle) then
         lib.notify({
             title = 'Dolu Tool',
-            description = "Entity does not exist!",
+            description = locale('entity_doesnt_exist'),
             type = 'error',
             position = 'top'
         })
@@ -531,14 +531,14 @@ RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
         
         lib.notify({
             title = 'Dolu Tool',
-            description = "Succefully teleported! Use /goback to go back to last location",
+            description = locale('teleport_success'),
             type = 'success',
             position = 'top'
         })
     else
         lib.notify({
             title = 'Dolu Tool',
-            description = "Entity does not exist!",
+            description = locale('entity_doesnt_exist'),
             type = 'error',
             position = 'top'
         })
@@ -555,7 +555,7 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
         else
             lib.notify({
                 title = 'Dolu Tool',
-                description = "Entity does not exist!",
+                description = locale('entity_doesnt_exist'),
                 type = 'error',
                 position = 'top'
             })
@@ -597,7 +597,7 @@ RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
     if not DoesEntityExist(data.handle) then
         lib.notify({
             title = 'Dolu Tool',
-            description = "Entity does not exist!",
+            description = locale('entity_doesnt_exist'),
             type = 'error',
             position = 'top'
         })

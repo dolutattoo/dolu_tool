@@ -4,8 +4,10 @@ import { TbSearch } from 'react-icons/tb'
 import { useSetRecoilState } from 'recoil'
 import { pedListSearchAtom } from '../../../../../atoms/ped'
 import { useEffect, useState } from 'react'
+import { useLocales } from '../../../../../providers/LocaleProvider'
 
 const PedSearch: React.FC = () => {
+  const { locale } = useLocales()
   const [searchPed, setSearchPed] = useState('')
   const setPedSearch = useSetRecoilState(pedListSearchAtom)
   const [debouncedPedSearch] = useDebouncedValue(searchPed, 200)
@@ -17,7 +19,7 @@ const PedSearch: React.FC = () => {
   return (
     <>
       <TextInput
-        placeholder="Search"
+        placeholder={locale.ui_search}
         icon={<TbSearch size={20} />}
         value={searchPed}
         onChange={(e) => setSearchPed(e.target.value)}

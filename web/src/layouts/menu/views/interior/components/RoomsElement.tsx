@@ -26,7 +26,7 @@ const RoomsElement: React.FC = () => {
                     <Text>{locale.ui_timecycle}:</Text>
                     {timecycle && <Select 
                         searchable
-                        nothingFound="No timecycle found"
+                        nothingFound={locale.ui_no_timecycle_found}
                         data={TIMECYCLE_LIST}
                         value={timecycle}
                         onChange={(value) => {
