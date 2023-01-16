@@ -41,7 +41,7 @@ const Menu: React.FC = () => {
     setPosition(data.position)
   })
 
-  useNuiEvent('setLastLocation', (data: any) => {
+  useNuiEvent('setLastLocation', (data: Location) => {
     setLastLocation(data)
   })
 
@@ -52,7 +52,7 @@ const Menu: React.FC = () => {
   useExitListener(setVisible)
 
   return (
-    <Transition transition="slide-right" mounted={visible}>
+    <Transition duration={100} transition="slide-right" mounted={visible}>
       {(style) => (
         <Box sx={{ position: 'absolute', top: '2%', left: '1.5%', zIndex: 3 }} style={style} className={classes.wrapper}>
           <AppShell
