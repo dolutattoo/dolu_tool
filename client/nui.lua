@@ -54,7 +54,7 @@ RegisterNUICallback('dolu_tool:teleport', function(data, cb)
             data = data
         })
 
-        SetResourceKvp('dmt_lastLocation', json.encode(data))
+        SetResourceKvp('dolu_tool:lastLocation', json.encode(data))
         Client.lastLocation = data
     end
     

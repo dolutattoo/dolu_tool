@@ -19,7 +19,7 @@ CreateThread(function()
             noClip = false,
             isMenuOpen = false,
             currentTab = 'home',
-            lastLocation = json.decode(GetResourceKvpString('dmt_lastLocation')),
+            lastLocation = json.decode(GetResourceKvpString('dolu_tool:lastLocation')),
             portalPoly = false,
             portalLines = false,
             portalCorners = false,
