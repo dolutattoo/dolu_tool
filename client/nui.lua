@@ -324,7 +324,8 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
             x = FUNC.round(entityRotation.x, 3),
             y = FUNC.round(entityRotation.y, 3),
             z = FUNC.round(entityRotation.z, 3)
-        }
+        },
+        invalid = false
     })
 
     SendNUIMessage({
@@ -349,17 +350,16 @@ end)
 RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
     local model = joaat(data.modelName)
     if not IsModelInCdimage(model) then
+        data.entity.invalid = true
         SendNUIMessage({
-            action = 'setObjectNameError',
-            data = "Invalid model"
+            action = 'setObjectData',
+            data = {
+                index = data.index,
+                entity = data.entity
+            }
         })
         cb(1)
         return
-    else
-        SendNUIMessage({
-            action = 'setObjectNameError',
-            data = false
-        })
     end
 
     -- Check if entity was spawned using Object Spawner
@@ -371,9 +371,10 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
             break
         end
     end
-
+    
     -- If entity was spawned using Object Spawner, send updated data to nui
     if index and entity and DoesEntityExist(entity.handle) then
+        entity.invalid = false
         entity.name = data.modelName
         
         -- Remove current entity

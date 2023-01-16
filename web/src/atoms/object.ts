@@ -13,8 +13,8 @@ export interface Entity {
         y: number
         z: number
     },
-    ymap?: string
     frozen?: boolean
+    invalid?: boolean
 }
 
 export const ObjectListAtom = atom<Entity[]|[]>({ key: 'ObjectList', default: [] })

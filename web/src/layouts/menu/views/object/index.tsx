@@ -13,7 +13,6 @@ import { setClipboard } from '../../../../utils/setClipboard'
 const Object: React.FC = () => {
     const [objectList, setObjectList] = useRecoilState(ObjectListAtom);
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
-    const [objectNameError, setObjectNameError] = useState<string|boolean>(false)
     
     useNuiEvent('setObjectList', (entitiesList: Entity[]|null) => {
         if (entitiesList !== null) {
@@ -23,15 +22,13 @@ const Object: React.FC = () => {
     })
     
     useNuiEvent('setObjectData', (data: {index: number, entity: Entity}) => {
-        if (data.entity !== null) {
+        if (data.entity !== null) {            
             const updatedObject = [...objectList]
             updatedObject[data.index] = data.entity
             setObjectList(updatedObject)
             setAccordionItem(updatedObject[data.index].handle.toString())
         }
     })
-    
-    useNuiEvent('setObjectNameError', (error: string|boolean) => {setObjectNameError(error)})
 
     // Copied name button
     const [copiedName, setCopiedName] = useState(false)
@@ -103,12 +100,11 @@ const Object: React.FC = () => {
                         }
                         chevronPosition="left"
                     >
-                        {objectList.map((entity: Entity, entityIndex: any) => { 
-                            
+                        {objectList.map((entity: Entity, entityIndex: any) => {
                             return (
                                 <Accordion.Item value={entity.handle.toString()}>
                                     <Accordion.Control>
-                                        <TextInput error={objectNameError} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== "" && fetchNui('dolu_tool:setEntityModel', {entity: entity, modelName: event.currentTarget.value})} />
+                                        <TextInput error={entity.invalid} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== "" && fetchNui('dolu_tool:setEntityModel', {entity: entity, index: entityIndex, modelName: event.currentTarget.value})} />
                                     </Accordion.Control>
                                     <Accordion.Panel>
                                         <Group grow>
