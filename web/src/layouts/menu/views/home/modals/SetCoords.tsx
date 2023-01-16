@@ -16,7 +16,7 @@ const SetCoords: React.FC = () => {
             <Button
                 uppercase
                 disabled={coordString === ''}
-                variant="outline"
+                variant='light'
                 color="blue.4"
                 onClick={() => {
                     closeAllModals()
@@ -36,7 +36,7 @@ const SetCoords: React.FC = () => {
             <Button
                 uppercase
                 disabled={coordString === ''}
-                variant="outline"
+                variant='light'
                 color="blue.4"
                 onClick={() => {
                     closeAllModals()

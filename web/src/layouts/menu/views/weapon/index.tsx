@@ -68,7 +68,7 @@ const Weapon: React.FC = () => {
               }}
             />
             <Button
-              variant="outline"
+              variant='light'
               color={"blue.4"}
               size="xs"
               onClick={() => fetchNui('dolu_tool:giveWeapon', weaponList.name)}
@@ -76,7 +76,7 @@ const Weapon: React.FC = () => {
               Give Weapon
             </Button>
             <Button
-              variant="outline"
+              variant='light'
               color={copiedWeaponName ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -87,7 +87,7 @@ const Weapon: React.FC = () => {
               {copiedWeaponName ? 'Copied' : 'Copy'} Name
             </Button>
             <Button
-              variant="outline"
+              variant='light'
               color={copiedWeaponHash ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -107,7 +107,7 @@ const Weapon: React.FC = () => {
       <Text size={20}>Weapons</Text>
       <Button
         uppercase
-        variant="outline"
+        variant='light'
         color="blue.4"
         onClick={() => fetchNui('dolu_tool:giveWeapon', searchWeaponValue)}
       >

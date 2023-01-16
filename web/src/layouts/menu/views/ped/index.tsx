@@ -68,7 +68,7 @@ const Ped: React.FC = () => {
               }}
             />
             <Button
-              variant="outline"
+              variant='light'
               color={"blue.4"}
               size="xs"
               onClick={() => { fetchNui('dolu_tool:changePed', { name: pedList.name, hash: pedList.hash }) }}
@@ -76,7 +76,7 @@ const Ped: React.FC = () => {
               Change Ped
             </Button>
             <Button
-              variant="outline"
+              variant='light'
               color={copiedPedName ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -87,7 +87,7 @@ const Ped: React.FC = () => {
               {copiedPedName ? 'Copied' : 'Copy'} Name
             </Button>
             <Button
-              variant="outline"
+              variant='light'
               color={copiedPedHash ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -107,7 +107,7 @@ const Ped: React.FC = () => {
       <Text size={20}>Peds</Text>
       <Button
         uppercase
-        variant="outline"
+        variant='light'
         color="blue.4"
         onClick={() => { fetchNui('dolu_tool:changePed', { name: `${searchPedValue}` }) }}
       >

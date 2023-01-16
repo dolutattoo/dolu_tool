@@ -68,7 +68,7 @@ const Vehicle: React.FC = () => {
               }}
             />
             <Button
-              variant="outline"
+              variant='light'
               color={"blue.4"}
               size="xs"
               onClick={() => fetchNui('dolu_tool:spawnVehicle', vehicleList.name)}
@@ -76,7 +76,7 @@ const Vehicle: React.FC = () => {
               Spawn
             </Button>
             <Button
-              variant="outline"
+              variant='light'
               color={copiedVehicleName ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -87,7 +87,7 @@ const Vehicle: React.FC = () => {
               {copiedVehicleName ? 'Copied' : 'Copy'} Name
             </Button>
             <Button
-              variant="outline"
+              variant='light'
               color={copiedVehicleHash ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -107,7 +107,7 @@ const Vehicle: React.FC = () => {
       <Text size={20}>Vehicles</Text>
       <Button
         uppercase
-        variant="outline"
+        variant='light'
         color="blue.4"
         onClick={() => fetchNui('dolu_tool:spawnVehicle', searchVehicleValue)}
       >

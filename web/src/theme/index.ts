@@ -34,17 +34,6 @@ export const customTheme: MantineThemeOverride = {
         }
       }
     },
-    Button: {
-      // Subscribe to theme and component params
-      styles: (theme, params: ButtonStylesParams) => ({
-        root: {
-          backgroundColor:
-            params.variant === 'outline'
-              ? 'rgba(0, 0, 0, 0)'
-              : undefined,
-        },
-      }),
-    },
     Paper: {
       styles: {
         root: {
@@ -53,5 +42,5 @@ export const customTheme: MantineThemeOverride = {
         }
       }
     }
-  },
+  }
 }

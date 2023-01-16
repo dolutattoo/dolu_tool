@@ -13,7 +13,7 @@ const RenameLocation = (props: {defaultName: string}) => {
       <Button
         uppercase
         disabled={newName === '' || newName === defaultName}
-        variant="outline"
+        variant='light'
         color="blue.4"
         placeholder={defaultName}
         onClick={() => {

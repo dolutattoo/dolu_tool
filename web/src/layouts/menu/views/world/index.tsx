@@ -68,7 +68,7 @@ const World: React.FC = () => {
 
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() => fetchNui('dolu_tool:getClock')}
             >
               Get time

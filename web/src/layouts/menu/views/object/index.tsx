@@ -113,7 +113,7 @@ const Object: React.FC = () => {
                                     <Accordion.Panel>
                                         <Group grow>
                                             <Button
-                                                variant="outline"
+                                                variant='light'
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
@@ -121,7 +121,7 @@ const Object: React.FC = () => {
                                                 }}
                                             >Go to</Button>
                                             <Button
-                                                variant='outline'
+                                                variant='light'
                                                 color={copiedCoords ? 'teal' : "blue.4"}
                                                 size="xs"
                                                 onClick={() => {
@@ -130,7 +130,7 @@ const Object: React.FC = () => {
                                                 }}
                                             >{copiedCoords ? 'Copied' : 'Copy'} coords</Button>
                                             <Button
-                                                variant='outline'
+                                                variant='light'
                                                 color={copiedName ? 'teal' : "blue.4"}
                                                 size="xs"
                                                 onClick={() => {
@@ -142,7 +142,7 @@ const Object: React.FC = () => {
                                         <Space h='xs' />
                                         <Group grow>
                                             <Button
-                                                variant="outline"
+                                                variant='light'
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
@@ -150,7 +150,7 @@ const Object: React.FC = () => {
                                                 }}
                                             >Snap to ground</Button>
                                             <Button
-                                                variant='outline'
+                                                variant='light'
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
@@ -158,7 +158,7 @@ const Object: React.FC = () => {
                                                 }}
                                             >Duplicate</Button>                                            
                                             <Button
-                                                variant="outline"
+                                                variant='light'
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {

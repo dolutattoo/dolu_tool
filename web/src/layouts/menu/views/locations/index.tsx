@@ -53,7 +53,7 @@ const Locations: React.FC = () => {
         <Accordion.Panel>
           <Group grow spacing="xs">
             <Button
-              variant="outline"
+              variant='light'
               color="blue.4"
               size="xs"
               onClick={() =>
@@ -63,7 +63,7 @@ const Locations: React.FC = () => {
               Teleport
             </Button>
             <Button
-              variant="outline"
+              variant='light'
               color={copied ? 'teal' : "blue.4"}
               size="xs"
               onClick={() => {
@@ -75,7 +75,7 @@ const Locations: React.FC = () => {
             </Button>
             {location.custom &&
               <Button
-                variant="outline"
+                variant='light'
                 color="blue.4"
                 size="xs"
                 onClick={() => {
@@ -91,7 +91,7 @@ const Locations: React.FC = () => {
             }
             {location.custom &&
               <Button
-                variant="outline"
+                variant='light'
                 color="blue.4"
                 size="xs"
                 onClick={() => {
@@ -144,7 +144,7 @@ const Locations: React.FC = () => {
         
         <Button
           uppercase
-          variant="outline"
+          variant='light'
           color="blue.4"
           onClick={() =>
             openModal({

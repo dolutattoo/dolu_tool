@@ -13,7 +13,7 @@ const AddEntity: React.FC = () => {
       <Button
         uppercase
         disabled={entityName === ''}
-        variant="outline"
+        variant='light'
         color="blue.4"
         onClick={() => {
           closeAllModals()

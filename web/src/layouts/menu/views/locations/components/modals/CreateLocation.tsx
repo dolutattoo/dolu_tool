@@ -15,7 +15,7 @@ const CreateLocation: React.FC = () => {
       <Button
         uppercase
         disabled={locationName === ''}
-        variant="outline"
+        variant='light'
         color="blue.4"
         onClick={() => {
           closeAllModals()

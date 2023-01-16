@@ -10,7 +10,7 @@ const DeleteAllEntities = () => {
       <Group grow>
         <Button
           uppercase
-          variant="outline"
+          variant='light'
           color="green.4"
           onClick={() => {
             closeAllModals()
@@ -21,7 +21,7 @@ const DeleteAllEntities = () => {
         </Button>
         <Button
           uppercase
-          variant="outline"
+          variant='light'
           color="red.4"
           onClick={() => {
             closeAllModals()
