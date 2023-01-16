@@ -1,6 +1,6 @@
-import { ButtonStylesParams, MantineThemeOverride } from '@mantine/core'
+import { MantineThemeOverride } from '@mantine/core'
 
-const radius = '15px'
+const radius = '10px'
 const mainBackgroundColor = 'rgba(24, 24, 27, 0.95)'
 
 export const customTheme: MantineThemeOverride = {
@@ -13,8 +13,8 @@ export const customTheme: MantineThemeOverride = {
         root: {
           height: '100%',
           backgroundColor: mainBackgroundColor,
-          borderTopLeftRadius: '10px',
-          borderTopRightRadius: '10px'
+          borderTopLeftRadius: radius,
+          borderTopRightRadius: radius
         }
       }
     },
