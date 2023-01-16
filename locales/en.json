@@ -4,6 +4,6 @@
     "no_marker": "You did not set any marker!",
     "command_tpm": "%s Teleport to marker",
     "command_noclip": "%s Toggle noclip mode",
-    "command_openui": "%s Open Dolu Mapping Tool",
+    "command_openui": "%s Open Dolu Tool",
     "command_weather_notfound": "Trying to set an invalid weather type: %s"
 }

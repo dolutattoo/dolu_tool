@@ -19,7 +19,7 @@ const CreateLocation: React.FC = () => {
         color="blue.4"
         onClick={() => {
           closeAllModals()
-          fetchNui('dmt:createCustomLocation', locationName)
+          fetchNui('dolu_tool:createCustomLocation', locationName)
           setCustomLocationCheckbox(true)
         }}
       >

@@ -20,7 +20,7 @@ const SetCoords: React.FC = () => {
                 color="blue.4"
                 onClick={() => {
                     closeAllModals()
-                    fetchNui('dmt:setCustomCoords', { coordString: coordString })
+                    fetchNui('dolu_tool:setCustomCoords', { coordString: coordString })
                 }}
             > Confirm</Button>
             
@@ -40,7 +40,7 @@ const SetCoords: React.FC = () => {
                 color="blue.4"
                 onClick={() => {
                     closeAllModals()
-                    fetchNui('dmt:setCustomCoords', { coords: { x: coordX, y: coordY, z: coordZ } })
+                    fetchNui('dolu_tool:setCustomCoords', { coords: { x: coordX, y: coordY, z: coordZ } })
                 }}
             >Confirm</Button>
         </Stack>

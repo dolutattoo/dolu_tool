@@ -49,7 +49,7 @@ local function filterCustomLocations()
     return customLocations
 end
 
-lib.callback.register('dmt:getData', function()
+lib.callback.register('dolu_tool:getData', function()
     local data = {}
     
     local customLocations = getFileData('shared/data', 'locations.json')
@@ -68,7 +68,7 @@ lib.callback.register('dmt:getData', function()
     }
 end)
 
-lib.callback.register('dmt:renameLocation', function(source, data)
+lib.callback.register('dolu_tool:renameLocation', function(source, data)
     local result
 
     for index, location in ipairs(Server.locations) do
@@ -85,7 +85,7 @@ lib.callback.register('dmt:renameLocation', function(source, data)
     return result
 end)
 
-lib.callback.register('dmt:createCustomLocation', function(source, data)
+lib.callback.register('dolu_tool:createCustomLocation', function(source, data)
     local newLocation = {
         name = data.name,
         x = math.round(data.coords.x, 3),
@@ -104,7 +104,7 @@ lib.callback.register('dmt:createCustomLocation', function(source, data)
     return newLocation
 end)
 
-lib.callback.register('dmt:deleteLocation', function(source, data)
+lib.callback.register('dolu_tool:deleteLocation', function(source, data)
     local foundIndex
     for k, v in ipairs(Server.locations) do
         if v.custom and v.name == data then
@@ -141,7 +141,7 @@ if Shared.ox_inventory then
         return func().Weapons[weaponName:upper()].ammoname
     end
 
-    lib.callback.register('dmt:giveWeaponToPlayer', function(source, weaponName)
+    lib.callback.register('dolu_tool:giveWeaponToPlayer', function(source, weaponName)
         local success = false
 
         local ammoName = getAmmo(weaponName)

@@ -20,7 +20,7 @@ const App: React.FC = () => {
     <>
       <Box className={classes.container}>
         <Menu />
-        <ThreeComponent />
+        {/* <ThreeComponent /> */}
       </Box>
       <ImgPreview />
     </>

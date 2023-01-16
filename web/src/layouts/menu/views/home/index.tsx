@@ -59,7 +59,7 @@ const Home: React.FC = () => {
           <Group grow>
             <Button
               color={copiedCoords ? 'teal' : "blue.4"}
-              variant='outline'
+              variant='light'
               size="xs"
               onClick={() => {
                 setClipboard(currentCoords + ', ' + currentHeading)
@@ -69,7 +69,7 @@ const Home: React.FC = () => {
 
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               size="xs"
               onClick={() =>
               openModal({
@@ -82,7 +82,7 @@ const Home: React.FC = () => {
 
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               size="xs"
               onClick={() =>
                 openModal({
@@ -114,9 +114,9 @@ const Home: React.FC = () => {
                   <Group><Text>Coords:</Text><Text color="blue.4" >{lastLocation.x}, {lastLocation.y}, {lastLocation.z}</Text></Group>
                   <Button
                     color='blue.4'
-                    variant='outline'
+                    variant='light'
                     onClick={() =>
-                      fetchNui('dmt:teleport', { name: lastLocation.name, x: lastLocation.x, y: lastLocation.y, z: lastLocation.z, heading: lastLocation.heading })
+                      fetchNui('dolu_tool:teleport', { name: lastLocation.name, x: lastLocation.x, y: lastLocation.y, z: lastLocation.z, heading: lastLocation.heading })
                     }
                     value={lastLocation.name}
                   >
@@ -166,25 +166,25 @@ const Home: React.FC = () => {
           <Group grow>
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:cleanZone', {})
+                fetchNui('dolu_tool:cleanZone', {})
               }
             >Clean zone</Button>
             
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:cleanPed', {})
+                fetchNui('dolu_tool:cleanPed', {})
               }
             >Clean ped</Button>
 
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:upgradeVehicle', {})
+                fetchNui('dolu_tool:upgradeVehicle', {})
               }
             >Upgrade vehicle</Button>
           </Group>
@@ -194,25 +194,25 @@ const Home: React.FC = () => {
           <Group grow>
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:repairVehicle', {})
+                fetchNui('dolu_tool:repairVehicle', {})
               }
             >Repair vehicle</Button>
 
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:deleteVehicle', {})
+                fetchNui('dolu_tool:deleteVehicle', {})
               }
             >Delete Vehicle</Button>
 
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:setDay', {})
+                fetchNui('dolu_tool:setDay', {})
               }
             >Set sunny day</Button>
           </Group>
@@ -222,26 +222,26 @@ const Home: React.FC = () => {
           <Group grow>
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:spawnFavoriteVehicle', {})
+                fetchNui('dolu_tool:spawnFavoriteVehicle', {})
               }
             >Spawn Vehicle</Button>
 
             <Button
               color='blue.4'
-              variant='outline'
+              variant='light'
               onClick={() =>
-                fetchNui('dmt:setMaxHealth', {})
+                fetchNui('dolu_tool:setMaxHealth', {})
               }
             >Max Health</Button>
             
             <Button
               color={timeFrozen ? 'red.4' : 'blue.4'}
-              variant='outline'
+              variant='light'
               onClick={() => {
                 setTimeFrozen(!timeFrozen)
-                fetchNui('dmt:freezeTime', !timeFrozen)
+                fetchNui('dolu_tool:freezeTime', !timeFrozen)
               }}
             >Time {timeFrozen ? "frozen" : "not frozen" }</Button>
           </Group>          

@@ -3,11 +3,11 @@ use_experimental_fxv2_oal 'yes'
 lua54 'yes'
 game 'gta5'
 
-name         'DoluMappingTool'
+name         'dolu_tool'
 version      'v4'
-description  'Mapping tool for map developpers'
+description  'A tool for FiveM developpers'
 author       'Dolu'
-repository   'https://github.com/dolutattoo/DoluMappingTool'
+repository   'https://github.com/dolutattoo/dolu_tool'
 
 shared_scripts {
     '@ox_lib/init.lua',

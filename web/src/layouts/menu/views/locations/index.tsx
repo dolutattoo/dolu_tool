@@ -57,7 +57,7 @@ const Locations: React.FC = () => {
               color="blue.4"
               size="xs"
               onClick={() =>
-                fetchNui('dmt:teleport', { name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
+                fetchNui('dolu_tool:teleport', { name: location.name, x: location.x, y: location.y, z: location.z, heading: location.heading })
               }
             >
               Teleport
@@ -123,7 +123,7 @@ const Locations: React.FC = () => {
             disabled={!checkedVanilla}
             checked={checkedCustom}
             onChange={(e) => {
-              fetchNui('dmt:loadPages', { type: 'locations', activePage: 1, filter: searchLocationValue, checkboxes: {vanilla: checkedVanilla, custom: e.currentTarget.checked} })
+              fetchNui('dolu_tool:loadPages', { type: 'locations', activePage: 1, filter: searchLocationValue, checkboxes: {vanilla: checkedVanilla, custom: e.currentTarget.checked} })
               setPage(1)
               setCheckedCustom(e.currentTarget.checked)
             }}
@@ -135,7 +135,7 @@ const Locations: React.FC = () => {
             disabled={!checkedCustom}
             checked={checkedVanilla}
             onChange={(e) => {
-              fetchNui('dmt:loadPages', { type: 'locations', activePage: 1, filter: searchLocationValue, checkboxes: {vanilla: e.currentTarget.checked, custom: checkedCustom} })
+              fetchNui('dolu_tool:loadPages', { type: 'locations', activePage: 1, filter: searchLocationValue, checkboxes: {vanilla: e.currentTarget.checked, custom: checkedCustom} })
               setPage(1)
               setCheckedVanilla(e.currentTarget.checked)
             }}
@@ -176,7 +176,7 @@ const Locations: React.FC = () => {
             size='sm'
             page={activePage}
             onChange={(value) => {
-              fetchNui('dmt:loadPages', { type: 'locations', activePage: value, filter: searchLocationValue, checkboxes: {vanilla: checkedVanilla, custom: checkedCustom} })
+              fetchNui('dolu_tool:loadPages', { type: 'locations', activePage: value, filter: searchLocationValue, checkboxes: {vanilla: checkedVanilla, custom: checkedCustom} })
               setPage(value)
               setAccordionItem("0")
             }}

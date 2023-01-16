@@ -52,13 +52,13 @@ const Weapon: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true);
-                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/weapon/${weaponList.name}.png`)
+                imagePath(`https://cfx-nui-dolu_tool/shared/img/weapon/${weaponList.name}.png`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit="contain"
               alt={`${weaponList.name}`}
-              src={`https://cfx-nui-DoluMappingTool/shared/img/weapon/${weaponList.name}.png`}
+              src={`https://cfx-nui-dolu_tool/shared/img/weapon/${weaponList.name}.png`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
@@ -71,7 +71,7 @@ const Weapon: React.FC = () => {
               variant="outline"
               color={"blue.4"}
               size="xs"
-              onClick={() => fetchNui('dmt:giveWeapon', weaponList.name)}
+              onClick={() => fetchNui('dolu_tool:giveWeapon', weaponList.name)}
             >
               Give Weapon
             </Button>
@@ -109,7 +109,7 @@ const Weapon: React.FC = () => {
         uppercase
         variant="outline"
         color="blue.4"
-        onClick={() => fetchNui('dmt:giveWeapon', searchWeaponValue)}
+        onClick={() => fetchNui('dolu_tool:giveWeapon', searchWeaponValue)}
       >
         Give by Name
       </Button>
@@ -131,7 +131,7 @@ const Weapon: React.FC = () => {
           size='sm'
           page={activePage}
           onChange={(value) => {
-            fetchNui('dmt:loadPages', { type: 'weapons', activePage: value, filter: searchWeaponValue })
+            fetchNui('dolu_tool:loadPages', { type: 'weapons', activePage: value, filter: searchWeaponValue })
             setPage(value)
             setAccordionItem("0")
           }}

@@ -29,7 +29,7 @@ const RoomsElement: React.FC = () => {
                         value={timecycle}
                         onChange={(value) => {
                         setTimecycle(value)
-                        fetchNui('dmt:setTimecycle', {value: value, roomId: interior.currentRoom?.index})
+                        fetchNui('dolu_tool:setTimecycle', {value: value, roomId: interior.currentRoom?.index})
                     }}/>}
                 </Group>
             </Paper>

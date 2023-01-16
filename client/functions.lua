@@ -533,7 +533,7 @@ FUNC.assert = function(v, msg, value)
         end
         assert(v, '^5[' .. RESOURCE_NAME .. '] ^1' .. msg:format('^5' .. tostring(value) .. '^7'))
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = msg:format(tostring(value)),
             type = 'error',
             position = 'top'
@@ -541,7 +541,7 @@ FUNC.assert = function(v, msg, value)
     else
         assert(v, '^5[' .. RESOURCE_NAME .. '] ^1' .. msg .. '^7')
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = msg,
             type = 'error',
             position = 'top'

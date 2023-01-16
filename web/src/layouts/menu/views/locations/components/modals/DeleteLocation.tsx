@@ -18,7 +18,7 @@ const DeleteLocation = (props: {name: string}) => {
           color="green.4"
           onClick={() => {
             closeAllModals()
-            fetchNui('dmt:deleteLocation', name)
+            fetchNui('dolu_tool:deleteLocation', name)
             setCustomLocationCheckbox(true)
           }}
         >

@@ -48,7 +48,7 @@ const World: React.FC = () => {
               stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
               onChange={(value: number) => {
                 setHourValue(value)
-                fetchNui('dmt:setClock', { hour: value, minute: minuteValue})
+                fetchNui('dolu_tool:setClock', { hour: value, minute: minuteValue})
               }}
             /> 
             {':'}
@@ -62,14 +62,14 @@ const World: React.FC = () => {
               stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
               onChange={(value: number) => {
                 setMinuteValue(value)
-                fetchNui('dmt:setClock', { hour: hourValue, minute: value})
+                fetchNui('dolu_tool:setClock', { hour: hourValue, minute: value})
               }}
             />
 
             <Button
               color='blue.4'
               variant='outline'
-              onClick={() => fetchNui('dmt:getClock')}
+              onClick={() => fetchNui('dolu_tool:getClock')}
             >
               Get time
             </Button>
@@ -80,7 +80,7 @@ const World: React.FC = () => {
           <Group>
             <Checkbox label="Freeze time" checked={timeFrozen} onChange={(e) => {
               setTimeFrozen(e.currentTarget.checked)
-              fetchNui('dmt:freezeTime', e.currentTarget.checked)
+              fetchNui('dolu_tool:freezeTime', e.currentTarget.checked)
             }} />
           </Group>
         </Paper>
@@ -100,7 +100,7 @@ const World: React.FC = () => {
               value={weatherValue}
               onChange={(value) => {
                 value && setWeatherValue(value)
-                fetchNui('dmt:setWeather', value)
+                fetchNui('dolu_tool:setWeather', value)
               }}
               data={[
                 { value: 'clear', label: "Clear" },
@@ -127,7 +127,7 @@ const World: React.FC = () => {
           <Group>
             <Checkbox label="Freeze weather" checked={weatherFrozen} onChange={(e) => {
               setWeatherFrozen(e.currentTarget.checked)
-              fetchNui('dmt:freezeWeather', e.currentTarget.checked)
+              fetchNui('dolu_tool:freezeWeather', e.currentTarget.checked)
             }} />
           </Group>
         </Paper>

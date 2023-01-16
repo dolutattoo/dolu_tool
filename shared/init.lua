@@ -32,7 +32,7 @@ CreateThread(function()
         }
 
         -- Get data from shared/data json files
-        lib.callback('dmt:getData', false, function(data)
+        lib.callback('dolu_tool:getData', false, function(data)
             Client.data = data
         end)
 

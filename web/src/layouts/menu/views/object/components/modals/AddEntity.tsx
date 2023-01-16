@@ -17,7 +17,7 @@ const AddEntity: React.FC = () => {
         color="blue.4"
         onClick={() => {
           closeAllModals()
-          fetchNui('dmt:addEntity', entityName)
+          fetchNui('dolu_tool:addEntity', entityName)
         }}
       >
         Confirm

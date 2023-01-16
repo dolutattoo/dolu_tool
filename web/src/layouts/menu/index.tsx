@@ -58,19 +58,12 @@ const Menu: React.FC = () => {
           <AppShell
             padding="md"
             fixed={false}
-            styles={(theme) => ({
-              main: {
-                backgroundColor: 'rgba(24, 24, 27, 0.99)', // backgroundColor: theme.colors.dark[8],
-                borderBottomLeftRadius: theme.radius.sm,
-                borderBottomRightRadius: theme.radius.sm,
-              },
-            })}
             navbar={<Nav />}
             header={
-              <Header sx={{ borderTopLeftRadius: '5px', borderTopRightRadius: '5px' }} height={60}>
-                <Group sx={{ height: '100%' }} px={20} position='apart'>
-                  <Title order={3}>Dolu Mapping Tool v4</Title>
-                  <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('dmt:exit')}} />
+              <Header sx={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} height={60}>
+                <Group px={20} position='apart'>
+                  <Title order={3}>Dolu Tool v4</Title>
+                  <NavIcon tooltip="Exit" Icon={TbLogout} color="red.4" to="" handleClick={() => {setVisible(false); fetchNui('dolu_tool:exit')}} />
                 </Group>
               </Header>
             }

@@ -19,7 +19,7 @@ export const useExitListener = (visibleSetter: FrameVisibleSetter, cb?: () => vo
       if (LISTENED_KEYS.includes(e.code)) {
         setterRef.current(false)
         cb && cb()
-        fetchNui('dmt:exit')
+        fetchNui('dolu_tool:exit')
       }
     }
 

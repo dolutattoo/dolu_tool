@@ -7,7 +7,7 @@ import { Mesh, MathUtils } from 'three'
 export const TransformComponent = () => {
     const mesh = useRef<Mesh>(null!)
     const [currentEntity, setCurrentEntity] = useState<number>()
-    const [editorMode, setEditorMode] = useState<string>('translate')
+    const [editorMode, setEditorMode] = useState<"translate" | "rotate" | "scale" | undefined>('translate')
 
     const handleObjectDataUpdate = () => {
         const entity = {
@@ -23,7 +23,7 @@ export const TransformComponent = () => {
                 z: MathUtils.radToDeg(mesh.current.rotation.y)
             }
         }
-        fetchNui('dmt:moveEntity', entity)
+        fetchNui('dolu_tool:moveEntity', entity)
     }
 
     useNuiEvent('setGizmoEntity', (entity: any) => {

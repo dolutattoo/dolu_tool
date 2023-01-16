@@ -68,7 +68,7 @@ function GetInteriorData(interiorId, fromThread)
 end
 
 -- Portals display
-RegisterNUICallback('dmt:setPortalCheckbox', function(data, cb)
+RegisterNUICallback('dolu_tool:setPortalCheckbox', function(data, cb)
     local tmp = {}
     for _, v in pairs(data) do tmp[v] = true end
     if tmp.portalInfos then Client.portalInfos = true else Client.portalInfos = false end
@@ -78,7 +78,7 @@ RegisterNUICallback('dmt:setPortalCheckbox', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setPortalFlagCheckbox', function(data, cb)
+RegisterNUICallback('dolu_tool:setPortalFlagCheckbox', function(data, cb)
     local flag = 0
     for _, v in ipairs(data.flags) do
         flag += tonumber(v)
@@ -151,7 +151,7 @@ function DrawPortalInfos(interiorId)
     end
 end
 
-RegisterNUICallback('dmt:setTimecycle', function(data, cb)
+RegisterNUICallback('dolu_tool:setTimecycle', function(data, cb)
     if data.roomId then
         FUNC.setTimecycle(data.value)
     end

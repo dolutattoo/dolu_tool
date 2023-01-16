@@ -18,7 +18,7 @@ const InteriorElement: React.FC = () => {
 
   const [portalDebugCheckboxesValue, setPortalDebugCheckboxesValue] = useRecoilState(portalDebuggingAtom)
   useEffect(() => {
-    if (portalDebugCheckboxesValue) fetchNui('dmt:setPortalCheckbox', portalDebugCheckboxesValue)
+    if (portalDebugCheckboxesValue) fetchNui('dolu_tool:setPortalCheckbox', portalDebugCheckboxesValue)
   }, [portalDebugCheckboxesValue])
 
   const [portalFlagCheckboxesValue, setPortalFlagCheckboxesValue] = useRecoilState(portalFlagsAtom)
@@ -106,7 +106,7 @@ const InteriorElement: React.FC = () => {
                       spacing="xs"
                       size="sm"
                       value={portalFlagCheckboxesValue!}
-                      onChange={(v) => {setPortalFlagCheckboxesValue(v); fetchNui('dmt:setPortalFlagCheckbox', { flags: v, portalIndex: portalEditingIndex })}}
+                      onChange={(v) => {setPortalFlagCheckboxesValue(v); fetchNui('dolu_tool:setPortalFlagCheckbox', { flags: v, portalIndex: portalEditingIndex })}}
                     >
                       <Checkbox color="blue.4" value="1" label="1 - Disables exterior rendering" />
                       <Checkbox color="blue.4" value="2" label="2 - Disables interior rendering" />

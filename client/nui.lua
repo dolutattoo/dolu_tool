@@ -1,4 +1,4 @@
-RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
+RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
     local previousTab = Client.currentTab
     Client.currentTab = newTab
 
@@ -45,7 +45,7 @@ RegisterNUICallback('dmt:tabSelected', function(newTab, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:teleport', function(data, cb)
+RegisterNUICallback('dolu_tool:teleport', function(data, cb)
     if data then
         FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
 
@@ -61,25 +61,25 @@ RegisterNUICallback('dmt:teleport', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:changePed', function(data, cb)
+RegisterNUICallback('dolu_tool:changePed', function(data, cb)
     FUNC.changePed(data.name)
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:spawnVehicle', function(data, cb)
+RegisterNUICallback('dolu_tool:spawnVehicle', function(data, cb)
     FUNC.spawnVehicle(data)
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:deleteVehicle', function(_, cb)
+RegisterNUICallback('dolu_tool:deleteVehicle', function(_, cb)
     DeleteVehicle(cache.vehicle)
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:exit', function(_, cb)
+RegisterNUICallback('dolu_tool:exit', function(_, cb)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
     Client.isMenuOpen = false
@@ -93,8 +93,8 @@ RegisterNUICallback('dmt:exit', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:changeLocationName', function(data, cb)
-    lib.callback('dmt:renameLocation', false, function(result)
+RegisterNUICallback('dolu_tool:changeLocationName', function(data, cb)
+    lib.callback('dolu_tool:renameLocation', false, function(result)
         if not result then return end
 
         Client.data.locations[result.index] = result.data
@@ -107,10 +107,10 @@ RegisterNUICallback('dmt:changeLocationName', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
+RegisterNUICallback('dolu_tool:createCustomLocation', function(locationName, cb)
     local playerPed = cache.ped
 
-    lib.callback('dmt:createCustomLocation', false, function(result)
+    lib.callback('dolu_tool:createCustomLocation', false, function(result)
         if not result then return end
 
         -- Insert new location at index 1
@@ -121,7 +121,7 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
         end
 
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Custom location succefully created!",
             type = 'success',
             position = 'top'
@@ -135,8 +135,8 @@ RegisterNUICallback('dmt:createCustomLocation', function(locationName, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:deleteLocation', function(locationName, cb)
-    local result = lib.callback.await('dmt:deleteLocation', false, locationName)
+RegisterNUICallback('dolu_tool:deleteLocation', function(locationName, cb)
+    local result = lib.callback.await('dolu_tool:deleteLocation', false, locationName)
     if not result then return end
 
     -- Remove location from file
@@ -149,19 +149,19 @@ RegisterNUICallback('dmt:deleteLocation', function(locationName, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setWeather', function(weatherName, cb)
+RegisterNUICallback('dolu_tool:setWeather', function(weatherName, cb)
     FUNC.setWeather(weatherName)
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setClock', function(clock, cb)
+RegisterNUICallback('dolu_tool:setClock', function(clock, cb)
     FUNC.setClock(clock.hour, clock.minute)
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:getClock', function(_, cb)
+RegisterNUICallback('dolu_tool:getClock', function(_, cb)
     local hour, minute = FUNC.getClock()
     SendNUIMessage({
         action = 'setClockData',
@@ -171,19 +171,19 @@ RegisterNUICallback('dmt:getClock', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:freezeTime', function(state, cb)
+RegisterNUICallback('dolu_tool:freezeTime', function(state, cb)
     Client.freezeTime = state
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:freezeWeather', function(state, cb)
+RegisterNUICallback('dolu_tool:freezeWeather', function(state, cb)
     Client.freezeWeather = state
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:cleanZone', function(_, cb)
+RegisterNUICallback('dolu_tool:cleanZone', function(_, cb)
     local playerId = cache.ped
     local playerCoords = GetEntityCoords(playerId)
     ClearAreaOfEverything(playerCoords.x, playerCoords.y, playerCoords.z, 1000.0, false, false, false, false)
@@ -191,7 +191,7 @@ RegisterNUICallback('dmt:cleanZone', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:cleanPed', function(_, cb)
+RegisterNUICallback('dolu_tool:cleanPed', function(_, cb)
     local playerId = cache.ped
     ClearPedBloodDamage(playerId)
     ClearPedEnvDirt(playerId)
@@ -200,7 +200,7 @@ RegisterNUICallback('dmt:cleanPed', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:upgradeVehicle', function(_, cb)
+RegisterNUICallback('dolu_tool:upgradeVehicle', function(_, cb)
     local vehicle = cache.vehicle
     if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
         local max
@@ -210,7 +210,7 @@ RegisterNUICallback('dmt:upgradeVehicle', function(_, cb)
         end
         ToggleVehicleMod(vehicle, 18, true) -- Turbo
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Vehicle succefully upgraded!",
             type = 'success',
             position = 'top'
@@ -219,7 +219,7 @@ RegisterNUICallback('dmt:upgradeVehicle', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:repairVehicle', function(_, cb)
+RegisterNUICallback('dolu_tool:repairVehicle', function(_, cb)
     local vehicle = cache.vehicle
 	SetVehicleFixed(vehicle)
     SetVehicleEngineHealth(vehicle, 1000.0)
@@ -228,9 +228,9 @@ RegisterNUICallback('dmt:repairVehicle', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:giveWeapon', function(weaponName, cb)
+RegisterNUICallback('dolu_tool:giveWeapon', function(weaponName, cb)
     if Shared.ox_inventory then
-        lib.callback('dmt:giveWeaponToPlayer', false, function(result)
+        lib.callback('dolu_tool:giveWeaponToPlayer', false, function(result)
             if result then
                 lib.notify({type = "success", description = "You just receive a weapon"})
             else
@@ -246,19 +246,19 @@ RegisterNUICallback('dmt:giveWeapon', function(weaponName, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setDay', function(_, cb)
+RegisterNUICallback('dolu_tool:setDay', function(_, cb)
     FUNC.setClock(12)
     FUNC.setWeather('extrasunny')
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setMaxHealth', function(_, cb)
+RegisterNUICallback('dolu_tool:setMaxHealth', function(_, cb)
     local playerPed = PlayerPedId()
     SetEntityHealth(playerPed, GetEntityMaxHealth(playerPed))
 
     lib.notify({
-        title = 'Dolu Mapping Tool',
+        title = 'Dolu Tool',
         description = "Max health succefully set.",
         type = 'success',
         position = 'top'
@@ -267,17 +267,17 @@ RegisterNUICallback('dmt:setMaxHealth', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:spawnFavoriteVehicle', function(_, cb)
+RegisterNUICallback('dolu_tool:spawnFavoriteVehicle', function(_, cb)
     FUNC.spawnVehicle('krieger')
     
     cb(1)
 end)
 
-RegisterNUICallback('dmt:addEntity', function(modelName, cb)
+RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     local model = joaat(modelName)
     if not IsModelInCdimage(model) then
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "This entity does not exist in the game!",
             type = 'error',
             position = 'top'
@@ -299,7 +299,7 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     Wait(50)
     if not DoesEntityExist(obj) then 
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Looks like the cannot be loaded.",
             type = 'error',
             position = 'top'
@@ -346,7 +346,7 @@ RegisterNUICallback('dmt:addEntity', function(modelName, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setEntityModel', function(data, cb)
+RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
     local model = joaat(data.modelName)
     if not IsModelInCdimage(model) then
         SendNUIMessage({
@@ -407,7 +407,7 @@ RegisterNUICallback('dmt:setEntityModel', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
+RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
     -- Make sure entity exists in spawnedEntities
     local foundIndex
     for k, v in ipairs(Client.spawnedEntities) do
@@ -419,7 +419,7 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
 
     if not foundIndex or not DoesEntityExist(entityHandle) then
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Entity does not exist!",
             type = 'error',
             position = 'top'
@@ -444,7 +444,7 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
     })
 
     lib.notify({
-        title = 'Dolu Mapping Tool',
+        title = 'Dolu Tool',
         description = "Entity succefully deleted",
         type = 'success',
         position = 'top'
@@ -453,7 +453,7 @@ RegisterNUICallback('dmt:deleteEntity', function(entityHandle, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:deleteAllEntities', function(_, cb)
+RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
     -- Sending empty object to hide editor
     SendNUIMessage({
         action = 'setGizmoEntity',
@@ -478,7 +478,7 @@ RegisterNUICallback('dmt:deleteAllEntities', function(_, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setGizmoEntity', function(entityHandle, cb)
+RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
     -- If entity param is nil, hide gizmo
     if not entityHandle then
         SendNUIMessage({
@@ -500,7 +500,7 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entityHandle, cb)
 
     if not entity or not DoesEntityExist(entityHandle) then
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Entity does not exist!",
             type = 'error',
             position = 'top'
@@ -523,20 +523,20 @@ RegisterNUICallback('dmt:setGizmoEntity', function(entityHandle, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:goToEntity', function(data, cb)
+RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
     if data?.position and data.handle and DoesEntityExist(data.handle) then
         local coords = GetEntityCoords(data.handle)
         FUNC.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
         
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Succefully teleported! Use /goback to go back to last location",
             type = 'success',
             position = 'top'
         })
     else
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Entity does not exist!",
             type = 'error',
             position = 'top'
@@ -546,14 +546,14 @@ RegisterNUICallback('dmt:goToEntity', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:moveEntity', function(data, cb)
+RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
     if data.handle then
         if DoesEntityExist(data.handle) then
             SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
             SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z)
         else
             lib.notify({
-                title = 'Dolu Mapping Tool',
+                title = 'Dolu Tool',
                 description = "Entity does not exist!",
                 type = 'error',
                 position = 'top'
@@ -592,10 +592,10 @@ RegisterNUICallback('dmt:moveEntity', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:snapEntityToGround', function(data, cb)
+RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
     if not DoesEntityExist(data.handle) then
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = "Entity does not exist!",
             type = 'error',
             position = 'top'
@@ -641,7 +641,7 @@ RegisterNUICallback('dmt:snapEntityToGround', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:setCustomCoords', function(data, cb)
+RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
     local formatedCoords
     if data.coordString then
         local coordString = (data.coordString:gsub(',', '')):gsub('  ', ' ')
@@ -662,7 +662,7 @@ RegisterNUICallback('dmt:setCustomCoords', function(data, cb)
     cb(1)
 end)
 
-RegisterNUICallback('dmt:loadPages', function(data, cb)
+RegisterNUICallback('dolu_tool:loadPages', function(data, cb)
     FUNC.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
     cb(1)
 end)

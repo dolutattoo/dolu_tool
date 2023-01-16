@@ -98,7 +98,7 @@ const Object: React.FC = () => {
                         defaultValue={currentAccordionItem}
                         onChange={(value) => {
                                 setAccordionItem(value)                                
-                                fetchNui('dmt:setGizmoEntity', parseInt(value as string))
+                                fetchNui('dolu_tool:setGizmoEntity', parseInt(value as string))
                             }
                         }
                         chevronPosition="left"
@@ -108,7 +108,7 @@ const Object: React.FC = () => {
                             return (
                                 <Accordion.Item value={entity.handle.toString()}>
                                     <Accordion.Control>
-                                        <TextInput error={objectNameError} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== "" && fetchNui('dmt:setEntityModel', {entity: entity, modelName: event.currentTarget.value})} />
+                                        <TextInput error={objectNameError} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== "" && fetchNui('dolu_tool:setEntityModel', {entity: entity, modelName: event.currentTarget.value})} />
                                     </Accordion.Control>
                                     <Accordion.Panel>
                                         <Group grow>
@@ -117,7 +117,7 @@ const Object: React.FC = () => {
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
-                                                    fetchNui('dmt:goToEntity', entity)
+                                                    fetchNui('dolu_tool:goToEntity', entity)
                                                 }}
                                             >Go to</Button>
                                             <Button
@@ -146,7 +146,7 @@ const Object: React.FC = () => {
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
-                                                    fetchNui('dmt:snapEntityToGround', entity)
+                                                    fetchNui('dolu_tool:snapEntityToGround', entity)
                                                 }}
                                             >Snap to ground</Button>
                                             <Button
@@ -154,7 +154,7 @@ const Object: React.FC = () => {
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
-                                                    fetchNui('dmt:addEntity', entity.name)
+                                                    fetchNui('dolu_tool:addEntity', entity.name)
                                                 }}
                                             >Duplicate</Button>                                            
                                             <Button
@@ -162,7 +162,7 @@ const Object: React.FC = () => {
                                                 color="blue.4"
                                                 size="xs"
                                                 onClick={() => {
-                                                    fetchNui('dmt:deleteEntity', entity.handle)
+                                                    fetchNui('dolu_tool:deleteEntity', entity.handle)
                                                     setAccordionItem(null)
                                                 }}
                                             >Delete</Button>

@@ -14,7 +14,7 @@ const DeleteAllEntities = () => {
           color="green.4"
           onClick={() => {
             closeAllModals()
-            fetchNui('dmt:deleteAllEntities')
+            fetchNui('dolu_tool:deleteAllEntities')
           }}
         >
           Confirm

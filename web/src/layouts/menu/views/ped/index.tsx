@@ -52,13 +52,13 @@ const Ped: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true);
-                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/ped/${pedList.name}.webp`)
+                imagePath(`https://cfx-nui-dolu_tool/shared/img/ped/${pedList.name}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit="contain"
               alt={`${pedList.name}`}
-              src={`https://cfx-nui-DoluMappingTool/shared/img/ped/${pedList.name}.webp`}
+              src={`https://cfx-nui-dolu_tool/shared/img/ped/${pedList.name}.webp`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
@@ -71,7 +71,7 @@ const Ped: React.FC = () => {
               variant="outline"
               color={"blue.4"}
               size="xs"
-              onClick={() => { fetchNui('dmt:changePed', { name: pedList.name, hash: pedList.hash }) }}
+              onClick={() => { fetchNui('dolu_tool:changePed', { name: pedList.name, hash: pedList.hash }) }}
             >
               Change Ped
             </Button>
@@ -109,7 +109,7 @@ const Ped: React.FC = () => {
         uppercase
         variant="outline"
         color="blue.4"
-        onClick={() => { fetchNui('dmt:changePed', { name: `${searchPedValue}` }) }}
+        onClick={() => { fetchNui('dolu_tool:changePed', { name: `${searchPedValue}` }) }}
       >
         Change by Name
       </Button>
@@ -131,7 +131,7 @@ const Ped: React.FC = () => {
           size='md'
           page={activePage}
           onChange={(value) => {
-            fetchNui('dmt:loadPages', { type: 'peds', activePage: value, filter: searchPedValue })
+            fetchNui('dolu_tool:loadPages', { type: 'peds', activePage: value, filter: searchPedValue })
             setPage(value)
             setAccordionItem("0")
           }}

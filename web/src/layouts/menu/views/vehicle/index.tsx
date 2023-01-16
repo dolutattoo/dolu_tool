@@ -52,13 +52,13 @@ const Vehicle: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true);
-                imagePath(`https://cfx-nui-DoluMappingTool/shared/img/vehicle/${vehicleList.name}.webp`)
+                imagePath(`https://cfx-nui-dolu_tool/shared/img/vehicle/${vehicleList.name}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit="contain"
               alt={`${vehicleList.name}`}
-              src={`https://cfx-nui-DoluMappingTool/shared/img/vehicle/${vehicleList.name}.webp`}
+              src={`https://cfx-nui-dolu_tool/shared/img/vehicle/${vehicleList.name}.webp`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
@@ -71,7 +71,7 @@ const Vehicle: React.FC = () => {
               variant="outline"
               color={"blue.4"}
               size="xs"
-              onClick={() => fetchNui('dmt:spawnVehicle', vehicleList.name)}
+              onClick={() => fetchNui('dolu_tool:spawnVehicle', vehicleList.name)}
             >
               Spawn
             </Button>
@@ -109,7 +109,7 @@ const Vehicle: React.FC = () => {
         uppercase
         variant="outline"
         color="blue.4"
-        onClick={() => fetchNui('dmt:spawnVehicle', searchVehicleValue)}
+        onClick={() => fetchNui('dolu_tool:spawnVehicle', searchVehicleValue)}
       >
         Spawn by Name
       </Button>
@@ -131,7 +131,7 @@ const Vehicle: React.FC = () => {
           size='sm'
           page={activePage}
           onChange={(value) => {
-            fetchNui('dmt:loadPages', { type: 'vehicles', activePage: value, filter: searchVehicleValue })
+            fetchNui('dolu_tool:loadPages', { type: 'vehicles', activePage: value, filter: searchVehicleValue })
             setPage(value)
             setAccordionItem("0")
           }}

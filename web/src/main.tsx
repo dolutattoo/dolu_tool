@@ -26,7 +26,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
         <RecoilRoot>
           <ModalsProvider
             modalProps={{
-              // centered: true,
               size: 'xs',
               transition: 'slide-up',
               // Modals would overflow the page with slide-up transition

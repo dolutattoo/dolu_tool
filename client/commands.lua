@@ -1,14 +1,14 @@
-RegisterCommand('dmt:open', function()
+RegisterCommand('dolu_tool:open', function()
     if not IsNuiFocused() and not IsPauseMenuActive() then
         FUNC.openUI()
     end
 end)
-RegisterKeyMapping('dmt:open', locale('command_openui', '~o~>~w~'), 'keyboard', 'F3')
+RegisterKeyMapping('dolu_tool:open', locale('command_openui', '~o~>~w~'), 'keyboard', 'F3')
 
 RegisterCommand('goback', function()
     if not Client.lastCoords then
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = locale('cannot_goback'),
             type = 'error',
             position = 'top'
@@ -18,7 +18,7 @@ RegisterCommand('goback', function()
         FUNC.setPlayerCoords(cache.vehicle, Client.lastCoords.x, Client.lastCoords.y, Client.lastCoords.z)
         Client.lastCoords = currentCoords
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = locale('teleport_success'),
             type = 'success',
             position = 'top'
@@ -31,7 +31,7 @@ RegisterCommand('tpm', function()
 
     if marker == 0 then
         lib.notify({
-            title = 'Dolu Mapping Tool',
+            title = 'Dolu Tool',
             description = locale('no_marker'),
             type = 'error',
             position = 'top'
