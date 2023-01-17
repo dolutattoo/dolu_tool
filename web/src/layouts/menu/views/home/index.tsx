@@ -2,7 +2,6 @@ import { Text, Stack, SimpleGrid, Button, Paper, Group, Space } from '@mantine/c
 import { openModal } from '@mantine/modals'
 import { useEffect, useState } from 'react'
 import { GiTeleport } from 'react-icons/gi'
-import { ImLocation } from 'react-icons/im'
 import { FiFastForward } from 'react-icons/fi'
 import { RiHomeGearFill } from 'react-icons/ri'
 import { getInteriorData } from '../../../../atoms/interior'
@@ -16,6 +15,7 @@ import { useRecoilState } from 'recoil'
 import { positionAtom } from '../../../../atoms/position'
 import { worldFreezeTimeAtom } from '../../../../atoms/world'
 import { useLocales } from '../../../../providers/LocaleProvider'
+import { FaMapMarkerAlt } from 'react-icons/fa'
 
 const Home: React.FC = () => {
   const { locale } = useLocales()
@@ -46,7 +46,7 @@ const Home: React.FC = () => {
           
           <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_current_coords}</Text>
-            <ImLocation size={24}/>
+            <FaMapMarkerAlt size={24}/>
           </Group>
           
           <Space h='sm' />

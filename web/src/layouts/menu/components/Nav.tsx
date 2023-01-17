@@ -1,12 +1,13 @@
 import { Navbar, Stack } from '@mantine/core'
-import { RiHomeGearFill } from 'react-icons/ri'
-import { FaCar, FaMapMarkerAlt, FaTshirt } from 'react-icons/fa'
+import { AiFillHome } from 'react-icons/ai'
 import { BiWorld } from 'react-icons/bi'
-import { IoMdCube } from 'react-icons/io'
-import NavIcon from './NavIcon'
+import { FaCar, FaMapMarkerAlt, FaTshirt } from 'react-icons/fa'
 import { GiPistolGun } from 'react-icons/gi'
+import { IoMdCube } from 'react-icons/io'
+import { RiHomeGearFill } from 'react-icons/ri'
 import { fetchNui } from '../../../utils/fetchNui'
 import { useLocales } from '../../../providers/LocaleProvider'
+import NavIcon from './NavIcon'
 
 const Nav: React.FC = () => {
   const { locale } = useLocales()
