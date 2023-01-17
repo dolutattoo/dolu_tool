@@ -12,12 +12,12 @@ const VehicleSearch: React.FC = () => {
   const [searchVehicle, setSearchVehicle] = useState('')
   const setVehicleSearch = useSetRecoilState(vehicleListSearchAtom)
   const [debouncedVehicleSearch] = useDebouncedValue(searchVehicle, 200)
-  const activePage = useRecoilValue(vehiclesActivePageAtom)
+  const setActivePage = useSetRecoilState(vehiclesActivePageAtom)
 
   useEffect(() => {
     setVehicleSearch(debouncedVehicleSearch)
-    fetchNui('dolu_tool:loadPages', { type: 'vehicles', activePage: activePage, filter: debouncedVehicleSearch })
-  }, [debouncedVehicleSearch, setVehicleSearch])
+    fetchNui('dolu_tool:loadPages', { type: 'vehicles', activePage: 1, filter: debouncedVehicleSearch })
+  }, [debouncedVehicleSearch])
 
   return (
     <>
@@ -25,7 +25,10 @@ const VehicleSearch: React.FC = () => {
         placeholder={locale.ui_search}
         icon={<TbSearch size={20} />}
         value={searchVehicle}
-        onChange={(e) => setSearchVehicle(e.target.value)}
+        onChange={(e) => {
+          setActivePage(1)
+          setSearchVehicle(e.target.value)
+        }}
       />
     </>
   )

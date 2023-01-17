@@ -13,14 +13,13 @@ const LocationSearch: React.FC = () => {
   const setLocationsSearch = useSetRecoilState(locationSearchAtom)
   const [debouncedSearch] = useDebouncedValue(search, 100)
   const setActivePage = useSetRecoilState(locationsActivePageAtom)
-  const activePage = useRecoilValue(locationsActivePageAtom)
   const checkedVanilla = useRecoilValue(locationVanillaFilterAtom)
   const checkedCustom = useRecoilValue(locationCustomFilterAtom)
 
   useEffect(() => {
     setLocationsSearch(debouncedSearch)
-    fetchNui('dolu_tool:loadPages', { type: 'locations', activePage: activePage, filter: debouncedSearch, checkboxes: { vanilla: checkedVanilla, custom: checkedCustom } })
-  }, [debouncedSearch, setLocationsSearch])
+    fetchNui('dolu_tool:loadPages', { type: 'locations', activePage: 1, filter: debouncedSearch, checkboxes: { vanilla: checkedVanilla, custom: checkedCustom } })
+  }, [debouncedSearch])
 
   return (
     <>

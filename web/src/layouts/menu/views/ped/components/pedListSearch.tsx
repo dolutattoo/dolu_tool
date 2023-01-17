@@ -12,12 +12,12 @@ const PedSearch: React.FC = () => {
   const [searchPed, setSearchPed] = useState('')
   const setPedSearch = useSetRecoilState(pedListSearchAtom)
   const [debouncedPedSearch] = useDebouncedValue(searchPed, 200)
-  const activePage = useRecoilValue(pedsActivePageAtom)
+  const setActivePage = useSetRecoilState(pedsActivePageAtom)
 
   useEffect(() => {
     setPedSearch(debouncedPedSearch)
-    fetchNui('dolu_tool:loadPages', { type: 'peds', activePage: activePage, filter: debouncedPedSearch })
-  }, [debouncedPedSearch, setPedSearch])
+    fetchNui('dolu_tool:loadPages', { type: 'peds', activePage: 1, filter: debouncedPedSearch })
+  }, [debouncedPedSearch])
 
   return (
     <>
@@ -25,7 +25,10 @@ const PedSearch: React.FC = () => {
         placeholder={locale.ui_search}
         icon={<TbSearch size={20} />}
         value={searchPed}
-        onChange={(e) => setSearchPed(e.target.value)}
+        onChange={(e) => {
+          setActivePage(1)
+          setSearchPed(e.target.value)
+        }}
       />
     </>
   )
