@@ -485,33 +485,28 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
         if listType == 'locations' then
             for i, value in pairs(totalList) do
                 if (value.custom and checkboxes.custom) or (not value.custom and checkboxes.vanilla) then
-                    if (not filter or filter == '') or string.match(string.lower(value.name), string.lower(filter)) then
+                    if (not filter or filter == '') or string.find(string.lower(value.name), string.lower(filter)) then
                         table.insert(searchResult, value)
                     end
                 end
             end
         else
             for i, value in ipairs(totalList) do
-                if string.match(string.lower(value.name), string.lower(filter)) then
+                if string.find(string.lower(value.name), string.lower(filter)) ~= nil then
                     table.insert(searchResult, value)
                 end
             end
-        end
-
+        end        
         filteredList = searchResult
     else
         filteredList = totalList
     end
-    
-    local result = {}
-    local total = #totalList   
-    local result = FUNC.getPages(activePage, filteredList)
 
     SendNUIMessage({
         action = 'setPageContent',
         data = {
             type = listType,
-            content = result,
+            content = FUNC.getPages(activePage, filteredList),
             maxPages = math.ceil(#filteredList/5)
         }
     })

@@ -1,10 +1,11 @@
 import { TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { TbSearch } from 'react-icons/tb'
-import { useSetRecoilState } from 'recoil'
-import { locationsActivePageAtom, locationSearchAtom } from '../../../../../atoms/location'
+import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { locationCustomFilterAtom, locationsActivePageAtom, locationSearchAtom, locationVanillaFilterAtom } from '../../../../../atoms/location'
 import { useEffect, useState } from 'react'
 import { useLocales } from '../../../../../providers/LocaleProvider'
+import { fetchNui } from '../../../../../utils/fetchNui'
 
 const LocationSearch: React.FC = () => {
   const { locale } = useLocales()
@@ -12,9 +13,13 @@ const LocationSearch: React.FC = () => {
   const setLocationsSearch = useSetRecoilState(locationSearchAtom)
   const [debouncedSearch] = useDebouncedValue(search, 100)
   const setActivePage = useSetRecoilState(locationsActivePageAtom)
+  const activePage = useRecoilValue(locationsActivePageAtom)
+  const checkedVanilla = useRecoilValue(locationVanillaFilterAtom)
+  const checkedCustom = useRecoilValue(locationCustomFilterAtom)
 
   useEffect(() => {
     setLocationsSearch(debouncedSearch)
+    fetchNui('dolu_tool:loadPages', { type: 'locations', activePage: activePage, filter: debouncedSearch, checkboxes: { vanilla: checkedVanilla, custom: checkedCustom } })
   }, [debouncedSearch, setLocationsSearch])
 
   return (
