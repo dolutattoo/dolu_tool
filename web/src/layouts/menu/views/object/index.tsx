@@ -19,7 +19,7 @@ const Object: React.FC = () => {
     useNuiEvent('setObjectList', (entitiesList: Entity[]|null) => {
         if (entitiesList !== null) {
             setObjectList(entitiesList)
-            setAccordionItem(entitiesList[0].handle.toString())
+            if (entitiesList.length > 0) setAccordionItem(entitiesList[0].handle.toString())
         }
     })
     
