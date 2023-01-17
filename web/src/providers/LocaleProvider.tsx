@@ -127,6 +127,9 @@ interface Locale {
   ui_portal_flag_2048: string
   ui_portal_flag_4096: string
   ui_portal_flag_8192: string
+  ui_update_warning: string
+  ui_github: string
+  ui_discord: string
 }
 
 interface LocaleContextValue {
@@ -261,7 +264,10 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_portal_flag_1024: '',
     ui_portal_flag_2048: '',
     ui_portal_flag_4096: '',
-    ui_portal_flag_8192: ''
+    ui_portal_flag_8192: '',
+    ui_update_warning: '',
+    ui_github: '',
+    ui_discord: ''
   })
 
   useEffect(() => {

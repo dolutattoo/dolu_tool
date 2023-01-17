@@ -20,17 +20,16 @@ client_scripts {
     'client/freecam/config.lua',
     'client/freecam/camera.lua',
     'client/freecam/main.lua',
-
     'client/functions.lua',
     'client/nui.lua',
     'client/controls.lua',
     'client/commands.lua',
     'client/interior.lua',
     'client/threads.lua',
-
 }
 
 server_scripts {
+	'server/version.lua',
 	'server/main.lua'
 }
 
@@ -39,6 +38,7 @@ ui_page 'web/build/index.html'
 files {
     'web/build/index.html',
     'web/build/**/*',
+    'web/browser.js',
     'shared/img/**/*.webp',
     'shared/img/**/*.png',
     'locales/*.json'

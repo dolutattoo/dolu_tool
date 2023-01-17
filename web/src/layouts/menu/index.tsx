@@ -1,16 +1,13 @@
-import { AppShell, Box, createStyles, Group, Header, Title, Transition } from '@mantine/core'
+import { AppShell, Box, createStyles, Transition } from '@mantine/core'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { Route, Routes } from 'react-router-dom'
-import { TbLogout } from 'react-icons/tb'
-import { fetchNui } from '../../utils/fetchNui'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
-import { useExitListener } from '../../hooks/useExitListener'
 import { menuVisibilityAtom } from '../../atoms/visibility'
 import { interiorAtom, InteriorData } from '../../atoms/interior'
 import { lastLocationsAtom, Location } from '../../atoms/location'
 import { positionAtom } from '../../atoms/position'
+import HeaderGroup from './components/HeaderGroup'
 import Nav from './components/Nav'
-import NavIcon from './components/NavIcon'
 import Home from './views/home'
 import World from './views/world'
 import Interior from './views/interior'
@@ -19,7 +16,7 @@ import Locations from './views/locations'
 import Ped from './views/ped'
 import Vehicle from './views/vehicle'
 import Weapon from './views/weapon'
-import { useLocales } from '../../providers/LocaleProvider'
+import { versionAtom } from '../../atoms/version'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -30,9 +27,9 @@ const useStyles = createStyles((theme) => ({
 }))
 
 const Menu: React.FC = () => {
-  const { locale } = useLocales()
   const { classes } = useStyles()
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
+  const [version, setVersion] = useRecoilState(versionAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
   const setPosition = useSetRecoilState(positionAtom)
@@ -51,7 +48,11 @@ const Menu: React.FC = () => {
     setInteriorData(data)
   })
 
-  useExitListener(setVisible)
+  useNuiEvent('setVersion', (data: { version: string, outdated?: string }) => {
+    console.log(JSON.stringify(data, null, '\t'));
+    
+    setVersion(data)
+  })
 
   return (
     <Transition duration={100} transition='slide-right' mounted={visible}>
@@ -61,14 +62,7 @@ const Menu: React.FC = () => {
             padding='md'
             fixed={false}
             navbar={<Nav />}
-            header={
-              <Header sx={{ borderTopLeftRadius: '10px', borderTopRightRadius: '10px' }} height={60}>
-                <Group px={20} position='apart'>
-                  <Title order={3}>Dolu Tool v4</Title>
-                  <NavIcon tooltip={locale.ui_exit} Icon={TbLogout} color='red.4' to='' handleClick={() => {setVisible(false); fetchNui('dolu_tool:exit')}} />
-                </Group>
-              </Header>
-            }
+            header={<HeaderGroup data={version} />}
           >
             <Routes>
               <Route path='/' element={<Home />} />

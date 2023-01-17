@@ -122,5 +122,8 @@
   "ui_portal_flag_1024": "Active les entités du limbo dans le mirroir",
   "ui_portal_flag_2048": "Inconnu 2048",
   "ui_portal_flag_4096": "Inconnu 4096",
-  "ui_portal_flag_8192": "Désactive le 'farclipping'"
+  "ui_portal_flag_8192": "Désactive le 'farclipping'",
+  "ui_update_warning": "Mise à jour disponible !",
+  "ui_github": "Ouvrir le dépot Github",
+  "ui_discord": "Rejoindre le discord de Dolu"
 }

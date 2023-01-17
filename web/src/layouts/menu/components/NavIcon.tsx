@@ -1,4 +1,5 @@
 import { ActionIcon, createStyles, Tooltip } from '@mantine/core'
+import { FloatingPosition } from '@mantine/core/lib/Floating'
 import { IconBaseProps } from 'react-icons'
 import { Link, useLocation } from 'react-router-dom'
 
@@ -9,6 +10,7 @@ interface Props {
   color?: string
   hoverColor?: string
   handleClick?: () => void
+  toolTipPosition?: FloatingPosition
 }
 
 const useStyles = createStyles((theme, color) => ({
@@ -19,17 +21,17 @@ const useStyles = createStyles((theme, color) => ({
   },
 }))
 
-const NavIcon: React.FC<Props> = ({ tooltip, Icon, color, to, handleClick }) => {
+const NavIcon: React.FC<Props> = ({ tooltip, Icon, color, to, handleClick, toolTipPosition }) => {
   const { classes } = useStyles()
   const location = useLocation()
 
   return (
-    <Tooltip label={tooltip} position='right'>
+    <Tooltip label={tooltip} position={toolTipPosition ? toolTipPosition : 'right'}>
       <ActionIcon
         onClick={() => {
           if (handleClick) return handleClick()
         }}
-        size='xl'
+        size='md'
         component={Link}
         to={to}
         color={color ? color : 'blue.4'}

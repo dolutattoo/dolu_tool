@@ -667,3 +667,7 @@ RegisterNUICallback('dolu_tool:loadPages', function(data, cb)
     FUNC.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
     cb(1)
 end)
+
+RegisterNUICallback('dolu_tool:openBrowser', function(data, cb)
+    SendNUIMessage({ name = 'openBrowser', url = data.url })
+end)    

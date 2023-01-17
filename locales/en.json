@@ -122,5 +122,8 @@
   "ui_portal_flag_1024": "Mirror limbo entities",
   "ui_portal_flag_2048": "Unknown 2048",
   "ui_portal_flag_4096": "Unknown 4096",
-  "ui_portal_flag_8192": "Disable farclipping"
+  "ui_portal_flag_8192": "Disable farclipping",
+  "ui_update_warning": "Update available!",
+  "ui_github": "Open Github Repository",
+  "ui_discord": "Join Dolu Discord"
 }

@@ -49,6 +49,13 @@ CreateThread(function()
             FUNC.initTarget()
         end
 
+        lib.callback('dolu_tool:getVersion', false, function(data)
+            SendNUIMessage({
+                action = 'setVersion',
+                data = { version = "v"..data.currentVersion, outdated = data.url }
+            })
+        end)
+
         RegisterNUICallback('loadLocale', function(_, cb)
             cb(1)
             local resource = GetCurrentResourceName()
