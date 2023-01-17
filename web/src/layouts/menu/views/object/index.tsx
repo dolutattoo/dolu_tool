@@ -59,7 +59,7 @@ const Object: React.FC = () => {
                         color='blue.4'
                         onClick={() =>
                             openModal({
-                                title: 'Load .ymap.xml file',
+                                title: locale.ui_add_entity,
                                 size: 'xs',
                                 children: <AddEntity />
                             })
@@ -72,8 +72,8 @@ const Object: React.FC = () => {
                         color='red.4'
                         onClick={() =>
                             openModal({
-                                title: 'Delete all spawned entities',
-                                size: 'xs',
+                                title: locale.ui_delete_all_entities,
+                                size: 'md',
                                 children: <DeleteAllEntities />
                             })
                         }

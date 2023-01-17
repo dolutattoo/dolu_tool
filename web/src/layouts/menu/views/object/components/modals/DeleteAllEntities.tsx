@@ -8,7 +8,6 @@ const DeleteAllEntities = () => {
 
   return (
     <Stack>
-      <Text>{locale.ui_delete_all_entities}</Text>
       <Group grow>
         <Button
           uppercase

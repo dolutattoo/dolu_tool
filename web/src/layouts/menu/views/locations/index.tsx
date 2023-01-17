@@ -82,7 +82,7 @@ const Locations: React.FC = () => {
                 size='xs'
                 onClick={() => {
                   openModal({
-                    title: 'Rename location',
+                    title: locale.ui_rename,
                     children: <RenameLocation defaultName={location.name} />,
                     size: 'xs',
                   })
@@ -98,15 +98,13 @@ const Locations: React.FC = () => {
                 size='xs'
                 onClick={() => {
                   openModal({
-                    title: 'Delete this location?',
+                    title: locale.ui_delete,
                     children: <DeleteLocation name={location.name} />,
                     size: 'xs',
                   })
                   setAccordionItem(null)
                 }}
-              >
-                {locale.ui_delete}
-              </Button>
+              >{locale.ui_delete}</Button>
             }
           </Group>
         </Accordion.Panel>
@@ -119,7 +117,7 @@ const Locations: React.FC = () => {
         <Text size={20}>{locale.ui_locations}</Text>
         <Group grow>            
           <Checkbox
-            label='Show custom locations'
+            label={locale.ui_show_custom_locations}
             size='sm'
             color='blue.4'
             disabled={!checkedVanilla}
@@ -131,7 +129,7 @@ const Locations: React.FC = () => {
             }}
           />
           <Checkbox
-            label='Show vanilla Interiors'
+            label={locale.ui_show_vanilla_locations}
             size='sm'
             color='blue.4'
             disabled={!checkedCustom}
@@ -150,14 +148,12 @@ const Locations: React.FC = () => {
           color='blue.4'
           onClick={() =>
             openModal({
-              title: 'Create location',
+              title: locale.ui_create_custom_location,
               size: 'xs',
               children: <CreateLocation />,
             })
           }
-        >
-          {locale.ui_create_custom_location}
-        </Button>
+        >{locale.ui_create_custom_location}</Button>
         
         <LocationSearch />
 

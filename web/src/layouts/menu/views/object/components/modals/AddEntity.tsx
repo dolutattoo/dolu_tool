@@ -11,7 +11,7 @@ const AddEntity: React.FC = () => {
 
   return (
     <Stack>
-      <TextInput label={locale.ui_add_entity} description={locale.ui_add_entity_description} value={entityName} onChange={(e) => setEntityName(e.target.value)} />
+      <TextInput value={entityName} onChange={(e) => setEntityName(e.target.value)} />
       <Button
         uppercase
         disabled={entityName === ''}

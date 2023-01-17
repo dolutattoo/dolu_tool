@@ -53,7 +53,7 @@ const Home: React.FC = () => {
 
           <Group position='apart'>
             <Group><Text>{locale.ui_coords}:</Text><Text color='blue.4' >{currentCoords}</Text></Group>
-            <Group><Text>Heading:</Text><Text color='blue.4' >{currentHeading}</Text></Group>
+            <Group><Text>{locale.ui_heading}:</Text><Text color='blue.4' style={{ minWidth: '120px' }} >{currentHeading}</Text></Group>
           </Group>
           
           <Space h='sm' />
@@ -75,7 +75,7 @@ const Home: React.FC = () => {
               size='xs'
               onClick={() =>
               openModal({
-                  title: 'Set current coords',
+                  title: locale.ui_set_coords,
                   size: 'xs',
                   children: <SetCoords />,
                 })
@@ -88,7 +88,7 @@ const Home: React.FC = () => {
               size='xs'
               onClick={() =>
                 openModal({
-                  title: 'Create location',
+                  title: locale.ui_save_location,
                   size: 'xs',
                   children: <CreateLocation />,
                 })

@@ -115,7 +115,9 @@ const Weapon: React.FC = () => {
       >
         {locale.ui_give_weapon_by_name}
       </Button>
+      
       <WeaponSearch/>
+      
       <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
         <Stack>
           <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>

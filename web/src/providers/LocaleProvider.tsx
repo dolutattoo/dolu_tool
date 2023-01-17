@@ -22,6 +22,8 @@ interface Locale {
   entity_doesnt_exist: string
   entity_deleted: string
   teleport_success: string
+  ui_home: string
+  ui_world: string
   ui_exit: string
   ui_copy_coords: string
   ui_copied_coords: string
@@ -32,6 +34,7 @@ interface Locale {
   ui_name: string
   ui_hash: string
   ui_coords: string
+  ui_heading: string
   ui_interior_id: string
   ui_current_room: string
   ui_teleport: string
@@ -154,6 +157,8 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     entity_doesnt_exist: '',
     entity_deleted: '',
     teleport_success: '',
+    ui_home: '',
+    ui_world: '',
     ui_exit: '',
     ui_copy_coords: '',
     ui_copied_coords: '',
@@ -164,6 +169,7 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_name: '',
     ui_hash: '',
     ui_coords: '',
+    ui_heading: '',
     ui_interior_id: '',
     ui_current_room: '',
     ui_teleport: '',
