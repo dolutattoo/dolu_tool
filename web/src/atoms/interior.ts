@@ -7,7 +7,7 @@ export interface InteriorData {
     rooms?: Array<{
         index: number
         name: string
-        timecycle: number
+        timecycle: string
         isCurrent: boolean
         flags: {
             list: string[]
@@ -26,7 +26,7 @@ export interface InteriorData {
     currentRoom?: {
         index: number
         name: string
-        timecycle: number
+        timecycle: string
         flags: {
             list: string[]
             total: number
@@ -39,6 +39,7 @@ const mockInterior: InteriorData = {
 }
 
 export const interiorAtom = atom<InteriorData>({ key: 'interior', default: mockInterior })
+export const timecycleListAtom = atom<Array<{ label: string, value: string }>>({ key: 'timecycleList', default: [{label: "Unknown", value: '0'}] })
 export const portalDebuggingAtom = atom<string[]>({ key: 'portalDebugging', default: [] })
 export const portalEditingIndexAtom = atom<number>({ key: 'portalEditingIndex', default: 0 })
 export const portalDataAtom = atom<any>({ key: 'portalData', default: null })

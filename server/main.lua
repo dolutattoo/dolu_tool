@@ -2,13 +2,19 @@ local function getFileData(path, file)
     return json.decode(LoadResourceFile(RESOURCE_NAME, path .. '/' .. file))
 end
 
---[[ local function getXmlFile(path, file)
-    local xml = LoadResourceFile(RESOURCE_NAME, path .. '/' .. file)
-    return exports[RESOURCE_NAME]:xmlToTable(xml)
-end ]]--
-
 local function updateFileData(path, file, data)
     return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file, json.encode(data, { indent=true }))
+end
+
+local function formatTimecycles(timecycles)
+    local formatedTimecycles = {}
+
+    for i=1, #timecycles do
+        local v = timecycles[i]
+        table.insert(formatedTimecycles, { label = v.Name, value = tostring(joaat(v.Name)) })
+    end
+
+    return formatedTimecycles
 end
 
 local function formatVanillaInteriors(vanillaInteriors)
@@ -64,7 +70,8 @@ lib.callback.register('dolu_tool:getData', function()
         locations = locations,
         peds = getFileData('shared/data', 'pedList.json'),
         vehicles = getFileData('shared/data', 'vehicleList.json'),
-        weapons = getFileData('shared/data', 'weaponList.json')
+        weapons = getFileData('shared/data', 'weaponList.json'),
+        timecycles = formatTimecycles(getFileData('shared/data', 'timecycleModifiers.json'))
     }
 end)
 

@@ -49,8 +49,6 @@ const Menu: React.FC = () => {
   })
 
   useNuiEvent('setVersion', (data: { version: string, outdated?: string }) => {
-    console.log(JSON.stringify(data, null, '\t'));
-    
     setVersion(data)
   })
 

@@ -63,20 +63,17 @@ FUNC.Lerp = function(a, b, t)
     return a + (b - a) * t
 end
 
-FUNC.setTimecycle = function(timecycle, roomId)
-    --Todo: if 'timecycle' is string with and doesnt contains number, get hash key
-    timecycle = timecycle:lower()
-
+FUNC.setTimecycle = function(timecycle, roomId)    
     if Client.interiorId ~= 0 then
         if not roomId then
             local roomHash = GetRoomKeyFromEntity(cache.ped)
             roomId = GetInteriorRoomIndexByHash(Client.interiorId, roomHash)
         end
 
-        SetInteriorRoomTimecycle(Client.interiorId, roomId, timecycle)
+        SetInteriorRoomTimecycle(Client.interiorId, roomId, tonumber(timecycle))
         RefreshInterior(Client.interiorId)
     else
-        SetTimecycleModifier(timecycle)
+        SetTimecycleModifier(tonumber(timecycle))
     end
 end
 

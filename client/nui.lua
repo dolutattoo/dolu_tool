@@ -25,6 +25,13 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
             }
         })
 
+    elseif newTab == 'interior' and not Client.timecyclesLoaded then
+        SendNUIMessage({
+            action = 'setTimecycleList',
+            data = Client.data.timecycles
+        })
+        Client.timecyclesLoaded = true
+
     elseif newTab == 'locations' and not Client.locationsLoaded then
         FUNC.loadPage('locations', 1)
         Client.locationsLoaded = true

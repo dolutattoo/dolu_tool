@@ -1,18 +1,24 @@
 import { Group, Paper, Select, Space, Text } from '@mantine/core'
-import { useEffect, useState } from 'react'
-import { getInteriorData } from '../../../../../atoms/interior'
+import { useState } from 'react'
+import { interiorAtom, timecycleListAtom } from '../../../../../atoms/interior'
 import { fetchNui } from '../../../../../utils/fetchNui'
-import TIMECYCLE_LIST from '../../../../../../../shared/data/timecycleList.json'
 import { useLocales } from '../../../../../providers/LocaleProvider'
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { useNuiEvent } from '../../../../../hooks/useNuiEvent'
 
 const RoomsElement: React.FC = () => {
     const { locale } = useLocales()
-    const interior = getInteriorData()
+    const interior = useRecoilValue(interiorAtom)
+    const [timecycleList, setTimecycleList] = useRecoilState(timecycleListAtom)
     const [timecycle, setTimecycle] = useState<string | null>(interior.currentRoom?.timecycle ? interior.currentRoom?.timecycle.toString() : null)
     
-    useEffect(() => {
-        if (interior.currentRoom && interior.currentRoom.timecycle.toString() != timecycle) setTimecycle(interior.currentRoom.timecycle.toString())
-    }, [])
+    useNuiEvent('setTimecycleList', (data: Array<{ label: string, value: string }>) => {     
+        setTimecycleList(data)
+    })
+
+    useNuiEvent('setIntData', (data: any) => {
+        if (data.currentRoom !== undefined) setTimecycle(data.currentRoom.timecycle)
+    })
 
     return (
         <Paper p='md'>
@@ -27,12 +33,13 @@ const RoomsElement: React.FC = () => {
                     {timecycle && <Select 
                         searchable
                         nothingFound={locale.ui_no_timecycle_found}
-                        data={TIMECYCLE_LIST}
+                        data={timecycleList}
                         value={timecycle}
                         onChange={(value) => {
-                        setTimecycle(value)
-                        fetchNui('dolu_tool:setTimecycle', {value: value, roomId: interior.currentRoom?.index})
-                    }}/>}
+                            setTimecycle(value)
+                            fetchNui('dolu_tool:setTimecycle', {value: value, roomId: interior.currentRoom?.index})
+                        }}
+                    />}
                 </Group>
             </Paper>
         </Paper>
