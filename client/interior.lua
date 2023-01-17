@@ -1,4 +1,5 @@
 -- Check for interior data
+local isInInterior = false
 local lastRoomId = 0
 function GetInteriorData(interiorId, fromThread)
     local currentRoomHash = GetRoomKeyFromEntity(cache.ped)
@@ -52,10 +53,19 @@ function GetInteriorData(interiorId, fromThread)
             }
         }
 
-        SendNUIMessage({
-            action = 'setIntData',
-            data = intData
-        })
+        if interiorId > 0 then
+            SendNUIMessage({
+                action = 'setIntData',
+                data = intData
+            })
+            isInInterior = true
+        elseif isInInterior then
+            SendNUIMessage({
+                action = 'setIntData',
+                data = { interiorId = 0 }
+            })
+            isInInterior = false
+        end
     else
         if interiorId == 0 then
             SendNUIMessage({
