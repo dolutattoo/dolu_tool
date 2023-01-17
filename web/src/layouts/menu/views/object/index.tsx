@@ -68,6 +68,7 @@ const Object: React.FC = () => {
                         <MdLibraryAdd fontSize={30} />
                     </ActionIcon>
                     <ActionIcon
+                        disabled={objectList.length < 1}
                         size='xl'
                         color='red.4'
                         onClick={() =>
