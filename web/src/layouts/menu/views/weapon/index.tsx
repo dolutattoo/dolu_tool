@@ -2,7 +2,7 @@ import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center
 import { useEffect, useState} from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { getSearchWeaponInput, weaponsPageCountAtom, weaponsActivePageAtom, weaponsPageContentAtom, WeaponProp } from '../../../../atoms/weapon'
-import { displayImageAtom, imagePathAtom } from '../../../../atoms/imgPreview'
+import { displayImageAtom, imagePathAtom, resourceNameAtom } from '../../../../atoms/imgPreview'
 import { setClipboard } from '../../../../utils/setClipboard'
 import WeaponSearch from './components/weaponListSearch'
 import { fetchNui } from '../../../../utils/fetchNui'
@@ -29,6 +29,7 @@ const Weapon: React.FC = () => {
 
   const displayImage = useSetRecoilState(displayImageAtom)
   const imagePath = useSetRecoilState(imagePathAtom)
+  const resourceName = useRecoilState(resourceNameAtom)
 
   // Copied name button
   useEffect(() => {
@@ -54,13 +55,13 @@ const Weapon: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true)
-                imagePath(`https://cfx-nui-dolu_tool/shared/img/weapon/${weaponList.name}.png`)
+                imagePath(`https://cfx-nui-${resourceName[0]}/shared/img/weapon/${weaponList.name}.png`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit='contain'
               alt={`${weaponList.name}`}
-              src={`https://cfx-nui-dolu_tool/shared/img/weapon/${weaponList.name}.png`}
+              src={`https://cfx-nui-${resourceName[0]}/shared/img/weapon/${weaponList.name}.png`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{

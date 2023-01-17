@@ -2,7 +2,7 @@ import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center
 import { useEffect, useState} from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { getSearchPedInput, PedProp, pedsActivePageAtom, pedsPageContentAtom, pedsPageCountAtom } from '../../../../atoms/ped'
-import { displayImageAtom, imagePathAtom } from '../../../../atoms/imgPreview'
+import { displayImageAtom, imagePathAtom, resourceNameAtom } from '../../../../atoms/imgPreview'
 import { setClipboard } from '../../../../utils/setClipboard'
 import PedSearch from './components/pedListSearch'
 import { fetchNui } from '../../../../utils/fetchNui'
@@ -29,6 +29,7 @@ const Ped: React.FC = () => {
 
   const displayImage = useSetRecoilState(displayImageAtom)
   const imagePath = useSetRecoilState(imagePathAtom)
+  const resourceName = useRecoilState(resourceNameAtom)
 
   // Copied name button
   useEffect(() => {
@@ -54,13 +55,13 @@ const Ped: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true)
-                imagePath(`https://cfx-nui-dolu_tool/shared/img/ped/${pedList.name}.webp`)
+                imagePath(`https://cfx-nui-${resourceName[0]}/shared/img/ped/${pedList.name}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit='contain'
               alt={`${pedList.name}`}
-              src={`https://cfx-nui-dolu_tool/shared/img/ped/${pedList.name}.webp`}
+              src={`https://cfx-nui-${resourceName[0]}/shared/img/ped/${pedList.name}.webp`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
