@@ -66,7 +66,7 @@ jobs:
         run: |
           mkdir -p ./temp/dolu_tool
           mkdir -p ./temp/dolu_tool/web/
-          cp ./{LICENSE,README.md,fxmanifest.lua,config.json} ./temp/dolu_tool
+          cp ./{LICENSE,README.md,fxmanifest.lua,config.lua} ./temp/dolu_tool
           cp -r ./{client,locales,server,shared} ./temp/dolu_tool
           cp -r ./web/build ./temp/dolu_tool/web/
           cd ./temp && zip -r ../dolu_tool.zip ./dolu_tool
