@@ -3,6 +3,7 @@ import { useRecoilState, useSetRecoilState } from 'recoil'
 import { Route, Routes } from 'react-router-dom'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { menuVisibilityAtom } from '../../atoms/visibility'
+import { Version, versionAtom } from '../../atoms/version'
 import { interiorAtom, InteriorData } from '../../atoms/interior'
 import { lastLocationsAtom, Location } from '../../atoms/location'
 import { positionAtom } from '../../atoms/position'
@@ -16,7 +17,6 @@ import Locations from './views/locations'
 import Ped from './views/ped'
 import Vehicle from './views/vehicle'
 import Weapon from './views/weapon'
-import { versionAtom } from '../../atoms/version'
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
@@ -34,10 +34,11 @@ const Menu: React.FC = () => {
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
   const setPosition = useSetRecoilState(positionAtom)
 
-  useNuiEvent('setMenuVisible', (data: {lastLocation: Location, position: string}) => {   
-    setVisible(true)
+  useNuiEvent('setMenuVisible', (data: {version: Version, lastLocation: Location, position: string}) => {   
+    setVersion(data.version)
     setLastLocation(data.lastLocation)
-    setPosition(data.position)
+    setPosition(data.position)  
+    setVisible(true)
   })
 
   useNuiEvent('setLastLocation', (data: Location) => {
@@ -46,10 +47,6 @@ const Menu: React.FC = () => {
 
   useNuiEvent('setIntData', (data: InteriorData) => {
     setInteriorData(data)
-  })
-
-  useNuiEvent('setVersion', (data: { version: string, outdated?: string }) => {
-    setVersion(data)
   })
 
   return (

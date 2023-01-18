@@ -1,3 +1,8 @@
 import { atom } from 'recoil'
 
-export const versionAtom = atom<{ version: string, outdated?: string }>({ key: 'version', default: {version: ""} })
+export interface Version {
+    currentVersion: string
+    url?: string
+}
+
+export const versionAtom = atom<Version>({ key: 'version', default: { currentVersion: "" } })

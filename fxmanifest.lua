@@ -11,9 +11,12 @@ repository   'https://github.com/dolutattoo/dolu_tool'
 
 shared_scripts {
     '@ox_lib/init.lua',
-    'config.lua',
-    'shared/init.lua'
+    'config.lua'
 }
+
+server_script 'server/version.lua'
+
+shared_script 'shared/init.lua'
 
 client_scripts {
     'client/freecam/utils.lua',
@@ -29,7 +32,6 @@ client_scripts {
 }
 
 server_scripts {
-	'server/version.lua',
 	'server/main.lua'
 }
 

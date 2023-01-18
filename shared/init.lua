@@ -37,24 +37,9 @@ CreateThread(function()
             Client.data = data
         end)
 
-        CreateThread(function()
-            FUNC.setMenuPlayerCoords()
-            while true do
-                Wait(100)
-                Client.interiorId = GetInteriorFromEntity(cache.ped)
-            end
-        end)
-        
-        if Config.target and GetResourceState('ox_target'):find('start') then
+        if GetResourceState('ox_target'):find('start') then
             FUNC.initTarget()
         end
-
-        lib.callback('dolu_tool:getVersion', false, function(data)
-            SendNUIMessage({
-                action = 'setVersion',
-                data = { version = "v"..data.currentVersion, outdated = data.url }
-            })
-        end)
 
         RegisterNUICallback('loadLocale', function(_, cb)
             cb(1)
@@ -66,6 +51,17 @@ CreateThread(function()
                 data = json.decode(JSON)
             })
         end)
+
+        CreateThread(function()
+            FUNC.setMenuPlayerCoords()
+            while true do
+                Wait(100)
+                Client.interiorId = GetInteriorFromEntity(cache.ped)
+            end
+        end)
+
+        if not Config.development then
+            Client.version = lib.callback.await('dolu_tool:getVersion', false)
+        end
     end
 end)
-

@@ -4,20 +4,14 @@ import { TbLogout } from 'react-icons/tb'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaDiscord } from 'react-icons/fa'
 import { menuVisibilityAtom } from '../../../atoms/visibility'
+import { Version } from '../../../atoms/version'
 import { useNuiEvent } from '../../../hooks/useNuiEvent'
 import { fetchNui } from '../../../utils/fetchNui'
 import { useLocales } from '../../../providers/LocaleProvider'
 import { useExitListener } from '../../../hooks/useExitListener'
 import { useEffect, useState } from 'react'
 
-interface Props {
-  data: {
-    version: string
-    outdated?: string
-  }
-}
-
-const HeaderGroup: React.FC<Props> = ({ data }) => {
+const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
   const { locale } = useLocales()
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
 
@@ -40,18 +34,18 @@ const HeaderGroup: React.FC<Props> = ({ data }) => {
           <Text
             size={14}
             weight={600}
-            color={data.outdated ? 'orange.4' : 'blue.4'}
+            color={data.url ? 'orange.4' : 'blue.4'}
             style={{ position: 'absolute', top: '18px', left: '129px' }}
-          >{data.version}</Text>
+          >{data.currentVersion}</Text>
         </Group>
         <Group>
-          {data.outdated ?
+          {data.url ?
           
           <Tooltip label={locale.ui_update_warning} position='bottom' transition='scale-y' opened={opened} color='orange.4' style={{ color: 'black', fontWeight: 'bold' }} withArrow arrowSize={10}>
             <ActionIcon
               color='orange.4'
               style={{ margin: '5px', width: '40px', height: '40px' }}
-              onClick={() => fetchNui('dolu_tool:openBrowser', { url: data.outdated })}
+              onClick={() => fetchNui('dolu_tool:openBrowser', { url: data.url })}
             >
               <AiFillGithub fontSize={24} />
             </ActionIcon>

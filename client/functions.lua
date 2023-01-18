@@ -23,12 +23,9 @@ FUNC.openUI = function()
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
+            version = Client.version or { currentVersion = 'Development 🛠️' },
             lastLocation = Client.lastLocation,
-            locations = Client.data.locations,
-            pedLists = Client.data.peds,
-            vehicleLists = Client.data.vehicles,
-            position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z,
-            weaponLists = Client.data.weapons
+            position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z
         }
     })
     if Client.currentTab == 'home' then
@@ -393,8 +390,6 @@ FUNC.rotationToDirection = function(rotation)
 end
 
 FUNC.initTarget = function()
-    if not Config.target then return end
-
     exports.ox_target:addGlobalObject({
         {
             name = 'ox:option1',
