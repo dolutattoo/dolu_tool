@@ -1,0 +1,6881 @@
+[
+    {
+        "hash": -1216765807,
+        "name": "adder",
+        "class": "SUPER",
+        "displayName": "Adder",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Truffade"
+    },
+    {
+        "hash": 1283517198,
+        "name": "Airbus",
+        "displayName": "Airport Bus",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "SERVICE"
+    },
+    {
+        "hash": 1560980623,
+        "name": "Airtug",
+        "displayName": "Airtug",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 1181327175,
+        "name": "akula",
+        "displayName": "Akula",
+        "type": "HELI",
+        "dlc": "mpchristmas2017",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1672195559,
+        "name": "akuma",
+        "class": "MOTORCYCLE",
+        "displayName": "Akuma",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -365873403,
+        "name": "alkonost",
+        "displayName": "RO-86 Alkonost",
+        "type": "PLANE",
+        "dlc": "mpheist4",
+        "class": "PLANE"
+    },
+    {
+        "hash": 767087018,
+        "name": "alpha",
+        "class": "SPORT",
+        "displayName": "Alpha",
+        "type": "CAR",
+        "dlc": "mpbusiness",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -1523619738,
+        "name": "alphaz1",
+        "class": "PLANE",
+        "displayName": "Alpha-Z1",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 1171614426,
+        "name": "AMBULANCE",
+        "displayName": "Ambulance",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 837858166,
+        "name": "annihilator",
+        "displayName": "Annihilator",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 295054921,
+        "name": "annihilator2",
+        "displayName": "Annihilator Stealth",
+        "type": "HELI",
+        "dlc": "mpheist4",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 562680400,
+        "name": "apc",
+        "class": "MILITARY",
+        "displayName": "APC",
+        "type": "AMPHIBIOUS_AUTOMOBILE",
+        "dlc": "mpgunrunning",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 1549009676,
+        "name": "arbitergt",
+        "class": "MUSCLE",
+        "displayName": "Arbiter GT",
+        "type": "CAR",
+        "dlc": "mpg9ec",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 159274291,
+        "name": "ardent",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Ardent",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": -1207431159,
+        "name": "armytanker",
+        "displayName": "Army Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -1476447243,
+        "name": "armytrailer",
+        "displayName": "Army Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -1637149482,
+        "name": "armytrailer2",
+        "displayName": "Army Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 1118611807,
+        "name": "asbo",
+        "class": "COMPACT",
+        "displayName": "Asbo",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Maxwell"
+    },
+    {
+        "hash": -1809822327,
+        "name": "asea",
+        "class": "SEDAN",
+        "displayName": "Asea",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1807623979,
+        "name": "asea2",
+        "class": "SEDAN",
+        "displayName": "Asea",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1903012613,
+        "name": "asterope",
+        "class": "SEDAN",
+        "displayName": "Asterope",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 629969764,
+        "name": "astron",
+        "class": "SUV",
+        "displayName": "Astron",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": -1491268273,
+        "name": "astron2",
+        "class": "SUV",
+        "displayName": "Astron Custom",
+        "type": "CAR",
+        "dlc": "mpg9ec",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": -313185164,
+        "name": "autarch",
+        "class": "SUPER",
+        "displayName": "Autarch",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Overflod"
+    },
+    {
+        "hash": -2115793025,
+        "name": "avarus",
+        "class": "MOTORCYCLE",
+        "displayName": "Avarus",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "LCC"
+    },
+    {
+        "hash": -2118308144,
+        "name": "avenger",
+        "class": "PLANE",
+        "displayName": "Avenger",
+        "type": "PLANE",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": 408970549,
+        "name": "avenger2",
+        "class": "PLANE",
+        "displayName": "Avenger",
+        "type": "PLANE",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": -1706603682,
+        "name": "avisa",
+        "class": "BOAT",
+        "displayName": "Avisa",
+        "type": "SUBMARINE",
+        "dlc": "mpheist4",
+        "manufacturer": "Kraken"
+    },
+    {
+        "hash": -2140431165,
+        "name": "bagger",
+        "class": "MOTORCYCLE",
+        "displayName": "Bagger",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -399841706,
+        "name": "baletrailer",
+        "displayName": "Baletrailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -808831384,
+        "name": "Baller",
+        "class": "SUV",
+        "displayName": "Baller",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Gallivanter"
+    },
+    {
+        "hash": 142944341,
+        "name": "baller2",
+        "class": "SUV",
+        "displayName": "Baller",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Gallivanter"
+    },
+    {
+        "hash": 1878062887,
+        "name": "baller3",
+        "class": "SUV",
+        "displayName": "Baller LE",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Gallivanter"
+    },
+    {
+        "hash": 634118882,
+        "name": "baller4",
+        "class": "SUV",
+        "displayName": "Baller LE LWB",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Gallivanter"
+    },
+    {
+        "hash": 470404958,
+        "name": "baller5",
+        "class": "SUV",
+        "displayName": "Baller LE (Armored)",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Gallivanter"
+    },
+    {
+        "hash": 666166960,
+        "name": "baller6",
+        "class": "SUV",
+        "displayName": "Baller LE LWB (Armored)",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Gallivanter"
+    },
+    {
+        "hash": 359875117,
+        "name": "baller7",
+        "class": "SUV",
+        "displayName": "Baller ST",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Gallivanter"
+    },
+    {
+        "hash": -1041692462,
+        "name": "banshee",
+        "class": "SPORT",
+        "displayName": "Banshee",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 633712403,
+        "name": "banshee2",
+        "class": "SUPER",
+        "displayName": "Banshee 900R",
+        "type": "CAR",
+        "dlc": "mpjanuary2016",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -823509173,
+        "name": "BARRACKS",
+        "displayName": "Barracks",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "MILITARY"
+    },
+    {
+        "hash": 1074326203,
+        "name": "BARRACKS2",
+        "class": "MILITARY",
+        "displayName": "Barracks Semi",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 630371791,
+        "name": "BARRACKS3",
+        "displayName": "Barracks",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "class": "MILITARY"
+    },
+    {
+        "hash": -212993243,
+        "name": "barrage",
+        "displayName": "Barrage",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "class": "MILITARY"
+    },
+    {
+        "hash": -114291515,
+        "name": "bati",
+        "class": "MOTORCYCLE",
+        "displayName": "Bati 801",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -891462355,
+        "name": "bati2",
+        "class": "MOTORCYCLE",
+        "displayName": "Bati 801RR",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 2053223216,
+        "name": "Benson",
+        "class": "COMMERCIAL",
+        "displayName": "Benson",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1824333165,
+        "name": "besra",
+        "class": "PLANE",
+        "displayName": "Besra",
+        "type": "PLANE",
+        "dlc": "mppilot",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": 1274868363,
+        "name": "bestiagts",
+        "class": "SPORT",
+        "displayName": "Bestia GTS",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 86520421,
+        "name": "bf400",
+        "class": "MOTORCYCLE",
+        "displayName": "BF400",
+        "type": "BIKE",
+        "dlc": "mpstunt",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 1126868326,
+        "name": "BfInjection",
+        "class": "OFF_ROAD",
+        "displayName": "Injection",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": 850991848,
+        "name": "Biff",
+        "class": "COMMERCIAL",
+        "displayName": "Biff",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -349601129,
+        "name": "bifta",
+        "class": "OFF_ROAD",
+        "displayName": "Bifta",
+        "type": "CAR",
+        "dlc": "mpbeach",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": -16948145,
+        "name": "bison",
+        "class": "VAN",
+        "displayName": "Bison",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 2072156101,
+        "name": "Bison2",
+        "class": "VAN",
+        "displayName": "Bison",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1739845664,
+        "name": "Bison3",
+        "class": "VAN",
+        "displayName": "Bison",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 850565707,
+        "name": "BjXL",
+        "class": "SUV",
+        "displayName": "BeeJay XL",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -1205801634,
+        "name": "blade",
+        "class": "MUSCLE",
+        "displayName": "Blade",
+        "type": "CAR",
+        "dlc": "mphipster",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -2128233223,
+        "name": "blazer",
+        "class": "OFF_ROAD",
+        "displayName": "Blazer",
+        "type": "QUADBIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -48031959,
+        "name": "blazer2",
+        "class": "OFF_ROAD",
+        "displayName": "Blazer Lifeguard",
+        "type": "QUADBIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -1269889662,
+        "name": "blazer3",
+        "class": "OFF_ROAD",
+        "displayName": "Hot Rod Blazer",
+        "type": "QUADBIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -440768424,
+        "name": "blazer4",
+        "class": "OFF_ROAD",
+        "displayName": "Street Blazer",
+        "type": "QUADBIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -1590337689,
+        "name": "blazer5",
+        "class": "OFF_ROAD",
+        "displayName": "Blazer Aqua",
+        "type": "AMPHIBIOUS_QUADBIKE",
+        "dlc": "mpimportexport",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -150975354,
+        "name": "BLIMP",
+        "displayName": "Atomic Blimp",
+        "type": "BLIMP",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": -613725916,
+        "name": "BLIMP2",
+        "displayName": "Xero Blimp",
+        "type": "BLIMP",
+        "dlc": "spupgrade",
+        "class": "PLANE"
+    },
+    {
+        "hash": -307958377,
+        "name": "blimp3",
+        "displayName": "Blimp",
+        "type": "BLIMP",
+        "dlc": "mpbattle",
+        "class": "PLANE"
+    },
+    {
+        "hash": -344943009,
+        "name": "blista",
+        "class": "COMPACT",
+        "displayName": "Blista",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 1039032026,
+        "name": "blista2",
+        "class": "SPORT",
+        "displayName": "Blista Compact",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -591651781,
+        "name": "blista3",
+        "class": "SPORT",
+        "displayName": "Go Go Monkey Blista",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 1131912276,
+        "name": "BMX",
+        "displayName": "BMX",
+        "type": "BICYCLE",
+        "dlc": "TitleUpdate",
+        "class": "CYCLE"
+    },
+    {
+        "hash": 524108981,
+        "name": "boattrailer",
+        "displayName": "Boat Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 1069929536,
+        "name": "bobcatXL",
+        "class": "VAN",
+        "displayName": "Bobcat XL",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1435919434,
+        "name": "Bodhi2",
+        "class": "OFF_ROAD",
+        "displayName": "Bodhi",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": -32878452,
+        "name": "bombushka",
+        "displayName": "RM-10 Bombushka",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "class": "PLANE"
+    },
+    {
+        "hash": -1987130134,
+        "name": "boxville",
+        "class": "VAN",
+        "displayName": "Boxville",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": -233098306,
+        "name": "boxville2",
+        "displayName": "Boxville",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "VAN"
+    },
+    {
+        "hash": 121658888,
+        "name": "boxville3",
+        "class": "VAN",
+        "displayName": "Boxville",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": 444171386,
+        "name": "boxville4",
+        "class": "VAN",
+        "displayName": "Boxville",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": 682434785,
+        "name": "boxville5",
+        "displayName": "Armored Boxville",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "class": "VAN"
+    },
+    {
+        "hash": -1479664699,
+        "name": "brawler",
+        "class": "OFF_ROAD",
+        "displayName": "Brawler",
+        "type": "CAR",
+        "dlc": "mpluxe2",
+        "manufacturer": "Coil"
+    },
+    {
+        "hash": -305727417,
+        "name": "brickade",
+        "class": "SERVICE",
+        "displayName": "Brickade",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": 1549126457,
+        "name": "brioso",
+        "class": "COMPACT",
+        "displayName": "Brioso R/A",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 1429622905,
+        "name": "brioso2",
+        "class": "COMPACT",
+        "displayName": "Brioso 300",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 15214558,
+        "name": "brioso3",
+        "class": "COMPACT",
+        "displayName": "Brioso 300 Widebody",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 668439077,
+        "name": "bruiser",
+        "class": "OFF_ROAD",
+        "displayName": "Apocalypse Bruiser",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -1694081890,
+        "name": "bruiser2",
+        "class": "OFF_ROAD",
+        "displayName": "Future Shock Bruiser",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -2042350822,
+        "name": "bruiser3",
+        "class": "OFF_ROAD",
+        "displayName": "Nightmare Bruiser",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 2139203625,
+        "name": "brutus",
+        "class": "OFF_ROAD",
+        "displayName": "Apocalypse Brutus",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1890996696,
+        "name": "brutus2",
+        "class": "OFF_ROAD",
+        "displayName": "Future Shock Brutus",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 2038858402,
+        "name": "brutus3",
+        "class": "OFF_ROAD",
+        "displayName": "Nightmare Brutus",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 117401876,
+        "name": "btype",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Roosevelt",
+        "type": "CAR",
+        "dlc": "mpvalentines",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -831834716,
+        "name": "btype2",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Fränken Stange",
+        "type": "CAR",
+        "dlc": "mphalloween",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -602287871,
+        "name": "btype3",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Roosevelt Valor",
+        "type": "CAR",
+        "dlc": "mpvalentines2",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -682211828,
+        "name": "buccaneer",
+        "class": "MUSCLE",
+        "displayName": "Buccaneer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -1013450936,
+        "name": "buccaneer2",
+        "class": "MUSCLE",
+        "displayName": "Buccaneer Custom",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -304802106,
+        "name": "buffalo",
+        "class": "SPORT",
+        "displayName": "Buffalo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 736902334,
+        "name": "buffalo2",
+        "class": "SPORT",
+        "displayName": "Buffalo S",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 237764926,
+        "name": "buffalo3",
+        "class": "SPORT",
+        "displayName": "Sprunk Buffalo",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -619930876,
+        "name": "buffalo4",
+        "class": "MUSCLE",
+        "displayName": "Buffalo STX",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1886712733,
+        "name": "bulldozer",
+        "class": "INDUSTRIAL",
+        "displayName": "Dozer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -1696146015,
+        "name": "bullet",
+        "class": "SUPER",
+        "displayName": "Bullet",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1346687836,
+        "name": "Burrito",
+        "class": "VAN",
+        "displayName": "Burrito",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -907477130,
+        "name": "burrito2",
+        "class": "VAN",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1743316013,
+        "name": "burrito3",
+        "class": "VAN",
+        "displayName": "Burrito",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 893081117,
+        "name": "Burrito4",
+        "class": "VAN",
+        "displayName": "Burrito",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1132262048,
+        "name": "burrito5",
+        "class": "VAN",
+        "displayName": "Burrito",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -713569950,
+        "name": "BUS",
+        "displayName": "Bus",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "SERVICE"
+    },
+    {
+        "hash": 788747387,
+        "name": "buzzard",
+        "displayName": "Buzzard Attack Chopper",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 745926877,
+        "name": "Buzzard2",
+        "displayName": "Buzzard",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": -960289747,
+        "name": "cablecar",
+        "displayName": "Cable Car",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": 1147287684,
+        "name": "caddy",
+        "displayName": "Caddy",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -537896628,
+        "name": "Caddy2",
+        "displayName": "Caddy",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -769147461,
+        "name": "caddy3",
+        "displayName": "Caddy",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -1193912403,
+        "name": "calico",
+        "class": "SPORT",
+        "displayName": "Calico GTF",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 1876516712,
+        "name": "CAMPER",
+        "class": "VAN",
+        "displayName": "Camper",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": 1254014755,
+        "name": "caracara",
+        "class": "OFF_ROAD",
+        "displayName": "Caracara",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1349095620,
+        "name": "caracara2",
+        "class": "OFF_ROAD",
+        "displayName": "Caracara 4x4",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 2072687711,
+        "name": "carbonizzare",
+        "class": "SPORT",
+        "displayName": "Carbonizzare",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 11251904,
+        "name": "carbonrs",
+        "class": "MOTORCYCLE",
+        "displayName": "Carbon RS",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -50547061,
+        "name": "Cargobob",
+        "displayName": "Cargobob",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1621617168,
+        "name": "cargobob2",
+        "displayName": "Cargobob",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1394036463,
+        "name": "Cargobob3",
+        "displayName": "Cargobob",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 2025593404,
+        "name": "Cargobob4",
+        "displayName": "Cargobob",
+        "type": "HELI",
+        "dlc": "mpapartment",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 368211810,
+        "name": "cargoplane",
+        "displayName": "Cargo Plane",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": 941800958,
+        "name": "casco",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Casco",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 2006918058,
+        "name": "cavalcade",
+        "class": "SUV",
+        "displayName": "Cavalcade",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -789894171,
+        "name": "cavalcade2",
+        "class": "SUV",
+        "displayName": "Cavalcade",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -801550069,
+        "name": "cerberus",
+        "class": "COMMERCIAL",
+        "displayName": "Apocalypse Cerberus",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": 679453769,
+        "name": "cerberus2",
+        "class": "COMMERCIAL",
+        "displayName": "Future Shock Cerberus",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": 1909700336,
+        "name": "cerberus3",
+        "class": "COMMERCIAL",
+        "displayName": "Nightmare Cerberus",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": -915234475,
+        "name": "champion",
+        "class": "SUPER",
+        "displayName": "Champion",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": -988501280,
+        "name": "cheburek",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Cheburek",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "RUNE"
+    },
+    {
+        "hash": -1311154784,
+        "name": "cheetah",
+        "class": "SUPER",
+        "displayName": "Cheetah",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 223240013,
+        "name": "cheetah2",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Cheetah Classic",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": -692292317,
+        "name": "chernobog",
+        "displayName": "Chernobog",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "class": "MILITARY"
+    },
+    {
+        "hash": 6774487,
+        "name": "chimera",
+        "class": "MOTORCYCLE",
+        "displayName": "Chimera",
+        "type": "QUADBIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 349605904,
+        "name": "chino",
+        "class": "MUSCLE",
+        "displayName": "Chino",
+        "type": "CAR",
+        "dlc": "mpluxe2",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1361687965,
+        "name": "chino2",
+        "class": "MUSCLE",
+        "displayName": "Chino Custom",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1527436269,
+        "name": "cinquemila",
+        "class": "SEDAN",
+        "displayName": "Cinquemila",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 390201602,
+        "name": "cliffhanger",
+        "class": "MOTORCYCLE",
+        "displayName": "Cliffhanger",
+        "type": "BIKE",
+        "dlc": "mpstunt",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -1566607184,
+        "name": "clique",
+        "class": "MUSCLE",
+        "displayName": "Clique",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -2098954619,
+        "name": "club",
+        "class": "COMPACT",
+        "displayName": "Club",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": -2072933068,
+        "name": "coach",
+        "displayName": "Dashound",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "SERVICE"
+    },
+    {
+        "hash": 906642318,
+        "name": "cog55",
+        "class": "SEDAN",
+        "displayName": "Cognoscenti 55",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 704435172,
+        "name": "cog552",
+        "class": "SEDAN",
+        "displayName": "Cognoscenti 55 (Armored)",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 330661258,
+        "name": "cogcabrio",
+        "class": "COUPE",
+        "displayName": "Cognoscenti Cabrio",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": -2030171296,
+        "name": "cognoscenti",
+        "class": "SEDAN",
+        "displayName": "Cognoscenti",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": -604842630,
+        "name": "cognoscenti2",
+        "class": "SEDAN",
+        "displayName": "Cognoscenti (Armored)",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": -1045541610,
+        "name": "comet2",
+        "class": "SPORT",
+        "displayName": "Comet",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": -2022483795,
+        "name": "comet3",
+        "class": "SPORT",
+        "displayName": "Comet Retro Custom",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": 1561920505,
+        "name": "comet4",
+        "class": "SPORT",
+        "displayName": "Comet Safari",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": 661493923,
+        "name": "comet5",
+        "class": "SPORT",
+        "displayName": "Comet SR",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": -1726022652,
+        "name": "comet6",
+        "class": "SPORT",
+        "displayName": "Comet S2",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": 1141395928,
+        "name": "comet7",
+        "class": "SPORT",
+        "displayName": "Comet S2 Cabrio",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": -477831899,
+        "name": "conada",
+        "class": "HELICOPTER",
+        "displayName": "Conada",
+        "type": "HELI",
+        "dlc": "mpsum2",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 683047626,
+        "name": "contender",
+        "class": "SUV",
+        "displayName": "Contender",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 108773431,
+        "name": "coquette",
+        "class": "SPORT",
+        "displayName": "Coquette",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Invetero"
+    },
+    {
+        "hash": 1011753235,
+        "name": "coquette2",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Coquette Classic",
+        "type": "CAR",
+        "dlc": "mppilot",
+        "manufacturer": "Invetero"
+    },
+    {
+        "hash": 784565758,
+        "name": "coquette3",
+        "class": "MUSCLE",
+        "displayName": "Coquette BlackFin",
+        "type": "CAR",
+        "dlc": "mpluxe2",
+        "manufacturer": "Invetero"
+    },
+    {
+        "hash": -1728685474,
+        "name": "coquette4",
+        "class": "SPORT",
+        "displayName": "Coquette D10",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Invetero"
+    },
+    {
+        "hash": -754687673,
+        "name": "corsita",
+        "class": "SPORT",
+        "displayName": "Corsita",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 448402357,
+        "name": "cruiser",
+        "displayName": "Cruiser",
+        "type": "BICYCLE",
+        "dlc": "TitleUpdate",
+        "class": "CYCLE"
+    },
+    {
+        "hash": 321739290,
+        "name": "CRUSADER",
+        "class": "MILITARY",
+        "displayName": "Crusader",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": -644710429,
+        "name": "cuban800",
+        "displayName": "Cuban 800",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": -1006919392,
+        "name": "cutter",
+        "class": "INDUSTRIAL",
+        "displayName": "Cutter",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 1392481335,
+        "name": "cyclone",
+        "class": "SUPER",
+        "displayName": "Cyclone",
+        "type": "CAR",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Coil"
+    },
+    {
+        "hash": 386089410,
+        "name": "cyclone2",
+        "class": "SUPER",
+        "displayName": "Cyclone II",
+        "type": "CAR",
+        "dlc": "mpg9ec",
+        "manufacturer": "Coil"
+    },
+    {
+        "hash": 1755697647,
+        "name": "cypher",
+        "class": "SPORT",
+        "displayName": "Cypher",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 2006142190,
+        "name": "daemon",
+        "class": "MOTORCYCLE",
+        "displayName": "Daemon",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -1404136503,
+        "name": "daemon2",
+        "class": "MOTORCYCLE",
+        "displayName": "Daemon",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -27326686,
+        "name": "deathbike",
+        "class": "MOTORCYCLE",
+        "displayName": "Apocalypse Deathbike",
+        "type": "BIKE",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -1812949672,
+        "name": "deathbike2",
+        "class": "MOTORCYCLE",
+        "displayName": "Future Shock Deathbike",
+        "type": "BIKE",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -1374500452,
+        "name": "deathbike3",
+        "class": "MOTORCYCLE",
+        "displayName": "Nightmare Deathbike",
+        "type": "BIKE",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": 822018448,
+        "name": "defiler",
+        "class": "MOTORCYCLE",
+        "displayName": "Defiler",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": 1532171089,
+        "name": "deity",
+        "class": "SEDAN",
+        "displayName": "Deity",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 1483171323,
+        "name": "deluxo",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Deluxo",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 1591739866,
+        "name": "deveste",
+        "class": "SUPER",
+        "displayName": "Deveste Eight",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Principe"
+    },
+    {
+        "hash": 1279262537,
+        "name": "deviant",
+        "class": "MUSCLE",
+        "displayName": "Deviant",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Schyster"
+    },
+    {
+        "hash": -239841468,
+        "name": "diablous",
+        "class": "MOTORCYCLE",
+        "displayName": "Diabolus",
+        "type": "BIKE",
+        "dlc": "mpimportexport",
+        "manufacturer": "Principe"
+    },
+    {
+        "hash": 1790834270,
+        "name": "diablous2",
+        "class": "MOTORCYCLE",
+        "displayName": "Diabolus Custom",
+        "type": "BIKE",
+        "dlc": "mpimportexport",
+        "manufacturer": "Principe"
+    },
+    {
+        "hash": -1130810103,
+        "name": "dilettante",
+        "class": "COMPACT",
+        "displayName": "Dilettante",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 1682114128,
+        "name": "dilettante2",
+        "class": "COMPACT",
+        "displayName": "Dilettante",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 1033245328,
+        "name": "Dinghy",
+        "class": "BOAT",
+        "displayName": "Dinghy",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 276773164,
+        "name": "dinghy2",
+        "class": "BOAT",
+        "displayName": "Dinghy",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 509498602,
+        "name": "dinghy3",
+        "class": "BOAT",
+        "displayName": "Dinghy",
+        "type": "BOAT",
+        "dlc": "mpheist",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 867467158,
+        "name": "dinghy4",
+        "class": "BOAT",
+        "displayName": "Dinghy",
+        "type": "BOAT",
+        "dlc": "mpapartment",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -980573366,
+        "name": "dinghy5",
+        "class": "BOAT",
+        "displayName": "Weaponized Dinghy",
+        "type": "BOAT",
+        "dlc": "mpheist4",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 1770332643,
+        "name": "dloader",
+        "class": "OFF_ROAD",
+        "displayName": "Duneloader",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -2140210194,
+        "name": "docktrailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -884690486,
+        "name": "docktug",
+        "displayName": "Docktug",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -901163259,
+        "name": "dodo",
+        "class": "PLANE",
+        "displayName": "Dodo",
+        "type": "PLANE",
+        "dlc": "spupgrade",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": 80636076,
+        "name": "Dominator",
+        "class": "MUSCLE",
+        "displayName": "Dominator",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -915704871,
+        "name": "dominator2",
+        "class": "MUSCLE",
+        "displayName": "Pisswasser Dominator",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -986944621,
+        "name": "dominator3",
+        "class": "MUSCLE",
+        "displayName": "Dominator GTX",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -688189648,
+        "name": "dominator4",
+        "class": "MUSCLE",
+        "displayName": "Apocalypse Dominator",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1375060657,
+        "name": "dominator5",
+        "class": "MUSCLE",
+        "displayName": "Future Shock Dominator",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1293924613,
+        "name": "dominator6",
+        "class": "MUSCLE",
+        "displayName": "Nightmare Dominator",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 426742808,
+        "name": "dominator7",
+        "class": "MUSCLE",
+        "displayName": "Dominator ASP",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 736672010,
+        "name": "dominator8",
+        "class": "MUSCLE",
+        "displayName": "Dominator GTT",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1670998136,
+        "name": "double",
+        "class": "MOTORCYCLE",
+        "displayName": "Double-T",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 686471183,
+        "name": "drafter",
+        "class": "SPORT",
+        "displayName": "8F Drafter",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -768236378,
+        "name": "draugur",
+        "class": "OFF_ROAD",
+        "displayName": "Draugur",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1177543287,
+        "name": "dubsta",
+        "class": "SUV",
+        "displayName": "Dubsta",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -394074634,
+        "name": "dubsta2",
+        "class": "SUV",
+        "displayName": "Dubsta",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -1237253773,
+        "name": "dubsta3",
+        "class": "OFF_ROAD",
+        "displayName": "Dubsta 6x6",
+        "type": "CAR",
+        "dlc": "mphipster",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 723973206,
+        "name": "dukes",
+        "class": "MUSCLE",
+        "displayName": "Dukes",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": -326143852,
+        "name": "dukes2",
+        "class": "MUSCLE",
+        "displayName": "Duke O'Death",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 2134119907,
+        "name": "dukes3",
+        "class": "MUSCLE",
+        "displayName": "Beater Dukes",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": -2130482718,
+        "name": "dump",
+        "class": "INDUSTRIAL",
+        "displayName": "Dump",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -1661854193,
+        "name": "dune",
+        "class": "OFF_ROAD",
+        "displayName": "Dune Buggy",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": 534258863,
+        "name": "dune2",
+        "displayName": "Space Docker",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "OFF_ROAD"
+    },
+    {
+        "hash": 1897744184,
+        "name": "dune3",
+        "class": "OFF_ROAD",
+        "displayName": "Dune FAV",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": -827162039,
+        "name": "dune4",
+        "displayName": "Ramp Buggy",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "class": "OFF_ROAD"
+    },
+    {
+        "hash": -312295511,
+        "name": "dune5",
+        "displayName": "Ramp Buggy",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "class": "OFF_ROAD"
+    },
+    {
+        "hash": 970356638,
+        "name": "duster",
+        "displayName": "Duster",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": 310284501,
+        "name": "Dynasty",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Dynasty",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Weeny"
+    },
+    {
+        "hash": 196747873,
+        "name": "elegy",
+        "class": "SPORT",
+        "displayName": "Elegy Retro Custom",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": -566387422,
+        "name": "elegy2",
+        "class": "SPORT",
+        "displayName": "Elegy RH8",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": -1267543371,
+        "name": "ellie",
+        "class": "MUSCLE",
+        "displayName": "Ellie",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1323778901,
+        "name": "emerus",
+        "class": "SUPER",
+        "displayName": "Emerus",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Progen"
+    },
+    {
+        "hash": -685276541,
+        "name": "emperor",
+        "class": "SEDAN",
+        "displayName": "Emperor",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -1883002148,
+        "name": "Emperor2",
+        "class": "SEDAN",
+        "displayName": "Emperor",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -1241712818,
+        "name": "emperor3",
+        "class": "SEDAN",
+        "displayName": "Emperor",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": 1753414259,
+        "name": "enduro",
+        "class": "MOTORCYCLE",
+        "displayName": "Enduro",
+        "type": "BIKE",
+        "dlc": "mpheist",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -2120700196,
+        "name": "entity2",
+        "class": "SUPER",
+        "displayName": "Entity XXR",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Overflod"
+    },
+    {
+        "hash": -1291952903,
+        "name": "entityxf",
+        "class": "SUPER",
+        "displayName": "Entity XF",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Overflod"
+    },
+    {
+        "hash": 2035069708,
+        "name": "esskey",
+        "class": "MOTORCYCLE",
+        "displayName": "Esskey",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 2038480341,
+        "name": "Euros",
+        "class": "SPORT",
+        "displayName": "Euros",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": -1756021720,
+        "name": "everon",
+        "class": "OFF_ROAD",
+        "displayName": "Everon",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -5153954,
+        "name": "exemplar",
+        "class": "COUPE",
+        "displayName": "Exemplar",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": -591610296,
+        "name": "f620",
+        "class": "COUPE",
+        "displayName": "F620",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": -2119578145,
+        "name": "faction",
+        "class": "MUSCLE",
+        "displayName": "Faction",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Willard"
+    },
+    {
+        "hash": -1790546981,
+        "name": "faction2",
+        "class": "MUSCLE",
+        "displayName": "Faction Custom",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Willard"
+    },
+    {
+        "hash": -2039755226,
+        "name": "faction3",
+        "class": "MUSCLE",
+        "displayName": "Faction Custom Donk",
+        "type": "CAR",
+        "dlc": "mplowrider2",
+        "manufacturer": "Willard"
+    },
+    {
+        "hash": 1617472902,
+        "name": "fagaloa",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Fagaloa",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Vulcar"
+    },
+    {
+        "hash": -1842748181,
+        "name": "faggio",
+        "class": "MOTORCYCLE",
+        "displayName": "Faggio Sport",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 55628203,
+        "name": "faggio2",
+        "class": "MOTORCYCLE",
+        "displayName": "Faggio",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -1289178744,
+        "name": "faggio3",
+        "class": "MOTORCYCLE",
+        "displayName": "Faggio Mod",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 1127131465,
+        "name": "FBI",
+        "displayName": "FIB",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -1647941228,
+        "name": "FBI2",
+        "displayName": "FIB",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 627535535,
+        "name": "fcr",
+        "class": "MOTORCYCLE",
+        "displayName": "FCR 1000",
+        "type": "BIKE",
+        "dlc": "mpimportexport",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -757735410,
+        "name": "fcr2",
+        "class": "MOTORCYCLE",
+        "displayName": "FCR 1000 Custom",
+        "type": "BIKE",
+        "dlc": "mpimportexport",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -391594584,
+        "name": "felon",
+        "class": "COUPE",
+        "displayName": "Felon",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": -89291282,
+        "name": "felon2",
+        "class": "COUPE",
+        "displayName": "Felon GT",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": -1995326987,
+        "name": "feltzer2",
+        "class": "SPORT",
+        "displayName": "Feltzer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -1566741232,
+        "name": "feltzer3",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Stirling GT",
+        "type": "CAR",
+        "dlc": "mpluxe",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1938952078,
+        "name": "firetruk",
+        "class": "EMERGENCY",
+        "displayName": "Fire Truck",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": -836512833,
+        "name": "fixter",
+        "displayName": "Fixter",
+        "type": "BICYCLE",
+        "dlc": "TitleUpdate",
+        "class": "CYCLE"
+    },
+    {
+        "hash": -1259134696,
+        "name": "flashgt",
+        "class": "SPORT",
+        "displayName": "Flash GT",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1353720154,
+        "name": "FLATBED",
+        "class": "INDUSTRIAL",
+        "displayName": "Flatbed",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": 1426219628,
+        "name": "fmj",
+        "class": "SUPER",
+        "displayName": "FMJ",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1491375716,
+        "name": "FORKLIFT",
+        "class": "UTILITY",
+        "displayName": "Forklift",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 340154634,
+        "name": "formula",
+        "class": "OPEN_WHEEL",
+        "displayName": "PR4",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Progen"
+    },
+    {
+        "hash": -1960756985,
+        "name": "formula2",
+        "class": "OPEN_WHEEL",
+        "displayName": "R88",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": -1137532101,
+        "name": "fq2",
+        "class": "SUV",
+        "displayName": "FQ 2",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Fathom"
+    },
+    {
+        "hash": -54332285,
+        "name": "freecrawler",
+        "class": "OFF_ROAD",
+        "displayName": "Freecrawler",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": 1030400667,
+        "name": "freight",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": 184361638,
+        "name": "freightcar",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": -1108591207,
+        "name": "freightcar2",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "mptuner",
+        "class": "RAIL"
+    },
+    {
+        "hash": 920453016,
+        "name": "freightcont1",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": 240201337,
+        "name": "freightcont2",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": 642617954,
+        "name": "freightgrain",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": -777275802,
+        "name": "freighttrailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 744705981,
+        "name": "Frogger",
+        "displayName": "Frogger",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1949211328,
+        "name": "frogger2",
+        "displayName": "Frogger",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1909141499,
+        "name": "fugitive",
+        "class": "SEDAN",
+        "displayName": "Fugitive",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Cheval"
+    },
+    {
+        "hash": 960812448,
+        "name": "furia",
+        "class": "SUPER",
+        "displayName": "Furia",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": -1089039904,
+        "name": "furoregt",
+        "class": "SPORT",
+        "displayName": "Furore GT",
+        "type": "CAR",
+        "dlc": "mplts",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 499169875,
+        "name": "fusilade",
+        "class": "SPORT",
+        "displayName": "Fusilade",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Schyster"
+    },
+    {
+        "hash": 2016857647,
+        "name": "futo",
+        "class": "SPORT",
+        "displayName": "Futo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -1507230520,
+        "name": "futo2",
+        "class": "SPORT",
+        "displayName": "Futo GTX",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 741090084,
+        "name": "gargoyle",
+        "class": "MOTORCYCLE",
+        "displayName": "Gargoyle",
+        "type": "BIKE",
+        "dlc": "mpstunt",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -1800170043,
+        "name": "Gauntlet",
+        "class": "MUSCLE",
+        "displayName": "Gauntlet",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 349315417,
+        "name": "gauntlet2",
+        "class": "MUSCLE",
+        "displayName": "Redwood Gauntlet",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 722226637,
+        "name": "gauntlet3",
+        "class": "MUSCLE",
+        "displayName": "Gauntlet Classic",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1934384720,
+        "name": "gauntlet4",
+        "class": "MUSCLE",
+        "displayName": "Gauntlet Hellfire",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -2122646867,
+        "name": "gauntlet5",
+        "class": "MUSCLE",
+        "displayName": "Gauntlet Classic Custom",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1909189272,
+        "name": "gb200",
+        "class": "SPORT",
+        "displayName": "GB200",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1745203402,
+        "name": "gburrito",
+        "class": "VAN",
+        "displayName": "Gang Burrito",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 296357396,
+        "name": "gburrito2",
+        "class": "VAN",
+        "displayName": "Gang Burrito",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 75131841,
+        "name": "glendale",
+        "class": "SEDAN",
+        "displayName": "Glendale",
+        "type": "CAR",
+        "dlc": "mphipster",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -913589546,
+        "name": "glendale2",
+        "class": "SEDAN",
+        "displayName": "Glendale Custom",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1234311532,
+        "name": "gp1",
+        "class": "SUPER",
+        "displayName": "GP1",
+        "type": "CAR",
+        "dlc": "mpspecialraces",
+        "manufacturer": "Progen"
+    },
+    {
+        "hash": 1019737494,
+        "name": "graintrailer",
+        "displayName": "Graintrailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -1775728740,
+        "name": "GRANGER",
+        "class": "SUV",
+        "displayName": "Granger",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -261346873,
+        "name": "granger2",
+        "class": "SUV",
+        "displayName": "Granger 3600LX",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 40817712,
+        "name": "greenwood",
+        "class": "MUSCLE",
+        "displayName": "Greenwood",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -1543762099,
+        "name": "gresley",
+        "class": "SUV",
+        "displayName": "Gresley",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1304459735,
+        "name": "growler",
+        "class": "SPORT",
+        "displayName": "Growler",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": -2079788230,
+        "name": "gt500",
+        "class": "SPORT_CLASSIC",
+        "displayName": "GT500",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": -2107990196,
+        "name": "guardian",
+        "class": "INDUSTRIAL",
+        "displayName": "Guardian",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 884422927,
+        "name": "habanero",
+        "class": "SUV",
+        "displayName": "Habanero",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Emperor"
+    },
+    {
+        "hash": 1265391242,
+        "name": "hakuchou",
+        "class": "MOTORCYCLE",
+        "displayName": "Hakuchou",
+        "type": "BIKE",
+        "dlc": "mplts",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": -255678177,
+        "name": "hakuchou2",
+        "class": "MOTORCYCLE",
+        "displayName": "Hakuchou Drag",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": -32236122,
+        "name": "halftrack",
+        "class": "MILITARY",
+        "displayName": "Half-track",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 444583674,
+        "name": "handler",
+        "displayName": "Dock Handler",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "INDUSTRIAL"
+    },
+    {
+        "hash": 1518533038,
+        "name": "Hauler",
+        "class": "COMMERCIAL",
+        "displayName": "Hauler",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "JoBuilt"
+    },
+    {
+        "hash": 387748548,
+        "name": "Hauler2",
+        "class": "COMMERCIAL",
+        "displayName": "Hauler Custom",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "JoBuilt"
+    },
+    {
+        "hash": -1984275979,
+        "name": "havok",
+        "class": "HELICOPTER",
+        "displayName": "Havok",
+        "type": "HELI",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -362150785,
+        "name": "hellion",
+        "class": "OFF_ROAD",
+        "displayName": "Hellion",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": 15219735,
+        "name": "hermes",
+        "class": "MUSCLE",
+        "displayName": "Hermes",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": 301427732,
+        "name": "hexer",
+        "class": "MOTORCYCLE",
+        "displayName": "Hexer",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "LCC"
+    },
+    {
+        "hash": 37348240,
+        "name": "hotknife",
+        "class": "MUSCLE",
+        "displayName": "Hotknife",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1115909093,
+        "name": "hotring",
+        "class": "SPORT",
+        "displayName": "Hotring Sabre",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1007528109,
+        "name": "howard",
+        "class": "PLANE",
+        "displayName": "Howard NX-25",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": -42959138,
+        "name": "hunter",
+        "displayName": "FH-1 Hunter",
+        "type": "HELI",
+        "dlc": "mpsmuggler",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 486987393,
+        "name": "huntley",
+        "class": "SUV",
+        "displayName": "Huntley S",
+        "type": "CAR",
+        "dlc": "mpbusiness2",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 600450546,
+        "name": "hustler",
+        "class": "MUSCLE",
+        "displayName": "Hustler",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 970385471,
+        "name": "hydra",
+        "class": "PLANE",
+        "displayName": "Hydra",
+        "type": "PLANE",
+        "dlc": "mpheist",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": -1444114309,
+        "name": "ignus",
+        "class": "SUPER",
+        "displayName": "Ignus",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 956849991,
+        "name": "ignus2",
+        "class": "SUPER",
+        "displayName": "Weaponized Ignus",
+        "type": "CAR",
+        "dlc": "mpg9ec",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -1132721664,
+        "name": "imorgon",
+        "class": "SPORT",
+        "displayName": "Imorgon",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Overflod"
+    },
+    {
+        "hash": -2096690334,
+        "name": "impaler",
+        "class": "MUSCLE",
+        "displayName": "Impaler",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1009171724,
+        "name": "impaler2",
+        "class": "MUSCLE",
+        "displayName": "Apocalypse Impaler",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1924800695,
+        "name": "impaler3",
+        "class": "MUSCLE",
+        "displayName": "Future Shock Impaler",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1744505657,
+        "name": "impaler4",
+        "class": "MUSCLE",
+        "displayName": "Nightmare Impaler",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 444994115,
+        "name": "imperator",
+        "class": "MUSCLE",
+        "displayName": "Apocalypse Imperator",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1637620610,
+        "name": "imperator2",
+        "class": "MUSCLE",
+        "displayName": "Future Shock Imperator",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -755532233,
+        "name": "imperator3",
+        "class": "MUSCLE",
+        "displayName": "Nightmare Imperator",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 418536135,
+        "name": "infernus",
+        "class": "SUPER",
+        "displayName": "Infernus",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -1405937764,
+        "name": "infernus2",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Infernus Classic",
+        "type": "CAR",
+        "dlc": "mpspecialraces",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -1289722222,
+        "name": "ingot",
+        "class": "SEDAN",
+        "displayName": "Ingot",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vulcar"
+    },
+    {
+        "hash": -159126838,
+        "name": "innovation",
+        "class": "MOTORCYCLE",
+        "displayName": "Innovation",
+        "type": "BIKE",
+        "dlc": "mplts",
+        "manufacturer": "LCC"
+    },
+    {
+        "hash": -1860900134,
+        "name": "insurgent",
+        "class": "OFF_ROAD",
+        "displayName": "Insurgent Pick-Up",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 2071877360,
+        "name": "insurgent2",
+        "class": "OFF_ROAD",
+        "displayName": "Insurgent",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -1924433270,
+        "name": "insurgent3",
+        "class": "OFF_ROAD",
+        "displayName": "Insurgent Pick-Up Custom",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 886934177,
+        "name": "intruder",
+        "class": "SEDAN",
+        "displayName": "Intruder",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -1177863319,
+        "name": "issi2",
+        "class": "COMPACT",
+        "displayName": "Issi",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Weeny"
+    },
+    {
+        "hash": 931280609,
+        "name": "issi3",
+        "class": "COMPACT",
+        "displayName": "Issi Classic",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Weeny"
+    },
+    {
+        "hash": 628003514,
+        "name": "issi4",
+        "class": "COMPACT",
+        "displayName": "Apocalypse Issi",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Weeny"
+    },
+    {
+        "hash": 1537277726,
+        "name": "issi5",
+        "class": "COMPACT",
+        "displayName": "Future Shock Issi",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Weeny"
+    },
+    {
+        "hash": 1239571361,
+        "name": "issi6",
+        "class": "COMPACT",
+        "displayName": "Nightmare Issi",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Weeny"
+    },
+    {
+        "hash": 1854776567,
+        "name": "issi7",
+        "class": "SPORT",
+        "displayName": "Issi Sport",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Weeny"
+    },
+    {
+        "hash": -2048333973,
+        "name": "italigtb",
+        "class": "SUPER",
+        "displayName": "Itali GTB",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Progen"
+    },
+    {
+        "hash": -482719877,
+        "name": "italigtb2",
+        "class": "SUPER",
+        "displayName": "Itali GTB Custom",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Progen"
+    },
+    {
+        "hash": -331467772,
+        "name": "italigto",
+        "class": "SPORT",
+        "displayName": "Itali GTO",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": -1149725334,
+        "name": "italirsx",
+        "class": "SPORT",
+        "displayName": "Itali RSX",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 662793086,
+        "name": "iwagen",
+        "class": "SUV",
+        "displayName": "I-Wagen",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -624529134,
+        "name": "jackal",
+        "class": "COUPE",
+        "displayName": "Jackal",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": 1051415893,
+        "name": "jb700",
+        "class": "SPORT_CLASSIC",
+        "displayName": "JB 700",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": 394110044,
+        "name": "jb7002",
+        "class": "SPORT_CLASSIC",
+        "displayName": "JB 700W",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": -1297672541,
+        "name": "jester",
+        "class": "SPORT",
+        "displayName": "Jester",
+        "type": "CAR",
+        "dlc": "mpbusiness",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -1106353882,
+        "name": "jester2",
+        "class": "SPORT",
+        "displayName": "Jester (Racecar)",
+        "type": "CAR",
+        "dlc": "mpchristmas2",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -214906006,
+        "name": "jester3",
+        "class": "SPORT",
+        "displayName": "Jester Classic",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -1582061455,
+        "name": "jester4",
+        "class": "SPORT",
+        "displayName": "Jester RR",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 1058115860,
+        "name": "jet",
+        "displayName": "Jet",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": 861409633,
+        "name": "jetmax",
+        "class": "BOAT",
+        "displayName": "Jetmax",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": -120287622,
+        "name": "journey",
+        "class": "VAN",
+        "displayName": "Journey",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Zirconium"
+    },
+    {
+        "hash": 461465043,
+        "name": "jubilee",
+        "class": "SUV",
+        "displayName": "Jubilee",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": -208911803,
+        "name": "jugular",
+        "class": "SPORT",
+        "displayName": "Jugular",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": 92612664,
+        "name": "kalahari",
+        "class": "OFF_ROAD",
+        "displayName": "Kalahari",
+        "type": "CAR",
+        "dlc": "mpbeach",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": -121446169,
+        "name": "kamacho",
+        "class": "OFF_ROAD",
+        "displayName": "Kamacho",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": 409049982,
+        "name": "kanjo",
+        "class": "COMPACT",
+        "displayName": "Blista Kanjo",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -64075878,
+        "name": "kanjosj",
+        "class": "COUPE",
+        "displayName": "Kanjo SJ",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 544021352,
+        "name": "khamelion",
+        "class": "SPORT",
+        "displayName": "Khamelion",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Hijak"
+    },
+    {
+        "hash": -1435527158,
+        "name": "khanjali",
+        "displayName": "TM-02 Khanjali",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "class": "MILITARY"
+    },
+    {
+        "hash": -834353991,
+        "name": "komoda",
+        "class": "SPORT",
+        "displayName": "Komoda",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 1336872304,
+        "name": "kosatka",
+        "class": "BOAT",
+        "displayName": "Kosatka",
+        "type": "SUBMARINE",
+        "dlc": "mpheist4",
+        "manufacturer": "RUNE"
+    },
+    {
+        "hash": -664141241,
+        "name": "krieger",
+        "class": "SUPER",
+        "displayName": "Krieger",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -1372848492,
+        "name": "kuruma",
+        "class": "SPORT",
+        "displayName": "Kuruma",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 410882957,
+        "name": "kuruma2",
+        "class": "SPORT",
+        "displayName": "Kuruma (armored)",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 1269098716,
+        "name": "landstalker",
+        "class": "SUV",
+        "displayName": "Landstalker",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dundreary"
+    },
+    {
+        "hash": -838099166,
+        "name": "landstalker2",
+        "class": "SUV",
+        "displayName": "Landstalker XL",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Dundreary"
+    },
+    {
+        "hash": -1281684762,
+        "name": "Lazer",
+        "displayName": "P-996 LAZER",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": -1232836011,
+        "name": "le7b",
+        "class": "SUPER",
+        "displayName": "RE-7B",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": 640818791,
+        "name": "lectro",
+        "class": "MOTORCYCLE",
+        "displayName": "Lectro",
+        "type": "BIKE",
+        "dlc": "mpheist",
+        "manufacturer": "Principe"
+    },
+    {
+        "hash": 469291905,
+        "name": "lguard",
+        "class": "EMERGENCY",
+        "displayName": "Lifeguard",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -114627507,
+        "name": "limo2",
+        "class": "SEDAN",
+        "displayName": "Turreted Limo",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -10917683,
+        "name": "lm87",
+        "class": "SUPER",
+        "displayName": "LM87",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -941272559,
+        "name": "locust",
+        "class": "SPORT",
+        "displayName": "Locust",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": 1861786828,
+        "name": "longfin",
+        "class": "BOAT",
+        "displayName": "Longfin",
+        "type": "BOAT",
+        "dlc": "mpheist4",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": 2068293287,
+        "name": "lurcher",
+        "class": "MUSCLE",
+        "displayName": "Lurcher",
+        "type": "CAR",
+        "dlc": "mphalloween",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": 621481054,
+        "name": "luxor",
+        "class": "PLANE",
+        "displayName": "Luxor",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": -1214293858,
+        "name": "luxor2",
+        "class": "PLANE",
+        "displayName": "Luxor Deluxe",
+        "type": "PLANE",
+        "dlc": "mpluxe",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 482197771,
+        "name": "lynx",
+        "class": "SPORT",
+        "displayName": "Lynx",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": -1660945322,
+        "name": "mamba",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Mamba",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1746576111,
+        "name": "mammatus",
+        "displayName": "Mammatus",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": -2124201592,
+        "name": "manana",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Manana",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": 1717532765,
+        "name": "manana2",
+        "class": "MUSCLE",
+        "displayName": "Manana Custom",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -1523428744,
+        "name": "manchez",
+        "class": "MOTORCYCLE",
+        "displayName": "Manchez",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": 1086534307,
+        "name": "manchez2",
+        "class": "MOTORCYCLE",
+        "displayName": "Manchez Scout",
+        "type": "BIKE",
+        "dlc": "mpheist4",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": -1043459709,
+        "name": "marquis",
+        "class": "BOAT",
+        "displayName": "Marquis",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 1233534620,
+        "name": "marshall",
+        "class": "OFF_ROAD",
+        "displayName": "Marshall",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Cheval"
+    },
+    {
+        "hash": -142942670,
+        "name": "massacro",
+        "class": "SPORT",
+        "displayName": "Massacro",
+        "type": "CAR",
+        "dlc": "mpbusiness2",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": -631760477,
+        "name": "massacro2",
+        "class": "SPORT",
+        "displayName": "Massacro (Racecar)",
+        "type": "CAR",
+        "dlc": "mpchristmas2",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": -1660661558,
+        "name": "maverick",
+        "displayName": "Maverick",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 2044532910,
+        "name": "menacer",
+        "class": "OFF_ROAD",
+        "displayName": "Menacer",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 914654722,
+        "name": "MESA",
+        "class": "SUV",
+        "displayName": "Mesa",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": -748008636,
+        "name": "mesa2",
+        "class": "SUV",
+        "displayName": "Mesa",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": -2064372143,
+        "name": "MESA3",
+        "class": "OFF_ROAD",
+        "displayName": "Mesa",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": 868868440,
+        "name": "metrotrain",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": 1046206681,
+        "name": "michelli",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Michelli GT",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": -1763555241,
+        "name": "microlight",
+        "class": "PLANE",
+        "displayName": "Ultralight",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 165154707,
+        "name": "Miljet",
+        "class": "PLANE",
+        "displayName": "Miljet",
+        "type": "PLANE",
+        "dlc": "mppilot",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": -1254331310,
+        "name": "minitank",
+        "displayName": "Invade and Persuade Tank",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "class": "MILITARY"
+    },
+    {
+        "hash": -310465116,
+        "name": "minivan",
+        "class": "VAN",
+        "displayName": "Minivan",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1126264336,
+        "name": "minivan2",
+        "class": "VAN",
+        "displayName": "Minivan Custom",
+        "type": "CAR",
+        "dlc": "mplowrider2",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -784816453,
+        "name": "Mixer",
+        "class": "INDUSTRIAL",
+        "displayName": "Mixer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 475220373,
+        "name": "Mixer2",
+        "class": "INDUSTRIAL",
+        "displayName": "Mixer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -749299473,
+        "name": "mogul",
+        "class": "PLANE",
+        "displayName": "Mogul",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": 1565978651,
+        "name": "molotok",
+        "displayName": "V-65 Molotok",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "class": "PLANE"
+    },
+    {
+        "hash": -433375717,
+        "name": "monroe",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Monroe",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -845961253,
+        "name": "monster",
+        "class": "OFF_ROAD",
+        "displayName": "Monster",
+        "type": "CAR",
+        "dlc": "mpindependence",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1721676810,
+        "name": "monster3",
+        "class": "OFF_ROAD",
+        "displayName": "Apocalypse Sasquatch",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 840387324,
+        "name": "monster4",
+        "class": "OFF_ROAD",
+        "displayName": "Future Shock Sasquatch",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -715746948,
+        "name": "monster5",
+        "class": "OFF_ROAD",
+        "displayName": "Nightmare Sasquatch",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 525509695,
+        "name": "moonbeam",
+        "class": "MUSCLE",
+        "displayName": "Moonbeam",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1896491931,
+        "name": "moonbeam2",
+        "class": "MUSCLE",
+        "displayName": "Moonbeam Custom",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1783355638,
+        "name": "Mower",
+        "displayName": "Lawn Mower",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 904750859,
+        "name": "Mule",
+        "class": "COMMERCIAL",
+        "displayName": "Mule",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": -1050465301,
+        "name": "Mule2",
+        "class": "COMMERCIAL",
+        "displayName": "Mule",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": -2052737935,
+        "name": "Mule3",
+        "class": "COMMERCIAL",
+        "displayName": "Mule",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": 1945374990,
+        "name": "mule4",
+        "class": "COMMERCIAL",
+        "displayName": "Mule Custom",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": 1343932732,
+        "name": "mule5",
+        "class": "COMMERCIAL",
+        "displayName": "Mule",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": -882629065,
+        "name": "nebula",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Nebula Turbo",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Vulcar"
+    },
+    {
+        "hash": -634879114,
+        "name": "nemesis",
+        "class": "MOTORCYCLE",
+        "displayName": "Nemesis",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Principe"
+    },
+    {
+        "hash": -1620126302,
+        "name": "neo",
+        "class": "SPORT",
+        "displayName": "Neo",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Vysser"
+    },
+    {
+        "hash": -1848994066,
+        "name": "neon",
+        "class": "SPORT",
+        "displayName": "Neon",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": 1034187331,
+        "name": "nero",
+        "class": "SUPER",
+        "displayName": "Nero",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Truffade"
+    },
+    {
+        "hash": 1093792632,
+        "name": "nero2",
+        "class": "SUPER",
+        "displayName": "Nero Custom",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Truffade"
+    },
+    {
+        "hash": -1606187161,
+        "name": "nightblade",
+        "class": "MOTORCYCLE",
+        "displayName": "Nightblade",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -1943285540,
+        "name": "nightshade",
+        "class": "MUSCLE",
+        "displayName": "Nightshade",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 433954513,
+        "name": "nightshark",
+        "class": "OFF_ROAD",
+        "displayName": "Nightshark",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -1295027632,
+        "name": "nimbus",
+        "class": "PLANE",
+        "displayName": "Nimbus",
+        "type": "PLANE",
+        "dlc": "mpexecutive",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 1032823388,
+        "name": "ninef",
+        "class": "SPORT",
+        "displayName": "9F",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -1461482751,
+        "name": "ninef2",
+        "class": "SPORT",
+        "displayName": "9F Cabrio",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": 1036591958,
+        "name": "nokota",
+        "displayName": "P-45 Nokota",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "class": "PLANE"
+    },
+    {
+        "hash": -1829436850,
+        "name": "Novak",
+        "class": "SUV",
+        "displayName": "Novak",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": -777172681,
+        "name": "omnis",
+        "class": "SPORT",
+        "displayName": "Omnis",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -505223465,
+        "name": "omnisegt",
+        "class": "SPORT",
+        "displayName": "Omnis e-GT",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": 1492612435,
+        "name": "openwheel1",
+        "class": "OPEN_WHEEL",
+        "displayName": "BR8",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1181339704,
+        "name": "openwheel2",
+        "class": "OPEN_WHEEL",
+        "displayName": "DR1",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 884483972,
+        "name": "oppressor",
+        "class": "MOTORCYCLE",
+        "displayName": "Oppressor",
+        "type": "BIKE",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 2069146067,
+        "name": "oppressor2",
+        "class": "MOTORCYCLE",
+        "displayName": "Oppressor Mk II",
+        "type": "BIKE",
+        "dlc": "mpbattle",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 1348744438,
+        "name": "oracle",
+        "class": "COUPE",
+        "displayName": "Oracle XS",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": -511601230,
+        "name": "oracle2",
+        "class": "COUPE",
+        "displayName": "Oracle",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 1987142870,
+        "name": "osiris",
+        "class": "SUPER",
+        "displayName": "Osiris",
+        "type": "CAR",
+        "dlc": "mpluxe",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 408825843,
+        "name": "outlaw",
+        "class": "OFF_ROAD",
+        "displayName": "Outlaw",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 569305213,
+        "name": "Packer",
+        "class": "COMMERCIAL",
+        "displayName": "Packer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": -431692672,
+        "name": "panto",
+        "class": "COMPACT",
+        "displayName": "Panto",
+        "type": "CAR",
+        "dlc": "mphipster",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1488164764,
+        "name": "paradise",
+        "class": "VAN",
+        "displayName": "Paradise",
+        "type": "CAR",
+        "dlc": "mpbeach",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -447711397,
+        "name": "paragon",
+        "class": "SPORT",
+        "displayName": "Paragon R",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 1416466158,
+        "name": "paragon2",
+        "class": "SPORT",
+        "displayName": "Paragon R (Armored)",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 867799010,
+        "name": "pariah",
+        "class": "SPORT",
+        "displayName": "Pariah",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": -808457413,
+        "name": "patriot",
+        "class": "SUV",
+        "displayName": "Patriot",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": -420911112,
+        "name": "patriot2",
+        "class": "SUV",
+        "displayName": "Patriot Stretch",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": -670086588,
+        "name": "patriot3",
+        "class": "OFF_ROAD",
+        "displayName": "Patriot Mil-Spec",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": -276744698,
+        "name": "patrolboat",
+        "displayName": "Kurtz 31 Patrol Boat",
+        "type": "BOAT",
+        "dlc": "mpheist4",
+        "class": "BOAT"
+    },
+    {
+        "hash": -2007026063,
+        "name": "pbus",
+        "displayName": "Police Prison Bus",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 345756458,
+        "name": "pbus2",
+        "displayName": "Festival Bus",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "class": "SERVICE"
+    },
+    {
+        "hash": -909201658,
+        "name": "pcj",
+        "class": "MOTORCYCLE",
+        "displayName": "PCJ 600",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": -1758137366,
+        "name": "penetrator",
+        "class": "SUPER",
+        "displayName": "Penetrator",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": -377465520,
+        "name": "penumbra",
+        "class": "SPORT",
+        "displayName": "Penumbra",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": -631322662,
+        "name": "penumbra2",
+        "class": "SPORT",
+        "displayName": "Penumbra FF",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": 1830407356,
+        "name": "peyote",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Peyote",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1804415708,
+        "name": "peyote2",
+        "class": "MUSCLE",
+        "displayName": "Peyote Gasser",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1107404867,
+        "name": "peyote3",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Peyote Custom",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1829802492,
+        "name": "pfister811",
+        "class": "SUPER",
+        "displayName": "811",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Pfister"
+    },
+    {
+        "hash": -2137348917,
+        "name": "Phantom",
+        "class": "COMMERCIAL",
+        "displayName": "Phantom",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "JoBuilt"
+    },
+    {
+        "hash": -1649536104,
+        "name": "phantom2",
+        "class": "COMMERCIAL",
+        "displayName": "Phantom Wedge",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "JoBuilt"
+    },
+    {
+        "hash": 177270108,
+        "name": "phantom3",
+        "class": "COMMERCIAL",
+        "displayName": "Phantom Custom",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "JoBuilt"
+    },
+    {
+        "hash": -2095439403,
+        "name": "Phoenix",
+        "class": "MUSCLE",
+        "displayName": "Phoenix",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 1507916787,
+        "name": "picador",
+        "class": "MUSCLE",
+        "displayName": "Picador",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Cheval"
+    },
+    {
+        "hash": 1078682497,
+        "name": "pigalle",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Pigalle",
+        "type": "CAR",
+        "dlc": "mphipster",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 2046537925,
+        "name": "police",
+        "displayName": "Police Cruiser",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -1627000575,
+        "name": "police2",
+        "displayName": "Police Cruiser",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 1912215274,
+        "name": "police3",
+        "displayName": "Police Cruiser",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -1973172295,
+        "name": "police4",
+        "displayName": "Unmarked Cruiser",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -34623805,
+        "name": "policeb",
+        "displayName": "Police Bike",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -1536924937,
+        "name": "policeold1",
+        "displayName": "Police Rancher",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -1779120616,
+        "name": "policeold2",
+        "displayName": "Police Roadcruiser",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 456714581,
+        "name": "policet",
+        "displayName": "Police Transporter",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 353883353,
+        "name": "polmav",
+        "displayName": "Police Maverick",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": -119658072,
+        "name": "pony",
+        "class": "VAN",
+        "displayName": "Pony",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": 943752001,
+        "name": "pony2",
+        "class": "VAN",
+        "displayName": "Pony",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": -294678663,
+        "name": "postlude",
+        "class": "COUPE",
+        "displayName": "Postlude",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 2112052861,
+        "name": "Pounder",
+        "class": "COMMERCIAL",
+        "displayName": "Pounder",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": 1653666139,
+        "name": "pounder2",
+        "class": "COMMERCIAL",
+        "displayName": "Pounder Custom",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": -1450650718,
+        "name": "prairie",
+        "class": "COMPACT",
+        "displayName": "Prairie",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bollokan"
+    },
+    {
+        "hash": 741586030,
+        "name": "pRanger",
+        "displayName": "Park Ranger",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -488123221,
+        "name": "Predator",
+        "displayName": "Police Predator",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "class": "BOAT"
+    },
+    {
+        "hash": -1883869285,
+        "name": "premier",
+        "class": "SEDAN",
+        "displayName": "Premier",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1416471345,
+        "name": "previon",
+        "class": "COUPE",
+        "displayName": "Previon",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -1150599089,
+        "name": "primo",
+        "class": "SEDAN",
+        "displayName": "Primo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -2040426790,
+        "name": "primo2",
+        "class": "SEDAN",
+        "displayName": "Primo Custom",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": 356391690,
+        "name": "proptrailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 2123327359,
+        "name": "prototipo",
+        "class": "SUPER",
+        "displayName": "X80 Proto",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": -1386191424,
+        "name": "pyro",
+        "class": "PLANE",
+        "displayName": "Pyro",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": -1651067813,
+        "name": "radi",
+        "class": "SUV",
+        "displayName": "Radius",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1529242755,
+        "name": "raiden",
+        "class": "SPORT",
+        "displayName": "Raiden",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Coil"
+    },
+    {
+        "hash": 390902130,
+        "name": "raketrailer",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -2103821244,
+        "name": "rallytruck",
+        "class": "SERVICE",
+        "displayName": "Dune",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": 1645267888,
+        "name": "RancherXL",
+        "class": "OFF_ROAD",
+        "displayName": "Rancher XL",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1933662059,
+        "name": "rancherxl2",
+        "class": "OFF_ROAD",
+        "displayName": "Rancher XL",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1934452204,
+        "name": "RapidGT",
+        "class": "SPORT",
+        "displayName": "Rapid GT",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": 1737773231,
+        "name": "RapidGT2",
+        "class": "SPORT",
+        "displayName": "Rapid GT",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": 2049897956,
+        "name": "rapidgt3",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Rapid GT Classic",
+        "type": "CAR",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": -674927303,
+        "name": "raptor",
+        "class": "SPORT",
+        "displayName": "Raptor",
+        "type": "CAR",
+        "dlc": "mpbiker",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": 1873600305,
+        "name": "ratbike",
+        "class": "MOTORCYCLE",
+        "displayName": "Rat Bike",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -667151410,
+        "name": "ratloader",
+        "displayName": "Rat-Loader",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "MUSCLE"
+    },
+    {
+        "hash": -589178377,
+        "name": "ratloader2",
+        "class": "MUSCLE",
+        "displayName": "Rat-Truck",
+        "type": "CAR",
+        "dlc": "mpchristmas2",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -286046740,
+        "name": "rcbandito",
+        "displayName": "RC Bandito",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "class": "OFF_ROAD"
+    },
+    {
+        "hash": 234062309,
+        "name": "reaper",
+        "class": "SUPER",
+        "displayName": "Reaper",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -1207771834,
+        "name": "Rebel",
+        "class": "OFF_ROAD",
+        "displayName": "Rusty Rebel",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -2045594037,
+        "name": "rebel2",
+        "class": "OFF_ROAD",
+        "displayName": "Rebel",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 83136452,
+        "name": "rebla",
+        "class": "SUV",
+        "displayName": "Rebla GTS",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 1993851908,
+        "name": "reever",
+        "class": "MOTORCYCLE",
+        "displayName": "Reever",
+        "type": "BIKE",
+        "dlc": "mpsecurity",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -14495224,
+        "name": "regina",
+        "class": "SEDAN",
+        "displayName": "Regina",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dundreary"
+    },
+    {
+        "hash": 1377217886,
+        "name": "remus",
+        "class": "SPORT",
+        "displayName": "Remus",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": -1098802077,
+        "name": "Rentalbus",
+        "displayName": "Rental Shuttle Bus",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "SERVICE"
+    },
+    {
+        "hash": 1841130506,
+        "name": "retinue",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Retinue",
+        "type": "CAR",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 2031587082,
+        "name": "retinue2",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Retinue Mk II",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -410205223,
+        "name": "revolter",
+        "class": "SPORT",
+        "displayName": "Revolter",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 841808271,
+        "name": "rhapsody",
+        "class": "COMPACT",
+        "displayName": "Rhapsody",
+        "type": "CAR",
+        "dlc": "mphipster",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1855505138,
+        "name": "rhinehart",
+        "class": "SEDAN",
+        "displayName": "Rhinehart",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 782665360,
+        "name": "RHINO",
+        "displayName": "Rhino Tank",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "MILITARY"
+    },
+    {
+        "hash": -1532697517,
+        "name": "riata",
+        "class": "OFF_ROAD",
+        "displayName": "Riata",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1205689942,
+        "name": "RIOT",
+        "displayName": "Police Riot",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -1693015116,
+        "name": "riot2",
+        "displayName": "RCV",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": -845979911,
+        "name": "Ripley",
+        "displayName": "Ripley",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 2136773105,
+        "name": "rocoto",
+        "class": "SUV",
+        "displayName": "Rocoto",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -975345305,
+        "name": "rogue",
+        "class": "PLANE",
+        "displayName": "Rogue",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": 627094268,
+        "name": "romero",
+        "class": "SEDAN",
+        "displayName": "Romero Hearse",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Chariot"
+    },
+    {
+        "hash": 916547552,
+        "name": "rrocket",
+        "class": "MOTORCYCLE",
+        "displayName": "Rampant Rocket",
+        "type": "QUADBIKE",
+        "dlc": "mpvinewood",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -452604007,
+        "name": "rt3000",
+        "class": "SPORT",
+        "displayName": "RT3000",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -1705304628,
+        "name": "Rubble",
+        "class": "INDUSTRIAL",
+        "displayName": "Rubble",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "JoBuilt"
+    },
+    {
+        "hash": -893578776,
+        "name": "ruffian",
+        "class": "MOTORCYCLE",
+        "displayName": "Ruffian",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -227741703,
+        "name": "ruiner",
+        "class": "MUSCLE",
+        "displayName": "Ruiner",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 941494461,
+        "name": "ruiner2",
+        "class": "MUSCLE",
+        "displayName": "Ruiner 2000",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 777714999,
+        "name": "ruiner3",
+        "class": "MUSCLE",
+        "displayName": "Ruiner",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 1706945532,
+        "name": "ruiner4",
+        "class": "MUSCLE",
+        "displayName": "Ruiner ZZ-8",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Imponte"
+    },
+    {
+        "hash": 1162065741,
+        "name": "rumpo",
+        "class": "VAN",
+        "displayName": "Rumpo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": -1776615689,
+        "name": "rumpo2",
+        "class": "VAN",
+        "displayName": "Rumpo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1475773103,
+        "name": "rumpo3",
+        "class": "VAN",
+        "displayName": "Rumpo Custom",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 719660200,
+        "name": "ruston",
+        "class": "SPORT",
+        "displayName": "Ruston",
+        "type": "CAR",
+        "dlc": "mpspecialraces",
+        "manufacturer": "Hijak"
+    },
+    {
+        "hash": -324618589,
+        "name": "s80",
+        "class": "SUPER",
+        "displayName": "S80RR",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": 1133471123,
+        "name": "s95",
+        "class": "SPORT",
+        "displayName": "S95",
+        "type": "CAR",
+        "dlc": "mpg9ec",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -1685021548,
+        "name": "sabregt",
+        "class": "MUSCLE",
+        "displayName": "Sabre Turbo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 223258115,
+        "name": "sabregt2",
+        "class": "MUSCLE",
+        "displayName": "Sabre Turbo Custom",
+        "type": "CAR",
+        "dlc": "mplowrider2",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -599568815,
+        "name": "Sadler",
+        "class": "UTILITY",
+        "displayName": "Sadler",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 734217681,
+        "name": "sadler2",
+        "class": "UTILITY",
+        "displayName": "Sadler",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 788045382,
+        "name": "Sanchez",
+        "class": "MOTORCYCLE",
+        "displayName": "Sanchez (livery)",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": -1453280962,
+        "name": "sanchez2",
+        "class": "MOTORCYCLE",
+        "displayName": "Sanchez",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Maibatsu"
+    },
+    {
+        "hash": 1491277511,
+        "name": "sanctus",
+        "class": "MOTORCYCLE",
+        "displayName": "Sanctus",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "LCC"
+    },
+    {
+        "hash": -1189015600,
+        "name": "sandking",
+        "class": "OFF_ROAD",
+        "displayName": "Sandking XL",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 989381445,
+        "name": "sandking2",
+        "class": "OFF_ROAD",
+        "displayName": "Sandking SWB",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -82626025,
+        "name": "savage",
+        "displayName": "Savage",
+        "type": "HELI",
+        "dlc": "mpheist",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 903794909,
+        "name": "savestra",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Savestra",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": 1352136073,
+        "name": "sc1",
+        "class": "SUPER",
+        "displayName": "SC1",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": -1146969353,
+        "name": "scarab",
+        "class": "MILITARY",
+        "displayName": "Apocalypse Scarab",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": 1542143200,
+        "name": "scarab2",
+        "class": "MILITARY",
+        "displayName": "Future Shock Scarab",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -579747861,
+        "name": "scarab3",
+        "class": "MILITARY",
+        "displayName": "Nightmare Scarab",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "HVY"
+    },
+    {
+        "hash": -1255452397,
+        "name": "schafter2",
+        "class": "SEDAN",
+        "displayName": "Schafter",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -1485523546,
+        "name": "schafter3",
+        "class": "SPORT",
+        "displayName": "Schafter V12",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1489967196,
+        "name": "schafter4",
+        "class": "SPORT",
+        "displayName": "Schafter LWB",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -888242983,
+        "name": "schafter5",
+        "class": "SEDAN",
+        "displayName": "Schafter V12 (Armored)",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1922255844,
+        "name": "schafter6",
+        "class": "SEDAN",
+        "displayName": "Schafter LWB (Armored)",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -507495760,
+        "name": "schlagen",
+        "class": "SPORT",
+        "displayName": "Schlagen GT",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -746882698,
+        "name": "schwarzer",
+        "class": "SPORT",
+        "displayName": "Schwartzer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -186537451,
+        "name": "scorcher",
+        "displayName": "Scorcher",
+        "type": "BICYCLE",
+        "dlc": "TitleUpdate",
+        "class": "CYCLE"
+    },
+    {
+        "hash": -638562243,
+        "name": "scramjet",
+        "class": "SUPER",
+        "displayName": "Scramjet",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1700801569,
+        "name": "scrap",
+        "displayName": "Scrap Truck",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -392675425,
+        "name": "seabreeze",
+        "class": "PLANE",
+        "displayName": "Seabreeze",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -1030275036,
+        "name": "seashark",
+        "class": "BOAT",
+        "displayName": "Seashark",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Speedophile"
+    },
+    {
+        "hash": -616331036,
+        "name": "seashark2",
+        "class": "BOAT",
+        "displayName": "Seashark",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Speedophile"
+    },
+    {
+        "hash": -311022263,
+        "name": "seashark3",
+        "class": "BOAT",
+        "displayName": "Seashark",
+        "type": "BOAT",
+        "dlc": "mpapartment",
+        "manufacturer": "Speedophile"
+    },
+    {
+        "hash": -726768679,
+        "name": "seasparrow",
+        "displayName": "Sea Sparrow",
+        "type": "HELI",
+        "dlc": "mpassault",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1229411063,
+        "name": "seasparrow2",
+        "displayName": "Sparrow",
+        "type": "HELI",
+        "dlc": "mpheist4",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1593933419,
+        "name": "seasparrow3",
+        "displayName": "Sparrow",
+        "type": "HELI",
+        "dlc": "mpheist4",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1221512915,
+        "name": "Seminole",
+        "class": "SUV",
+        "displayName": "Seminole",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": -1810806490,
+        "name": "seminole2",
+        "class": "SUV",
+        "displayName": "Seminole Frontier",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Canis"
+    },
+    {
+        "hash": 1349725314,
+        "name": "sentinel",
+        "class": "COUPE",
+        "displayName": "Sentinel XS",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 873639469,
+        "name": "sentinel2",
+        "class": "COUPE",
+        "displayName": "Sentinel",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 1104234922,
+        "name": "sentinel3",
+        "class": "SPORT",
+        "displayName": "Sentinel",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": -1356880839,
+        "name": "sentinel4",
+        "class": "SPORT",
+        "displayName": "Sentinel Classic Widebody",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 1337041428,
+        "name": "serrano",
+        "class": "SUV",
+        "displayName": "Serrano",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -1757836725,
+        "name": "SEVEN70",
+        "class": "SPORT",
+        "displayName": "Seven-70",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": -1214505995,
+        "name": "Shamal",
+        "class": "PLANE",
+        "displayName": "Shamal",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 819197656,
+        "name": "sheava",
+        "class": "SUPER",
+        "displayName": "ETR1",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Emperor"
+    },
+    {
+        "hash": -1683328900,
+        "name": "SHERIFF",
+        "displayName": "Sheriff Cruiser",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 1922257928,
+        "name": "sheriff2",
+        "displayName": "Sheriff SUV",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "EMERGENCY"
+    },
+    {
+        "hash": 1353120668,
+        "name": "shinobi",
+        "class": "MOTORCYCLE",
+        "displayName": "Shinobi",
+        "type": "BIKE",
+        "dlc": "mpsecurity",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -405626514,
+        "name": "shotaro",
+        "class": "MOTORCYCLE",
+        "displayName": "Shotaro",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": 1044954915,
+        "name": "skylift",
+        "displayName": "Skylift",
+        "type": "HELI",
+        "dlc": "TitleUpdate",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": -1045911276,
+        "name": "slamtruck",
+        "class": "UTILITY",
+        "displayName": "Slamtruck",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 729783779,
+        "name": "slamvan",
+        "class": "MUSCLE",
+        "displayName": "Slamvan",
+        "type": "CAR",
+        "dlc": "mpchristmas2",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 833469436,
+        "name": "slamvan2",
+        "class": "MUSCLE",
+        "displayName": "Lost Slamvan",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1119641113,
+        "name": "slamvan3",
+        "class": "MUSCLE",
+        "displayName": "Slamvan Custom",
+        "type": "CAR",
+        "dlc": "mplowrider2",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -2061049099,
+        "name": "slamvan4",
+        "class": "MUSCLE",
+        "displayName": "Apocalypse Slamvan",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 373261600,
+        "name": "slamvan5",
+        "class": "MUSCLE",
+        "displayName": "Future Shock Slamvan",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 1742022738,
+        "name": "slamvan6",
+        "class": "MUSCLE",
+        "displayName": "Nightmare Slamvan",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 775514032,
+        "name": "sm722",
+        "class": "SPORT",
+        "displayName": "SM722",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 743478836,
+        "name": "sovereign",
+        "class": "MOTORCYCLE",
+        "displayName": "Sovereign",
+        "type": "BIKE",
+        "dlc": "mpindependence",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": 1886268224,
+        "name": "SPECTER",
+        "class": "SPORT",
+        "displayName": "Specter",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": 1074745671,
+        "name": "SPECTER2",
+        "class": "SPORT",
+        "displayName": "Specter Custom",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": 231083307,
+        "name": "speeder",
+        "class": "BOAT",
+        "displayName": "Speeder",
+        "type": "BOAT",
+        "dlc": "mpbeach",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 437538602,
+        "name": "speeder2",
+        "class": "BOAT",
+        "displayName": "Speeder",
+        "type": "BOAT",
+        "dlc": "mpapartment",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -810318068,
+        "name": "speedo",
+        "class": "VAN",
+        "displayName": "Speedo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 728614474,
+        "name": "speedo2",
+        "class": "VAN",
+        "displayName": "Clown Van",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 219613597,
+        "name": "speedo4",
+        "class": "VAN",
+        "displayName": "Speedo Custom",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -102335483,
+        "name": "squaddie",
+        "class": "SUV",
+        "displayName": "Squaddie",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": 400514754,
+        "name": "squalo",
+        "class": "BOAT",
+        "displayName": "Squalo",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": 321186144,
+        "name": "stafford",
+        "class": "SEDAN",
+        "displayName": "Stafford",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 1923400478,
+        "name": "stalion",
+        "class": "MUSCLE",
+        "displayName": "Stallion",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -401643538,
+        "name": "stalion2",
+        "class": "MUSCLE",
+        "displayName": "Burger Shot Stallion",
+        "type": "CAR",
+        "dlc": "spupgrade",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1477580979,
+        "name": "stanier",
+        "class": "SEDAN",
+        "displayName": "Stanier",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -1700874274,
+        "name": "starling",
+        "displayName": "LF-22 Starling",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "class": "PLANE"
+    },
+    {
+        "hash": 1545842587,
+        "name": "stinger",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Stinger",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": -2098947590,
+        "name": "stingergt",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Stinger GT",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 1747439474,
+        "name": "stockade",
+        "class": "COMMERCIAL",
+        "displayName": "Stockade",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": -214455498,
+        "name": "stockade3",
+        "class": "COMMERCIAL",
+        "displayName": "Stockade",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": 1723137093,
+        "name": "stratum",
+        "class": "SEDAN",
+        "displayName": "Stratum",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Zirconium"
+    },
+    {
+        "hash": 1741861769,
+        "name": "streiter",
+        "class": "SPORT",
+        "displayName": "Streiter",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -1961627517,
+        "name": "stretch",
+        "class": "SEDAN",
+        "displayName": "Stretch",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Dundreary"
+    },
+    {
+        "hash": 1692272545,
+        "name": "strikeforce",
+        "displayName": "B-11 Strikeforce",
+        "type": "PLANE",
+        "dlc": "mpbattle",
+        "class": "PLANE"
+    },
+    {
+        "hash": 886810209,
+        "name": "stromberg",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Stromberg",
+        "type": "SUBMARINECAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": 301304410,
+        "name": "Stryder",
+        "class": "MOTORCYCLE",
+        "displayName": "Stryder",
+        "type": "QUADBIKE",
+        "dlc": "mpheist3",
+        "manufacturer": "Nagasaki"
+    },
+    {
+        "hash": -2122757008,
+        "name": "Stunt",
+        "displayName": "Mallard",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": 771711535,
+        "name": "submersible",
+        "displayName": "Submersible",
+        "type": "SUBMARINE",
+        "dlc": "TitleUpdate",
+        "class": "BOAT"
+    },
+    {
+        "hash": -1066334226,
+        "name": "submersible2",
+        "displayName": "Kraken",
+        "type": "SUBMARINE",
+        "dlc": "spupgrade",
+        "class": "BOAT"
+    },
+    {
+        "hash": 987469656,
+        "name": "Sugoi",
+        "class": "SPORT",
+        "displayName": "Sugoi",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 970598228,
+        "name": "sultan",
+        "class": "SPORT",
+        "displayName": "Sultan",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 872704284,
+        "name": "sultan2",
+        "class": "SPORT",
+        "displayName": "Sultan Classic",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -291021213,
+        "name": "sultan3",
+        "class": "SPORT",
+        "displayName": "Sultan RS Classic",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -295689028,
+        "name": "sultanrs",
+        "class": "SUPER",
+        "displayName": "Sultan RS",
+        "type": "CAR",
+        "dlc": "mpjanuary2016",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": -282946103,
+        "name": "Suntrap",
+        "class": "BOAT",
+        "displayName": "Suntrap",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": 1123216662,
+        "name": "superd",
+        "class": "SEDAN",
+        "displayName": "Super Diamond",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": 710198397,
+        "name": "supervolito",
+        "class": "HELICOPTER",
+        "displayName": "SuperVolito",
+        "type": "HELI",
+        "dlc": "mpapartment",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": -1671539132,
+        "name": "supervolito2",
+        "class": "HELICOPTER",
+        "displayName": "SuperVolito Carbon",
+        "type": "HELI",
+        "dlc": "mpapartment",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 384071873,
+        "name": "Surano",
+        "class": "SPORT",
+        "displayName": "Surano",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 699456151,
+        "name": "SURFER",
+        "class": "VAN",
+        "displayName": "Surfer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": -1311240698,
+        "name": "Surfer2",
+        "class": "VAN",
+        "displayName": "Surfer",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": -1894894188,
+        "name": "surge",
+        "class": "SEDAN",
+        "displayName": "Surge",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Cheval"
+    },
+    {
+        "hash": -339587598,
+        "name": "swift",
+        "class": "HELICOPTER",
+        "displayName": "Swift",
+        "type": "HELI",
+        "dlc": "mppilot",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 1075432268,
+        "name": "swift2",
+        "class": "HELICOPTER",
+        "displayName": "Swift Deluxe",
+        "type": "HELI",
+        "dlc": "mpluxe",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 500482303,
+        "name": "swinger",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Swinger",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": 1663218586,
+        "name": "t20",
+        "class": "SUPER",
+        "displayName": "T20",
+        "type": "CAR",
+        "dlc": "mpluxe2",
+        "manufacturer": "Progen"
+    },
+    {
+        "hash": 1951180813,
+        "name": "Taco",
+        "displayName": "Taco Van",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "VAN"
+    },
+    {
+        "hash": -1008861746,
+        "name": "tailgater",
+        "class": "SEDAN",
+        "displayName": "Tailgater",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -1244461404,
+        "name": "tailgater2",
+        "class": "SEDAN",
+        "displayName": "Tailgater S",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -1134706562,
+        "name": "taipan",
+        "class": "SUPER",
+        "displayName": "Taipan",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Cheval"
+    },
+    {
+        "hash": 972671128,
+        "name": "tampa",
+        "class": "MUSCLE",
+        "displayName": "Tampa",
+        "type": "CAR",
+        "dlc": "mpxmas_604490",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1071380347,
+        "name": "tampa2",
+        "class": "SPORT",
+        "displayName": "Drift Tampa",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1210451983,
+        "name": "tampa3",
+        "class": "MUSCLE",
+        "displayName": "Weaponized Tampa",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -730904777,
+        "name": "tanker",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 1956216962,
+        "name": "tanker2",
+        "type": "TRAILER",
+        "dlc": "mpheist",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 586013744,
+        "name": "tankercar",
+        "displayName": "Freight Train",
+        "type": "TRAIN",
+        "dlc": "TitleUpdate",
+        "class": "RAIL"
+    },
+    {
+        "hash": -956048545,
+        "name": "taxi",
+        "displayName": "Taxi",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "SERVICE"
+    },
+    {
+        "hash": -2096818938,
+        "name": "technical",
+        "class": "OFF_ROAD",
+        "displayName": "Technical",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 1180875963,
+        "name": "technical2",
+        "class": "OFF_ROAD",
+        "displayName": "Technical Aqua",
+        "type": "AMPHIBIOUS_AUTOMOBILE",
+        "dlc": "mpimportexport",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 1356124575,
+        "name": "technical3",
+        "class": "OFF_ROAD",
+        "displayName": "Technical Custom",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 272929391,
+        "name": "tempesta",
+        "class": "SUPER",
+        "displayName": "Tempesta",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -893984159,
+        "name": "tenf",
+        "class": "SPORT",
+        "displayName": "10F",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": 274946574,
+        "name": "tenf2",
+        "class": "SPORT",
+        "displayName": "10F Widebody",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Obey"
+    },
+    {
+        "hash": -1988428699,
+        "name": "terbyte",
+        "class": "COMMERCIAL",
+        "displayName": "Terrorbyte",
+        "type": "CAR",
+        "dlc": "mpbattle",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1031562256,
+        "name": "tezeract",
+        "class": "SUPER",
+        "displayName": "Tezeract",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 1044193113,
+        "name": "thrax",
+        "class": "SUPER",
+        "displayName": "Thrax",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Truffade"
+    },
+    {
+        "hash": 1836027715,
+        "name": "thrust",
+        "class": "MOTORCYCLE",
+        "displayName": "Thrust",
+        "type": "BIKE",
+        "dlc": "mpbusiness2",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 1489874736,
+        "name": "thruster",
+        "class": "MILITARY",
+        "displayName": "Thruster",
+        "type": "HELI",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": -1358197432,
+        "name": "tigon",
+        "class": "SUPER",
+        "displayName": "Tigon",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 48339065,
+        "name": "TipTruck",
+        "class": "INDUSTRIAL",
+        "displayName": "Tipper",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Brute"
+    },
+    {
+        "hash": -947761570,
+        "name": "TipTruck2",
+        "displayName": "Tipper",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "INDUSTRIAL"
+    },
+    {
+        "hash": 1981688531,
+        "name": "titan",
+        "displayName": "Titan",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": 1455990255,
+        "name": "toreador",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Toreador",
+        "type": "SUBMARINECAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 1504306544,
+        "name": "torero",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Torero",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -165394758,
+        "name": "torero2",
+        "class": "SUPER",
+        "displayName": "Torero XO",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 464687292,
+        "name": "tornado",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Tornado",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1531094468,
+        "name": "tornado2",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Tornado",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1762279763,
+        "name": "tornado3",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Tornado",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -2033222435,
+        "name": "tornado4",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Tornado",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1797613329,
+        "name": "tornado5",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Tornado Custom",
+        "type": "CAR",
+        "dlc": "mplowrider2",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1558399629,
+        "name": "tornado6",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Tornado Rat Rod",
+        "type": "CAR",
+        "dlc": "mpbiker",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1070967343,
+        "name": "toro",
+        "class": "BOAT",
+        "displayName": "Toro",
+        "type": "BOAT",
+        "dlc": "mpluxe2",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": 908897389,
+        "name": "toro2",
+        "class": "BOAT",
+        "displayName": "Toro",
+        "type": "BOAT",
+        "dlc": "mpapartment",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": -1168952148,
+        "name": "toros",
+        "class": "SUV",
+        "displayName": "Toros",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 1941029835,
+        "name": "TOURBUS",
+        "displayName": "Tourbus",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "SERVICE"
+    },
+    {
+        "hash": -1323100960,
+        "name": "TOWTRUCK",
+        "displayName": "Towtruck",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -442313018,
+        "name": "Towtruck2",
+        "displayName": "Towtruck",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 2078290630,
+        "name": "tr2",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 1784254509,
+        "name": "tr3",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 2091594960,
+        "name": "tr4",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 1641462412,
+        "name": "TRACTOR",
+        "displayName": "Tractor",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -2076478498,
+        "name": "tractor2",
+        "class": "UTILITY",
+        "displayName": "Fieldmaster",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Stanley"
+    },
+    {
+        "hash": 1445631933,
+        "name": "tractor3",
+        "class": "UTILITY",
+        "displayName": "Fieldmaster",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Stanley"
+    },
+    {
+        "hash": 1502869817,
+        "name": "trailerlarge",
+        "displayName": "Mobile Operations Center",
+        "type": "TRAILER",
+        "dlc": "mpgunrunning",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 2016027501,
+        "name": "trailerlogs",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -877478386,
+        "name": "trailers",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -1579533167,
+        "name": "trailers2",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -2058878099,
+        "name": "trailers3",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -1100548694,
+        "name": "trailers4",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "mpgunrunning",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 712162987,
+        "name": "trailersmall",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -1881846085,
+        "name": "trailersmall2",
+        "class": "MILITARY",
+        "displayName": "Anti-Aircraft Trailer",
+        "type": "TRAILER",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Vom Feuer"
+    },
+    {
+        "hash": 1917016601,
+        "name": "Trash",
+        "displayName": "Trashmaster",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "SERVICE"
+    },
+    {
+        "hash": -1255698084,
+        "name": "trash2",
+        "displayName": "Trashmaster",
+        "type": "CAR",
+        "dlc": "mpheist",
+        "class": "SERVICE"
+    },
+    {
+        "hash": -1352468814,
+        "name": "trflat",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 1127861609,
+        "name": "tribike",
+        "displayName": "Whippet Race Bike",
+        "type": "BICYCLE",
+        "dlc": "TitleUpdate",
+        "class": "CYCLE"
+    },
+    {
+        "hash": -1233807380,
+        "name": "tribike2",
+        "displayName": "Endurex Race Bike",
+        "type": "BICYCLE",
+        "dlc": "TitleUpdate",
+        "class": "CYCLE"
+    },
+    {
+        "hash": -400295096,
+        "name": "tribike3",
+        "displayName": "Tri-Cycles Race Bike",
+        "type": "BICYCLE",
+        "dlc": "TitleUpdate",
+        "class": "CYCLE"
+    },
+    {
+        "hash": 101905590,
+        "name": "trophytruck",
+        "class": "OFF_ROAD",
+        "displayName": "Trophy Truck",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -663299102,
+        "name": "trophytruck2",
+        "class": "OFF_ROAD",
+        "displayName": "Desert Raid",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 290013743,
+        "name": "tropic",
+        "class": "BOAT",
+        "displayName": "Tropic",
+        "type": "BOAT",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": 1448677353,
+        "name": "tropic2",
+        "class": "BOAT",
+        "displayName": "Tropic",
+        "type": "BOAT",
+        "dlc": "mpapartment",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": 1887331236,
+        "name": "tropos",
+        "class": "SPORT",
+        "displayName": "Tropos Rallye",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": -2100640717,
+        "name": "tug",
+        "displayName": "Tug",
+        "type": "BOAT",
+        "dlc": "mpexecutive",
+        "class": "BOAT"
+    },
+    {
+        "hash": 1043222410,
+        "name": "tula",
+        "class": "PLANE",
+        "displayName": "Tula",
+        "type": "PLANE",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Mammoth"
+    },
+    {
+        "hash": 1456744817,
+        "name": "tulip",
+        "class": "MUSCLE",
+        "displayName": "Tulip",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -982130927,
+        "name": "turismo2",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Turismo Classic",
+        "type": "CAR",
+        "dlc": "mpspecialraces",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 408192225,
+        "name": "turismor",
+        "class": "SUPER",
+        "displayName": "Turismo R",
+        "type": "CAR",
+        "dlc": "mpbusiness",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": -1770643266,
+        "name": "tvtrailer",
+        "displayName": "Trailer",
+        "type": "TRAILER",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": -376434238,
+        "name": "tyrant",
+        "class": "SUPER",
+        "displayName": "Tyrant",
+        "type": "CAR",
+        "dlc": "mpassault",
+        "manufacturer": "Overflod"
+    },
+    {
+        "hash": 2067820283,
+        "name": "tyrus",
+        "class": "SUPER",
+        "displayName": "Tyrus",
+        "type": "CAR",
+        "dlc": "mpstunt",
+        "manufacturer": "Progen"
+    },
+    {
+        "hash": 516990260,
+        "name": "utillitruck",
+        "displayName": "Utility Truck",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 887537515,
+        "name": "utillitruck2",
+        "displayName": "Utility Truck",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 2132890591,
+        "name": "Utillitruck3",
+        "displayName": "Utility Truck",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "class": "UTILITY"
+    },
+    {
+        "hash": 338562499,
+        "name": "vacca",
+        "class": "SUPER",
+        "displayName": "Vacca",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -140902153,
+        "name": "Vader",
+        "class": "MOTORCYCLE",
+        "displayName": "Vader",
+        "type": "BIKE",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Shitzu"
+    },
+    {
+        "hash": 1939284556,
+        "name": "vagner",
+        "class": "SUPER",
+        "displayName": "Vagner",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Dewbauchee"
+    },
+    {
+        "hash": 740289177,
+        "name": "vagrant",
+        "class": "OFF_ROAD",
+        "displayName": "Vagrant",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Maxwell"
+    },
+    {
+        "hash": -1600252419,
+        "name": "valkyrie",
+        "displayName": "Valkyrie",
+        "type": "HELI",
+        "dlc": "mpheist",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": 1543134283,
+        "name": "valkyrie2",
+        "displayName": "Valkyrie MOD.0",
+        "type": "HELI",
+        "dlc": "mpapartment",
+        "class": "HELICOPTER"
+    },
+    {
+        "hash": -49115651,
+        "name": "vamos",
+        "class": "MUSCLE",
+        "displayName": "Vamos",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1540373595,
+        "name": "vectre",
+        "class": "SPORT",
+        "displayName": "Vectre",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Emperor"
+    },
+    {
+        "hash": -1673356438,
+        "name": "velum",
+        "displayName": "Velum",
+        "type": "PLANE",
+        "dlc": "TitleUpdate",
+        "class": "PLANE"
+    },
+    {
+        "hash": 1077420264,
+        "name": "velum2",
+        "displayName": "Velum 5-Seater",
+        "type": "PLANE",
+        "dlc": "mpheist",
+        "class": "PLANE"
+    },
+    {
+        "hash": 1102544804,
+        "name": "verlierer2",
+        "class": "SPORT",
+        "displayName": "Verlierer",
+        "type": "CAR",
+        "dlc": "mpapartment",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 298565713,
+        "name": "verus",
+        "class": "OFF_ROAD",
+        "displayName": "Verus",
+        "type": "QUADBIKE",
+        "dlc": "mpheist4",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": 1341619767,
+        "name": "vestra",
+        "class": "PLANE",
+        "displayName": "Vestra",
+        "type": "PLANE",
+        "dlc": "mpbusiness",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": 2014313426,
+        "name": "vetir",
+        "displayName": "Vetir",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "class": "MILITARY"
+    },
+    {
+        "hash": -857356038,
+        "name": "veto",
+        "class": "SPORT",
+        "displayName": "Veto Classic",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -1492917079,
+        "name": "veto2",
+        "class": "SPORT",
+        "displayName": "Veto Modern",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -825837129,
+        "name": "vigero",
+        "class": "MUSCLE",
+        "displayName": "Vigero",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1758379524,
+        "name": "vigero2",
+        "class": "MUSCLE",
+        "displayName": "Vigero ZX",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -1242608589,
+        "name": "vigilante",
+        "displayName": "Vigilante",
+        "type": "CAR",
+        "dlc": "mpsmuggler",
+        "class": "SUPER"
+    },
+    {
+        "hash": -1353081087,
+        "name": "vindicator",
+        "class": "MOTORCYCLE",
+        "displayName": "Vindicator",
+        "type": "BIKE",
+        "dlc": "mpluxe2",
+        "manufacturer": "Dinka"
+    },
+    {
+        "hash": -498054846,
+        "name": "virgo",
+        "class": "MUSCLE",
+        "displayName": "Virgo",
+        "type": "CAR",
+        "dlc": "mpluxe",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -899509638,
+        "name": "virgo2",
+        "class": "MUSCLE",
+        "displayName": "Virgo Classic Custom",
+        "type": "CAR",
+        "dlc": "mplowrider2",
+        "manufacturer": "Dundreary"
+    },
+    {
+        "hash": 16646064,
+        "name": "virgo3",
+        "class": "MUSCLE",
+        "displayName": "Virgo Classic",
+        "type": "CAR",
+        "dlc": "mplowrider2",
+        "manufacturer": "Dundreary"
+    },
+    {
+        "hash": -391595372,
+        "name": "viseris",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Viseris",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Lampadati"
+    },
+    {
+        "hash": -998177792,
+        "name": "visione",
+        "class": "SUPER",
+        "displayName": "Visione",
+        "type": "CAR",
+        "dlc": "mpsmuggler",
+        "manufacturer": "Grotti"
+    },
+    {
+        "hash": 447548909,
+        "name": "volatol",
+        "displayName": "Volatol",
+        "type": "PLANE",
+        "dlc": "mpchristmas2017",
+        "class": "PLANE"
+    },
+    {
+        "hash": -1845487887,
+        "name": "volatus",
+        "class": "HELICOPTER",
+        "displayName": "Volatus",
+        "type": "HELI",
+        "dlc": "mpexecutive",
+        "manufacturer": "Buckingham"
+    },
+    {
+        "hash": -1622444098,
+        "name": "voltic",
+        "class": "SUPER",
+        "displayName": "Voltic",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Coil"
+    },
+    {
+        "hash": 989294410,
+        "name": "voltic2",
+        "class": "SUPER",
+        "displayName": "Rocket Voltic",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "Coil"
+    },
+    {
+        "hash": 2006667053,
+        "name": "voodoo",
+        "class": "MUSCLE",
+        "displayName": "Voodoo Custom",
+        "type": "CAR",
+        "dlc": "mplowrider",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 523724515,
+        "name": "voodoo2",
+        "class": "MUSCLE",
+        "displayName": "Voodoo",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": -609625092,
+        "name": "vortex",
+        "class": "MOTORCYCLE",
+        "displayName": "Vortex",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 1456336509,
+        "name": "vstr",
+        "class": "SPORT",
+        "displayName": "V-STR",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": 1373123368,
+        "name": "warrener",
+        "class": "SEDAN",
+        "displayName": "Warrener",
+        "type": "CAR",
+        "dlc": "mphipster",
+        "manufacturer": "Vulcar"
+    },
+    {
+        "hash": 579912970,
+        "name": "warrener2",
+        "class": "SEDAN",
+        "displayName": "Warrener HKR",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Vulcar"
+    },
+    {
+        "hash": 1777363799,
+        "name": "washington",
+        "class": "SEDAN",
+        "displayName": "Washington",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Albany"
+    },
+    {
+        "hash": -1912017790,
+        "name": "wastelander",
+        "class": "SERVICE",
+        "displayName": "Wastelander",
+        "type": "CAR",
+        "dlc": "mpimportexport",
+        "manufacturer": "MTL"
+    },
+    {
+        "hash": 1644055914,
+        "name": "weevil",
+        "class": "COMPACT",
+        "displayName": "Weevil",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": -994371320,
+        "name": "weevil2",
+        "class": "MUSCLE",
+        "displayName": "Weevil Custom",
+        "type": "CAR",
+        "dlc": "mpsum2",
+        "manufacturer": "BF"
+    },
+    {
+        "hash": 1581459400,
+        "name": "windsor",
+        "class": "COUPE",
+        "displayName": "Windsor",
+        "type": "CAR",
+        "dlc": "mpluxe",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": -1930048799,
+        "name": "windsor2",
+        "class": "COUPE",
+        "displayName": "Windsor Drop",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Enus"
+    },
+    {
+        "hash": -210308634,
+        "name": "winky",
+        "class": "OFF_ROAD",
+        "displayName": "Winky",
+        "type": "CAR",
+        "dlc": "mpheist4",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": -618617997,
+        "name": "wolfsbane",
+        "class": "MOTORCYCLE",
+        "displayName": "Wolfsbane",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": 917809321,
+        "name": "xa21",
+        "class": "SUPER",
+        "displayName": "XA-21",
+        "type": "CAR",
+        "dlc": "mpgunrunning",
+        "manufacturer": "Ocelot"
+    },
+    {
+        "hash": 1203490606,
+        "name": "xls",
+        "class": "SUV",
+        "displayName": "XLS",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": -432008408,
+        "name": "xls2",
+        "class": "SUV",
+        "displayName": "XLS (Armored)",
+        "type": "CAR",
+        "dlc": "mpexecutive",
+        "manufacturer": "Benefactor"
+    },
+    {
+        "hash": 1871995513,
+        "name": "yosemite",
+        "class": "MUSCLE",
+        "displayName": "Yosemite",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 1693751655,
+        "name": "yosemite2",
+        "class": "MUSCLE",
+        "displayName": "Drift Yosemite",
+        "type": "CAR",
+        "dlc": "mpheist3",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 67753863,
+        "name": "yosemite3",
+        "class": "OFF_ROAD",
+        "displayName": "Yosemite Rancher",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Declasse"
+    },
+    {
+        "hash": 65402552,
+        "name": "youga",
+        "class": "VAN",
+        "displayName": "Youga",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1026149675,
+        "name": "youga2",
+        "class": "VAN",
+        "displayName": "Youga Classic",
+        "type": "CAR",
+        "dlc": "mpbiker",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1802742206,
+        "name": "youga3",
+        "class": "VAN",
+        "displayName": "Youga Classic 4x4",
+        "type": "CAR",
+        "dlc": "mpsum",
+        "manufacturer": "Bravado"
+    },
+    {
+        "hash": 1486521356,
+        "name": "youga4",
+        "class": "VAN",
+        "displayName": "Youga Custom",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Vapid"
+    },
+    {
+        "hash": 838982985,
+        "name": "z190",
+        "class": "SPORT_CLASSIC",
+        "displayName": "190z",
+        "type": "CAR",
+        "dlc": "mpchristmas2017",
+        "manufacturer": "Karin"
+    },
+    {
+        "hash": 655665811,
+        "name": "zeno",
+        "class": "SUPER",
+        "displayName": "Zeno",
+        "type": "CAR",
+        "dlc": "mpsecurity",
+        "manufacturer": "Overflod"
+    },
+    {
+        "hash": -1403128555,
+        "name": "zentorno",
+        "class": "SUPER",
+        "displayName": "Zentorno",
+        "type": "CAR",
+        "dlc": "mpbusiness2",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": 1284356689,
+        "name": "zhaba",
+        "class": "OFF_ROAD",
+        "displayName": "Zhaba",
+        "type": "AMPHIBIOUS_AUTOMOBILE",
+        "dlc": "mpheist3",
+        "manufacturer": "RUNE"
+    },
+    {
+        "hash": -1122289213,
+        "name": "zion",
+        "class": "COUPE",
+        "displayName": "Zion",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": -1193103848,
+        "name": "zion2",
+        "class": "COUPE",
+        "displayName": "Zion Cabrio",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": 1862507111,
+        "name": "zion3",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Zion Classic",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Ubermacht"
+    },
+    {
+        "hash": -1009268949,
+        "name": "zombiea",
+        "class": "MOTORCYCLE",
+        "displayName": "Zombie Bobber",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -570033273,
+        "name": "zombieb",
+        "class": "MOTORCYCLE",
+        "displayName": "Zombie Chopper",
+        "type": "BIKE",
+        "dlc": "mpbiker",
+        "manufacturer": "Western"
+    },
+    {
+        "hash": -682108547,
+        "name": "zorrusso",
+        "class": "SUPER",
+        "displayName": "Zorrusso",
+        "type": "CAR",
+        "dlc": "mpvinewood",
+        "manufacturer": "Pegassi"
+    },
+    {
+        "hash": -1858654120,
+        "name": "zr350",
+        "class": "SPORT",
+        "displayName": "ZR350",
+        "type": "CAR",
+        "dlc": "mptuner",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": 540101442,
+        "name": "zr380",
+        "class": "SPORT",
+        "displayName": "Apocalypse ZR380",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": -1106120762,
+        "name": "zr3802",
+        "class": "SPORT",
+        "displayName": "Future Shock ZR380",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": -1478704292,
+        "name": "zr3803",
+        "class": "SPORT",
+        "displayName": "Nightmare ZR380",
+        "type": "CAR",
+        "dlc": "mpchristmas2018",
+        "manufacturer": "Annis"
+    },
+    {
+        "hash": 758895617,
+        "name": "Ztype",
+        "class": "SPORT_CLASSIC",
+        "displayName": "Z-Type",
+        "type": "CAR",
+        "dlc": "TitleUpdate",
+        "manufacturer": "Truffade"
+    }
+]

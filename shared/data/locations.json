@@ -1,0 +1,42 @@
+[
+    {
+        "z": 27.5,
+        "name": "Location test 1",
+        "custom": true,
+        "heading": 50.0,
+        "y": -1091.0,
+        "x": -68.0
+    },
+    {
+        "z": 28.0,
+        "name": "Location test 2",
+        "custom": true,
+        "heading": 230.0,
+        "y": -1048.0,
+        "x": -67.0
+    },
+    {
+        "z": 28.0,
+        "name": "Location test 3",
+        "custom": true,
+        "heading": 230.0,
+        "y": -1048.0,
+        "x": -67.0
+    },
+    {
+        "z": 28.0,
+        "name": "Location test 4",
+        "custom": true,
+        "heading": 230.0,
+        "y": -1048.0,
+        "x": -67.0
+    },
+    {
+        "z": 28.0,
+        "name": "Location test 5",
+        "custom": true,
+        "heading": 230.0,
+        "y": -1048.0,
+        "x": -67.0
+    }
+]

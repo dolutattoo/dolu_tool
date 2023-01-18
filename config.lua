@@ -1,9 +1,4 @@
+-- Please read documentation: https://dolutattoo.github.io/docs/category/dolu_tool
+Config = {}
 
-DMT = {}
-
--- YOU CAN MODIFY HERE
-DMT.locale = "en" -- english and french only for the moment, looking for translators
-DMT.openUI = 51 -- https://docs.fivem.net/docs/game-references/controls/
-
--- DO NOT MODIFIY !!
-DMT.VERSION = "3.1"
+Config.development = false  -- Enable this if you need to restart the resource often to not get rate limited by github
