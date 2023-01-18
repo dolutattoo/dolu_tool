@@ -30,7 +30,7 @@
   "ui_name": "Name",
   "ui_hash": "Hash",
   "ui_coords": "Coords",
-  "ui_heading": "Direction",
+  "ui_heading": "Heading",
   "ui_interior_id": "Interior ID",
   "ui_current_room": "Current Room",
   "ui_teleport": "Teleport",
