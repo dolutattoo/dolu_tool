@@ -503,7 +503,7 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
         data = {
             type = listType,
             content = FUNC.getPages(activePage, filteredList, itemPerPage),
-            maxPages = math.ceil(#filteredList/5)
+            maxPages = math.ceil(#filteredList/itemPerPage)
         }
     })
 end
