@@ -447,10 +447,9 @@ FUNC.initTarget = function()
     })
 end
 
-FUNC.getPages = function(page, table)
-    local perPage = 5 -- number of entries per page
-    local start = (page - 1) * perPage + 1 -- start index of the page
-    local finish = start + perPage - 1 -- end index of the page
+FUNC.getPages = function(page, table, itemPerPage)
+    local start = (page - 1) * itemPerPage + 1 -- start index of the page
+    local finish = start + itemPerPage - 1 -- end index of the page
     local pageContent = {}
 
     for i = start, math.min(finish, #table) do
@@ -464,8 +463,13 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
     local totalList = Client.data[listType]
     local filteredList = {}
 
-    if listType == 'locations' and not checkboxes then
-        checkboxes = Client.locationsCheckboxes
+    local itemPerPage = 6
+
+    if listType == 'locations' then
+        itemPerPage = 5
+        if not checkboxes then
+            checkboxes = Client.locationsCheckboxes
+        end
     end
     
     -- Filter list from search input
@@ -498,7 +502,7 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
         action = 'setPageContent',
         data = {
             type = listType,
-            content = FUNC.getPages(activePage, filteredList),
+            content = FUNC.getPages(activePage, filteredList, itemPerPage),
             maxPages = math.ceil(#filteredList/5)
         }
     })
