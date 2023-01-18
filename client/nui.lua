@@ -81,8 +81,9 @@ RegisterNUICallback('dolu_tool:spawnVehicle', function(data, cb)
 end)
 
 RegisterNUICallback('dolu_tool:deleteVehicle', function(_, cb)
-    DeleteVehicle(cache.vehicle)
-    
+    if cache.vehicle and DoesEntityExist(cache.vehicle) then
+        DeleteVehicle(cache.vehicle)
+    end
     cb(1)
 end)
 
