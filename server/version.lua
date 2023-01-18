@@ -17,7 +17,7 @@ local function checkVersion()
             response = json.decode(response)
             if response.prerelease then return end
 
-            local latestVersion = response.tag_name:match('%d%.%d+%.%d+')
+            local latestVersion = response.tag_name:find('%d%.%d+%.%d+')
             if not latestVersion or latestVersion == currentVersion then return end
 
             local cv = { string.strsplit('.', currentVersion) }
