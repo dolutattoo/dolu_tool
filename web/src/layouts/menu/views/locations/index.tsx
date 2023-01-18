@@ -1,4 +1,4 @@
-import { Accordion, Badge, Button, Center, Checkbox, Group, Pagination, Paper, Stack, Text } from '@mantine/core'
+import { Accordion, Badge, Button, Center, Checkbox, Group, Pagination, Paper, ScrollArea, Stack, Text } from '@mantine/core'
 import { openModal } from '@mantine/modals'
 import CreateLocation from './components/modals/CreateLocation'
 import { Location, getSearchLocationInput, locationsActivePageAtom, locationCustomFilterAtom, locationsPageCountAtom, locationVanillaFilterAtom, locationsPageContentAtom } from '../../../../atoms/location'
@@ -157,7 +157,7 @@ const Locations: React.FC = () => {
         
         <LocationSearch />
 
-        {/* <ScrollArea style={{ height: 480 }} scrollbarSize={0}> */}
+        <ScrollArea style={{ height: 480 }} scrollbarSize={0}>
           <Stack>
             <Accordion chevronPosition='left' variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
               {Locationlist ? Locationlist :
@@ -167,7 +167,7 @@ const Locations: React.FC = () => {
               }
             </Accordion>
           </Stack>
-        {/* </ScrollArea> */}
+        </ScrollArea>
         <Center>
           <Pagination
             color='blue.4'
