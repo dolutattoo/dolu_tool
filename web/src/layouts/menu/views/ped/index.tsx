@@ -108,16 +108,19 @@ const Ped: React.FC = () => {
   return(
     <Stack>
       <Text size={20}>{locale.ui_peds}</Text>
-      <Button
-        uppercase
-        variant='light'
-        color='blue.4'
-        onClick={() => { fetchNui('dolu_tool:changePed', { name: `${searchPedValue}` }) }}
-      >
-        {locale.ui_set_by_name}
-      </Button>
-      <PedSearch/>
-      <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
+      <Group grow>
+        <PedSearch/>
+        <Button
+          disabled={searchPedValue === ''}
+          uppercase
+          variant='light'
+          color='blue.4'
+          onClick={() => { fetchNui('dolu_tool:changePed', { name: `${searchPedValue}` }) }}
+        >
+          {locale.ui_set_by_name}
+        </Button>
+      </Group>
+      <ScrollArea style={{ height: 575 }} scrollbarSize={0}>
         <Stack>
           <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
             {PedList ? PedList : 
@@ -131,7 +134,7 @@ const Ped: React.FC = () => {
       <Center>
         <Pagination
           color='blue.4'
-          size='md'
+          size='sm'
           page={activePage}
           onChange={(value) => {
             fetchNui('dolu_tool:loadPages', { type: 'peds', activePage: value, filter: searchPedValue })

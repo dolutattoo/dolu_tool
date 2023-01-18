@@ -108,16 +108,19 @@ const Vehicle: React.FC = () => {
   return(
     <Stack>
       <Text size={20}>{locale.ui_vehicles}</Text>
-      <Button
-        uppercase
-        variant='light'
-        color='blue.4'
-        onClick={() => fetchNui('dolu_tool:spawnVehicle', searchVehicleValue)}
-      >
-        {locale.ui_spawn_by_name}
-      </Button>
-      <VehicleSearch/>
-      <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
+      <Group grow>
+        <VehicleSearch/>
+        <Button
+          disabled={searchVehicleValue === ''}
+          uppercase
+          variant='light'
+          color='blue.4'
+          onClick={() => fetchNui('dolu_tool:spawnVehicle', searchVehicleValue)}
+        >
+          {locale.ui_spawn_by_name}
+        </Button>
+      </Group>
+      <ScrollArea style={{ height: 575 }} scrollbarSize={0}>
         <Stack>
           <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
             {VehicleList ? VehicleList : 

@@ -108,18 +108,20 @@ const Weapon: React.FC = () => {
   return(
     <Stack>
       <Text size={20}>{locale.ui_weapons}</Text>
-      <Button
-        uppercase
-        variant='light'
-        color='blue.4'
-        onClick={() => fetchNui('dolu_tool:giveWeapon', searchWeaponValue)}
-      >
-        {locale.ui_give_weapon_by_name}
-      </Button>
+      <Group grow>
+        <WeaponSearch/>
+        <Button
+          disabled={searchWeaponValue === ''}
+          uppercase
+          variant='light'
+          color='blue.4'
+          onClick={() => fetchNui('dolu_tool:giveWeapon', searchWeaponValue)}
+        >
+          {locale.ui_give_weapon_by_name}
+        </Button>
+      </Group>
       
-      <WeaponSearch/>
-      
-      <ScrollArea style={{ height: 516 }} scrollbarSize={0}>
+      <ScrollArea style={{ height: 575 }} scrollbarSize={0}>
         <Stack>
           <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
             {WeaponList ? WeaponList : 
