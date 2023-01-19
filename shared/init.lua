@@ -37,15 +37,25 @@ CreateThread(function()
             Client.data = data
         end)
 
+        -- If ox_target is running, create targets
         if GetResourceState('ox_target'):find('start') then
             FUNC.initTarget()
         end
 
+        -- Load locale
         RegisterNUICallback('loadLocale', function(_, cb)
             cb(1)
-            local resource = GetCurrentResourceName()
-            local locale = GetConvar('ox:locale', 'en')
-            local JSON = LoadResourceFile(resource, ('locales/%s.json'):format(locale)) or LoadResourceFile(resource, ('locales/en.json'):format(locale))
+            local locale = Config.language or 'en'
+            local JSON = LoadResourceFile(RESOURCE_NAME, ('locales/%s.json'):format(locale))
+            if not JSON then
+                JSON = LoadResourceFile(RESOURCE_NAME, 'locales/en.json')
+                lib.notify({
+                    type = 'error',
+                    title = "Dolu Tool",
+                    description = "'" .. locale .. "' locale not found, please contribute by adding your language",
+                    duration = 10000
+                })
+            end
             SendNUIMessage({
                 action = 'setLocale',
                 data = json.decode(JSON)

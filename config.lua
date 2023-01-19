@@ -1,4 +1,12 @@
 -- Please read documentation: https://dolutattoo.github.io/docs/category/dolu_tool
 Config = {}
 
-Config.development = false  -- Enable this if you need to restart the resource often to not get rate limited by github
+-- Make sure to check available languages in 'locales' folder.
+-- Please contribute by creating a locale file in your language and PR on github or post it on Dolu's Discord <3.
+Config.language = 'en'
+
+-- These are default keys to interact with dolu_tool commands.
+-- You can also override them in your pause menu, at the very bottom of FiveM keybinds section.
+Config.openMenuKey = 'F3'
+Config.toggleNoclipKey = 'F11'
+Config.teleportMarkerKey = 'F10'

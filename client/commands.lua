@@ -3,7 +3,7 @@ RegisterCommand('dolu_tool:open', function()
         FUNC.openUI()
     end
 end)
-RegisterKeyMapping('dolu_tool:open', locale('command_openui', '~o~>~w~'), 'keyboard', 'F3')
+RegisterKeyMapping('dolu_tool:open', locale('command_openui', '~o~>~w~'), 'keyboard', Config.openMenuKey)
 
 RegisterCommand('goback', function()
     if not Client.lastCoords then
@@ -75,13 +75,13 @@ RegisterCommand('tpm', function()
         DoScreenFadeIn(750)
     end
 end)
-RegisterKeyMapping('tpm', locale('command_tpm', '~o~>~w~'), 'keyboard', '')
+RegisterKeyMapping('tpm', locale('command_tpm', '~o~>~w~'), 'keyboard', Config.teleportMarkerKey)
 
 RegisterCommand('noclip', function()
     Client.noClip = not Client.noClip
     SetFreecamActive(Client.noClip)
 end)
-RegisterKeyMapping('noclip', locale('command_noclip', '~o~>~w~'), 'keyboard', '')
+RegisterKeyMapping('noclip', locale('command_noclip', '~o~>~w~'), 'keyboard', Config.toggleNoclipKey)
 
 -- https://github.com/Deltanic/fivem-freecam/
 -- https://github.com/tabarra/txAdmin/tree/master/scripts/menu/vendor/freecam
