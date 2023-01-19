@@ -1,4 +1,5 @@
 RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
+    cb(1)
     local previousTab = Client.currentTab
     Client.currentTab = newTab
 
@@ -48,11 +49,10 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
         FUNC.loadPage('weapons', 1)
         Client.weaponsLoaded = true
     end
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:teleport', function(data, cb)
+    cb(1)
     if data then
         FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
 
@@ -64,30 +64,27 @@ RegisterNUICallback('dolu_tool:teleport', function(data, cb)
         SetResourceKvp('dolu_tool:lastLocation', json.encode(data))
         Client.lastLocation = data
     end
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:changePed', function(data, cb)
-    FUNC.changePed(data.name)
-    
     cb(1)
+    FUNC.changePed(data.name)
 end)
 
 RegisterNUICallback('dolu_tool:spawnVehicle', function(data, cb)
-    FUNC.spawnVehicle(data)
-    
     cb(1)
+    FUNC.spawnVehicle(data)
 end)
 
 RegisterNUICallback('dolu_tool:deleteVehicle', function(_, cb)
+    cb(1)
     if cache.vehicle and DoesEntityExist(cache.vehicle) then
         DeleteVehicle(cache.vehicle)
     end
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:exit', function(_, cb)
+    cb(1)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
     Client.isMenuOpen = false
@@ -97,11 +94,10 @@ RegisterNUICallback('dolu_tool:exit', function(_, cb)
         data = {}
     })
     Client.gizmoEntity = nil
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:changeLocationName', function(data, cb)
+    cb(1)
     lib.callback('dolu_tool:renameLocation', false, function(result)
         if not result then return end
 
@@ -111,11 +107,10 @@ RegisterNUICallback('dolu_tool:changeLocationName', function(data, cb)
             FUNC.loadPage('locations', 1)
         end
     end, data)
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:createCustomLocation', function(locationName, cb)
+    cb(1)
     local playerPed = cache.ped
 
     lib.callback('dolu_tool:createCustomLocation', false, function(result)
@@ -139,11 +134,10 @@ RegisterNUICallback('dolu_tool:createCustomLocation', function(locationName, cb)
         coords = GetEntityCoords(playerPed),
         heading = GetEntityHeading(playerPed)
     })
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:deleteLocation', function(locationName, cb)
+    cb(1)
     local result = lib.callback.await('dolu_tool:deleteLocation', false, locationName)
     if not result then return end
 
@@ -153,62 +147,54 @@ RegisterNUICallback('dolu_tool:deleteLocation', function(locationName, cb)
     if Client.isMenuOpen and Client.currentTab == 'locations' then
         FUNC.loadPage('locations', 1)
     end
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:setWeather', function(weatherName, cb)
-    FUNC.setWeather(weatherName)
-    
     cb(1)
+    FUNC.setWeather(weatherName)
 end)
 
 RegisterNUICallback('dolu_tool:setClock', function(clock, cb)
-    FUNC.setClock(clock.hour, clock.minute)
-    
     cb(1)
+    FUNC.setClock(clock.hour, clock.minute)
 end)
 
 RegisterNUICallback('dolu_tool:getClock', function(_, cb)
+    cb(1)
     local hour, minute = FUNC.getClock()
     SendNUIMessage({
         action = 'setClockData',
         data = {hour = hour, minute = minute }
     })
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:freezeTime', function(state, cb)
-    Client.freezeTime = state
-    
     cb(1)
+    Client.freezeTime = state
 end)
 
 RegisterNUICallback('dolu_tool:freezeWeather', function(state, cb)
-    Client.freezeWeather = state
-    
     cb(1)
+    Client.freezeWeather = state
 end)
 
 RegisterNUICallback('dolu_tool:cleanZone', function(_, cb)
+    cb(1)
     local playerId = cache.ped
     local playerCoords = GetEntityCoords(playerId)
     ClearAreaOfEverything(playerCoords.x, playerCoords.y, playerCoords.z, 1000.0, false, false, false, false)
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:cleanPed', function(_, cb)
+    cb(1)
     local playerId = cache.ped
     ClearPedBloodDamage(playerId)
     ClearPedEnvDirt(playerId)
     ClearPedWetness(playerId)
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:upgradeVehicle', function(_, cb)
+    cb(1)
     local vehicle = cache.vehicle
     if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
         local max
@@ -224,19 +210,18 @@ RegisterNUICallback('dolu_tool:upgradeVehicle', function(_, cb)
             position = 'top'
         })
     end
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:repairVehicle', function(_, cb)
+    cb(1)
     local vehicle = cache.vehicle
 	SetVehicleFixed(vehicle)
     SetVehicleEngineHealth(vehicle, 1000.0)
     SetVehicleDirtLevel(vehicle, 0.0)
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:giveWeapon', function(weaponName, cb)
+    cb(1)
     if Shared.ox_inventory then
         lib.callback('dolu_tool:giveWeaponToPlayer', false, function(result)
             if result then
@@ -245,23 +230,20 @@ RegisterNUICallback('dolu_tool:giveWeapon', function(weaponName, cb)
                 lib.notify({type = 'error', description = locale('weapon_cant_carry')})
             end
         end, weaponName)
-        
         return
     else
         GiveWeaponToPed(cache.ped, joaat(weaponName), 999, false, true)
     end
-
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:setDay', function(_, cb)
+    cb(1)
     FUNC.setClock(12)
     FUNC.setWeather('extrasunny')
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:setMaxHealth', function(_, cb)
+    cb(1)
     local playerPed = PlayerPedId()
     SetEntityHealth(playerPed, GetEntityMaxHealth(playerPed))
 
@@ -271,17 +253,15 @@ RegisterNUICallback('dolu_tool:setMaxHealth', function(_, cb)
         type = 'success',
         position = 'top'
     })
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:spawnFavoriteVehicle', function(_, cb)
-    FUNC.spawnVehicle('krieger')
-    
     cb(1)
+    FUNC.spawnVehicle('krieger')
 end)
 
 RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
+    cb(1)
     local model = joaat(modelName)
     if not IsModelInCdimage(model) then
         lib.notify({
@@ -290,7 +270,6 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
             type = 'error',
             position = 'top'
         })
-        cb(1)
         return
     end
 
@@ -312,7 +291,6 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
             type = 'error',
             position = 'top'
         })
-        cb(1)
         return
     end
 
@@ -354,11 +332,10 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
         }
     })
     Client.gizmoEntity = obj
-
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
+    cb(1)
     local model = joaat(data.modelName)
     if not IsModelInCdimage(model) then
         data.entity.invalid = true
@@ -369,7 +346,6 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
                 entity = data.entity
             }
         })
-        cb(1)
         return
     end
 
@@ -415,11 +391,10 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
         })
         Client.gizmoEntity = entity.handle
     end
-
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
+    cb(1)
     -- Make sure entity exists in spawnedEntities
     local foundIndex
     for k, v in ipairs(Client.spawnedEntities) do
@@ -465,11 +440,10 @@ RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
         type = 'success',
         position = 'top'
     })
-
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
+    cb(1)
     -- Sending empty object to hide editor
     SendNUIMessage({
         action = 'setGizmoEntity',
@@ -493,11 +467,10 @@ RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
             newIndex = nil
         }
     })
-
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
+    cb(1)
     -- If entity param is nil, hide gizmo
     if not entityHandle then
         SendNUIMessage({
@@ -538,11 +511,10 @@ RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
         }
     })
     Client.gizmoEntity = entity.handle
-
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
+    cb(1)
     if data?.position and data.handle and DoesEntityExist(data.handle) then
         local coords = GetEntityCoords(data.handle)
         FUNC.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
@@ -561,11 +533,10 @@ RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
             position = 'top'
         })
     end
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
+    cb(1)
     if data.handle then
         if DoesEntityExist(data.handle) then
             SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
@@ -577,7 +548,6 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
                 type = 'error',
                 position = 'top'
             })
-            cb(1)
             return
         end
 
@@ -607,11 +577,10 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
             })
         end
     end
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
+    cb(1)
     if not DoesEntityExist(data.handle) then
         lib.notify({
             title = 'Dolu Tool',
@@ -619,7 +588,6 @@ RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
             type = 'error',
             position = 'top'
         })
-        cb(1)
         return
     end
 
@@ -656,11 +624,10 @@ RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
         })
         Client.gizmoEntity = entity.handle
     end
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
+    cb(1)
     local formatedCoords
     if data.coordString then
         local coordString = (data.coordString:gsub(',', '')):gsub('  ', ' ')
@@ -677,15 +644,14 @@ RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
 
     if not formatedCoords then return end
     FUNC.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
-    
-    cb(1)
 end)
 
 RegisterNUICallback('dolu_tool:loadPages', function(data, cb)
-    FUNC.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
     cb(1)
+    FUNC.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
 end)
 
 RegisterNUICallback('dolu_tool:openBrowser', function(data, cb)
+    cb(1)
     SendNUIMessage({ name = 'openBrowser', url = data.url })
-end)    
+end)
