@@ -40,7 +40,7 @@ function Clamp(x, _min, _max)
 end
 
 function IsGamepadControl()
-  return not IsInputDisabled(2)
+  return not IsUsingKeyboard(2)
 end
 
 function GetSmartControlNormal(control)
