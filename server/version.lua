@@ -1,15 +1,15 @@
-local versionData
+local currentVersion = GetResourceMetadata('dolu_tool', 'version', 0)
+
+if currentVersion then
+    currentVersion = currentVersion:match('%d%.%d+%.%d+')
+end
+
+local versionData = { currentVersion = currentVersion }
 
 local function checkVersion()
-	local currentVersion = GetResourceMetadata('dolu_tool', 'version', 0)
-
-	if currentVersion then
-		currentVersion = currentVersion:match('%d%.%d+%.%d+')
-	end
-
 	if not currentVersion then return print("^1Unable to determine current resource version for 'dolu_tool' ^0") end
 
-	SetTimeout(1000, function()
+	SetTimeout(200, function()
 		PerformHttpRequest('https://api.github.com/repos/dolutattoo/dolu_tool/releases/latest', function(status, response)
 			if status ~= 200 then return end
 
@@ -28,11 +28,8 @@ local function checkVersion()
                 if current ~= minimum then
                     if current < minimum then
                         versionData = { currentVersion = currentVersion, url = response.html_url }
-                        print(("^3An update is available for 'dolu_tool' (current version: %s)\r\n%s^0"):format(currentVersion, response.html_url))
-                    else
-                        versionData = { currentVersion = currentVersion, url = response.html_url }
-                    end
-                    break
+                        return print(("^3An update is available for 'dolu_tool' (current version: %s)\r\n%s^0"):format(currentVersion, response.html_url))
+                    else break end
                 end
             end
 		end, 'GET')
@@ -44,6 +41,5 @@ if not Config.development then
 end
 
 lib.callback.register('dolu_tool:getVersion', function()
-    while not versionData do Wait(0) end
     return versionData
 end)

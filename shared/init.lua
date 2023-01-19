@@ -71,7 +71,9 @@ CreateThread(function()
         end)
 
         if not Config.development then
-            Client.version = lib.callback.await('dolu_tool:getVersion', false)
+            SetTimeout(1000, function()
+                Client.version = lib.callback.await('dolu_tool:getVersion', false)
+            end)
         end
     end
 end)
