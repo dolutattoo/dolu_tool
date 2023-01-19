@@ -155,7 +155,9 @@ function StartFreecamThread()
 			frameCounter += 1
 			if frameCounter > 100 then
 				frameCounter = 0
-				updatePos(loopPos, loopRotZ)
+				if loopPos then
+					updatePos(loopPos, loopRotZ)
+				end
 			end
 			Wait(0)
 		end
