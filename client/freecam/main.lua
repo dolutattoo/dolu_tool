@@ -145,9 +145,6 @@ function StartFreecamThread()
 				end
 
 				SetEntityHeading(ped, rotZ)
-
-				-- God mode
-				SetEntityHealth(ped, GetEntityMaxHealth(ped))
 			end
 		end
 

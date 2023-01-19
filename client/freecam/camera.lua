@@ -117,7 +117,7 @@ function SetFreecamActive(active)
     SetEntityVisible(ped, not active)
     SetEntityCollision(ped, not active, not active)
     SetEntityCompletelyDisableCollision(ped, not active, not active)
-    SetEntityInvincible(ped, noClip)
+    SetEntityInvincible(ped, active)
     
     local enableEasing = _G.CAMERA_SETTINGS.ENABLE_EASING
     local easingDuration = _G.CAMERA_SETTINGS.EASING_DURATION
