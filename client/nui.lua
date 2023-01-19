@@ -320,7 +320,7 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
 
     local entityRotation = GetEntityRotation(obj)
 
-    table.insert(Client.spawnedEntities, 1, {
+    table.insert(Client.spawnedEntities, {
         handle = obj,
         name = modelName,
         position = {
@@ -338,7 +338,10 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
 
     SendNUIMessage({
         action = 'setObjectList',
-        data = Client.spawnedEntities
+        data = {
+            entitiesList = Client.spawnedEntities,
+            newIndex = #Client.spawnedEntities - 1
+        }
     })
 
     SendNUIMessage({
@@ -447,9 +450,13 @@ RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
     Client.gizmoEntity = nil
 
     -- Updating nui object list
+    local newIndex = foundIndex-2
     SendNUIMessage({
         action = 'setObjectList',
-        data = Client.spawnedEntities
+        data = {
+            entitiesList = Client.spawnedEntities,
+            newIndex = newIndex > 0 and newIndex or nil
+        }
     })
 
     lib.notify({
@@ -481,7 +488,10 @@ RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
     -- Updating nui object list
     SendNUIMessage({
         action = 'setObjectList',
-        data = Client.spawnedEntities
+        data = {
+            entitiesList = Client.spawnedEntities,
+            newIndex = nil
+        }
     })
 
     cb(1)

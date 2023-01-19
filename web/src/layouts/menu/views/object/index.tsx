@@ -15,20 +15,26 @@ const Object: React.FC = () => {
     const { locale } = useLocales()
     const [objectList, setObjectList] = useRecoilState(ObjectListAtom)
     const [currentAccordionItem, setAccordionItem] = useState<string|null>(null)
-    
-    useNuiEvent('setObjectList', (entitiesList: Entity[]|null) => {
-        if (entitiesList !== null) {
-            setObjectList(entitiesList)
-            if (entitiesList.length > 0) setAccordionItem(entitiesList[0].handle.toString())
+
+    useNuiEvent('setObjectList', (data: {entitiesList: Entity[]|null, newIndex?: number}) => {
+        if (data.entitiesList !== null) {
+            setObjectList(data.entitiesList)
+            if (data.entitiesList.length > 0) {
+                if (data.newIndex !== undefined) {
+                    setAccordionItem(data.entitiesList[data.newIndex].handle.toString())
+                } else {
+                    setAccordionItem(data.entitiesList[0].handle.toString())
+                }
+            }
         }
     })
-    
+
     useNuiEvent('setObjectData', (data: {index: number, entity: Entity}) => {
         if (data.entity !== null) {            
-            const updatedObject = [...objectList]
-            updatedObject[data.index] = data.entity
-            setObjectList(updatedObject)
-            setAccordionItem(updatedObject[data.index].handle.toString())
+            const newObjectList = [...objectList]
+            newObjectList[data.index] = data.entity
+            setObjectList(newObjectList)
+            setAccordionItem(newObjectList[data.index].handle.toString())
         }
     })
 
@@ -36,17 +42,17 @@ const Object: React.FC = () => {
     const [copiedName, setCopiedName] = useState(false)
     useEffect(() => {
         setTimeout(() => {
-        if (copiedName) setCopiedName(false)
+            setCopiedName(false)
         }, 1000)
-    }, [copiedName, setCopiedName])
+    }, [copiedName])
 
     // Copied coords button
     const [copiedCoords, setCopiedCoords] = useState(false)
     useEffect(() => {
         setTimeout(() => {
-        if (copiedCoords) setCopiedCoords(false)
+            setCopiedCoords(false)
         }, 1000)
-    }, [copiedCoords, setCopiedCoords])
+    }, [copiedCoords])
 
     return (
         <>
@@ -88,12 +94,11 @@ const Object: React.FC = () => {
             
             {/* OBJECT LIST*/}
             <Paper p='md' sx={{ height:685 }}>
-                <Space h='sm' />
-
-                <ScrollArea style={{ height: 420 }} offsetScrollbars scrollbarSize={12}>
+                <ScrollArea style={{ height: 650, borderRadius: '5px' }} offsetScrollbars scrollbarSize={12}>
                     <Accordion
                         variant='contained'
                         radius='sm'
+                        chevronPosition='left'
                         value={currentAccordionItem}
                         defaultValue={currentAccordionItem}
                         onChange={(value) => {
@@ -101,13 +106,19 @@ const Object: React.FC = () => {
                                 fetchNui('dolu_tool:setGizmoEntity', parseInt(value as string))
                             }
                         }
-                        chevronPosition='left'
                     >
                         {objectList.map((entity: Entity, entityIndex: any) => {
                             return (
-                                <Accordion.Item value={entity.handle.toString()}>
+                                <Accordion.Item key={entity.handle} value={entity.handle.toString()}>
                                     <Accordion.Control>
-                                        <TextInput error={entity.invalid} defaultValue={entity.name} onChange={(event) => event.currentTarget.value !== '' && fetchNui('dolu_tool:setEntityModel', {entity: entity, index: entityIndex, modelName: event.currentTarget.value})} />
+                                        <TextInput
+                                            error={entity.invalid}
+                                            defaultValue={entity.name}
+                                            onChange={
+                                                (e) => e.currentTarget.value !== '' &&
+                                                fetchNui('dolu_tool:setEntityModel', {entity: entity, index: entityIndex, modelName: e.currentTarget.value})
+                                            }
+                                        />
                                     </Accordion.Control>
                                     <Accordion.Panel>
                                         <Group grow>

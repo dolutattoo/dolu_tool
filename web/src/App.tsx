@@ -3,7 +3,7 @@ import { ThreeComponent } from './layouts/gizmo/ThreeComponent'
 import ImgPreview from './layouts/imgPreview'
 import Menu from './layouts/menu'
 
-const useStyles = createStyles((theme) => ({
+const useStyles = createStyles(() => ({
   container: {
     width: '100%',
     height: '100%',
