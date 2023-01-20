@@ -2,7 +2,7 @@ import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center
 import { useEffect, useState} from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { getSearchVehicleInput, vehiclesPageCountAtom, vehiclesActivePageAtom, vehiclesPageContentAtom, VehicleProp } from '../../../../atoms/vehicle'
-import { displayImageAtom, imagePathAtom, resourceNameAtom } from '../../../../atoms/imgPreview'
+import { displayImageAtom, imagePathAtom } from '../../../../atoms/imgPreview'
 import { setClipboard } from '../../../../utils/setClipboard'
 import VehicleSearch from './components/vehicleListSearch'
 import { fetchNui } from '../../../../utils/fetchNui'
@@ -29,7 +29,6 @@ const Vehicle: React.FC = () => {
 
   const displayImage = useSetRecoilState(displayImageAtom)
   const imagePath = useSetRecoilState(imagePathAtom)
-  const resourceName = useRecoilState(resourceNameAtom)
 
   // Copied name button
   useEffect(() => {
@@ -55,13 +54,13 @@ const Vehicle: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true)
-                imagePath(`https://cfx-nui-${resourceName[0]}/shared/img/vehicle/${vehicleList.name}.webp`)
+                imagePath(`nui://dolu_tool/shared/img/vehicle/${vehicleList.name}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit='contain'
               alt={`${vehicleList.name}`}
-              src={`https://cfx-nui-${resourceName[0]}/shared/img/vehicle/${vehicleList.name}.webp`}
+              src={`nui://dolu_tool/shared/img/vehicle/${vehicleList.name}.webp`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
