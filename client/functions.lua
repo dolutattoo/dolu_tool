@@ -30,6 +30,8 @@ FUNC.openUI = function()
     })
     if Client.currentTab == 'home' then
         FUNC.setMenuPlayerCoords()
+    elseif Client.currentTab == 'stancer' then
+        FUNC.setStancer()
     end
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)
@@ -506,6 +508,35 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
             maxPages = math.ceil(#filteredList/itemPerPage)
         }
     })
+end
+
+FUNC.getStance = function(vehicle)
+    local wheelCount = GetVehicleNumberOfWheels(vehicle)
+    local data = {
+        vehicleName = GetDisplayNameFromVehicleModel(GetEntityModel(vehicle)),
+        wheelCount = wheelCount,
+        suspensionHeight = GetVehicleSuspensionHeight(vehicle)*-1,
+        wheelOffsetFront = GetVehicleWheelXOffset(vehicle, 0)*-1,
+        wheelOffsetRear = GetVehicleWheelXOffset(vehicle, wheelCount-1),
+        wheelCamberFront = GetVehicleWheelYRotation(vehicle, 0),
+        wheelCamberRear = GetVehicleWheelYRotation(vehicle, wheelCount-1)
+    }
+    return data
+end
+
+FUNC.setStancer = function()
+    local vehicle, data = cache.vehicle, {}
+
+    if vehicle then
+        data = FUNC.getStance(vehicle)
+    end
+
+    SendNUIMessage({
+        action = 'setStancerTab',
+        data = data
+    })
+
+    Client.stancerTab = true
 end
 
 ---Assert with styling and formatting

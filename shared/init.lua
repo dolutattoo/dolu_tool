@@ -29,7 +29,8 @@ CreateThread(function()
             spawnedEntities = {},
             freezeTime = false,
             freezeWeather = false,
-            data = {}
+            data = {},
+            stancer = {}
         }
 
         -- Get data from shared/data json files

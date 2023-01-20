@@ -48,6 +48,9 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
     elseif newTab == 'weapons' and not Client.weaponsLoaded then
         FUNC.loadPage('weapons', 1)
         Client.weaponsLoaded = true
+    
+    elseif newTab == 'stancer' then
+        FUNC.setStancer()
     end
 end)
 
@@ -654,4 +657,29 @@ end)
 RegisterNUICallback('dolu_tool:openBrowser', function(data, cb)
     cb(1)
     SendNUIMessage({ name = 'openBrowser', url = data.url })
+end)
+
+RegisterNUICallback('dvm:setStancer', function(data, cb)
+    cb(1)
+    if not cache.vehicle then return end
+
+    if data.suspensionHeight then
+        SetVehicleSuspensionHeight(cache.vehicle, data.suspensionHeight*-1)
+    end
+
+    if data.wheelOffsetFront then
+        Client.stancer.wheelOffsetFront = data.wheelOffsetFront
+    end
+
+    if data.wheelOffsetRear then
+        Client.stancer.wheelOffsetRear = data.wheelOffsetRear
+    end
+
+    if data.wheelCamberFront then
+        Client.stancer.wheelCamberFront = data.wheelCamberFront
+    end
+
+    if data.wheelCamberRear then
+        Client.stancer.wheelCamberRear = data.wheelCamberRear
+    end
 end)

@@ -106,3 +106,65 @@ CreateThread(function()
         Wait(0)
     end
 end)
+
+-- Forcing stancers cause driving reset those
+CreateThread(function()
+    while true do
+        local vehicle = cache.vehicle
+
+        if vehicle and DoesEntityExist(vehicle) then
+            if Client.stancer.wheelOffsetFront then
+                SetVehicleWheelXOffset(vehicle, 0, Client.stancer.wheelOffsetFront*-1)
+                SetVehicleWheelXOffset(vehicle, 1, Client.stancer.wheelOffsetFront)
+            end
+
+            if Client.stancer.wheelOffsetRear then
+                SetVehicleWheelXOffset(vehicle, 2, Client.stancer.wheelOffsetRear*-1)
+                SetVehicleWheelXOffset(vehicle, 3, Client.stancer.wheelOffsetRear)
+            end
+
+            if Client.stancer.wheelCamberFront then
+                SetVehicleWheelYRotation(vehicle, 0, Client.stancer.wheelCamberFront*-1)
+                SetVehicleWheelYRotation(vehicle, 1, Client.stancer.wheelCamberFront)
+            end
+
+            if Client.stancer.wheelCamberRear then
+                SetVehicleWheelYRotation(vehicle, 2, Client.stancer.wheelCamberRear*-1)
+                SetVehicleWheelYRotation(vehicle, 3, Client.stancer.wheelCamberRear)
+            end
+        else
+            Wait(500)
+        end
+        Wait(0)
+    end
+end)
+
+-- Enter/exit vehicle handler
+--TODO: MAKE IT BETTER
+local isInVehicle = false
+CreateThread(function()
+    while true do
+        local vehicle = cache.vehicle
+        if isInVehicle and not vehicle then
+            -- Exited vehicle
+            if Client.isMenuOpen and Client.currentTab == 'stancer' then
+                SendNUIMessage({
+                    action = 'setStancerTab',
+                    data = {}
+                })
+                Client.stancerTab = nil
+            end
+            if Client.stancer then
+                Client.stancer = {}
+            end
+            isInVehicle = false
+        elseif not isInVehicle and vehicle then
+            -- Entered vehicle
+            if not Client.stancerTab then
+                FUNC.setStancer()
+            end
+            isInVehicle = true
+        end
+        Wait(0)
+    end
+end)
