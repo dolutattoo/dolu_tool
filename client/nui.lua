@@ -76,6 +76,21 @@ RegisterNUICallback('dolu_tool:spawnVehicle', function(data, cb)
     FUNC.spawnVehicle(data)
 end)
 
+RegisterNUICallback('dolu_tool:spawnFavoriteVehicle', function(_, cb)
+    cb(1)
+    local vehicleData = json.decode(GetResourceKvpString('dolu_tool:favoriteVehicle'))
+    if vehicleData then
+        local vehicle = FUNC.spawnVehicle(vehicleData.model)
+        lib.setVehicleProperties(vehicle, vehicleData)
+    end
+end)
+
+RegisterNUICallback('dolu_tool:setVehicleFavorite', function(_, cb)
+    cb(1)
+    local vehicleData = lib.getVehicleProperties(cache.vehicle)
+    SetResourceKvp('dolu_tool:favoriteVehicle', json.encode(vehicleData))
+end)
+
 RegisterNUICallback('dolu_tool:deleteVehicle', function(_, cb)
     cb(1)
     if cache.vehicle and DoesEntityExist(cache.vehicle) then
@@ -253,11 +268,6 @@ RegisterNUICallback('dolu_tool:setMaxHealth', function(_, cb)
         type = 'success',
         position = 'top'
     })
-end)
-
-RegisterNUICallback('dolu_tool:spawnFavoriteVehicle', function(_, cb)
-    cb(1)
-    FUNC.spawnVehicle('krieger')
 end)
 
 RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
