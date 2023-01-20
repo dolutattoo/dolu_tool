@@ -17,6 +17,32 @@ import Locations from './views/locations'
 import Ped from './views/ped'
 import Vehicle from './views/vehicle'
 import Weapon from './views/weapon'
+import { debugData } from '../../utils/debugData'
+
+
+
+debugData(
+  [
+    {
+      action: 'setMenuVisible',
+      data: {
+        version: "5.0.0",
+        lastLocation: {
+          name: "Custom Location test 1",
+          x: 12,
+          y: 11,
+          z: 10
+        },
+        position: "10, 20, 30"
+      }
+    },
+  ],
+  2000
+);
+
+
+
+
 
 const useStyles = createStyles((theme) => ({
   wrapper: {
