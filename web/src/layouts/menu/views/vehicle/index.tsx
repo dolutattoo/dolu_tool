@@ -1,13 +1,19 @@
-import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination } from '@mantine/core'
+import { Accordion, Button, Group, Paper, ScrollArea, Stack, Text, Image, Center, Pagination, Tabs, Space } from '@mantine/core'
 import { useEffect, useState} from 'react'
 import { useRecoilState, useSetRecoilState } from 'recoil'
 import { getSearchVehicleInput, vehiclesPageCountAtom, vehiclesActivePageAtom, vehiclesPageContentAtom, VehicleProp } from '../../../../atoms/vehicle'
 import { displayImageAtom, imagePathAtom } from '../../../../atoms/imgPreview'
 import { setClipboard } from '../../../../utils/setClipboard'
 import VehicleSearch from './components/vehicleListSearch'
+import Stancer from './components/vehicleStancer'
 import { fetchNui } from '../../../../utils/fetchNui'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
 import { useLocales } from '../../../../providers/LocaleProvider'
+import { TbSearch } from 'react-icons/tb'
+import { GiSpring } from 'react-icons/gi'
+import { MdTune } from 'react-icons/md'
+import { FaSave } from 'react-icons/fa'
+import { BiSprayCan } from 'react-icons/bi'
 
 const Vehicle: React.FC = () => {
   const { locale } = useLocales()
@@ -107,42 +113,76 @@ const Vehicle: React.FC = () => {
   return(
     <Stack>
       <Text size={20}>{locale.ui_vehicles}</Text>
-      <Group grow>
-        <VehicleSearch/>
-        <Button
-          disabled={searchVehicleValue === ''}
-          uppercase
-          variant='light'
-          color='blue.4'
-          onClick={() => fetchNui('dolu_tool:spawnVehicle', searchVehicleValue)}
-        >
-          {locale.ui_spawn_by_name}
-        </Button>
-      </Group>
-      <ScrollArea style={{ height: 575 }} scrollbarSize={0}>
-        <Stack>
-          <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
-            {VehicleList ? VehicleList : 
-              <Paper p='md'>
-                <Text size='md' weight={600} color='red.4'>No vehicle found</Text>
-              </Paper>
-            }
-            </Accordion>
-        </Stack>
-      </ScrollArea>
-      <Center>
-        <Pagination
-          color='blue.4'
-          size='sm'
-          page={activePage}
-          onChange={(value) => {
-            fetchNui('dolu_tool:loadPages', { type: 'vehicles', activePage: value, filter: searchVehicleValue })
-            setPage(value)
-            setAccordionItem('0')
-          }}
-          total={pageCount}
-        />
-      </Center>
+      <Tabs radius="md" defaultValue="search">
+        <Tabs.List>
+          <Tabs.Tab value="search" icon={<TbSearch size={14} />}>Search</Tabs.Tab>
+          <Tabs.Tab value="custom" icon={<BiSprayCan size={14} />}>Custom</Tabs.Tab>
+          <Tabs.Tab value="stancer" icon={<GiSpring size={14} />}>Stance</Tabs.Tab>
+          <Tabs.Tab value="handling" icon={<MdTune size={14} />}>Handling</Tabs.Tab>
+          <Tabs.Tab value="saves" icon={<FaSave size={14} />}>Saves</Tabs.Tab>
+        </Tabs.List>
+
+        <Tabs.Panel value="search" pt="md">
+          <Group grow>
+            <VehicleSearch/>
+            <Button
+              disabled={searchVehicleValue === ''}
+              uppercase
+              variant='light'
+              color='blue.4'
+              onClick={() => fetchNui('dolu_tool:spawnVehicle', searchVehicleValue)}
+            >
+              {locale.ui_spawn_by_name}
+            </Button>
+          </Group>
+
+          <Space h='md' />
+
+          <ScrollArea style={{ height: 529, borderRadius: '5px' }} scrollbarSize={0}>
+            <Stack>
+              <Accordion variant='contained' radius='sm' value={currentAccordionItem} onChange={setAccordionItem}>
+                {VehicleList ? VehicleList : 
+                  <Paper p='md'>
+                    <Text size='md' weight={600} color='red.4'>No vehicle found</Text>
+                  </Paper>
+                }
+                </Accordion>
+            </Stack>
+          </ScrollArea>
+
+          <Space h='xs' />
+
+          <Center>
+            <Pagination
+              color='blue.4'
+              size='sm'
+              page={activePage}
+              onChange={(value) => {
+                fetchNui('dolu_tool:loadPages', { type: 'vehicles', activePage: value, filter: searchVehicleValue })
+                setPage(value)
+                setAccordionItem('0')
+              }}
+              total={pageCount}
+            />
+          </Center>
+        </Tabs.Panel>
+
+        <Tabs.Panel value="custom" pt="xs">
+            Custom tab!
+        </Tabs.Panel>
+
+        <Tabs.Panel value="stancer" pt="xs">
+            <Stancer />
+        </Tabs.Panel>
+
+        <Tabs.Panel value="handling" pt="xs">
+            Handling tab!
+        </Tabs.Panel>
+
+        <Tabs.Panel value="saves" pt="xs">
+            Saves tab!
+        </Tabs.Panel>
+      </Tabs>
     </Stack>
   )
 
