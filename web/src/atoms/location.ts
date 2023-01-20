@@ -16,7 +16,8 @@ const mockLocations: Location[] = [
       name: "Custom Location test 1",
       x: 12,
       y: 11,
-      z: 10
+      z: 10,
+      custom: true
     },
     {
       name: "Custom Location test 2",
@@ -24,8 +25,25 @@ const mockLocations: Location[] = [
       y: 11,
       z: 10,
       heading: 150,
+      custom: true,
       isLastLocationUsed: true
-    }
+    },
+    {
+      name: "Vanilla Location 1",
+      x: 12,
+      y: 11,
+      z: 10,
+      heading: 150,
+      custom: false,
+    },
+    {
+      name: "Vanilla Location 2",
+      x: 12,
+      y: 11,
+      z: 10,
+      heading: 150,
+      custom: false,
+    },
 ]
 
 export const lastLocationsAtom = atom<Location|null>({ key: 'lastLocations', default: null })
