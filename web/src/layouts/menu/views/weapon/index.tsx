@@ -44,7 +44,7 @@ const Weapon: React.FC = () => {
   }, [copiedWeaponHash, setCopiedWeaponHash])
 
   const WeaponList = pageContent?.map((weaponList: any, index: number) => (
-      <Accordion.Item value={index.toString()}>
+      <Accordion.Item key={index} value={index.toString()}>
         <Accordion.Control>
           <Text size='md' weight={500}>• {weaponList.name}</Text>
           <Text size='xs'>{locale.ui_hash}: {weaponList.hash}</Text>

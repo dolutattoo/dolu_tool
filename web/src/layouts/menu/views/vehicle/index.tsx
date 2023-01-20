@@ -44,7 +44,7 @@ const Vehicle: React.FC = () => {
   }, [copiedVehicleHash, setCopiedVehicleHash])
 
   const VehicleList = pageContent?.map((vehicleList: any, index: number) => (
-      <Accordion.Item value={index.toString()}>
+      <Accordion.Item key={index} value={index.toString()}>
         <Accordion.Control>
           <Text size='md' weight={500}>• {vehicleList.name}</Text>
           <Text size='xs'>{locale.ui_hash}: {vehicleList.hash}</Text>

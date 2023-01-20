@@ -44,7 +44,7 @@ const Ped: React.FC = () => {
   }, [copiedPedHash, setCopiedPedHash])
 
   const PedList = pageContent?.map((pedList: any, index: number) => (
-      <Accordion.Item value={index.toString()}>
+      <Accordion.Item key={index} value={index.toString()}>
         <Accordion.Control>
           <Text size='md' weight={500}>• {pedList.name}</Text>
           <Text size='xs'>{locale.ui_hash}: {pedList.hash}</Text>

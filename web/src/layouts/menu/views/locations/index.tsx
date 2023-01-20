@@ -42,7 +42,7 @@ const Locations: React.FC = () => {
   }, [copied, setCopied])
 
   const Locationlist = pageContent?.map((location: any, index: number) => (
-      <Accordion.Item value={index.toString()}>
+      <Accordion.Item key={index} value={index.toString()}>
         <Accordion.Control>
           <Stack spacing={0}>
             <Group position='apart'>
