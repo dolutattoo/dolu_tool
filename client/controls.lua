@@ -40,24 +40,18 @@ CreateThread(function()
 
             DisableControlAction(0, 30, true) -- Player Movement
             DisableControlAction(0, 31, true) -- Player Movement
+
+            -- Enabling a few input only while holding right click
+            if IsDisabledControlPressed(0, 25) then
+                EnableControlAction(0, 1, true) -- Look Left/Right
+                EnableControlAction(0, 2, true) -- Look up/Down
+                EnableControlAction(0, 30, true) -- Player Movement
+                EnableControlAction(0, 31, true) -- Player Movement
+                EnableControlAction(0, 22, true) -- Jump
+                EnableControlAction(0, 23, true) -- Enter vehicle
+            end
         else
-            Wait(100)
-        end
-        Wait(0)
-    end
-end)
-
--- Right click to move camera
-CreateThread(function()
-    while true do
-        if (Client.isMenuOpen or Client.gizmoEntity) and IsDisabledControlPressed(0, 25) then
-            EnableControlAction(0, 1, true) -- Look Left/Right
-            EnableControlAction(0, 2, true) -- Look up/Down
-
-            EnableControlAction(0, 30, true) -- Player Movement
-            EnableControlAction(0, 31, true) -- Player Movement
-            EnableControlAction(0, 22, true) -- Jump
-            EnableControlAction(0, 23, true) -- Enter vehicle
+            Wait(500)
         end
         Wait(0)
     end

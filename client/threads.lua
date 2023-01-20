@@ -52,7 +52,7 @@ CreateThread(function()
                 oldCoords = coords
             end
         else
-            Wait(200)
+            Wait(500)
         end
         Wait(50)
     end
@@ -71,19 +71,18 @@ CreateThread(function()
                     rotation = GetFinalRenderedCamRot()
                 }
             })
-        end
-
-        -- Entity outline
-        if Client.gizmoEntity then
             if Client.outlinedEntity then
                 SetEntityDrawOutline(Client.outlinedEntity, false)
             end
             Client.outlinedEntity = Client.gizmoEntity
             SetEntityDrawOutline(Client.outlinedEntity, true)
 
-        elseif Client.outlinedEntity then
-            SetEntityDrawOutline(Client.outlinedEntity, false)
-            Client.outlinedEntity = nil
+        else
+            if Client.outlinedEntity then
+                SetEntityDrawOutline(Client.outlinedEntity, false)
+                Client.outlinedEntity = nil
+            end
+            Wait(250)
         end
         Wait(0)
     end

@@ -171,6 +171,8 @@ CreateThread(function()
             h += 1
             if h > 22 then h = 0 end
             FUNC.setClock(h, 0, 0)
+        else
+            Wait(750)
         end
         Wait(75)
     end
