@@ -35,5 +35,6 @@ export const vehicleListSearchAtom = atom<string>({ key: 'vehicleListSearch', de
 export const vehiclesActivePageAtom = atom<number>({ key: 'vehicleActivePage', default: 1 })
 export const vehiclesPageCountAtom = atom<number>({ key: 'vehiclePageCount', default: 1})
 export const vehiclesPageContentAtom = atom<VehicleProp[]>({ key: 'vehiclesPageContent', default: mockVehicleList })
+export const vehiclesTabAtom = atom<string|null>({ key: 'vehiclesTab', default: 'search' })
 
 export const getSearchVehicleInput = () => useRecoilValue(vehicleListSearchAtom) as string

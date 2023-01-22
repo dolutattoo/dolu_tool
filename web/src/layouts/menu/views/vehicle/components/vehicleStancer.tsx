@@ -72,7 +72,7 @@ const Stancer: React.FC = () => {
                   disabled={wheelCount<4}
                   onChange={(value) => {
                     setSuspensionHeight(value!)
-                    fetchNui('dvm:setStancer', { suspensionHeight: value })
+                    fetchNui('dolu_tool:setStancer', { suspensionHeight: value })
                   }}
                   stepHoldDelay={500}
                   stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
@@ -92,7 +92,7 @@ const Stancer: React.FC = () => {
                 disabled={wheelCount<4}
                 onChange={(value) => {
                   setSuspensionHeight(value)
-                  fetchNui('dvm:setStancer', { suspensionHeight: value })
+                  fetchNui('dolu_tool:setStancer', { suspensionHeight: value })
                 }}
                 thumbChildren={<GiSpring size={18} />}
                 thumbSize={28}
@@ -115,7 +115,7 @@ const Stancer: React.FC = () => {
                   disabled={wheelCount<4}
                   onChange={(value) => {
                     setWheelOffsetFront(value!)
-                    fetchNui('dvm:setStancer', { wheelOffsetFront: value })
+                    fetchNui('dolu_tool:setStancer', { wheelOffsetFront: value })
                   }}
                   stepHoldDelay={500}
                   stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
@@ -135,7 +135,7 @@ const Stancer: React.FC = () => {
                 disabled={wheelCount<4}
                 onChange={(value) => {
                   setWheelOffsetFront(value)
-                  fetchNui('dvm:setStancer', { wheelOffsetFront: value })
+                  fetchNui('dolu_tool:setStancer', { wheelOffsetFront: value })
                 }}
                 thumbChildren={<IoMdResize size={18} />}
                 thumbSize={28}
@@ -158,7 +158,7 @@ const Stancer: React.FC = () => {
                   disabled={wheelCount<4}
                   onChange={(value) => {
                     setWheelOffsetRear(value!)
-                    fetchNui('dvm:setStancer', { wheelOffsetRear: value })
+                    fetchNui('dolu_tool:setStancer', { wheelOffsetRear: value })
                   }}
                   stepHoldDelay={500}
                   stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
@@ -178,7 +178,7 @@ const Stancer: React.FC = () => {
                 disabled={wheelCount<4}
                 onChange={(value) => {
                   setWheelOffsetRear(value)
-                  fetchNui('dvm:setStancer', { wheelOffsetRear: value })
+                  fetchNui('dolu_tool:setStancer', { wheelOffsetRear: value })
                 }}
                 thumbChildren={<IoMdResize size={18} />}
                 thumbSize={28}
@@ -201,7 +201,7 @@ const Stancer: React.FC = () => {
                   disabled={wheelCount<4}
                   onChange={(value) => {
                     setWheelCamberFront(value!)
-                    fetchNui('dvm:setStancer', { wheelCamberFront: value })
+                    fetchNui('dolu_tool:setStancer', { wheelCamberFront: value })
                   }}
                   stepHoldDelay={500}
                   stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
@@ -221,7 +221,7 @@ const Stancer: React.FC = () => {
                 disabled={wheelCount<4}
                 onChange={(value) => {
                   setWheelCamberFront(value)
-                  fetchNui('dvm:setStancer', { wheelCamberFront: value })
+                  fetchNui('dolu_tool:setStancer', { wheelCamberFront: value })
                 }}
                 thumbChildren={<AiOutlineRotateRight size={18} />}
                 thumbSize={28}
@@ -244,7 +244,7 @@ const Stancer: React.FC = () => {
                   disabled={wheelCount<4}
                   onChange={(value) => {
                     setWheelCamberRear(value!)
-                    fetchNui('dvm:setStancer', { wheelCamberRear: value })
+                    fetchNui('dolu_tool:setStancer', { wheelCamberRear: value })
                   }}
                   stepHoldDelay={500}
                   stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
@@ -264,7 +264,7 @@ const Stancer: React.FC = () => {
                 disabled={wheelCount<4}
                 onChange={(value) => {
                   setWheelCamberRear(value)
-                  fetchNui('dvm:setStancer', { wheelCamberRear: value })
+                  fetchNui('dolu_tool:setStancer', { wheelCamberRear: value })
                 }}
                 thumbChildren={<AiOutlineRotateRight size={18} />}
                 thumbSize={28}
