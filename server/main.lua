@@ -170,6 +170,8 @@ if Shared.ox_inventory then
 end
 
 RegisterCommand('flag', function(source, args)
+    if source > 0 then return end
+
     local totalFlags = tonumber(args[1])
     local type = 'ytyp'
     local all_flags = { 

@@ -1,4 +1,6 @@
 RegisterCommand('dolu_tool:open', function()
+    if not Config.perimission('menu') then return end
+
     if not IsNuiFocused() and not IsPauseMenuActive() then
         FUNC.openUI()
     end
@@ -6,6 +8,8 @@ end)
 RegisterKeyMapping('dolu_tool:open', locale('command_openui', '~o~>~w~'), 'keyboard', Config.openMenuKey)
 
 RegisterCommand('goback', function()
+    if not Config.perimission('teleport') then return end
+
     if not Client.lastCoords then
         lib.notify({
             title = 'Dolu Tool',
@@ -27,6 +31,8 @@ RegisterCommand('goback', function()
 end)
 
 RegisterCommand('tpm', function()
+    if not Config.perimission('teleport') then return end
+
     local marker = GetFirstBlipInfoId(8)
 
     if marker == 0 then
@@ -78,21 +84,8 @@ end)
 RegisterKeyMapping('tpm', locale('command_tpm', '~o~>~w~'), 'keyboard', Config.teleportMarkerKey)
 
 RegisterCommand('noclip', function()
+    if not Config.perimission('noclip') then return end
     Client.noClip = not Client.noClip
     SetFreecamActive(Client.noClip)
 end)
 RegisterKeyMapping('noclip', locale('command_noclip', '~o~>~w~'), 'keyboard', Config.toggleNoclipKey)
-
--- https://github.com/Deltanic/fivem-freecam/
--- https://github.com/tabarra/txAdmin/tree/master/scripts/menu/vendor/freecam
-
-RegisterCommand('time', function(_, args)
-    local hour = args[1]
-    local minutes = args[2]
-    FUNC.setClock(hour, minutes)
-end)
-
-RegisterCommand('weather', function(_, args)
-    local weatherType = args[1]
-    FUNC.setWeather(weatherType)
-end)
