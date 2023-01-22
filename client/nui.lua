@@ -112,6 +112,8 @@ RegisterNUICallback('dolu_tool:exit', function(_, cb)
         data = {}
     })
     Client.gizmoEntity = nil
+
+    Client.stancerTab = nil
 end)
 
 RegisterNUICallback('dolu_tool:changeLocationName', function(data, cb)
@@ -669,27 +671,46 @@ RegisterNUICallback('dolu_tool:openBrowser', function(data, cb)
     SendNUIMessage({ name = 'openBrowser', url = data.url })
 end)
 
-RegisterNUICallback('dvm:setStancer', function(data, cb)
+RegisterNUICallback('dolu_tool:setStancer', function(data, cb)
     cb(1)
     if not cache.vehicle then return end
 
+    local stance = Client.stancer[cache.vehicle] or {}
+    
     if data.suspensionHeight then
         SetVehicleSuspensionHeight(cache.vehicle, data.suspensionHeight*-1)
     end
-
+    
     if data.wheelOffsetFront then
-        Client.stancer.wheelOffsetFront = data.wheelOffsetFront
+        stance.wheelOffsetFront = data.wheelOffsetFront
     end
-
+    
     if data.wheelOffsetRear then
-        Client.stancer.wheelOffsetRear = data.wheelOffsetRear
+        stance.wheelOffsetRear = data.wheelOffsetRear
     end
-
+    
     if data.wheelCamberFront then
-        Client.stancer.wheelCamberFront = data.wheelCamberFront
+        stance.wheelCamberFront = data.wheelCamberFront
     end
 
     if data.wheelCamberRear then
-        Client.stancer.wheelCamberRear = data.wheelCamberRear
+        stance.wheelCamberRear = data.wheelCamberRear
+    end
+
+    Client.stancer[cache.vehicle] = stance
+end)
+
+-- Handle Vehicle tab change
+RegisterNUICallback('dmt:setVehicleTab', function(currentVehicleTab, cb)
+    cb(1)
+    if not cache.vehicle then return end
+
+    if currentVehicleTab and currentVehicleTab ~= Client.vehicleTab then
+        -- Reset stancer tab if vehicle tab is changed
+        if Client.vehicleTab == 'stancer' and currentVehicleTab ~= 'stancer' then
+            Client.stancerTab = nil
+        end
+
+        Client.vehicleTab = currentVehicleTab
     end
 end)

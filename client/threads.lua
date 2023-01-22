@@ -112,25 +112,27 @@ CreateThread(function()
     while true do
         local vehicle = cache.vehicle
 
-        if vehicle and DoesEntityExist(vehicle) then
-            if Client.stancer.wheelOffsetFront then
-                SetVehicleWheelXOffset(vehicle, 0, Client.stancer.wheelOffsetFront*-1)
-                SetVehicleWheelXOffset(vehicle, 1, Client.stancer.wheelOffsetFront)
+        if vehicle and Client.stancer[vehicle] then
+            local stance = Client.stancer[vehicle]
+
+            if stance.wheelOffsetFront then
+                SetVehicleWheelXOffset(vehicle, 0, stance.wheelOffsetFront*-1)
+                SetVehicleWheelXOffset(vehicle, 1, stance.wheelOffsetFront)
             end
 
-            if Client.stancer.wheelOffsetRear then
-                SetVehicleWheelXOffset(vehicle, 2, Client.stancer.wheelOffsetRear*-1)
-                SetVehicleWheelXOffset(vehicle, 3, Client.stancer.wheelOffsetRear)
+            if stance.wheelOffsetRear then
+                SetVehicleWheelXOffset(vehicle, 2, stance.wheelOffsetRear*-1)
+                SetVehicleWheelXOffset(vehicle, 3, stance.wheelOffsetRear)
             end
 
-            if Client.stancer.wheelCamberFront then
-                SetVehicleWheelYRotation(vehicle, 0, Client.stancer.wheelCamberFront*-1)
-                SetVehicleWheelYRotation(vehicle, 1, Client.stancer.wheelCamberFront)
+            if stance.wheelCamberFront then
+                SetVehicleWheelYRotation(vehicle, 0, stance.wheelCamberFront*-1)
+                SetVehicleWheelYRotation(vehicle, 1, stance.wheelCamberFront)
             end
 
-            if Client.stancer.wheelCamberRear then
-                SetVehicleWheelYRotation(vehicle, 2, Client.stancer.wheelCamberRear*-1)
-                SetVehicleWheelYRotation(vehicle, 3, Client.stancer.wheelCamberRear)
+            if stance.wheelCamberRear then
+                SetVehicleWheelYRotation(vehicle, 2, stance.wheelCamberRear*-1)
+                SetVehicleWheelYRotation(vehicle, 3, stance.wheelCamberRear)
             end
         else
             Wait(500)
@@ -139,31 +141,25 @@ CreateThread(function()
     end
 end)
 
--- Enter/exit vehicle handler
---TODO: MAKE IT BETTER
-local isInVehicle = false
+-- Send/clear stance tab data when needed
 CreateThread(function()
     while true do
-        local vehicle = cache.vehicle
-        if isInVehicle and not vehicle then
-            -- Exited vehicle
-            if Client.isMenuOpen and Client.currentTab == 'stancer' then
-                SendNUIMessage({
-                    action = 'setStancerTab',
-                    data = {}
-                })
-                Client.stancerTab = nil
+        if Client.isMenuOpen and Client.currentTab == 'vehicles' then
+            if Client.vehicleTab == 'stancer' then
+                if cache.vehicle then
+                    if not Client.stancerTab then
+                        FUNC.setStancer()
+                    end
+                elseif Client.stancerTab then
+                    SendNUIMessage({
+                        action = 'setStancerTab',
+                        data = {}
+                    })
+                    Client.stancerTab = nil
+                end
             end
-            if Client.stancer then
-                Client.stancer = {}
-            end
-            isInVehicle = false
-        elseif not isInVehicle and vehicle then
-            -- Entered vehicle
-            if not Client.stancerTab then
-                FUNC.setStancer()
-            end
-            isInVehicle = true
+        else
+            Wait(500)
         end
         Wait(0)
     end
