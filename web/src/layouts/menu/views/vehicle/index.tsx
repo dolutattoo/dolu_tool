@@ -119,7 +119,7 @@ const Vehicle: React.FC = () => {
   ))
 
   return(
-    <Stack>
+    <Stack style={{ maxWidth: '488px' }}>
       <Text size={20}>{locale.ui_vehicles}</Text>
       <Tabs radius='md' value={vehicleTab} onTabChange={setVehicleTab}>
         <Tabs.List>

@@ -41,6 +41,14 @@ export const customTheme: MantineThemeOverride = {
           borderRadius: '5px',
         }
       }
+    },
+    Carousel: {
+      styles: {
+        root: {
+          backgroundColor: 'rgba(24, 24, 27, 0.8)',
+          borderRadius: '5px',
+        }
+      }
     }
   }
 }

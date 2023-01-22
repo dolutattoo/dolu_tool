@@ -1,5 +1,6 @@
 import { useRef } from 'react'
-import { ActionIcon, Group, NumberInputHandlers, Paper, Progress, ScrollArea, Space, Stack, Text, Title } from '@mantine/core'
+import { Image, ActionIcon, Center, Group, NumberInputHandlers, Paper, Progress, ScrollArea, Space, Stack, Text, Title, Accordion } from '@mantine/core'
+import { Carousel } from '@mantine/carousel'
 import { useRecoilValue } from 'recoil'
 import { vehicleModsAtom } from '../../../../../atoms/vehicle'
 
@@ -39,11 +40,43 @@ const VehicleCustoms: React.FC = () => {
 
     return (
         <>
-            <ScrollArea style={{ height: '650px' }}>
-                <Stack>
+            <Paper style={{ width: '488px', maxHeight: '150px' }}>
+                <Carousel
+                    height={150}
+                    slideSize='33.3333%'
+                    slideGap='xl'
+                    loop
+                    slidesToScroll={1}
+                >
+                    {Object.entries(vehiclesMods).map(([index, {name, level, current, imgName}]) => {
+                        return (
+                            <Carousel.Slide key={index}>
+                                <Center>
+                                    <Image
+                                        width='100px'
+                                        alt='1'
+                                        src={imgName}
+                                        withPlaceholder={true}
+                                        sx={{
+                                            marginTop: '10px'
+                                        }}
+                                    />
+                                </Center>
+                                <Center>
+                                    <Title size={20}>{name}</Title>
+                                </Center>
+                            </Carousel.Slide>
+                        )
+                    })}
+
+                </Carousel>
+
+                <Space h='md' />
+                
+                <ScrollArea style={{ height: '480px' }}>
                     {vehicleModsPapers(vehiclesMods)}
-                </Stack>
-            </ScrollArea>
+                </ScrollArea>
+            </Paper>
         </>
     )
 }
