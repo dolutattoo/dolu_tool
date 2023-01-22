@@ -7,22 +7,6 @@ import { useRecoilState } from 'recoil'
 import { StanceSettings, suspensionHeightAtom, wheelCamberFrontAtom, wheelCamberRearAtom, wheelCountAtom, wheelOffsetFrontAtom, wheelOffsetRearAtom } from '../../../../../atoms/stancer'
 import { useNuiEvent } from '../../../../../hooks/useNuiEvent'
 import { fetchNui } from '../../../../../utils/fetchNui'
-import { debugData } from '../../../../../utils/debugData'
-
-debugData([
-  {
-    action: 'setStancerTab',
-    data: {
-      vehicleName: 'baller',
-      wheelCount: 4,
-      suspensionHeight: 0,
-      wheelOffsetFront: 0,
-      wheelOffsetRear: 0,
-      wheelCamberFront: 0,
-      wheelCamberRear: 0
-  }
-  }
-])
 
 const Stancer: React.FC = () => {
   const [isInVehicle, setIsInVehicle] = useState<boolean>(false)

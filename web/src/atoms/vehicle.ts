@@ -36,5 +36,52 @@ export const vehiclesActivePageAtom = atom<number>({ key: 'vehicleActivePage', d
 export const vehiclesPageCountAtom = atom<number>({ key: 'vehiclePageCount', default: 1})
 export const vehiclesPageContentAtom = atom<VehicleProp[]>({ key: 'vehiclesPageContent', default: mockVehicleList })
 export const vehiclesTabAtom = atom<string|null>({ key: 'vehiclesTab', default: 'search' })
+export const vehicleModsAtom = atom({ key: 'vehicleMods', default: [
+  {
+    name: 'Engine',
+    level: 4,
+    current: 2
+  },
+  {
+    name: 'Brakes',
+    level: 4,
+    current: 3
+  },
+  {
+    name: 'Transmission',
+    level: 4,
+    current: 2
+  },
+  {
+    name: 'Suspension',
+    level: 4,
+    current: 0
+  },
+  {
+    name: 'Armor',
+    level: 4,
+    current: 3
+  },
+  {
+    name: 'Turbo',
+    level: 4,
+    current: 4
+  },
+  {
+    name: 'Tires',
+    level: 4,
+    current: 2
+  },
+  {
+    name: 'Horn',
+    level: 4,
+    current: 4
+  },
+  {
+    name: 'Lights',
+    level: 4,
+    current: 1
+  }
+]})
 
 export const getSearchVehicleInput = () => useRecoilValue(vehicleListSearchAtom) as string

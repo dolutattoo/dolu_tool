@@ -5,6 +5,7 @@ import { getSearchVehicleInput, vehiclesPageCountAtom, vehiclesActivePageAtom, v
 import { displayImageAtom, imagePathAtom } from '../../../../atoms/imgPreview'
 import { setClipboard } from '../../../../utils/setClipboard'
 import VehicleSearch from './components/vehicleListSearch'
+import VehicleCustoms from './components/vehicleCustoms'
 import Stancer from './components/vehicleStancer'
 import { fetchNui } from '../../../../utils/fetchNui'
 import { useNuiEvent } from '../../../../hooks/useNuiEvent'
@@ -175,7 +176,7 @@ const Vehicle: React.FC = () => {
         </Tabs.Panel>
 
         <Tabs.Panel value='custom' pt='xs'>
-            Custom tab!
+            <VehicleCustoms />
         </Tabs.Panel>
 
         <Tabs.Panel value='stancer' pt='xs'>
