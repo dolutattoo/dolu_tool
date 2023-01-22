@@ -338,6 +338,7 @@ FUNC.spawnVehicle = function(model, coords)
     SetVehicleDirtLevel(vehicle, 0.0)
     SetVehicleNumberPlateText(vehicle, '~DOLU~')
     cache.vehicle = vehicle
+    return vehicle
 end
 
 FUNC.listFlags = function(totalFlags, type)
