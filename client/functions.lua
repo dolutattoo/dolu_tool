@@ -390,6 +390,8 @@ FUNC.rotationToDirection = function(rotation)
 end
 
 FUNC.initTarget = function()
+    if not Config.perimission('target') then return end
+
     exports.ox_target:addGlobalObject({
         {
             name = 'ox:option1',
