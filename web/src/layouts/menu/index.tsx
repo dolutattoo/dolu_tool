@@ -18,6 +18,7 @@ import Ped from './views/ped'
 import Vehicle from './views/vehicle'
 import Weapon from './views/weapon'
 import { debugData } from '../../utils/debugData'
+import { useExitListener } from '../../hooks/useExitListener'
 
 debugData([
   {
@@ -138,6 +139,8 @@ const Menu: React.FC = () => {
   const setInteriorData = useSetRecoilState(interiorAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
   const setPosition = useSetRecoilState(positionAtom)
+
+  useExitListener(setVisible)
 
   useNuiEvent('setMenuVisible', (data: {version: Version, lastLocation: Location, position: string}) => {   
     setVersion(data.version)
