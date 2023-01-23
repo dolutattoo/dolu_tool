@@ -59,7 +59,7 @@
   "ui_choose_weather": "Pick a weather type",
   "ui_current_weather": "Current weather?",
   "ui_freeze_weather": "Freeze weather",
-  "ui_interior": "Current Interior",
+  "ui_interior": "Interior",
   "ui_room_count": "Room count",
   "ui_portal_count": "Portal count",
   "ui_portals": "Portals",
@@ -125,5 +125,16 @@
   "ui_portal_flag_8192": "Disable farclipping",
   "ui_update_warning": "Update available!",
   "ui_github": "Open Github Repository",
-  "ui_discord": "Join Dolu Discord"
+  "ui_discord": "Join Dolu Discord",
+  "ui_audio": "Audio",
+  "ui_static_emitters": "Static Emitters",
+  "ui_draw_static_emitters": "Show static emitters",
+  "ui_draw_distance": "Draw Distance",
+  "ui_closest_emitter_info": "Closest Emitter Info",
+  "ui_refresh": "Refresh",
+  "ui_distance": "Distance",
+  "ui_meters": "meters",
+  "ui_flags": "Flags",
+  "ui_room": "Room",
+  "ui_radio_station": "Radio Station"
 }

@@ -44,6 +44,35 @@ local function formatVanillaInteriors(vanillaInteriors)
     return formatedLocations
 end
 
+local function formatRadioStations(radioStations)
+    local formatedRadioStations = {}
+
+    for i=1, #radioStations do
+        local v = radioStations[i]
+        table.insert(formatedRadioStations, { label = v.RadioName, value = v.RadioName })
+    end
+
+    return formatedRadioStations
+end
+
+local function formatStaticEmitters(staticEmitters)
+    local formatedStaticEmitters = {}
+
+    for i=1, #staticEmitters do
+        local v = staticEmitters[i]
+        table.insert(formatedStaticEmitters, {
+            name = v.Name,
+            coords = vec3(v.Position.X, v.Position.Y, v.Position.Z),
+            flags = v.Flags,
+            interior = v.Interior,
+            room = v.Room,
+            radiostation = v.RadioStation
+        })
+    end
+
+    return formatedStaticEmitters
+end
+
 local function filterCustomLocations()
     -- Filter custom locations to update 'locations.json'
     local customLocations = {}
@@ -71,7 +100,9 @@ lib.callback.register('dolu_tool:getData', function()
         peds = getFileData('shared/data', 'pedList.json'),
         vehicles = getFileData('shared/data', 'vehicleList.json'),
         weapons = getFileData('shared/data', 'weaponList.json'),
-        timecycles = formatTimecycles(getFileData('shared/data', 'timecycleModifiers.json'))
+        timecycles = formatTimecycles(getFileData('shared/data', 'timecycleModifiers.json')),
+        staticEmitters = formatStaticEmitters(getFileData('shared/data', 'staticEmitters.json')),
+        radioStations = formatRadioStations(getFileData('shared/data', 'radioStations.json'))
     }
 end)
 

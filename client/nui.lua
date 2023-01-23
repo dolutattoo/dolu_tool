@@ -48,6 +48,13 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
     elseif newTab == 'weapons' and not Client.weaponsLoaded then
         FUNC.loadPage('weapons', 1)
         Client.weaponsLoaded = true
+    elseif newTab == 'audio' and not Client.audioLoaded then
+        FUNC.getClosestStaticEmitter()
+        SendNUIMessage({
+            action = 'setRadioStationsList',
+            data = Client.data.radioStations
+        })
+        Client.audioLoaded = true
     end
 end)
 
@@ -654,4 +661,35 @@ end)
 RegisterNUICallback('dolu_tool:openBrowser', function(data, cb)
     cb(1)
     SendNUIMessage({ name = 'openBrowser', url = data.url })
+end)
+
+RegisterNUICallback('dolu_tool:setStaticEmitterDrawDistance', function(distance, cb)
+    cb(1)
+    Client.staticEmitterDrawDistance = distance
+end)
+
+RegisterNUICallback('dolu_tool:getClosestStaticEmitter', function(_, cb)
+    cb(1)
+    FUNC.getClosestStaticEmitter()
+end)
+
+RegisterNUICallback('dolu_tool:toggleStaticEmitter', function(data, cb)
+    cb(1)
+    SetStaticEmitterEnabled(data.emitterName, data.state)
+end)
+
+RegisterNUICallback('dolu_tool:setStaticEmitterRadio', function(data, cb)
+    cb(1)
+    SetEmitterRadioStation(data.emitterName, data.radioStation)
+    for _, v in ipairs(Client.data.staticEmitters) do
+        if v.name == data.emitterName then
+            v.radiostation = data.radioStation
+            break
+        end
+    end
+end)
+
+RegisterNUICallback('dolu_tool:setDrawStaticEmitters', function(state, cb)
+    cb(1)
+    Client.drawStaticEmitters = state
 end)

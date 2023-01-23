@@ -131,6 +131,17 @@ interface Locale {
   ui_update_warning: string
   ui_github: string
   ui_discord: string
+  ui_audio: string
+  ui_static_emitters: string
+  ui_draw_static_emitters: string
+  ui_draw_distance: string
+  ui_closest_emitter_info: string
+  ui_refresh: string
+  ui_distance: string
+  ui_meters: string
+  ui_flags: string
+  ui_room: string
+  ui_radio_station: string
 }
 
 debugData(
@@ -264,7 +275,18 @@ debugData(
         ui_portal_flag_8192: "Disable farclipping",
         ui_update_warning: "Update available!",
         ui_github: "Open Github Repository",
-        ui_discord: "Join Dolu Discord"
+        ui_discord: "Join Dolu Discord",
+        ui_audio: "Audio",
+        ui_static_emitters: 'Static Emitters',
+        ui_draw_static_emitters: 'Show static emitters',
+        ui_draw_distance: 'Draw Distance',
+        ui_closest_emitter_info: 'Closest Emitter Info',
+        ui_refresh: 'Refresh',
+        ui_distance: 'Distance',
+        ui_meters: 'meters',
+        ui_flags: 'Flags',
+        ui_room: 'Room',
+        ui_radio_station: 'Radio Station',
       }
     },
   ],
@@ -406,7 +428,18 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_portal_flag_8192: '',
     ui_update_warning: '',
     ui_github: '',
-    ui_discord: ''
+    ui_discord: '',
+    ui_audio: '',
+    ui_static_emitters: '',
+    ui_draw_static_emitters: '',
+    ui_draw_distance: '',
+    ui_closest_emitter_info: '',
+    ui_refresh: '',
+    ui_distance: '',
+    ui_meters: '',
+    ui_flags: '',
+    ui_room: '',
+    ui_radio_station: '',
   })
 
   useEffect(() => {

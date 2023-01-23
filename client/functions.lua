@@ -510,6 +510,32 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
     })
 end
 
+FUNC.getClosestStaticEmitter = function()
+    local closestEmitter = nil
+    local closestDistance = 9999999
+
+    for _, emitter in ipairs(Client.data.staticEmitters) do
+        local distance = #(GetEntityCoords(cache.ped) - emitter.coords)
+        if distance < closestDistance then
+            closestDistance = math.floor(distance, 3)
+            closestEmitter = emitter
+        end
+    end
+
+    SendNUIMessage({
+        action = 'setClosestEmitter',
+        data = {
+            distance = closestDistance,
+            coords = math.floor(closestEmitter.coords.x, 3) .. ', ' .. math.floor(closestEmitter.coords.y, 3) .. ', ' .. math.floor(closestEmitter.coords.z, 3),
+            name = closestEmitter.name,
+            flags = closestEmitter.flags,
+            interior = closestEmitter.interior,
+            room = closestEmitter.room,
+            radiostation = closestEmitter.radiostation
+        }
+    })
+end
+
 ---Assert with styling and formatting
 ---@param v any
 ---@param msg string

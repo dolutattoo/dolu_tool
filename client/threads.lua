@@ -20,6 +20,7 @@ CreateThread(function()
     end
 end)
 
+-- Draw interior portals
 CreateThread(function()
     while true do
         if Client.interiorId > 0 then
@@ -58,6 +59,7 @@ CreateThread(function()
     end
 end)
 
+-- Gizmo's entity
 CreateThread(function()
     SetEntityDrawOutlineShader(1)
     SetEntityDrawOutlineColor(200, 200, 250, 180)
@@ -88,6 +90,7 @@ CreateThread(function()
     end
 end)
 
+-- Freezing time/weather
 CreateThread(function()
     while true do
         if Client.freezeTime then
@@ -101,6 +104,23 @@ CreateThread(function()
         end
 
         if not Client.freezeTime and not Client.freezeWeather then
+            Wait(500)
+        end
+        Wait(0)
+    end
+end)
+
+-- Draw static emitters
+CreateThread(function()
+    while true do
+        if Client.drawStaticEmitters  then
+            local coords = GetEntityCoords(cache.ped)
+            for _, v in ipairs(Client.data.staticEmitters) do
+                if #(v.coords - coords) < Client.staticEmitterDrawDistance then
+                    DrawMarker(28, v.coords.x, v.coords.y, v.coords.z, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0, 0, 255, 255, 0, 0, 0, 0)
+                end
+            end
+        else
             Wait(500)
         end
         Wait(0)
