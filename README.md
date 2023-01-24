@@ -9,6 +9,7 @@ Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_
 - Locale system from ox_lib
 - Automaticly check for update and display it in header (see last picture)
 - Target objects to copy coords, delete or move them using the gizmo (requires [ox_target](https://github.com/overextended/ox_target))
+- Simple permission system (check config.lua)
 - **Home:**
   - Display coords
   - Copy coords
@@ -53,6 +54,11 @@ Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_
   - Preview images
   - Give weapons (with ox_inventory support)
   - Copy name/hash
+- **Audio:**
+  - Draw near vanilla Static Emitters
+  - Set draw distance
+  - Get info from closest vanilla Static Emitter
+  - Set radio station, play or stop closest vanilla Static Emitter
 
 ## Preview
 ![1045_18-01-23_02-27](https://user-images.githubusercontent.com/47056777/213062596-cb40e714-f941-446b-8387-beaa9cf4ec37.jpg)
@@ -65,6 +71,7 @@ Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_
 ![1052_18-01-23_02-32](https://user-images.githubusercontent.com/47056777/213062625-c8f9d8e1-0e18-4ebb-9069-f2fee67c650f.jpg)
 ![1053_18-01-23_02-33](https://user-images.githubusercontent.com/47056777/213062626-eed79966-584c-4052-9849-671bb7ac7765.jpg)
 ![1054_18-01-23_02-33](https://user-images.githubusercontent.com/47056777/213062627-d9d70a02-942e-47e1-abac-2442a3e1dc8f.jpg)
+![1054_18-01-23_02-33](https://i.imgur.com/dg4zAbi.jpg)
 
 ## Credits
 This tool could not exists without help of
