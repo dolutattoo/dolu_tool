@@ -694,16 +694,8 @@ RegisterNUICallback('dolu_tool:setDrawStaticEmitters', function(state, cb)
     Client.drawStaticEmitters = state
 end)
 
-
-
-
--- NUI exports
-
-
----Export for setting an entity to be Gizmo controlled
----@param v Number
+-- Exports
 exports("setGizmoEntity", function(obj)
-    print("Setting gizmo entity to: ", obj )
     Client.gizmoEntity = obj
     SendNUIMessage({
         action = 'setGizmoEntity',
@@ -718,8 +710,6 @@ exports("setGizmoEntity", function(obj)
     SetNuiFocusKeepInput(true)
 end)
 
-
----Export for setting the gizmo entity to nothing
 exports("removeGizmoEntity", function()
     SendNUIMessage({
         action = 'setGizmoEntity',
