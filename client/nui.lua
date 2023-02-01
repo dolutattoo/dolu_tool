@@ -693,3 +693,29 @@ RegisterNUICallback('dolu_tool:setDrawStaticEmitters', function(state, cb)
     cb(1)
     Client.drawStaticEmitters = state
 end)
+
+-- Exports
+exports("setGizmoEntity", function(obj)
+    Client.gizmoEntity = obj
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {
+            name = modelName,
+            handle = obj,
+            position = GetEntityCoords(obj),
+            rotation = GetEntityRotation(obj),
+        }
+    })
+    SetNuiFocus(true, true)
+    SetNuiFocusKeepInput(true)
+end)
+
+exports("removeGizmoEntity", function()
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {}
+    })
+    Client.gizmoEntity = nil
+    SetNuiFocus(false, false)
+    SetNuiFocusKeepInput(false)
+end)
