@@ -17,7 +17,7 @@
   "entity_cant_be_loaded": "Ten podmiot nie może zostać załadowany...",
   "entity_doesnt_exist": "Podmiot nie istnieje",
   "entity_deleted": "Podmiot usunięty",
-  "teleport_success": "Teleportacja udana. Użyj /goback, by wrócić do poprzedniej lokalizacji",
+  "teleport_success": "Teleportacja udana. Użyj '/goback', by wrócić do poprzedniej lokalizacji",
   "ui_home": "Strona główna",
   "ui_world": "Świat",
   "ui_exit": "Wyjście",
