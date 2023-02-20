@@ -14,6 +14,6 @@ Config.teleportMarkerKey = 'F10'
 -- Use this function to check if a player is allowed to use dolu_tool features.
 -- By default, the function returns true, meaning everyone can use dolu_tool.
 -- 'type' can be 'menu', 'noclip', 'teleport' or 'target'
-Config.perimission =  function(type)
+Config.perimission = function(type)
     return true
 end

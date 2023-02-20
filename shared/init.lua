@@ -12,7 +12,7 @@ end
 
 lib.locale()
 
-CreateThread(function()    
+CreateThread(function()
     if IsDuplicityVersion() then
         Server = {}
     else
@@ -31,16 +31,6 @@ CreateThread(function()
             freezeWeather = false,
             data = {}
         }
-
-        -- Get data from shared/data json files
-        lib.callback('dolu_tool:getData', false, function(data)
-            Client.data = data
-        end)
-
-        -- If ox_target is running, create targets
-        if GetResourceState('ox_target'):find('start') then
-            FUNC.initTarget()
-        end
 
         -- Load locale
         RegisterNUICallback('loadLocale', function(_, cb)
@@ -61,6 +51,16 @@ CreateThread(function()
                 data = json.decode(JSON)
             })
         end)
+
+        -- Get data from shared/data json files
+        lib.callback('dolu_tool:getData', false, function(data)
+            Client.data = data
+        end)
+
+        -- If ox_target is running, create targets
+        if GetResourceState('ox_target'):find('start') then
+            FUNC.initTarget()
+        end
 
         CreateThread(function()
             FUNC.setMenuPlayerCoords()
