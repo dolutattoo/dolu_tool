@@ -11,8 +11,19 @@ local function formatTimecycles(timecycles)
 
     for i=1, #timecycles do
         local v = timecycles[i]
-        table.insert(formatedTimecycles, { label = v.Name, value = tostring(joaat(v.Name)) })
+        local found
+        for j=1, #formatedTimecycles do
+            if formatedTimecycles[j].label == v.Name then
+                found = true
+                break
+            end
+        end
+        if not found then
+            table.insert(formatedTimecycles, { label = v.Name, value = tostring(joaat(v.Name)) })
+        end
     end
+
+    table.sort(formatedTimecycles, function(a, b) return a.label < b.label end)
 
     return formatedTimecycles
 end
@@ -86,7 +97,7 @@ end
 
 lib.callback.register('dolu_tool:getData', function()
     local data = {}
-    
+
     local customLocations = getFileData('shared/data', 'locations.json')
     local locations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors.json'))
     for _, v in ipairs(customLocations) do
@@ -195,7 +206,7 @@ if Shared.ox_inventory then
                 end
             end
         end
-        
+
         return success
     end)
 end
@@ -205,14 +216,14 @@ RegisterCommand('flag', function(source, args)
 
     local totalFlags = tonumber(args[1])
     local type = 'ytyp'
-    local all_flags = { 
+    local all_flags = {
         portal = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192 },
         room = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 },
         ytyp = { 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912, 1073741824, 2147483648 }
     }
-    
+
     if not all_flags[type] then return end
-    
+
     local flags = {}
     for _, flag in ipairs(all_flags[type]) do
         if totalFlags & flag ~= 0 then

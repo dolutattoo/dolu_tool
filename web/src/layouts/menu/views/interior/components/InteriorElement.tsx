@@ -5,6 +5,7 @@ import { getInteriorData, portalDataAtom, portalDebuggingAtom, portalEditingInde
 import { fetchNui } from '../../../../../utils/fetchNui'
 import { AiFillEdit } from 'react-icons/ai'
 import { useLocales } from '../../../../../providers/LocaleProvider'
+import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
 
 const InteriorElement: React.FC = () => {
   const { locale } = useLocales()
@@ -58,35 +59,36 @@ const InteriorElement: React.FC = () => {
       
         <Paper p='md'>
           {/* PORTAL INDEX INPUT */}
-          <Group spacing={5}>
-            <ActionIcon size={36} variant='default' onClick={() => {handlers.current?.decrement()}}>
-              –
-            </ActionIcon>
-
-            <NumberInput
-              hideControls
-              value={portalEditingIndex}
-              handlersRef={handlers}
-              max={interior.portalCount && interior.portalCount-1}
-              min={0}
-              step={1}
-              onChange={(val) => {val !== undefined &&
-                setPortalEditingIndex(val)
-                setPortalFlagCheckboxesValue(interior.portals![val!].flags.list)
-                setPortalData(interior.portals![val!])
-              }}
-              styles={{ input: { width: 58, textAlign: 'center' } }}
-              parser={(value) => value?.replace(/\$\s?|(,*)/g, '')}
-              formatter={(value) =>
-                !Number.isNaN(value && parseFloat(value))
-                  ? `ID ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-                  : 'ID '
-              }
-            />
-
-            <ActionIcon size={36} variant='default' onClick={() => {handlers.current?.increment()}}>
-              +
-            </ActionIcon>
+          <Group>
+            <Text>{locale.ui_room}:</Text>
+            <Group spacing={5}>
+              <NumberInput
+                hideControls
+                value={portalEditingIndex}
+                handlersRef={handlers}
+                max={interior.portalCount && interior.portalCount-1}
+                min={0}
+                step={1}
+                onChange={(val) => {val !== undefined &&
+                  setPortalEditingIndex(val)
+                  setPortalFlagCheckboxesValue(interior.portals![val!].flags.list)
+                  setPortalData(interior.portals![val!])
+                }}
+                styles={{ input: { width: 58, textAlign: 'center' } }}
+                parser={(value) => value?.replace(/\$\s?|(,*)/g, '')}
+                formatter={(value) =>
+                  !Number.isNaN(value && parseFloat(value))
+                    ? `ID ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+                    : 'ID '
+                }
+              />
+              <ActionIcon size={36} variant='default' onClick={() => { handlers.current?.decrement() }}>
+                <FaArrowLeft />
+              </ActionIcon>
+              <ActionIcon size={36} variant='default' onClick={() => { handlers.current?.increment() }}>
+                <FaArrowRight />
+              </ActionIcon>
+            </Group>
           </Group>
           <Space h='sm' />
           {

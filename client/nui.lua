@@ -14,7 +14,7 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
 
     if newTab == 'home' then
         FUNC.setMenuPlayerCoords()
-    
+
     elseif newTab == 'world' then
         local hour, minute = FUNC.getClock()
 
@@ -280,7 +280,7 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
         return
     end
 
-    
+
     lib.requestModel(model)
 
     local distance = 5 -- Distance to spawn object from the camera
@@ -289,9 +289,9 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
 	local direction = FUNC.rotationToDirection(cameraRotation)
 	local coords =  vec3(cameraCoord.x + direction.x * distance, cameraCoord.y + direction.y * distance, cameraCoord.z + direction.z * distance)
     local obj = CreateObject(model, coords.x, coords.y, coords.z)
-    
+
     Wait(50)
-    if not DoesEntityExist(obj) then 
+    if not DoesEntityExist(obj) then
         lib.notify({
             title = 'Dolu Tool',
             description = locale('entity_cant_be_loaded'),
@@ -365,22 +365,22 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
             break
         end
     end
-    
+
     -- If entity was spawned using Object Spawner, send updated data to nui
     if index and entity and DoesEntityExist(entity.handle) then
         entity.invalid = false
         entity.name = data.modelName
-        
+
         -- Remove current entity
         SetEntityAsMissionEntity(entity.handle)
         DeleteEntity(entity.handle)
-        
+
         -- Create new entity
         lib.requestModel(model)
         local obj = CreateObject(model, entity.position.x, entity.position.y, entity.position.z)
         Wait(5)
         SetEntityRotation(obj, entity.rotation.x, entity.rotation.y, entity.rotation.z)
-        
+
         SetModelAsNoLongerNeeded(model)
         entity.handle = obj
 
@@ -525,7 +525,7 @@ RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
     if data?.position and data.handle and DoesEntityExist(data.handle) then
         local coords = GetEntityCoords(data.handle)
         FUNC.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
-        
+
         lib.notify({
             title = 'Dolu Tool',
             description = locale('teleport_success'),
