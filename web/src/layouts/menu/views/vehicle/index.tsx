@@ -54,13 +54,13 @@ const Vehicle: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true)
-                imagePath(`nui://dolu_tool/shared/img/vehicle/${vehicleList.name}.webp`)
+                imagePath(`https://gta-images.s3.fr-par.scw.cloud/vehicle/${vehicleList.name.toLowerCase()}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit='contain'
               alt={`${vehicleList.name}`}
-              src={`nui://dolu_tool/shared/img/vehicle/${vehicleList.name}.webp`}
+              src={`https://gta-images.s3.fr-par.scw.cloud/vehicle/${vehicleList.name.toLowerCase()}.webp`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{

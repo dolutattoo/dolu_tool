@@ -54,13 +54,13 @@ const Weapon: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true)
-                imagePath(`nui://dolu_tool/shared/img/weapon/${weaponList.name}.png`)
+                imagePath(`https://gta-images.s3.fr-par.scw.cloud/weapon/${weaponList.name.toUpperCase()}.png`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit='contain'
               alt={`${weaponList.name}`}
-              src={`nui://dolu_tool/shared/img/weapon/${weaponList.name}.png`}
+              src={`https://gta-images.s3.fr-par.scw.cloud/weapon/${weaponList.name.toUpperCase()}.png`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{

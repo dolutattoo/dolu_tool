@@ -54,13 +54,13 @@ const Ped: React.FC = () => {
             <Image
               onMouseEnter={() => {
                 displayImage(true)
-                imagePath(`nui://dolu_tool/shared/img/ped/${pedList.name}.webp`)
+                imagePath(`https://gta-images.s3.fr-par.scw.cloud/ped/${pedList.name.toLowerCase()}.webp`)
               }}
               onMouseLeave={() => {displayImage(false)}}
               height={50}
               fit='contain'
               alt={`${pedList.name}`}
-              src={`nui://dolu_tool/shared/img/ped/${pedList.name}.webp`}
+              src={`https://gta-images.s3.fr-par.scw.cloud/ped/${pedList.name.toLowerCase()}.webp`}
               withPlaceholder={true}
               sx={{
                 '&:hover':{
