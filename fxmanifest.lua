@@ -1,7 +1,8 @@
 fx_version 'cerulean'
+game 'gta5'
+
 use_experimental_fxv2_oal 'yes'
 lua54 'yes'
-game 'gta5'
 
 name         'dolu_tool'
 version      '4.2.2'
@@ -41,8 +42,6 @@ files {
     'web/build/index.html',
     'web/build/**/*',
     'web/browser.js',
-    'shared/img/**/*.webp',
-    'shared/img/**/*.png',
     'locales/*.json'
 }
 
