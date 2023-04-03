@@ -41,8 +41,6 @@ files {
     'web/build/index.html',
     'web/build/**/*',
     'web/browser.js',
-    'shared/img/**/*.webp',
-    'shared/img/**/*.png',
     'locales/*.json'
 }
 
