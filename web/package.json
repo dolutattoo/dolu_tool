@@ -6,7 +6,7 @@
   "scripts": {
     "start": "vite",
     "start:game": "vite build --watch",
-    "build": "tsc && vite build",
+    "build": "node build.js",
     "preview": "vite preview"
   },
   "dependencies": {
