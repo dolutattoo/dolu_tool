@@ -37,12 +37,14 @@ end)
 -- Send current coords to NUI
 CreateThread(function()
     local oldCoords = vec3(0, 0, 0)
+    local oldHeading = 0
 
     while true do
         if Client.isMenuOpen and Client.currentTab == 'home' then
             local coords = GetEntityCoords(cache.ped)
+            local heading = GetEntityHeading(cache.ped)
 
-            if #(coords - oldCoords) > 0.5 then
+            if #(coords - oldCoords) > 0.25 or heading - oldHeading > 1 then
                 SendNUIMessage({
                     action = 'playerCoords',
                     data = {
