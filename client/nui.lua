@@ -13,16 +13,16 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
     end
 
     if newTab == 'home' then
-        FUNC.setMenuPlayerCoords()
+        Utils.setMenuPlayerCoords()
 
     elseif newTab == 'world' then
-        local hour, minute = FUNC.getClock()
+        local hour, minute = Utils.getClock()
 
         SendNUIMessage({
             action = 'setWorldData',
             data = {
                 clock = { hour = hour, minute = minute },
-                weather = FUNC.getWeather()
+                weather = Utils.getWeather()
             }
         })
 
@@ -34,22 +34,22 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
         Client.timecyclesLoaded = true
 
     elseif newTab == 'locations' and not Client.locationsLoaded then
-        FUNC.loadPage('locations', 1)
+        Utils.loadPage('locations', 1)
         Client.locationsLoaded = true
 
     elseif newTab == 'peds' and not Client.pedsLoaded then
-        FUNC.loadPage('peds', 1)
+        Utils.loadPage('peds', 1)
         Client.pedsLoaded = true
 
     elseif newTab == 'vehicles' and not Client.vehiclesLoaded then
-        FUNC.loadPage('vehicles', 1)
+        Utils.loadPage('vehicles', 1)
         Client.vehiclesLoaded = true
 
     elseif newTab == 'weapons' and not Client.weaponsLoaded then
-        FUNC.loadPage('weapons', 1)
+        Utils.loadPage('weapons', 1)
         Client.weaponsLoaded = true
     elseif newTab == 'audio' and not Client.audioLoaded then
-        FUNC.getClosestStaticEmitter()
+        Utils.getClosestStaticEmitter()
         SendNUIMessage({
             action = 'setRadioStationsList',
             data = Client.data.radioStations
@@ -61,7 +61,7 @@ end)
 RegisterNUICallback('dolu_tool:teleport', function(data, cb)
     cb(1)
     if data then
-        FUNC.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
+        Utils.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
 
         SendNUIMessage({
             action = 'setLastLocation',
@@ -75,12 +75,12 @@ end)
 
 RegisterNUICallback('dolu_tool:changePed', function(data, cb)
     cb(1)
-    FUNC.changePed(data.name)
+    Utils.changePed(data.name)
 end)
 
 RegisterNUICallback('dolu_tool:spawnVehicle', function(data, cb)
     cb(1)
-    FUNC.spawnVehicle(data)
+    Utils.spawnVehicle(data)
 end)
 
 RegisterNUICallback('dolu_tool:deleteVehicle', function(_, cb)
@@ -111,7 +111,7 @@ RegisterNUICallback('dolu_tool:changeLocationName', function(data, cb)
         Client.data.locations[result.index] = result.data
 
         if Client.isMenuOpen and Client.currentTab == 'locations' then
-            FUNC.loadPage('locations', 1)
+            Utils.loadPage('locations', 1)
         end
     end, data)
 end)
@@ -127,7 +127,7 @@ RegisterNUICallback('dolu_tool:createCustomLocation', function(locationName, cb)
         table.insert(Client.data.locations, 1, result)
 
         if Client.isMenuOpen and Client.currentTab == 'locations' then
-            FUNC.loadPage('locations', 1)
+            Utils.loadPage('locations', 1)
         end
 
         lib.notify({
@@ -152,23 +152,23 @@ RegisterNUICallback('dolu_tool:deleteLocation', function(locationName, cb)
     table.remove(Client.data.locations, result)
 
     if Client.isMenuOpen and Client.currentTab == 'locations' then
-        FUNC.loadPage('locations', 1)
+        Utils.loadPage('locations', 1)
     end
 end)
 
 RegisterNUICallback('dolu_tool:setWeather', function(weatherName, cb)
     cb(1)
-    FUNC.setWeather(weatherName)
+    Utils.setWeather(weatherName)
 end)
 
 RegisterNUICallback('dolu_tool:setClock', function(clock, cb)
     cb(1)
-    FUNC.setClock(clock.hour, clock.minute)
+    Utils.setClock(clock.hour, clock.minute)
 end)
 
 RegisterNUICallback('dolu_tool:getClock', function(_, cb)
     cb(1)
-    local hour, minute = FUNC.getClock()
+    local hour, minute = Utils.getClock()
     SendNUIMessage({
         action = 'setClockData',
         data = {hour = hour, minute = minute }
@@ -245,8 +245,8 @@ end)
 
 RegisterNUICallback('dolu_tool:setDay', function(_, cb)
     cb(1)
-    FUNC.setClock(12)
-    FUNC.setWeather('extrasunny')
+    Utils.setClock(12)
+    Utils.setWeather('extrasunny')
 end)
 
 RegisterNUICallback('dolu_tool:setMaxHealth', function(_, cb)
@@ -264,7 +264,7 @@ end)
 
 RegisterNUICallback('dolu_tool:spawnFavoriteVehicle', function(_, cb)
     cb(1)
-    FUNC.spawnVehicle('krieger')
+    Utils.spawnVehicle('krieger')
 end)
 
 RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
@@ -286,7 +286,7 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     local distance = 5 -- Distance to spawn object from the camera
     local cameraRotation = GetFinalRenderedCamRot()
     local cameraCoord = GetFinalRenderedCamCoord()
-	local direction = FUNC.rotationToDirection(cameraRotation)
+	local direction = Utils.rotationToDirection(cameraRotation)
 	local coords =  vec3(cameraCoord.x + direction.x * distance, cameraCoord.y + direction.y * distance, cameraCoord.z + direction.z * distance)
     local obj = CreateObject(model, coords.x, coords.y, coords.z)
 
@@ -309,14 +309,14 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
         handle = obj,
         name = modelName,
         position = {
-            x = FUNC.round(coords.x, 3),
-            y = FUNC.round(coords.y, 3),
-            z = FUNC.round(coords.z, 3)
+            x = Utils.round(coords.x, 3),
+            y = Utils.round(coords.y, 3),
+            z = Utils.round(coords.z, 3)
         },
         rotation = {
-            x = FUNC.round(entityRotation.x, 3),
-            y = FUNC.round(entityRotation.y, 3),
-            z = FUNC.round(entityRotation.z, 3)
+            x = Utils.round(entityRotation.x, 3),
+            y = Utils.round(entityRotation.y, 3),
+            z = Utils.round(entityRotation.z, 3)
         },
         invalid = false
     })
@@ -524,7 +524,7 @@ RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
     cb(1)
     if data?.position and data.handle and DoesEntityExist(data.handle) then
         local coords = GetEntityCoords(data.handle)
-        FUNC.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
+        Utils.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
 
         lib.notify({
             title = 'Dolu Tool',
@@ -650,12 +650,12 @@ RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
     end
 
     if not formatedCoords then return end
-    FUNC.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
+    Utils.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
 end)
 
 RegisterNUICallback('dolu_tool:loadPages', function(data, cb)
     cb(1)
-    FUNC.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
+    Utils.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
 end)
 
 RegisterNUICallback('dolu_tool:openBrowser', function(data, cb)
@@ -670,7 +670,7 @@ end)
 
 RegisterNUICallback('dolu_tool:getClosestStaticEmitter', function(_, cb)
     cb(1)
-    FUNC.getClosestStaticEmitter()
+    Utils.getClosestStaticEmitter()
 end)
 
 RegisterNUICallback('dolu_tool:toggleStaticEmitter', function(data, cb)

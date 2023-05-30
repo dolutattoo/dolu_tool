@@ -18,7 +18,7 @@ function GetInteriorData(interiorId, fromThread)
                 timecycle = tostring(GetInteriorRoomTimecycle(interiorId, i)),
                 isCurrent = currentRoomId == i and true or nil,
                 flags = {
-                    list = FUNC.listFlags(totalFlags, 'room'),
+                    list = Utils.listFlags(totalFlags, 'room'),
                     total = totalFlags
                 }
             }
@@ -32,7 +32,7 @@ function GetInteriorData(interiorId, fromThread)
                 roomFrom = GetInteriorPortalRoomFrom(interiorId, i),
                 roomTo = GetInteriorPortalRoomTo(interiorId, i),
                 flags = {
-                    list = FUNC.listFlags(totalFlags, 'portal'),
+                    list = Utils.listFlags(totalFlags, 'portal'),
                     total = totalFlags
                 }
             }
@@ -107,12 +107,12 @@ function DrawPortalInfos(interiorId)
 
         for cornerIndex = 0, 3 do
             local cornerX, cornerY, cornerZ = GetInteriorPortalCornerPosition(interiorId, portalId, cornerIndex)
-            local cornerPosition = interiorPosition + FUNC.QMultiply(interiorRotation, vec3(cornerX, cornerY, cornerZ))
+            local cornerPosition = interiorPosition + Utils.QMultiply(interiorRotation, vec3(cornerX, cornerY, cornerZ))
             corners[cornerIndex] = cornerPosition
             pureCorners[cornerIndex] = vec3(cornerX, cornerY, cornerZ)
         end
-        local CrossVector = FUNC.Lerp(corners[0], corners[2], 0.5)
-        
+        local CrossVector = Utils.Lerp(corners[0], corners[2], 0.5)
+
         if #(pedCoords - CrossVector) <= 8.0 then
             if Client.portalPoly then
                 DrawPoly(corners[0].x, corners[0].y, corners[0].z, corners[1].x, corners[1].y, corners[1].z, corners[2].x, corners[2].y, corners[2].z, 0, 0, 180, 150)
@@ -133,19 +133,19 @@ function DrawPortalInfos(interiorId)
             end
 
             if Client.portalCorners then
-                FUNC.Draw3DText(corners[0], '~b~C0:~w~ ' .. math.round(pureCorners[0].x, 2) .. ' ' .. math.round(pureCorners[0].y, 2) .. ' ' .. math.round(pureCorners[0].z, 2))
-                FUNC.Draw3DText(corners[1], '~b~C1:~w~ ' .. math.round(pureCorners[1].x, 2) .. ' ' .. math.round(pureCorners[1].y, 2) .. ' ' .. math.round(pureCorners[1].z, 2))
-                FUNC.Draw3DText(corners[2], '~b~C2:~w~ ' .. math.round(pureCorners[2].x, 2) .. ' ' .. math.round(pureCorners[2].y, 2) .. ' ' .. math.round(pureCorners[2].z, 2))
-                FUNC.Draw3DText(corners[3], '~b~C3:~w~ ' .. math.round(pureCorners[3].x, 2) .. ' ' .. math.round(pureCorners[3].y, 2) .. ' ' .. math.round(pureCorners[3].z, 2))
+                Utils.Draw3DText(corners[0], '~b~C0:~w~ ' .. math.round(pureCorners[0].x, 2) .. ' ' .. math.round(pureCorners[0].y, 2) .. ' ' .. math.round(pureCorners[0].z, 2))
+                Utils.Draw3DText(corners[1], '~b~C1:~w~ ' .. math.round(pureCorners[1].x, 2) .. ' ' .. math.round(pureCorners[1].y, 2) .. ' ' .. math.round(pureCorners[1].z, 2))
+                Utils.Draw3DText(corners[2], '~b~C2:~w~ ' .. math.round(pureCorners[2].x, 2) .. ' ' .. math.round(pureCorners[2].y, 2) .. ' ' .. math.round(pureCorners[2].z, 2))
+                Utils.Draw3DText(corners[3], '~b~C3:~w~ ' .. math.round(pureCorners[3].x, 2) .. ' ' .. math.round(pureCorners[3].y, 2) .. ' ' .. math.round(pureCorners[3].z, 2))
             end
 
             if Client.portalInfos then
                 local portalFlags = GetInteriorPortalFlag(interiorId, portalId)
                 local portalRoomTo = GetInteriorPortalRoomTo(interiorId, portalId)
                 local portalRoomFrom = GetInteriorPortalRoomFrom(interiorId, portalId)
-                FUNC.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z + 0.2), '~b~Portal ~w~' .. portalId)
-                FUNC.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z + 0.05), '~b~From ~w~' .. portalRoomFrom .. '~b~ To ~w~' .. portalRoomTo)
-                FUNC.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z - 0.1), '~b~Flags ~w~' .. portalFlags)
+                Utils.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z + 0.2), '~b~Portal ~w~' .. portalId)
+                Utils.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z + 0.05), '~b~From ~w~' .. portalRoomFrom .. '~b~ To ~w~' .. portalRoomTo)
+                Utils.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z - 0.1), '~b~Flags ~w~' .. portalFlags)
             end
         end
     end
@@ -153,7 +153,7 @@ end
 
 RegisterNUICallback('dolu_tool:setTimecycle', function(data, cb)
     if data.roomId then
-        FUNC.setTimecycle(data.value)
+        Utils.setTimecycle(data.value)
     end
     cb(1)
 end)
@@ -170,7 +170,7 @@ CreateThread(function()
         if autotime then
             h += 1
             if h > 22 then h = 0 end
-            FUNC.setClock(h, 0, 0)
+            Utils.setClock(h, 0, 0)
         else
             Wait(750)
         end

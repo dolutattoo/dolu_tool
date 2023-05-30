@@ -46,8 +46,8 @@ CreateThread(function()
                 SendNUIMessage({
                     action = 'playerCoords',
                     data = {
-                        coords = FUNC.round(coords.x, 3) .. ', ' .. FUNC.round(coords.y, 3) .. ', ' .. FUNC.round(coords.z, 3),
-                        heading = tostring(FUNC.round(GetEntityHeading(cache.ped), 3))
+                        coords = Utils.round(coords.x, 3) .. ', ' .. Utils.round(coords.y, 3) .. ', ' .. Utils.round(coords.z, 3),
+                        heading = tostring(Utils.round(GetEntityHeading(cache.ped), 3))
                     }
                 })
                 oldCoords = coords
@@ -94,13 +94,13 @@ end)
 CreateThread(function()
     while true do
         if Client.freezeTime then
-            local hour, minute, second = FUNC.getClock()
-            FUNC.setClock(hour, minute, second)
+            local hour, minute, second = Utils.getClock()
+            Utils.setClock(hour, minute, second)
         end
 
         if Client.freezeWeather then
-            local currentWeather = FUNC.getWeather()
-            FUNC.setWeather(currentWeather)
+            local currentWeather = Utils.getWeather()
+            Utils.setWeather(currentWeather)
         end
 
         if not Client.freezeTime and not Client.freezeWeather then

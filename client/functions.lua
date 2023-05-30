@@ -1,4 +1,4 @@
-FUNC = {}
+Utils = {}
 LastEntitySet = nil
 local WEATHER_LIST = {
     [`CLEAR`] = 'clear',
@@ -18,7 +18,7 @@ local WEATHER_LIST = {
     [`HALLOWEEN`] = 'halloween'
 }
 
-FUNC.openUI = function()
+Utils.openUI = function()
     local coords = GetEntityCoords(cache.ped)
     SendNUIMessage({
         action = 'setMenuVisible',
@@ -29,19 +29,19 @@ FUNC.openUI = function()
         }
     })
     if Client.currentTab == 'home' then
-        FUNC.setMenuPlayerCoords()
+        Utils.setMenuPlayerCoords()
     end
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)
     Client.isMenuOpen = true
 end
 
-FUNC.round = function(num, decimals)
+Utils.round = function(num, decimals)
     local power = 10 ^ decimals
     return math.floor(num * power) / power
 end
 
-FUNC.stringSplit = function(input, seperator)
+Utils.stringSplit = function(input, seperator)
     if seperator == nil then
         seperator = '%s'
     end
@@ -56,11 +56,11 @@ FUNC.stringSplit = function(input, seperator)
     return t
 end
 
-FUNC.Lerp = function(a, b, t)
+Utils.Lerp = function(a, b, t)
     return a + (b - a) * t
 end
 
-FUNC.setTimecycle = function(timecycle, roomId)    
+Utils.setTimecycle = function(timecycle, roomId)
     if Client.interiorId ~= 0 then
         if not roomId then
             local roomHash = GetRoomKeyFromEntity(cache.ped)
@@ -74,7 +74,7 @@ FUNC.setTimecycle = function(timecycle, roomId)
     end
 end
 
-FUNC.setPortalFlag = function(portal, flag)
+Utils.setPortalFlag = function(portal, flag)
     if Client.interiorId ~= 0 then
         local portalIndex = tonumber(portal)
         local newFlag = tonumber(flag)
@@ -84,7 +84,7 @@ FUNC.setPortalFlag = function(portal, flag)
     end
 end
 
-FUNC.setRoomFlag = function(flag)
+Utils.setRoomFlag = function(flag)
     local playerPed = cache.ped
     local roomHash = GetRoomKeyFromEntity(playerPed)
     local roomId = GetInteriorRoomIndexByHash(Client.interiorId, roomHash)
@@ -96,7 +96,7 @@ FUNC.setRoomFlag = function(flag)
     end
 end
 
-FUNC.enableEntitySet = function(value)
+Utils.enableEntitySet = function(value)
     if IsInteriorEntitySetActive(Client.interiorId, value) then
         DeactivateInteriorEntitySet(Client.interiorId, value)
         LastEntitySet = value
@@ -108,7 +108,7 @@ FUNC.enableEntitySet = function(value)
     RefreshInterior(Client.interiorId)
 end
 
-FUNC.toggleLastEntitySet = function()
+Utils.toggleLastEntitySet = function()
     if LastEntitySet ~= nil then
         if IsInteriorEntitySetActive(Client.interiorId, LastEntitySet) then
             DeactivateInteriorEntitySet(Client.interiorId, tostring(LastEntitySet))
@@ -120,24 +120,24 @@ FUNC.toggleLastEntitySet = function()
     end
 end
 
-FUNC.getClock = function()
+Utils.getClock = function()
     return GetClockHours(), GetClockMinutes(), GetClockSeconds()
 end
 
-FUNC.setClock = function(hour, minutes, seconds)
+Utils.setClock = function(hour, minutes, seconds)
     hour = tonumber(hour)
     minutes = tonumber(minutes)
     seconds = tonumber(seconds)
     NetworkOverrideClockTime(hour, minutes, seconds)
 end
 
-FUNC.getWeather = function()
+Utils.getWeather = function()
     local weatherType1, weatherType2, percentWeather2 = GetWeatherTypeTransition()
     local currentWeather = percentWeather2 > 0.5 and weatherType2 or weatherType1
     return WEATHER_LIST[currentWeather]
 end
 
-FUNC.setWeather = function(weather)
+Utils.setWeather = function(weather)
     local found
     for hash, v in pairs(WEATHER_LIST) do
         if v == weather:lower() then
@@ -145,12 +145,12 @@ FUNC.setWeather = function(weather)
             break
         end
     end
-    FUNC.assert(WEATHER_LIST[found] == nil, locale('command_weather_notfound', tostring(weather)))
+    Utils.assert(WEATHER_LIST[found] == nil, locale('command_weather_notfound', tostring(weather)))
     SetWeatherTypeNowPersist(weather)
     SetWeatherTypePersist(weather)
 end
 
-FUNC.QMultiply = function(a, b)
+Utils.QMultiply = function(a, b)
     local axx = a.x * 2
     local ayy = a.y * 2
     local azz = a.z * 2
@@ -168,7 +168,7 @@ FUNC.QMultiply = function(a, b)
         ((b.x * (axzz - awyy)) + (b.y * (ayzz + awxx))) + (b.z * ((1.0 - axxx) - ayyy)))
 end
 
-FUNC.Draw3DText = function(DrawCoords, text)
+Utils.Draw3DText = function(DrawCoords, text)
     local onScreen, _x, _y = GetScreenCoordFromWorldCoord(DrawCoords.x, DrawCoords.y, DrawCoords.z)
     local px, py, pz = table.unpack(GetFinalRenderedCamCoord())
     local dist = #(vec3(px, py, pz) - vec3(DrawCoords.x, DrawCoords.y, DrawCoords.z))
@@ -190,7 +190,7 @@ FUNC.Draw3DText = function(DrawCoords, text)
     end
 end
 
-FUNC.DrawFloating = function(DrawCoords, text)
+Utils.DrawFloating = function(DrawCoords, text)
     BeginTextCommandDisplayHelp('FloatingNotification')
     AddTextEntry('FloatingNotification', text)
     EndTextCommandDisplayHelp(2, false, false, -1)
@@ -198,7 +198,7 @@ FUNC.DrawFloating = function(DrawCoords, text)
     SetFloatingHelpTextStyle(1, 1, 2, -1, 3, 0)
 end
 
-FUNC.drawText = function(string, coords)
+Utils.drawText = function(string, coords)
     SetTextFont(0)
     SetTextProportional(1)
     SetTextScale(0.36, 0.36)
@@ -216,7 +216,7 @@ FUNC.drawText = function(string, coords)
 end
 
 -- Teleport functions (thanks to ox_core)
-FUNC.freezePlayer = function(state, vehicle)
+Utils.freezePlayer = function(state, vehicle)
     local playerId, ped = cache.playerId, cache.ped
     local entity = vehicle and cache.vehicle or ped
 
@@ -230,7 +230,7 @@ FUNC.freezePlayer = function(state, vehicle)
     end
 end
 
-FUNC.setPlayerCoords = function(vehicle, x, y, z, heading)
+Utils.setPlayerCoords = function(vehicle, x, y, z, heading)
     if vehicle then
         return SetPedCoordsKeepVehicle(cache.ped, x, y, z)
     end
@@ -241,18 +241,18 @@ FUNC.setPlayerCoords = function(vehicle, x, y, z, heading)
     end
 end
 
-FUNC.setMenuPlayerCoords = function()
+Utils.setMenuPlayerCoords = function()
     local coords = GetEntityCoords(cache.ped)
     SendNUIMessage({
         action = 'playerCoords',
         data = {
-            coords = FUNC.round(coords.x, 3) .. ', ' .. FUNC.round(coords.y, 3) .. ', ' .. FUNC.round(coords.z, 3),
-            heading = tostring(FUNC.round(GetEntityHeading(cache.ped), 3))
+            coords = Utils.round(coords.x, 3) .. ', ' .. Utils.round(coords.y, 3) .. ', ' .. Utils.round(coords.z, 3),
+            heading = tostring(Utils.round(GetEntityHeading(cache.ped), 3))
         }
     })
 end
 
-FUNC.teleportPlayer = function(coords, updateLastCoords)
+Utils.teleportPlayer = function(coords, updateLastCoords)
     assert(type(coords) == 'table', locale('teleport_invalid_coords'))
     coords = vec4(coords.x, coords.y, coords.z, coords.heading or 0)
 
@@ -268,7 +268,7 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
 
     local vehicle = cache.seat == -1 and cache.vehicle
 
-    FUNC.freezePlayer(true, vehicle)
+    Utils.freezePlayer(true, vehicle)
 
     if updateLastCoords then
         lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
@@ -289,20 +289,20 @@ FUNC.teleportPlayer = function(coords, updateLastCoords)
         end
 
         if found then
-            FUNC.setPlayerCoords(vehicle, coords.x, coords.y, groundZ, coords.w)
+            Utils.setPlayerCoords(vehicle, coords.x, coords.y, groundZ, coords.w)
             break
         end
 
-        FUNC.setPlayerCoords(vehicle, coords.x, coords.y, z, coords.w)
+        Utils.setPlayerCoords(vehicle, coords.x, coords.y, z, coords.w)
         z += inc
     end
 
-    FUNC.freezePlayer(false, vehicle)
+    Utils.freezePlayer(false, vehicle)
     SetGameplayCamRelativeHeading(0)
     DoScreenFadeIn(500)
 end
 
-FUNC.changePed = function(model)
+Utils.changePed = function(model)
     if type(model) == 'string' then model = joaat(model) end
     if not IsModelInCdimage(model) then
         lib.notify({ type='error', description=locale('model_doesnt_exist', model)})
@@ -315,7 +315,7 @@ FUNC.changePed = function(model)
     cache.ped = PlayerPedId()
 end
 
-FUNC.spawnVehicle = function(model, coords)
+Utils.spawnVehicle = function(model, coords)
     if type(model) == 'string' then model = joaat(model) end
 
     local playerPed = cache.ped
@@ -330,7 +330,7 @@ FUNC.spawnVehicle = function(model, coords)
 
     lib.requestModel(model)
     local vehicle = CreateVehicle(model, coords.x, coords.y, coords.z, GetEntityHeading(playerPed), true, true)
-    
+
     TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
     SetVehicleRadioEnabled(vehicle, false)
     SetVehicleDirtLevel(vehicle, 0.0)
@@ -338,14 +338,14 @@ FUNC.spawnVehicle = function(model, coords)
     cache.vehicle = vehicle
 end
 
-FUNC.listFlags = function(totalFlags, type)
-    local all_flags = { 
+Utils.listFlags = function(totalFlags, type)
+    local all_flags = {
         portal = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192 },
         room = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 }
     }
-    
+
     if not all_flags[type] then return end
-    
+
     local flags = {}
     for _, flag in ipairs(all_flags[type]) do
         if totalFlags & flag ~= 0 then
@@ -361,7 +361,7 @@ FUNC.listFlags = function(totalFlags, type)
     return result
 end
 
-FUNC.quat2Euler = function(x, y, z, w)
+Utils.quat2Euler = function(x, y, z, w)
     local q0 = w
     local q1 = x
     local q2 = y
@@ -375,7 +375,7 @@ FUNC.quat2Euler = function(x, y, z, w)
     return euler
 end
 
-FUNC.rotationToDirection = function(rotation)
+Utils.rotationToDirection = function(rotation)
 	local adjustedRotation = vec3(
         (math.pi / 180) * rotation.x,
         (math.pi / 180) * rotation.y,
@@ -389,7 +389,7 @@ FUNC.rotationToDirection = function(rotation)
 	return direction
 end
 
-FUNC.initTarget = function()
+Utils.initTarget = function()
     if not Config.perimission('target') then return end
 
     exports.ox_target:addGlobalObject({
@@ -450,7 +450,7 @@ FUNC.initTarget = function()
     })
 end
 
-FUNC.getPages = function(page, table, itemPerPage)
+Utils.getPages = function(page, table, itemPerPage)
     local start = (page - 1) * itemPerPage + 1 -- start index of the page
     local finish = start + itemPerPage - 1 -- end index of the page
     local pageContent = {}
@@ -462,7 +462,7 @@ FUNC.getPages = function(page, table, itemPerPage)
     return pageContent
 end
 
-FUNC.loadPage = function(listType, activePage, filter, checkboxes)
+Utils.loadPage = function(listType, activePage, filter, checkboxes)
     local totalList = Client.data[listType]
     local filteredList = {}
 
@@ -474,7 +474,7 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
             checkboxes = Client.locationsCheckboxes
         end
     end
-    
+
     -- Filter list from search input
     if filter and filter ~= '' or checkboxes ~= nil then
         local searchResult = {}
@@ -495,7 +495,7 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
                     table.insert(searchResult, value)
                 end
             end
-        end        
+        end
         filteredList = searchResult
     else
         filteredList = totalList
@@ -505,13 +505,13 @@ FUNC.loadPage = function(listType, activePage, filter, checkboxes)
         action = 'setPageContent',
         data = {
             type = listType,
-            content = FUNC.getPages(activePage, filteredList, itemPerPage),
+            content = Utils.getPages(activePage, filteredList, itemPerPage),
             maxPages = math.ceil(#filteredList/itemPerPage)
         }
     })
 end
 
-FUNC.getClosestStaticEmitter = function()
+Utils.getClosestStaticEmitter = function()
     local closestEmitter = nil
     local closestDistance = 9999999
 
@@ -541,7 +541,7 @@ end
 ---@param v any
 ---@param msg string
 ---@param value boolean|string|number|table
-FUNC.assert = function(v, msg, value)
+Utils.assert = function(v, msg, value)
     if not v or not msg then return end
 
     if value then

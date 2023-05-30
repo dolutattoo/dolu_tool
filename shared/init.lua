@@ -79,11 +79,11 @@ CreateThread(function()
 
         -- If ox_target is running, create targets
         if GetResourceState('ox_target'):find('start') then
-            FUNC.initTarget()
+            Utils.initTarget()
         end
 
         CreateThread(function()
-            FUNC.setMenuPlayerCoords()
+            Utils.setMenuPlayerCoords()
             while true do
                 Wait(150)
                 Client.interiorId = GetInteriorFromEntity(cache.ped)
