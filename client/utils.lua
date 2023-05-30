@@ -145,7 +145,11 @@ Utils.setWeather = function(weather)
             break
         end
     end
-    Utils.assert(WEATHER_LIST[found] == nil, locale('command_weather_notfound', tostring(weather)))
+
+    if not WEATHER_LIST[found] then
+        error(locale('command_weather_notfound', tostring(weather)))
+    end
+
     SetWeatherTypeNowPersist(weather)
     SetWeatherTypePersist(weather)
 end

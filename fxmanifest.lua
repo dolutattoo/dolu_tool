@@ -23,7 +23,7 @@ client_scripts {
     'client/freecam/config.lua',
     'client/freecam/camera.lua',
     'client/freecam/main.lua',
-    'client/functions.lua',
+    'client/utils.lua',
     'client/nui.lua',
     'client/controls.lua',
     'client/commands.lua',
