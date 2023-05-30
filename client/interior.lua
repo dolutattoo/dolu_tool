@@ -71,13 +71,18 @@ function GetInteriorData(interiorId, fromThread)
 end
 
 -- Portals display
-RegisterNUICallback('dolu_tool:setPortalCheckbox', function(data, cb)
-    local tmp = {}
-    for _, v in pairs(data) do tmp[v] = true end
-    if tmp.portalInfos then Client.portalInfos = true else Client.portalInfos = false end
-    if tmp.portalPoly then Client.portalPoly = true else Client.portalPoly = false end
-    if tmp.portalLines then Client.portalLines = true else Client.portalLines = false end
-    if tmp.portalCorners then Client.portalCorners = true else Client.portalCorners = false end
+RegisterNUICallback('dolu_tool:setPortalSettings', function(data, cb)
+    local state = {}
+
+    for _, v in pairs(data) do
+        state[v] = true
+    end
+
+    Client.portalInfos = state.portalInfos
+    Client.portalPoly = state.portalPoly
+    Client.portalLines = state.portalLines
+    Client.portalCorners = state.portalCorners
+
     cb(1)
 end)
 
