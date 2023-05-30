@@ -8,6 +8,7 @@
   "teleport_invalid_coords": "A jázékost érvénytelen koordináta típushoz próbáltad teleportálni",
   "model_doesnt_exist": "Ez a modell: %s nem létezik",
   "copied_coords_clipboard": "Koordináta vágólapra másolva",
+  "copied_model_clipboard": "Model hash copied to clipboard",
   "press_escape_exit": "Nyomd meg az 'Escape' billentyűt a kilépéshez",
   "custom_location_created": "Egyedi helyszín sikeresen létrehozva",
   "vehicle_upgraded": "Jármű sikeresen felfejlesztve!",

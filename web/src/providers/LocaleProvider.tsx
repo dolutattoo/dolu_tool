@@ -13,6 +13,7 @@ interface Locale {
   teleport_invalid_coords: string
   model_doesnt_exist: string
   copied_coords_clipboard: string
+  copied_model_clipboard: string
   press_escape_exit: string
   custom_location_created: string
   vehicle_upgraded: string
@@ -158,6 +159,7 @@ debugData(
         teleport_invalid_coords: "Trying to teleport player to invalid coords type",
         model_doesnt_exist: "Model %s does not exists",
         copied_coords_clipboard: "Coords copied to clipboard",
+        copied_model_clipboard: "Model hash copied to clipboard",
         press_escape_exit: "Press 'Escape' to exit edit mode",
         custom_location_created: "Custom location succefully created",
         vehicle_upgraded: "Vehicle succefully upgraded!",
@@ -311,6 +313,7 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     teleport_invalid_coords: '',
     model_doesnt_exist: '',
     copied_coords_clipboard: '',
+    copied_model_clipboard: '',
     press_escape_exit: '',
     custom_location_created: '',
     vehicle_upgraded: '',

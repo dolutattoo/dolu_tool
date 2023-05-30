@@ -8,6 +8,7 @@
   "teleport_invalid_coords": "Trying to teleport player to invalid coords type",
   "model_doesnt_exist": "Model %s does not exists",
   "copied_coords_clipboard": "Coords copied to clipboard",
+  "copied_model_clipboard": "Model hash copied to clipboard",
   "press_escape_exit": "Press 'Escape' to exit edit mode",
   "custom_location_created": "Custom location succefully created",
   "vehicle_upgraded": "Vehicle succefully upgraded!",

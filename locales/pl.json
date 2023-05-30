@@ -8,6 +8,7 @@
   "teleport_invalid_coords": "Próba teleportacji do nieistniejącego typu koordynatów",
   "model_doesnt_exist": "Model %s nie istnieje",
   "copied_coords_clipboard": "Koordynaty skopiowane do schowka",
+  "copied_model_clipboard": "Model hash copied to clipboard",
   "press_escape_exit": "Naciśnij 'Escape', by wyjść z trybu edycji",
   "custom_location_created": "Własna lokalizacja stworzona pomyślnie",
   "vehicle_upgraded": "Pojazd ulepszony pomyślnie!",

@@ -8,6 +8,7 @@
     "teleport_invalid_coords": "Pokus o teleport hráče na neplatný typ souřadnic",
     "model_doesnt_exist": "Model %s neexistuje",
     "copied_coords_clipboard": "Souřadnice zkopírovány do schránky",
+    "copied_model_clipboard": "Model hash copied to clipboard",
     "press_escape_exit": "Zmáčkni 'Escape' pro ukončení 'edit' módu",
     "custom_location_created": "Vlastní lokace úspěšně vytvořena",
     "vehicle_upgraded": "Vozidlo úspěšně vylepšeno!",

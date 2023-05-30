@@ -418,6 +418,17 @@ Utils.initTarget = function()
 
     exports.ox_target:addGlobalObject({
         {
+            name = 'ox:option0',
+            icon = 'fa-solid fa-clipboard-list',
+            label = 'Copy model hash',
+            distance = 10,
+            onSelect = function(data)
+                local model = GetEntityModel(data.entity)
+                lib.setClipboard(model)
+                lib.notify({type='success', description=locale('copied_model_clipboard')})
+            end
+        },
+        {
             name = 'ox:option1',
             icon = 'fa-solid fa-clipboard-list',
             label = 'Copy coords',

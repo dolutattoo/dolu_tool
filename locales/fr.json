@@ -8,6 +8,7 @@
   "teleport_invalid_coords": "Vous essayez de vous téléporter sur des coords invalides",
   "model_doesnt_exist": "Le model %s n'existe pas",
   "copied_coords_clipboard": "Coordonnées copiée dans le presse-papier",
+  "copied_model_clipboard": "Model hash copied to clipboard",
   "press_escape_exit": "Appuyer sur 'Echap' pour sortir du mode d'édition",
   "custom_location_created": "Posiiton custom sauvegardée",
   "vehicle_upgraded": "Véhicule amélioré",
