@@ -399,7 +399,8 @@ FUNC.initTarget = function()
             label = 'Copy coords',
             distance = 10,
             onSelect = function(data)
-                lib.setClipboard(data.coords.x .. ', ' .. data.coords.y .. ', ' .. data.coords.z)
+                local coords = GetEntityCoords(data.entity)
+                lib.setClipboard(coords.x .. ', ' .. coords.y .. ', ' .. coords.z)
                 lib.notify({type='success', description=locale('copied_coords_clipboard')})
             end
         },
