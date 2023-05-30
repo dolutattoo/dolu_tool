@@ -22,7 +22,10 @@ end
 lib.locale()
 
 CreateThread(function()
-    if lib.context == 'client' then
+    if lib.context == 'server' then
+        Server = {}
+
+    elseif lib.context == 'client' then
         if not Shared.isUiLoaded then
             lib.notify({
                 type = 'error',

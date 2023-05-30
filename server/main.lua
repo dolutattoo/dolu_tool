@@ -1,9 +1,9 @@
 local function getFileData(path, file)
-    return json.decode(LoadResourceFile(RESOURCE_NAME, path .. '/' .. file))
+    return json.decode(LoadResourceFile(cache.resource, path .. '/' .. file))
 end
 
 local function updateFileData(path, file, data)
-    return SaveResourceFile(RESOURCE_NAME, path .. '/' .. file, json.encode(data, { indent=true }))
+    return SaveResourceFile(cache.resource, path .. '/' .. file, json.encode(data, { indent=true }))
 end
 
 local function formatTimecycles(timecycles)

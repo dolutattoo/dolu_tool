@@ -239,6 +239,7 @@ end
 
 -- When the resource is stopped, make sure to return the camera to the player.
 AddEventHandler('onResourceStop', function(name)
-	if name ~= RESOURCE_NAME then return end
+	if name ~= cache.resource then return end
+
 	SetFreecamActive(false)
 end)

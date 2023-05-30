@@ -572,7 +572,7 @@ Utils.assert = function(v, msg, value)
         if type(value) == 'table' then
             value = json.decode(value, { indent = true })
         end
-        assert(v, '^5[' .. RESOURCE_NAME .. '] ^1' .. msg:format('^5' .. tostring(value) .. '^7'))
+        assert(v, '^5[' .. cache.resource .. '] ^1' .. msg:format('^5' .. tostring(value) .. '^7'))
         lib.notify({
             title = 'Dolu Tool',
             description = msg:format(tostring(value)),
@@ -580,7 +580,8 @@ Utils.assert = function(v, msg, value)
             position = 'top'
         })
     else
-        assert(v, '^5[' .. RESOURCE_NAME .. '] ^1' .. msg .. '^7')
+        assert(v, '^5[' .. cache.resource .. '] ^1' .. msg .. '^7')
+
         lib.notify({
             title = 'Dolu Tool',
             description = msg,

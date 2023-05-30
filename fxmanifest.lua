@@ -3,11 +3,11 @@ use_experimental_fxv2_oal 'yes'
 lua54 'yes'
 game 'gta5'
 
-name         'dolu_tool'
-version      '4.2.2'
-description  'A tool for FiveM developpers'
-author       'Dolu'
-repository   'https://github.com/dolutattoo/dolu_tool'
+name 'dolu_tool'
+version '4.2.2'
+description 'A tool for FiveM developpers'
+author 'Dolu'
+repository 'https://github.com/dolutattoo/dolu_tool'
 
 shared_scripts {
     '@ox_lib/init.lua',
@@ -32,7 +32,7 @@ client_scripts {
 }
 
 server_scripts {
-	'server/main.lua'
+    'server/main.lua'
 }
 
 ui_page 'web/build/index.html'
