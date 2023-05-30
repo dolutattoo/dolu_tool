@@ -96,14 +96,19 @@ local function filterCustomLocations()
 end
 
 lib.callback.register('dolu_tool:getData', function()
-    local data = {}
+    local locations = getFileData('shared/data', 'locations.json')
 
-    local customLocations = getFileData('shared/data', 'locations.json')
-    local locations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors.json'))
-    for _, v in ipairs(customLocations) do
-        v.custom = true
-        table.insert(locations, v)
+    for _, location in ipairs(locations) do
+        location.custom = true
     end
+
+    local vanillaLocations = formatVanillaInteriors(getFileData('shared/data', 'mloInteriors.json'))
+
+    for _, location in ipairs(vanillaLocations) do
+        location.custom = false
+        table.insert(locations, location)
+    end
+
     Server.locations = locations
 
     return {
