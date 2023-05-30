@@ -55,7 +55,7 @@ export const locationsPageCountAtom = atom<number>({ key: 'locationsPageCount', 
 export const locationsPageContentAtom = atom<Location[]>({ key: 'locationsPageContent', default: mockLocations })
 
 // Filter Checkboxes
-export const locationVanillaFilterAtom = atom<boolean>({ key: 'locationVanillaFilter', default: true })
+export const locationVanillaFilterAtom = atom<boolean>({ key: 'locationVanillaFilter', default: false })
 export const locationCustomFilterAtom = atom<boolean>({ key: 'locationCustomFilter', default: true })
 
 export const getLastLocation = () => useRecoilValue(lastLocationsAtom)
