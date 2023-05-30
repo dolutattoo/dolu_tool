@@ -1,58 +1,77 @@
 -- Controls
 CreateThread(function()
+    local DisableControlAction = DisableControlAction
+    local EnableControlAction = EnableControlAction
+    local IsDisabledControlPressed = IsDisabledControlPressed
+
     DisableIdleCamera(true)
 
-    while true do
-        if Client.isMenuOpen or Client.gizmoEntity then
-            DisableControlAction(0, 0, true) -- Next Camera
-            DisableControlAction(0, 1, true) -- Look Left/Right
-            DisableControlAction(0, 2, true) -- Look up/Down
-            DisableControlAction(0, 16, true) -- Next Weapon
-            DisableControlAction(0, 17, true) -- Select Previous Weapon
-            DisableControlAction(0, 22, true) -- Jump
-            DisableControlAction(0, 23, true) -- Enter vehicle
-            DisableControlAction(0, 24, true) -- Attack
-            DisableControlAction(0, 25, true) -- Aim
-            DisableControlAction(0, 26, true) -- Look Behind
-            DisableControlAction(0, 36, true) -- Input Duck/Sneak
-            DisableControlAction(0, 37, true) -- Weapon Wheel
-            DisableControlAction(0, 44, true) -- Cover
-            DisableControlAction(0, 47, true) -- Detonate
-            DisableControlAction(0, 55, true) -- Dive
-            DisableControlAction(0, 69, true) -- Vehicle attack
-            DisableControlAction(0, 81, true) -- Next Radio (Vehicle)
-            DisableControlAction(0, 82, true) -- Previous Radio (Vehicle)
-            DisableControlAction(0, 91, true) -- Passenger Aim (Vehicle)
-            DisableControlAction(0, 92, true) -- Passenger Attack (Vehicle)
-            DisableControlAction(0, 99, true) -- Select Next Weapon (Vehicle)
-            DisableControlAction(0, 106, true) -- Control Override (Vehicle)
-            DisableControlAction(0, 114, true) -- Fly Attack (Flying)
-            DisableControlAction(0, 115, true) -- Next Weapon (Flying)
-            DisableControlAction(0, 121, true) -- Fly Camera (Flying)
-            DisableControlAction(0, 122, true) -- Control OVerride (Flying)
-            DisableControlAction(0, 135, true) -- Control OVerride (Sub)
-            DisableControlAction(0, 140, true) -- Melee attack light
-            DisableControlAction(0, 142, true) -- Attack alternate
-            DisableControlAction(0, 199, true) -- Pause menu (P)
-            DisableControlAction(0, 200, true) -- Pause Menu (ESC) 
-            DisableControlAction(0, 245, true) -- Chat
-            DisableControlAction(0, 257, true) -- Attack 2
+    local DISABLED<const> = {
+        0, -- Next Camera
+        1, -- Look Left/Right
+        2, -- Look up/Down
+        14, -- INPUT_WEAPON_WHEEL_NEXT
+        15, -- INPUT_WEAPON_WHEEL_PREV
+        16, -- INPUT_SELECT_NEXT_WEAPON
+        17, -- INPUT_SELECT_PREV_WEAPON
+        17, -- Select Previous Weapon
+        22, -- Jump
+        23, -- Enter vehicle
+        24, -- Attack
+        25, -- Aim
+        26, -- Look Behind
+        30, -- Player Movement
+        31, -- Player Movement
+        36, -- Input Duck/Sneak
+        37, -- Weapon Wheel
+        44, -- Cover
+        47, -- Detonate
+        55, -- Dive
+        69, -- Vehicle attack
+        81, -- Next Radio (Vehicle)
+        82, -- Previous Radio (Vehicle)
+        91, -- Passenger Aim (Vehicle)
+        92, -- Passenger Attack (Vehicle)
+        99, -- Select Next Weapon (Vehicle)
+        106, -- Control Override (Vehicle)
+        114, -- Fly Attack (Flying)
+        115, -- Next Weapon (Flying)
+        121, -- Fly Camera (Flying)
+        122, -- Control OVerride (Flying)
+        135, -- Control OVerride (Sub)
+        140, -- Melee attack light
+        142, -- Attack alternate
+        199, -- Pause menu (P)
+        200, -- Pause Menu (ESC)
+        245, -- Chat
+        257, -- Attack 2
+    }
 
-            DisableControlAction(0, 30, true) -- Player Movement
-            DisableControlAction(0, 31, true) -- Player Movement
+    local FORCEABLE<const> = {
+        1, -- Look Left/Right
+        2, -- Look up/Down
+        30, -- Player Movement
+        31, -- Player Movement
+        22, -- Jump
+        23 -- Enter vehicle
+    }
+
+    while true do
+        if Client.isMenuOpen or Client.gizmoEntity or Client.noClip then
+            for i = 1, #DISABLED do
+                DisableControlAction(0, DISABLED[i], true)
+            end
 
             -- Enabling a few input only while holding right click
             if IsDisabledControlPressed(0, 25) then
-                EnableControlAction(0, 1, true) -- Look Left/Right
-                EnableControlAction(0, 2, true) -- Look up/Down
-                EnableControlAction(0, 30, true) -- Player Movement
-                EnableControlAction(0, 31, true) -- Player Movement
-                EnableControlAction(0, 22, true) -- Jump
-                EnableControlAction(0, 23, true) -- Enter vehicle
+                for i = 1, #FORCEABLE do
+                    EnableControlAction(0, FORCEABLE[i], true)
+                end
             end
         else
             Wait(500)
         end
+
         Wait(0)
     end
 end)
