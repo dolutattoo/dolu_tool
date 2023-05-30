@@ -1,6 +1,7 @@
 RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
     cb(1)
     local previousTab = Client.currentTab
+
     Client.currentTab = newTab
 
     -- If exiting object tab while gizmo is enabled, set gizmo disabled
@@ -9,6 +10,7 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
             action = 'setGizmoEntity',
             data = {}
         })
+
         Client.gizmoEntity = nil
     end
 
@@ -48,12 +50,15 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
     elseif newTab == 'weapons' and not Client.weaponsLoaded then
         Utils.loadPage('weapons', 1)
         Client.weaponsLoaded = true
+
     elseif newTab == 'audio' and not Client.audioLoaded then
         Utils.getClosestStaticEmitter()
+
         SendNUIMessage({
             action = 'setRadioStationsList',
             data = Client.data.radioStations
         })
+
         Client.audioLoaded = true
     end
 end)
@@ -94,13 +99,13 @@ RegisterNUICallback('dolu_tool:exit', function(_, cb)
     cb(1)
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)
-    Client.isMenuOpen = false
 
     SendNUIMessage({
         action = 'setGizmoEntity',
         data = {}
     })
     Client.gizmoEntity = nil
+    Client.isMenuOpen = false
 end)
 
 RegisterNUICallback('dolu_tool:changeLocationName', function(data, cb)
@@ -146,6 +151,7 @@ end)
 RegisterNUICallback('dolu_tool:deleteLocation', function(locationName, cb)
     cb(1)
     local result = lib.callback.await('dolu_tool:deleteLocation', false, locationName)
+
     if not result then return end
 
     -- Remove location from file
@@ -169,6 +175,7 @@ end)
 RegisterNUICallback('dolu_tool:getClock', function(_, cb)
     cb(1)
     local hour, minute = Utils.getClock()
+
     SendNUIMessage({
         action = 'setClockData',
         data = {hour = hour, minute = minute }
@@ -189,12 +196,14 @@ RegisterNUICallback('dolu_tool:cleanZone', function(_, cb)
     cb(1)
     local playerId = cache.ped
     local playerCoords = GetEntityCoords(playerId)
+
     ClearAreaOfEverything(playerCoords.x, playerCoords.y, playerCoords.z, 1000.0, false, false, false, false)
 end)
 
 RegisterNUICallback('dolu_tool:cleanPed', function(_, cb)
     cb(1)
     local playerId = cache.ped
+
     ClearPedBloodDamage(playerId)
     ClearPedEnvDirt(playerId)
     ClearPedWetness(playerId)
@@ -203,13 +212,17 @@ end)
 RegisterNUICallback('dolu_tool:upgradeVehicle', function(_, cb)
     cb(1)
     local vehicle = cache.vehicle
+
     if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
         local max
+
         for _, modType in ipairs({11, 12, 13, 16}) do
             max = GetNumVehicleMods(vehicle, modType) - 1
             SetVehicleMod(vehicle, modType, max, customWheels)
         end
+
         ToggleVehicleMod(vehicle, 18, true) -- Turbo
+
         lib.notify({
             title = 'Dolu Tool',
             description = locale('vehicle_upgraded'),
@@ -222,7 +235,8 @@ end)
 RegisterNUICallback('dolu_tool:repairVehicle', function(_, cb)
     cb(1)
     local vehicle = cache.vehicle
-	SetVehicleFixed(vehicle)
+
+    SetVehicleFixed(vehicle)
     SetVehicleEngineHealth(vehicle, 1000.0)
     SetVehicleDirtLevel(vehicle, 0.0)
 end)
@@ -237,6 +251,7 @@ RegisterNUICallback('dolu_tool:giveWeapon', function(weaponName, cb)
                 lib.notify({type = 'error', description = locale('weapon_cant_carry')})
             end
         end, weaponName)
+
         return
     else
         GiveWeaponToPed(cache.ped, joaat(weaponName), 999, false, true)
@@ -252,6 +267,7 @@ end)
 RegisterNUICallback('dolu_tool:setMaxHealth', function(_, cb)
     cb(1)
     local playerPed = PlayerPedId()
+
     SetEntityHealth(playerPed, GetEntityMaxHealth(playerPed))
 
     lib.notify({
@@ -270,6 +286,7 @@ end)
 RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     cb(1)
     local model = joaat(modelName)
+
     if not IsModelInCdimage(model) then
         lib.notify({
             title = 'Dolu Tool',
@@ -291,14 +308,14 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     local obj = CreateObject(model, coords.x, coords.y, coords.z)
 
     Wait(50)
+
     if not DoesEntityExist(obj) then
-        lib.notify({
+        return lib.notify({
             title = 'Dolu Tool',
             description = locale('entity_cant_be_loaded'),
             type = 'error',
             position = 'top'
         })
-        return
     end
 
     FreezeEntityPosition(obj, true)
@@ -338,14 +355,17 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
             rotation = GetEntityRotation(obj),
         }
     })
+
     Client.gizmoEntity = obj
 end)
 
 RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
     cb(1)
     local model = joaat(data.modelName)
+
     if not IsModelInCdimage(model) then
         data.entity.invalid = true
+
         SendNUIMessage({
             action = 'setObjectData',
             data = {
@@ -353,11 +373,13 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
                 entity = data.entity
             }
         })
+
         return
     end
 
     -- Check if entity was spawned using Object Spawner
     local index, entity
+
     for k, v in ipairs(Client.spawnedEntities) do
         if v.handle == data.entity.handle then
             index = k-1
@@ -377,8 +399,11 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
 
         -- Create new entity
         lib.requestModel(model)
+
         local obj = CreateObject(model, entity.position.x, entity.position.y, entity.position.z)
+
         Wait(5)
+
         SetEntityRotation(obj, entity.rotation.x, entity.rotation.y, entity.rotation.z)
 
         SetModelAsNoLongerNeeded(model)
@@ -396,6 +421,7 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
             action = 'setGizmoEntity',
             data = entity
         })
+
         Client.gizmoEntity = entity.handle
     end
 end)
@@ -404,6 +430,7 @@ RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
     cb(1)
     -- Make sure entity exists in spawnedEntities
     local foundIndex
+
     for k, v in ipairs(Client.spawnedEntities) do
         if v.handle == entityHandle then
             foundIndex = k
@@ -433,6 +460,7 @@ RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
 
     -- Updating nui object list
     local newIndex = foundIndex-2
+
     SendNUIMessage({
         action = 'setObjectList',
         data = {
@@ -456,6 +484,7 @@ RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
         action = 'setGizmoEntity',
         data = {}
     })
+
     Client.gizmoEntity = nil
 
     -- Remove all spawned entities
@@ -464,6 +493,7 @@ RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
             DeleteEntity(v.handle)
         end
     end
+
     Client.spawnedEntities = {}
 
     -- Updating nui object list
@@ -478,6 +508,7 @@ end)
 
 RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
     cb(1)
+
     -- If entity param is nil, hide gizmo
     if not entityHandle then
         SendNUIMessage({
@@ -490,6 +521,7 @@ RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
 
     -- Make sure entity exists in spawnedEntities
     local entity
+
     for _, v in ipairs(Client.spawnedEntities) do
         if v.handle == entityHandle then
             entity = v
@@ -517,6 +549,7 @@ RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
             rotation = GetEntityRotation(entity.handle),
         }
     })
+
     Client.gizmoEntity = entity.handle
 end)
 
@@ -524,6 +557,7 @@ RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
     cb(1)
     if data?.position and data.handle and DoesEntityExist(data.handle) then
         local coords = GetEntityCoords(data.handle)
+
         Utils.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
 
         lib.notify({
@@ -560,6 +594,7 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
 
         -- Check if entity was spawned using Object Spawner
         local index, entity
+
         for k, v in ipairs(Client.spawnedEntities) do
             if v.handle == data.handle then
                 index = k-1
@@ -572,6 +607,7 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
         if index and entity then
             local newPos = GetEntityCoords(entity.handle)
             local newRot = GetEntityRotation(entity.handle)
+
             entity.position = { x = newPos.x, y = newPos.y, z = newPos.z }
             entity.rotation = { x = newRot.x, y = newRot.y, z = newRot.z }
 
@@ -600,6 +636,7 @@ RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
 
     -- Check if entity was spawned using Object Spawner
     local index, entity
+
     for k, v in ipairs(Client.spawnedEntities) do
         if v.handle == data.handle then
             index = k-1
@@ -614,6 +651,7 @@ RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
 
         local newPos = GetEntityCoords(entity.handle)
         local newRot = GetEntityRotation(entity.handle)
+
         entity.position = { x = newPos.x, y = newPos.y, z = newPos.z }
         entity.rotation = { x = newRot.x, y = newRot.y, z = newRot.z }
 
@@ -629,6 +667,7 @@ RegisterNUICallback('dolu_tool:snapEntityToGround', function(data, cb)
             action = 'setGizmoEntity',
             data = entity
         })
+
         Client.gizmoEntity = entity.handle
     end
 end)
@@ -636,13 +675,15 @@ end)
 RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
     cb(1)
     local formatedCoords
+
     if data.coordString then
         local coordString = (data.coordString:gsub(',', '')):gsub('  ', ' ')
-
         local coords = {}
+
         for match in (coordString..' '):gmatch('(.-) ') do
             table.insert(coords, match)
         end
+
         formatedCoords = vec3(tonumber(coords[1]), tonumber(coords[2]), tonumber(coords[3]))
 
     elseif data.coords then
@@ -681,6 +722,7 @@ end)
 RegisterNUICallback('dolu_tool:setStaticEmitterRadio', function(data, cb)
     cb(1)
     SetEmitterRadioStation(data.emitterName, data.radioStation)
+
     for _, v in ipairs(Client.data.staticEmitters) do
         if v.name == data.emitterName then
             v.radiostation = data.radioStation
@@ -697,6 +739,7 @@ end)
 -- Exports
 exports("setGizmoEntity", function(obj)
     Client.gizmoEntity = obj
+
     SendNUIMessage({
         action = 'setGizmoEntity',
         data = {
@@ -706,6 +749,7 @@ exports("setGizmoEntity", function(obj)
             rotation = GetEntityRotation(obj),
         }
     })
+
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)
 end)
@@ -715,6 +759,7 @@ exports("removeGizmoEntity", function()
         action = 'setGizmoEntity',
         data = {}
     })
+
     Client.gizmoEntity = nil
     SetNuiFocus(false, false)
     SetNuiFocusKeepInput(false)

@@ -19,6 +19,7 @@ RegisterCommand('goback', function()
         })
     else
         local currentCoords = GetEntityCoords(cache.ped)
+
         Utils.setPlayerCoords(cache.vehicle, Client.lastCoords.x, Client.lastCoords.y, Client.lastCoords.z)
         Client.lastCoords = currentCoords
         lib.notify({
@@ -49,6 +50,7 @@ RegisterCommand('tpm', function()
         Wait(100)
 
         local vehicle = cache.seat == -1 and cache.vehicle
+
         Client.lastCoords = GetEntityCoords(cache.ped)
 
         Utils.freezePlayer(true, vehicle)
@@ -85,6 +87,7 @@ RegisterKeyMapping('tpm', locale('command_tpm', '~o~>~w~'), 'keyboard', Config.t
 
 RegisterCommand('noclip', function()
     if not Config.perimission('noclip') then return end
+
     Client.noClip = not Client.noClip
     SetFreecamActive(Client.noClip)
 end)

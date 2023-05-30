@@ -1,5 +1,6 @@
 -- Check for interior data
 local lastRoomId = 0
+
 function GetInteriorData(interiorId, fromThread)
     local currentRoomHash = GetRoomKeyFromEntity(cache.ped)
     local currentRoomId = GetInteriorRoomIndexByHash(interiorId, currentRoomHash)
@@ -10,6 +11,7 @@ function GetInteriorData(interiorId, fromThread)
         local portalCount = GetInteriorPortalCount(interiorId)
 
         local rooms = {}
+
         for i = 1, roomCount do
             local totalFlags = GetInteriorRoomFlag(interiorId, i)
             rooms[i] = {
@@ -25,6 +27,7 @@ function GetInteriorData(interiorId, fromThread)
         end
 
         local portals = {}
+
         for i = 0, portalCount - 1 do
             local totalFlags = GetInteriorPortalFlag(interiorId, i)
             portals[i] = {
@@ -80,6 +83,7 @@ end)
 
 RegisterNUICallback('dolu_tool:setPortalFlagCheckbox', function(data, cb)
     local flag = 0
+
     for _, v in ipairs(data.flags) do
         flag += tonumber(v)
     end
@@ -108,9 +112,11 @@ function DrawPortalInfos(interiorId)
         for cornerIndex = 0, 3 do
             local cornerX, cornerY, cornerZ = GetInteriorPortalCornerPosition(interiorId, portalId, cornerIndex)
             local cornerPosition = interiorPosition + Utils.QMultiply(interiorRotation, vec3(cornerX, cornerY, cornerZ))
+
             corners[cornerIndex] = cornerPosition
             pureCorners[cornerIndex] = vec3(cornerX, cornerY, cornerZ)
         end
+
         local CrossVector = Utils.Lerp(corners[0], corners[2], 0.5)
 
         if #(pedCoords - CrossVector) <= 8.0 then
@@ -127,6 +133,7 @@ function DrawPortalInfos(interiorId)
                 DrawLine(corners[1].x, corners[1].y, corners[1].z, corners[2].x, corners[2].y, corners[2].z, 0, 255, 0, 255)
                 DrawLine(corners[2].x, corners[2].y, corners[2].z, corners[3].x, corners[3].y, corners[3].z, 0, 255, 0, 255)
                 DrawLine(corners[3].x, corners[3].y, corners[3].z, corners[0].x, corners[0].y, corners[0].z, 0, 255, 0, 255)
+
                 -- Middle lines
                 DrawLine(corners[0].x, corners[0].y, corners[0].z, corners[2].x, corners[2].y, corners[2].z, 0, 255, 0, 255)
                 DrawLine(corners[1].x, corners[1].y, corners[1].z, corners[3].x, corners[3].y, corners[3].z, 0, 255, 0, 255)
@@ -143,6 +150,7 @@ function DrawPortalInfos(interiorId)
                 local portalFlags = GetInteriorPortalFlag(interiorId, portalId)
                 local portalRoomTo = GetInteriorPortalRoomTo(interiorId, portalId)
                 local portalRoomFrom = GetInteriorPortalRoomFrom(interiorId, portalId)
+
                 Utils.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z + 0.2), '~b~Portal ~w~' .. portalId)
                 Utils.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z + 0.05), '~b~From ~w~' .. portalRoomFrom .. '~b~ To ~w~' .. portalRoomTo)
                 Utils.Draw3DText(vec3(CrossVector.x, CrossVector.y, CrossVector.z - 0.1), '~b~Flags ~w~' .. portalFlags)
@@ -152,28 +160,9 @@ function DrawPortalInfos(interiorId)
 end
 
 RegisterNUICallback('dolu_tool:setTimecycle', function(data, cb)
+    cb(1)
+
     if data.roomId then
         Utils.setTimecycle(data.value)
-    end
-    cb(1)
-end)
-
--- Temporary development stuff
-local autotime = false
-RegisterCommand('autotime', function(source, args)
-    autotime = not autotime
-end, false)
-
-CreateThread(function()
-    local h = 0
-    while true do
-        if autotime then
-            h += 1
-            if h > 22 then h = 0 end
-            Utils.setClock(h, 0, 0)
-        else
-            Wait(750)
-        end
-        Wait(75)
     end
 end)

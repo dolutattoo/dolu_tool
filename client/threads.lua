@@ -73,9 +73,11 @@ CreateThread(function()
                     rotation = GetFinalRenderedCamRot()
                 }
             })
+
             if Client.outlinedEntity then
                 SetEntityDrawOutline(Client.outlinedEntity, false)
             end
+
             Client.outlinedEntity = Client.gizmoEntity
             SetEntityDrawOutline(Client.outlinedEntity, true)
 
@@ -115,6 +117,7 @@ CreateThread(function()
     while true do
         if Client.drawStaticEmitters  then
             local coords = GetEntityCoords(cache.ped)
+
             for _, v in ipairs(Client.data.staticEmitters) do
                 if #(v.coords - coords) < Client.staticEmitterDrawDistance then
                     DrawMarker(28, v.coords.x, v.coords.y, v.coords.z, 0, 0, 0, 0, 0, 0, 0.5, 0.5, 0.5, 0, 0, 255, 255, 0, 0, 0, 0)

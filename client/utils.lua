@@ -20,6 +20,7 @@ local WEATHER_LIST = {
 
 Utils.openUI = function()
     local coords = GetEntityCoords(cache.ped)
+
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
@@ -28,9 +29,11 @@ Utils.openUI = function()
             position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z
         }
     })
+
     if Client.currentTab == 'home' then
         Utils.setMenuPlayerCoords()
     end
+
     SetNuiFocus(true, true)
     SetNuiFocusKeepInput(true)
     Client.isMenuOpen = true
@@ -38,6 +41,7 @@ end
 
 Utils.round = function(num, decimals)
     local power = 10 ^ decimals
+
     return math.floor(num * power) / power
 end
 
@@ -91,6 +95,7 @@ Utils.setRoomFlag = function(flag)
 
     if Client.interiorId ~= 0 and roomId ~= -1 then
         local newFlag = tonumber(flag)
+
         SetInteriorRoomFlag(Client.interiorId, roomId, newFlag)
         RefreshInterior(Client.interiorId)
     end
@@ -128,17 +133,20 @@ Utils.setClock = function(hour, minutes, seconds)
     hour = tonumber(hour)
     minutes = tonumber(minutes)
     seconds = tonumber(seconds)
+
     NetworkOverrideClockTime(hour, minutes, seconds)
 end
 
 Utils.getWeather = function()
     local weatherType1, weatherType2, percentWeather2 = GetWeatherTypeTransition()
     local currentWeather = percentWeather2 > 0.5 and weatherType2 or weatherType1
+
     return WEATHER_LIST[currentWeather]
 end
 
 Utils.setWeather = function(weather)
     local found
+
     for hash, v in pairs(WEATHER_LIST) do
         if v == weather:lower() then
             found = hash
@@ -167,7 +175,8 @@ Utils.QMultiply = function(a, b)
     local ayyy = a.y * ayy
     local ayzz = a.y * azz
     local azzz = a.z * azz
-    return vector3(((b.x * ((1.0 - ayyy) - azzz)) + (b.y * (axyy - awzz))) + (b.z * (axzz + awyy)),
+
+    return vec3(((b.x * ((1.0 - ayyy) - azzz)) + (b.y * (axyy - awzz))) + (b.z * (axzz + awyy)),
         ((b.x * (axyy + awzz)) + (b.y * ((1.0 - axxx) - azzz))) + (b.z * (ayzz - awxx)),
         ((b.x * (axzz - awyy)) + (b.y * (ayzz + awxx))) + (b.z * ((1.0 - axxx) - ayyy)))
 end
@@ -240,6 +249,7 @@ Utils.setPlayerCoords = function(vehicle, x, y, z, heading)
     end
 
     SetEntityCoords(cache.ped, x, y, z, false, false, false, false)
+
     if heading then
         SetEntityHeading(cache.ped, heading)
     end
@@ -247,6 +257,7 @@ end
 
 Utils.setMenuPlayerCoords = function()
     local coords = GetEntityCoords(cache.ped)
+
     SendNUIMessage({
         action = 'playerCoords',
         data = {
@@ -308,12 +319,14 @@ end
 
 Utils.changePed = function(model)
     if type(model) == 'string' then model = joaat(model) end
+
     if not IsModelInCdimage(model) then
         lib.notify({ type='error', description=locale('model_doesnt_exist', model)})
         return
     end
 
     local playerId = cache.playerId
+
     lib.requestModel(model)
     SetPlayerModel(playerId, model)
     cache.ped = PlayerPedId()
@@ -324,6 +337,7 @@ Utils.spawnVehicle = function(model, coords)
 
     local playerPed = cache.ped
     local oldVehicle = GetVehiclePedIsIn(playerPed, false)
+
     if oldVehicle > 0 and GetPedInVehicleSeat(oldVehicle, -1) == playerPed then
         DeleteVehicle(oldVehicle)
     end
@@ -333,6 +347,7 @@ Utils.spawnVehicle = function(model, coords)
     end
 
     lib.requestModel(model)
+
     local vehicle = CreateVehicle(model, coords.x, coords.y, coords.z, GetEntityHeading(playerPed), true, true)
 
     TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
@@ -351,6 +366,7 @@ Utils.listFlags = function(totalFlags, type)
     if not all_flags[type] then return end
 
     local flags = {}
+
     for _, flag in ipairs(all_flags[type]) do
         if totalFlags & flag ~= 0 then
             flags[#flags+1] = tostring(flag)
@@ -358,6 +374,7 @@ Utils.listFlags = function(totalFlags, type)
     end
 
     local result = {}
+
     for i, flag in ipairs(flags) do
         result[#result+1] = tostring(flag)
     end
@@ -376,6 +393,7 @@ Utils.quat2Euler = function(x, y, z, w)
     local Rz = math.atan2(2 * (q0 * q3 + q1 * q2), 1 - (2  * (q2 * q2 + q3 * q3)))
 
     local euler = vec3(Rx, Ry, Rz) * 180 / math.pi
+
     return euler
 end
 
@@ -385,12 +403,14 @@ Utils.rotationToDirection = function(rotation)
         (math.pi / 180) * rotation.y,
         (math.pi / 180) * rotation.z
     )
-	local direction = vec3(
+
+    local direction = vec3(
         -math.sin(adjustedRotation.z) * math.abs(math.cos(adjustedRotation.x)),
         math.cos(adjustedRotation.z) * math.abs(math.cos(adjustedRotation.x)),
         math.sin(adjustedRotation.x)
     )
-	return direction
+
+    return direction
 end
 
 Utils.initTarget = function()
@@ -469,7 +489,6 @@ end
 Utils.loadPage = function(listType, activePage, filter, checkboxes)
     local totalList = Client.data[listType]
     local filteredList = {}
-
     local itemPerPage = 6
 
     if listType == 'locations' then
@@ -521,6 +540,7 @@ Utils.getClosestStaticEmitter = function()
 
     for _, emitter in ipairs(Client.data.staticEmitters) do
         local distance = #(GetEntityCoords(cache.ped) - emitter.coords)
+
         if distance < closestDistance then
             closestDistance = math.floor(distance, 3)
             closestEmitter = emitter

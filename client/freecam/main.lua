@@ -1,4 +1,4 @@
-local vector3 = vector3
+local vec3 = vec3
 local IsPauseMenuActive = IsPauseMenuActive
 local GetSmartControlNormal = GetSmartControlNormal
 
@@ -67,7 +67,7 @@ local function UpdateCamera()
 
 	if not IsFreecamFrozen() then
 		local vecX, vecY = GetFreecamMatrix()
-		local vecZ = vector3(0, 0, 1)
+		local vecZ = vec3(0, 0, 1)
 
 		local pos = GetFreecamPosition()
 		local rot = GetFreecamRotation()
@@ -107,7 +107,7 @@ local function UpdateCamera()
 		pos = pos + (vecZ * moveZ * speedMultiplier)
 
 		-- Adjust new rotation
-		rot = vector3(rotX, rotY, rotZ)
+		rot = vec3(rotX, rotY, rotZ)
 
 		-- Update camera
 
@@ -130,6 +130,7 @@ function StartFreecamThread()
 	-- Camera/Pos updating thread
 	CreateThread(function()
 		local ped = cache.ped
+
 		SetFreecamPosition(GetEntityCoords(ped))
 
 		local function updatePos(pos, rotZ)
