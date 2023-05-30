@@ -71,7 +71,7 @@ function GetInteriorData(interiorId, fromThread)
 end
 
 -- Portals display
-RegisterNUICallback('dolu_tool:setPortalSettings', function(data, cb)
+RegisterNUICallback('dolu_tool:setPortalCheckbox', function(data, cb)
     local state = {}
 
     for _, v in pairs(data) do
