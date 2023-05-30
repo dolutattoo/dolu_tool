@@ -1,18 +1,17 @@
-RESOURCE_NAME = GetCurrentResourceName()
-
 Shared = {}
 
 if not GetResourceState('ox_lib'):find('start') then
     print('^1[dolu_tool][error] ox_lib should be started before this resource^0', 2)
+    if not lib or not cache then return end
 end
 
-if not LoadResourceFile(RESOURCE_NAME, 'web/build/index.html') then
+if not LoadResourceFile(cache.resource, 'web/build/index.html') then
     local err = '^4[dolu_tool] ^1Unable to load UI. Build dolu_tool or download the latest release:\n  -> ^3https://github.com/dolutattoo/dolu_tool/releases/latest/download/dolu_tool.zip^0'
-    function Shared.hasLoaded() return false end
+    Shared.isUiLoaded = false
 
     print(err)
 else
-    function Shared.hasLoaded() return true end
+    Shared.isUiLoaded = true
 end
 
 
@@ -23,16 +22,14 @@ end
 lib.locale()
 
 CreateThread(function()
-    if IsDuplicityVersion() then
-        Server = {}
-    else
-        if not Shared.hasLoaded() then
+    if lib.context == 'client' then
+        if not Shared.isUiLoaded then
             lib.notify({
                 type = 'error',
                 icon = 'fa-solid fa-ban',
                 title = 'Dolu Tool',
                 description = 'Unable to load UI. Build dolu_tool or download the latest release',
-                duration = 10000
+                duration = 20000
             })
         end
 
@@ -56,9 +53,9 @@ CreateThread(function()
         RegisterNUICallback('loadLocale', function(_, cb)
             cb(1)
             local locale = Config.language or 'en'
-            local JSON = LoadResourceFile(RESOURCE_NAME, ('locales/%s.json'):format(locale))
+            local JSON = LoadResourceFile(cache.resource, ('locales/%s.json'):format(locale))
             if not JSON then
-                JSON = LoadResourceFile(RESOURCE_NAME, 'locales/en.json')
+                JSON = LoadResourceFile(cache.resource, 'locales/en.json')
                 lib.notify({
                     type = 'error',
                     title = "Dolu Tool",
