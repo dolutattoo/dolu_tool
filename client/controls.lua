@@ -20,20 +20,28 @@ CreateThread(function()
         24, -- Attack
         25, -- Aim
         26, -- Look Behind
+        29, -- INPUT_SPECIAL_ABILITY_SECONDARY
         30, -- Player Movement
         31, -- Player Movement
         36, -- Input Duck/Sneak
         37, -- Weapon Wheel
+        38, -- INPUT_PICKUP
         44, -- Cover
+        45, -- INPUT_RELOAD
         47, -- Detonate
+        51, -- INPUT_CONTEXT
         55, -- Dive
+        58, -- INPUT_THROW_GRENADE
         69, -- Vehicle attack
+        73, -- INPUT_VEH_DUCK
         81, -- Next Radio (Vehicle)
         82, -- Previous Radio (Vehicle)
         91, -- Passenger Aim (Vehicle)
         92, -- Passenger Attack (Vehicle)
         99, -- Select Next Weapon (Vehicle)
+        105, -- INPUT_VEH_DROP_PROJECTILE
         106, -- Control Override (Vehicle)
+        113, -- INPUT_VEH_FLY_UNDERCARRIAGE
         114, -- Fly Attack (Flying)
         115, -- Next Weapon (Flying)
         121, -- Fly Camera (Flying)
@@ -41,10 +49,18 @@ CreateThread(function()
         135, -- Control OVerride (Sub)
         140, -- Melee attack light
         142, -- Attack alternate
+        154, -- INPUT_PARACHUTE_SMOKE
         199, -- Pause menu (P)
         200, -- Pause Menu (ESC)
+        244, -- INPUT_INTERACTION_MENU
         245, -- Chat
         257, -- Attack 2
+        263, -- INPUT_MELEE_ATTACK1
+        301, -- INPUT_REPLAY_NEWMARKER
+        303, -- INPUT_REPLAY_SCREENSHOT
+        305, -- INPUT_REPLAY_STARTPOINT
+        309, -- INPUT_REPLAY_TOOLS
+        311, -- INPUT_REPLAY_SHOWHOTKEY
     }
 
     local FORCEABLE<const> = {
