@@ -14,7 +14,7 @@ const useStyles = createStyles(() => ({
 }))
 
 const App: React.FC = () => {
-  const { classes } = useStyles()  
+  const { classes } = useStyles()
 
   return (
     <>

@@ -315,6 +315,7 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
     Utils.freezePlayer(false, vehicle)
     SetGameplayCamRelativeHeading(0)
     DoScreenFadeIn(500)
+    GetInteriorData()
 end
 
 Utils.changePed = function(model)

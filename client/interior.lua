@@ -1,23 +1,23 @@
 -- Check for interior data
 local lastRoomId = 0
 
-function GetInteriorData(interiorId, fromThread)
+function GetInteriorData(fromThread)
     local currentRoomHash = GetRoomKeyFromEntity(cache.ped)
-    local currentRoomId = GetInteriorRoomIndexByHash(interiorId, currentRoomHash)
+    local currentRoomId = GetInteriorRoomIndexByHash(Client.interiorId, currentRoomHash)
 
     if (fromThread and lastRoomId ~= currentRoomId) or not fromThread then
         lastRoomId = currentRoomId
-        local roomCount = GetInteriorRoomCount(interiorId) - 1
-        local portalCount = GetInteriorPortalCount(interiorId)
+        local roomCount = GetInteriorRoomCount(Client.interiorId) - 1
+        local portalCount = GetInteriorPortalCount(Client.interiorId)
 
         local rooms = {}
 
         for i = 1, roomCount do
-            local totalFlags = GetInteriorRoomFlag(interiorId, i)
+            local totalFlags = GetInteriorRoomFlag(Client.interiorId, i)
             rooms[i] = {
                 index = i,
-                name = GetInteriorRoomName(interiorId, i),
-                timecycle = tostring(GetInteriorRoomTimecycle(interiorId, i)),
+                name = GetInteriorRoomName(Client.interiorId, i),
+                timecycle = tostring(GetInteriorRoomTimecycle(Client.interiorId, i)),
                 isCurrent = currentRoomId == i and true or nil,
                 flags = {
                     list = Utils.listFlags(totalFlags, 'room'),
@@ -29,11 +29,11 @@ function GetInteriorData(interiorId, fromThread)
         local portals = {}
 
         for i = 0, portalCount - 1 do
-            local totalFlags = GetInteriorPortalFlag(interiorId, i)
+            local totalFlags = GetInteriorPortalFlag(Client.interiorId, i)
             portals[i] = {
                 index = i,
-                roomFrom = GetInteriorPortalRoomFrom(interiorId, i),
-                roomTo = GetInteriorPortalRoomTo(interiorId, i),
+                roomFrom = GetInteriorPortalRoomFrom(Client.interiorId, i),
+                roomTo = GetInteriorPortalRoomTo(Client.interiorId, i),
                 flags = {
                     list = Utils.listFlags(totalFlags, 'portal'),
                     total = totalFlags
@@ -42,7 +42,7 @@ function GetInteriorData(interiorId, fromThread)
         end
 
         local intData = {
-            interiorId = interiorId,
+            interiorId = Client.interiorId,
             roomCount = roomCount,
             portalCount = portalCount,
             rooms = rooms,
@@ -60,7 +60,7 @@ function GetInteriorData(interiorId, fromThread)
             data = intData
         })
     else
-        if interiorId == 0 then
+        if Client.interiorId == 0 then
             SendNUIMessage({
                 action = 'setIntData',
                 data = { interiorId = 0 }
@@ -98,7 +98,7 @@ RegisterNUICallback('dolu_tool:setPortalFlagCheckbox', function(data, cb)
     RefreshInterior(Client.interiorId)
 
     -- Update flag back in nui
-    GetInteriorData(Client.interiorId)
+    GetInteriorData()
 
     cb(1)
 end)
