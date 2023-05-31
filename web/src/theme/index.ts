@@ -39,6 +39,7 @@ export const customTheme: MantineThemeOverride = {
         root: {
           backgroundColor: 'rgba(24, 24, 27, 0.8)',
           borderRadius: '5px',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
         }
       }
     }
