@@ -46,6 +46,7 @@ CreateThread(function()
             portalCorners = false,
             portalInfos = false,
             interiorId = GetInteriorFromEntity(cache.ped),
+            defaultTimecycles = {},
             spawnedEntities = {},
             freezeTime = false,
             freezeWeather = false,

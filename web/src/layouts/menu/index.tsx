@@ -4,7 +4,7 @@ import { Route, Routes } from 'react-router-dom'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { menuVisibilityAtom } from '../../atoms/visibility'
 import { Version, versionAtom } from '../../atoms/version'
-import { interiorAtom, InteriorData } from '../../atoms/interior'
+import { interiorAtom, InteriorData, timecycleAtom, timecycleListAtom } from '../../atoms/interior'
 import { lastLocationsAtom, Location } from '../../atoms/location'
 import { positionAtom } from '../../atoms/position'
 import HeaderGroup from './components/HeaderGroup'
@@ -138,15 +138,17 @@ const Menu: React.FC = () => {
   const [visible, setVisible] = useRecoilState(menuVisibilityAtom)
   const [version, setVersion] = useRecoilState(versionAtom)
   const setInteriorData = useSetRecoilState(interiorAtom)
+  const setTimecycle = useSetRecoilState(timecycleAtom)
+  const setTimecycleList = useSetRecoilState(timecycleListAtom)
   const setLastLocation = useSetRecoilState(lastLocationsAtom)
   const setPosition = useSetRecoilState(positionAtom)
 
   useExitListener(setVisible)
 
-  useNuiEvent('setMenuVisible', (data: {version: Version, lastLocation: Location, position: string}) => {   
+  useNuiEvent('setMenuVisible', (data: {version: Version, lastLocation: Location, position: string}) => {
     setVersion(data.version)
     setLastLocation(data.lastLocation)
-    setPosition(data.position)  
+    setPosition(data.position)
     setVisible(true)
   })
 
@@ -156,6 +158,11 @@ const Menu: React.FC = () => {
 
   useNuiEvent('setIntData', (data: InteriorData) => {
     setInteriorData(data)
+    if (data.currentRoom !== undefined) setTimecycle(data.currentRoom.timecycle)
+  })
+
+  useNuiEvent('setTimecycleList', (data: Array<{ label: string, value: string }>) => {
+    setTimecycleList(data)
   })
 
   return (

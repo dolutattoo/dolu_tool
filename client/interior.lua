@@ -59,6 +59,8 @@ function GetInteriorData(fromThread)
             action = 'setIntData',
             data = intData
         })
+
+        Client.intData = intData
     else
         if Client.interiorId == 0 then
             SendNUIMessage({
@@ -106,7 +108,23 @@ end)
 RegisterNUICallback('dolu_tool:setTimecycle', function(data, cb)
     cb(1)
 
-    if data.roomId then
+    if data.roomId and Client.intData.currentRoom.timecycle ~= data.value then
         Utils.setTimecycle(data.value)
+    end
+end)
+
+RegisterNUICallback('dolu_tool:resetTimecycle', function(data, cb)
+    if data.roomId then
+        if not Client.defaultTimecycles[Client.interiorId] then
+            print('No default timecycle for interior ' .. Client.interiorId)
+            cb(0)
+        elseif not Client.defaultTimecycles[Client.interiorId][data.roomId] then
+            print('No default timecycle for room ' .. data.roomId)
+            cb(0)
+        end
+
+        Utils.setTimecycle(Client.defaultTimecycles[Client.interiorId][data.roomId].value)
+
+        cb(Client.defaultTimecycles[Client.interiorId][data.roomId])
     end
 end)

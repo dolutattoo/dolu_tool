@@ -40,6 +40,7 @@ const mockInterior: InteriorData = {
 
 export const interiorAtom = atom<InteriorData>({ key: 'interior', default: mockInterior })
 export const timecycleListAtom = atom<Array<{ label: string, value: string }>>({ key: 'timecycleList', default: [{label: "Unknown", value: '0'}] })
+export const timecycleAtom = atom<string | null>({ key: 'timecycle', default: null })
 export const portalDebuggingAtom = atom<string[]>({ key: 'portalDebugging', default: [] })
 export const portalEditingIndexAtom = atom<number>({ key: 'portalEditingIndex', default: 0 })
 export const portalDataAtom = atom<any>({ key: 'portalData', default: null })
@@ -56,10 +57,10 @@ export const getPortalFlagListAtom = selector({
     key: 'getPortalFlagList',
     get: ({ get }) => {
         const interior = get(interiorAtom)
-        const index = get(portalEditingIndexAtom) 
-        
+        const index = get(portalEditingIndexAtom)
+
         if (!interior.portals) return []
-        
+
         return interior.portals[index].flags.list
     },
 })

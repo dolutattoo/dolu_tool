@@ -71,6 +71,31 @@ Utils.setTimecycle = function(timecycle, roomId)
             roomId = GetInteriorRoomIndexByHash(Client.interiorId, roomHash)
         end
 
+        if not Client.defaultTimecycles[Client.interiorId] then
+            Client.defaultTimecycles[Client.interiorId] = {}
+        end
+
+        if not Client.defaultTimecycles[Client.interiorId][roomId] then
+            local currentTimecycle = GetInteriorRoomTimecycle(Client.interiorId, roomId)
+
+            local found
+            for _, v in pairs(Client.data.timecycles) do
+                if v.value == tostring(currentTimecycle) then
+                    found = v.label
+                    break
+                end
+            end
+
+            if not found then
+                found = 'Unknown'
+            end
+
+            Client.defaultTimecycles[Client.interiorId][roomId] = {
+                label = found,
+                value = currentTimecycle
+            }
+        end
+
         SetInteriorRoomTimecycle(Client.interiorId, roomId, tonumber(timecycle))
         RefreshInterior(Client.interiorId)
     else

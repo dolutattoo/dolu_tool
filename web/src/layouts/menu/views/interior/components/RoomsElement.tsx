@@ -1,24 +1,21 @@
 import { ActionIcon, Group, Paper, Select, Space, Text } from '@mantine/core'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { FaArrowLeft, FaArrowRight } from 'react-icons/fa'
-import { interiorAtom, timecycleListAtom } from '../../../../../atoms/interior'
+import { interiorAtom, timecycleAtom, timecycleListAtom } from '../../../../../atoms/interior'
 import { fetchNui } from '../../../../../utils/fetchNui'
 import { useLocales } from '../../../../../providers/LocaleProvider'
 import { useNuiEvent } from '../../../../../hooks/useNuiEvent'
+import { GiCancel } from 'react-icons/gi'
 
 const RoomsElement: React.FC = () => {
   const { locale } = useLocales()
   const interior = useRecoilValue(interiorAtom)
   const [timecycleList, setTimecycleList] = useRecoilState(timecycleListAtom)
-  const [timecycle, setTimecycle] = useState<string | null>(interior.currentRoom?.timecycle ? interior.currentRoom?.timecycle.toString() : null)
+  const [timecycle, setTimecycle] = useRecoilState<string | null>(timecycleAtom)
 
   useNuiEvent('setTimecycleList', (data: Array<{ label: string, value: string }>) => {
     setTimecycleList(data)
-  })
-
-  useNuiEvent('setIntData', (data: any) => {
-    if (data.currentRoom !== undefined) setTimecycle(data.currentRoom.timecycle)
   })
 
   const handlePrevClick = () => {
@@ -31,6 +28,20 @@ const RoomsElement: React.FC = () => {
     const currentIndex = timecycleList.findIndex((option) => option.value === timecycle)
     const nextIndex = (currentIndex + 1) % timecycleList.length
     setTimecycle(timecycleList[nextIndex].value)
+  }
+
+  const handleResetClick = () => {
+    fetchNui('dolu_tool:resetTimecycle', { roomId: interior.currentRoom?.index }).then((resp) => {
+      if (resp !== 0) {
+        const currentIndex = timecycleList.findIndex((option) => option.label === resp.label)
+
+        if (currentIndex === -1) {
+          setTimecycle(resp.value)
+        } else {
+          setTimecycle(timecycleList[currentIndex].value)
+        }
+      }
+    })
   }
 
   useEffect(() => {
@@ -63,6 +74,9 @@ const RoomsElement: React.FC = () => {
             </ActionIcon>
             <ActionIcon size={36} variant='default' onClick={() => { handleNextClick() }}>
               <FaArrowRight />
+            </ActionIcon>
+            <ActionIcon size={36} variant='default' onClick={() => { handleResetClick() }}>
+              <GiCancel />
             </ActionIcon>
           </Group>
         </Group>
