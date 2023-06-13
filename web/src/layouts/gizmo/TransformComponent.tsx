@@ -1,4 +1,4 @@
-import { Suspense, useRef, useState, useEffect } from 'react'
+import { Suspense, useRef, useState, useEffect, useCallback } from 'react'
 import { TransformControls } from '@react-three/drei'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { fetchNui } from '../../utils/fetchNui'
@@ -6,8 +6,17 @@ import { Mesh, MathUtils } from 'three'
 
 export const TransformComponent = ({ onChangeSpace, onChangeMode, space, mode, currentEntity, setCurrentEntity }: TransformComponent) => {
     const mesh = useRef<Mesh>(null!)
-    
-    const handleObjectDataUpdate = () => {
+
+    useNuiEvent('setGizmoEntity', (entity: any): void => {
+        setCurrentEntity(entity.handle)
+        if (entity.handle === undefined) { return }
+
+        mesh.current.position.set(entity.position.x, entity.position.z, -entity.position.y)
+        mesh.current.rotation.order = 'YZX'
+        mesh.current.rotation.set(MathUtils.degToRad(entity.rotation.x), MathUtils.degToRad(entity.rotation.z), MathUtils.degToRad(entity.rotation.y))
+    });
+
+    const handleObjectDataUpdate = useCallback((): void => {
         fetchNui('dolu_tool:moveEntity', {
             handle: currentEntity,
             position: {
@@ -21,40 +30,32 @@ export const TransformComponent = ({ onChangeSpace, onChangeMode, space, mode, c
                 z: MathUtils.radToDeg(mesh.current.rotation.y)
             }
         })
-    }
+    }, [mesh, currentEntity]);
 
-    useNuiEvent('setGizmoEntity', (entity: any) => {
-        setCurrentEntity(entity.handle)
-        if (entity.handle === undefined) {return}
+    const keyHandler = useCallback((e: KeyboardEvent): void => {
+        if (e.code === 'KeyR' && mode !== 'rotate') {
+            onChangeMode('rotate')
+        }
 
-        mesh.current.position.set(entity.position.x, entity.position.z, -entity.position.y)
-        mesh.current.rotation.order = 'YZX'
-        mesh.current.rotation.set(MathUtils.degToRad(entity.rotation.x), MathUtils.degToRad(entity.rotation.z), MathUtils.degToRad(entity.rotation.y))
-    })
+        if (mode !== 'translate' && ((navigator.language.startsWith('fr') && e.code === 'KeyW') || e.code === 'KeyZ')) {
+            onChangeMode('translate');
+        }
+
+        if (e.code === 'KeyQ') {
+            onChangeSpace()
+        }
+    }, [mode, onChangeSpace, onChangeMode]);
 
     useEffect(() => {
-        const keyHandler = (e: KeyboardEvent) => {
-            if (e.code === 'KeyR' && mode !== 'rotate') {
-                onChangeMode('rotate')
-            } 
-
-            if (mode !== 'translate' && ((navigator.language.startsWith('fr') && e.code === 'KeyW') || e.code === 'KeyZ' ) ) {
-                onChangeMode('translate');
-            }
-
-            if (e.code === 'KeyQ' ) {
-                onChangeSpace()
-            }
-        }    
         window.addEventListener('keyup', keyHandler)
         return () => window.removeEventListener('keyup', keyHandler)
-    }, [ mode, onChangeSpace, onChangeMode ])
-    
+    }, [mode, onChangeSpace, onChangeMode]);
+
     return (
         <>
             <Suspense fallback={<p>Loading Gizmo</p>}>
                 {currentEntity != null && <TransformControls space={space} size={0.5} object={mesh} mode={mode} onObjectChange={handleObjectDataUpdate} />}
-                <mesh ref={ mesh } />
+                <mesh ref={mesh} />
             </Suspense>
         </>
     )
