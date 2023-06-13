@@ -28,16 +28,16 @@ const World: React.FC = () => {
 
   return (
     <SimpleGrid cols={1}>
-      <Stack>     
+      <Stack>
         {/* Time    */}
-        <Paper p='md'>  
+        <Paper p='md'>
           <Group position='apart'>
             <Text size={20} weight={600}>{locale.ui_time}</Text>
             <AiOutlineClockCircle size={24} />
           </Group>
-          
+
           <Space h='sm' />
-            
+
           <Group grow>
             <NumberInput
               value={hourValue}
@@ -49,10 +49,12 @@ const World: React.FC = () => {
               stepHoldDelay={500}
               stepHoldInterval={(t) => Math.max(1000 / t ** 2, 25)}
               onChange={(value: number) => {
-                setHourValue(value)
-                fetchNui('dolu_tool:setClock', { hour: value, minute: minuteValue})
+                if (value) {
+                  setHourValue(value)
+                  fetchNui('dolu_tool:setClock', { hour: value, minute: minuteValue})
+                }
               }}
-            /> 
+            />
             {':'}
             <NumberInput
               value={minuteValue}
@@ -125,7 +127,7 @@ const World: React.FC = () => {
           </Group>
 
           <Space h='sm' />
-          
+
           <Group>
             <Checkbox label={locale.ui_freeze_weather} checked={weatherFrozen} onChange={(e) => {
               setWeatherFrozen(e.currentTarget.checked)
