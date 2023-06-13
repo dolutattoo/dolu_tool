@@ -34,7 +34,7 @@ debugData([
                     invalid: false
                 },
                 {
-                    handle: 123456,
+                    handle: 1234567,
                     name: 'object 2',
                     position: {
                         x: 0,
@@ -50,7 +50,7 @@ debugData([
                     invalid: false
                 },
                 {
-                    handle: 123456,
+                    handle: 12345678,
                     name: 'object 3',
                     position: {
                         x: 0,

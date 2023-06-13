@@ -4,27 +4,23 @@ import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { fetchNui } from '../../utils/fetchNui'
 import { Mesh, MathUtils } from 'three'
 
-export const TransformComponent = () => {
+export const TransformComponent = ({ onChangeSpace, onChangeMode, space, mode, currentEntity, setCurrentEntity }: TransformComponent) => {
     const mesh = useRef<Mesh>(null!)
-    const [currentEntity, setCurrentEntity] = useState<number>();
-    const [editorMode, setEditorMode] = useState<'translate' | 'rotate' | 'scale' | undefined>('translate');
-    const [spaceMode, setSpaceMode] = useState<'world' | 'local'>('world');
-
+    
     const handleObjectDataUpdate = () => {
-        const entity = {
+        fetchNui('dolu_tool:moveEntity', {
             handle: currentEntity,
-            position: { 
+            position: {
                 x: mesh.current.position.x,
                 y: -mesh.current.position.z,
                 z: mesh.current.position.y
             },
-            rotation: { 
-                x: MathUtils.radToDeg(mesh.current.rotation.x), 
-                y: MathUtils.radToDeg(-mesh.current.rotation.z), 
+            rotation: {
+                x: MathUtils.radToDeg(mesh.current.rotation.x),
+                y: MathUtils.radToDeg(-mesh.current.rotation.z),
                 z: MathUtils.radToDeg(mesh.current.rotation.y)
             }
-        }
-        fetchNui('dolu_tool:moveEntity', entity)
+        })
     }
 
     useNuiEvent('setGizmoEntity', (entity: any) => {
@@ -38,26 +34,26 @@ export const TransformComponent = () => {
 
     useEffect(() => {
         const keyHandler = (e: KeyboardEvent) => {
-            if (e.code === 'KeyR' && editorMode !== 'rotate') {
-                setEditorMode('rotate')
+            if (e.code === 'KeyR' && mode !== 'rotate') {
+                onChangeMode('rotate')
             } 
 
-            if (editorMode !== 'translate' && ((navigator.language.startsWith('fr') && e.code === 'KeyW') || e.code === 'KeyZ' ) ) {
-                setEditorMode('translate');
+            if (mode !== 'translate' && ((navigator.language.startsWith('fr') && e.code === 'KeyW') || e.code === 'KeyZ' ) ) {
+                onChangeMode('translate');
             }
 
             if (e.code === 'KeyQ' ) {
-                setSpaceMode(spaceMode === 'world' ? 'local' : 'world');
+                onChangeSpace()
             }
         }    
         window.addEventListener('keyup', keyHandler)
         return () => window.removeEventListener('keyup', keyHandler)
-    })
+    }, [ mode, onChangeSpace, onChangeMode ])
     
     return (
         <>
             <Suspense fallback={<p>Loading Gizmo</p>}>
-                {currentEntity != null && <TransformControls space={spaceMode} size={0.5} object={ mesh } mode={ editorMode } onObjectChange={ handleObjectDataUpdate } />}
+                {currentEntity != null && <TransformControls space={space} size={0.5} object={mesh} mode={mode} onObjectChange={handleObjectDataUpdate} />}
                 <mesh ref={ mesh } />
             </Suspense>
         </>
