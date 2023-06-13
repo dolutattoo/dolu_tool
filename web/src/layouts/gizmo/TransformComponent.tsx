@@ -6,8 +6,9 @@ import { Mesh, MathUtils } from 'three'
 
 export const TransformComponent = () => {
     const mesh = useRef<Mesh>(null!)
-    const [currentEntity, setCurrentEntity] = useState<number>()
-    const [editorMode, setEditorMode] = useState<'translate' | 'rotate' | 'scale' | undefined>('translate')
+    const [currentEntity, setCurrentEntity] = useState<number>();
+    const [editorMode, setEditorMode] = useState<'translate' | 'rotate' | 'scale' | undefined>('translate');
+    const [spaceMode, setSpaceMode] = useState<'world' | 'local'>('world');
 
     const handleObjectDataUpdate = () => {
         const entity = {
@@ -37,18 +38,16 @@ export const TransformComponent = () => {
 
     useEffect(() => {
         const keyHandler = (e: KeyboardEvent) => {
-            if (e.code === 'KeyR') {
+            if (e.code === 'KeyR' && editorMode !== 'rotate') {
                 setEditorMode('rotate')
-            } else {
-                if (navigator.language.startsWith('fr')) {
-                    if (e.code === 'KeyW') { // AZERTY
-                        setEditorMode('translate')
-                    }
-                } else {
-                    if (e.code === 'KeyZ') { // QWERTY
-                        setEditorMode('translate')
-                    }
-                }
+            } 
+
+            if (editorMode !== 'translate' && ((navigator.language.startsWith('fr') && e.code === 'KeyW') || e.code === 'KeyZ' ) ) {
+                setEditorMode('translate');
+            }
+
+            if (e.code === 'KeyQ' ) {
+                setSpaceMode(spaceMode === 'world' ? 'local' : 'world');
             }
         }    
         window.addEventListener('keyup', keyHandler)
@@ -58,7 +57,7 @@ export const TransformComponent = () => {
     return (
         <>
             <Suspense fallback={<p>Loading Gizmo</p>}>
-                {currentEntity != null && <TransformControls size={0.5} object={ mesh } mode={ editorMode } onObjectChange={ handleObjectDataUpdate } />}
+                {currentEntity != null && <TransformControls space={spaceMode} size={0.5} object={ mesh } mode={ editorMode } onObjectChange={ handleObjectDataUpdate } />}
                 <mesh ref={ mesh } />
             </Suspense>
         </>
