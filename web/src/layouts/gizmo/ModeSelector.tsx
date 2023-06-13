@@ -1,6 +1,6 @@
 import { Box, Button, createStyles } from "@mantine/core"
-import { GiTransform } from "react-icons/gi";
-import { MdCropRotate } from "react-icons/md"
+import { BiWorld } from "react-icons/bi";
+import { LuRotate3D, LuMove } from "react-icons/lu"
 import { TbGizmo } from "react-icons/tb";
 
 const useStyles = createStyles((theme) => ({
@@ -27,15 +27,15 @@ export const ModeSelector = ({ onChangeSpace, onChangeMode, space, mode }: ModeS
             <Box className={classes.selector}>
 
                 <Button color="dark" radius="xl" className={space === 'local' ? classes.active : ''} onClick={onChangeSpace}>
-                    <TbGizmo fontSize={'1.5rem'} />
+                    {space === 'local' ? <TbGizmo fontSize={'1.5rem'} /> : <BiWorld fontSize={'1.5rem'} />}
                 </Button>
 
                 <Button.Group >
                     <Button color="dark" radius="xl" className={mode === 'translate' ? classes.active : ''} onClick={() => onChangeMode('translate')}>
-                        <GiTransform fontSize={'1.5rem'} />
+                        <LuMove fontSize={'1.5rem'} />
                     </Button>
                     <Button color="dark" radius="xl" className={mode === 'rotate' ? classes.active : ''} onClick={() => onChangeMode('rotate')}>
-                        <MdCropRotate fontSize={'1.5rem'} />
+                        <LuRotate3D fontSize={'1.5rem'} />
                     </Button>
                 </Button.Group>
             </Box>

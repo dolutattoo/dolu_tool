@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -39,8 +39,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-icons:
-    specifier: ^4.7.1
-    version: 4.7.1(react@18.2.0)
+    specifier: ^4.9.0
+    version: 4.9.0(react@18.2.0)
   react-router-dom:
     specifier: ^6.6.2
     version: 6.6.2(react-dom@18.2.0)(react@18.2.0)
@@ -1663,8 +1663,8 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-icons@4.7.1(react@18.2.0):
-    resolution: {integrity: sha512-yHd3oKGMgm7zxo3EA7H2n7vxSoiGmHk5t6Ou4bXsfcgWyhfDKMpyKfhHR6Bjnn63c+YXBLBPUql9H4wPJM6sXw==}
+  /react-icons@4.9.0(react@18.2.0):
+    resolution: {integrity: sha512-ijUnFr//ycebOqujtqtV9PFS7JjhWg0QU6ykURVHuL4cbofvRCf3f6GMn9+fBktEFQOIVZnuAYLZdiyadRQRFg==}
     peerDependencies:
       react: '*'
     dependencies:
