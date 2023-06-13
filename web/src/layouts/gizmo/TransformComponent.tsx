@@ -30,7 +30,7 @@ export const TransformComponent = ({ onChangeSpace, onChangeMode, space, mode, c
                 z: MathUtils.radToDeg(mesh.current.rotation.y)
             }
         })
-    }, [mesh, currentEntity]);
+    }, [mesh, currentEntity])
 
     const keyHandler = useCallback((e: KeyboardEvent): void => {
         if (e.code === 'KeyR' && mode !== 'rotate') {
@@ -44,18 +44,18 @@ export const TransformComponent = ({ onChangeSpace, onChangeMode, space, mode, c
         if (e.code === 'KeyQ') {
             onChangeSpace()
         }
-    }, [mode, onChangeSpace, onChangeMode]);
+    }, [mode, onChangeSpace, onChangeMode])    
 
     useEffect(() => {
         window.addEventListener('keyup', keyHandler)
         return () => window.removeEventListener('keyup', keyHandler)
-    }, [mode, onChangeSpace, onChangeMode]);
-
+    }, [ mode, onChangeSpace, onChangeMode ])
+    
     return (
         <>
             <Suspense fallback={<p>Loading Gizmo</p>}>
                 {currentEntity != null && <TransformControls space={space} size={0.5} object={mesh} mode={mode} onObjectChange={handleObjectDataUpdate} />}
-                <mesh ref={mesh} />
+                <mesh ref={ mesh } />
             </Suspense>
         </>
     )
