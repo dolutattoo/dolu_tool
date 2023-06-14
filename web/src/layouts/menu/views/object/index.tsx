@@ -188,9 +188,9 @@ const Object: React.FC = () => {
                                         color='blue.4'
                                         size='xs'
                                         onClick={() => {
-                                            fetchNui('dolu_tool:goToEntity', entity)
+                                            fetchNui('dolu_tool:snapEntityToGround', entity)
                                         }}
-                                    >{locale.ui_goto}</Button>
+                                    >{locale.ui_snap_to_ground}</Button>
                                     <Button
                                         variant='light'
                                         color={copiedCoords ? 'teal' : 'blue.4'}
@@ -209,6 +209,17 @@ const Object: React.FC = () => {
                                             setCopiedRotation(true)
                                         }}
                                     >{copiedRotation ? locale.ui_copied_rotation : locale.ui_copy_rotation}</Button>
+                                </Group>
+                                <Space h='xs' />
+                                <Group grow>
+                                    <Button
+                                        variant='light'
+                                        color='blue.4'
+                                        size='xs'
+                                        onClick={() => {
+                                            fetchNui('dolu_tool:goToEntity', entity)
+                                        }}
+                                    >{locale.ui_goto}</Button>
                                     <Button
                                         variant='light'
                                         color={copiedName ? 'teal' : 'blue.4'}
@@ -218,17 +229,6 @@ const Object: React.FC = () => {
                                             setCopiedName(true)
                                         }}
                                     >{copiedName ? locale.ui_copied_name : locale.ui_copy_name}</Button>
-                                </Group>
-                                <Space h='xs' />
-                                <Group grow>
-                                    <Button
-                                        variant='light'
-                                        color='blue.4'
-                                        size='xs'
-                                        onClick={() => {
-                                            fetchNui('dolu_tool:snapEntityToGround', entity)
-                                        }}
-                                    >{locale.ui_snap_to_ground}</Button>
                                     <Button
                                         variant='light'
                                         color='blue.4'
