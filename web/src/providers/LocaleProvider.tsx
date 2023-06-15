@@ -29,6 +29,8 @@ interface Locale {
   ui_exit: string
   ui_copy_coords: string
   ui_copied_coords: string
+  ui_copied_rotation: string
+  ui_copy_rotation: string
   ui_copy_name: string
   ui_copied_name: string
   ui_copy_hash: string
@@ -175,6 +177,8 @@ debugData(
         ui_exit: "Exit",
         ui_copy_coords: "Copy coords",
         ui_copied_coords: "Copied coords",
+        ui_copied_rotation: "Copy rotations",
+        ui_copy_rotation: "Copied rotations",
         ui_copy_name: "Copy name",
         ui_copied_name: "Copied name",
         ui_copy_hash: "Copy hash",
@@ -329,6 +333,8 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_exit: '',
     ui_copy_coords: '',
     ui_copied_coords: '',
+    ui_copied_rotation: '',
+    ui_copy_rotation: '"Copied rotations"',
     ui_copy_name: '',
     ui_copied_name: '',
     ui_copy_hash: '',

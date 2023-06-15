@@ -137,5 +137,7 @@
   "ui_meters": "mètres",
   "ui_flags": "Flags",
   "ui_room": "Room",
-  "ui_radio_station": "Station de radio"
+  "ui_radio_station": "Station de radio",
+  "ui_copied_rotation": "Copy rotations",
+  "ui_copy_rotation": "Copied rotations"
 }

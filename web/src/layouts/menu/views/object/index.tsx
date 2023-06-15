@@ -34,7 +34,7 @@ debugData([
                     invalid: false
                 },
                 {
-                    handle: 123456,
+                    handle: 1234567,
                     name: 'object 2',
                     position: {
                         x: 0,
@@ -50,7 +50,7 @@ debugData([
                     invalid: false
                 },
                 {
-                    handle: 123456,
+                    handle: 12345678,
                     name: 'object 3',
                     position: {
                         x: 0,
@@ -105,13 +105,16 @@ const Object: React.FC = () => {
         }, 1000)
     }, [copiedName])
     
-    // Copied coords button
+    // Copied coords / rotation button
     const [copiedCoords, setCopiedCoords] = useState(false)
+    const [copiedRotation, setCopiedRotation] = useState(false)
+
     useEffect(() => {
         setTimeout(() => {
             setCopiedCoords(false)
+            setCopiedRotation(false)
         }, 1000)
-    }, [copiedCoords])
+    }, [copiedCoords, copiedRotation])
     
     return (
         <>
@@ -197,6 +200,15 @@ const Object: React.FC = () => {
                                             setCopiedCoords(true)
                                         }}
                                     >{copiedCoords ? locale.ui_copied_coords : locale.ui_copy_coords}</Button>
+                                    <Button
+                                        variant='light'
+                                        color={copiedRotation ? 'teal' : 'blue.4'}
+                                        size='xs'
+                                        onClick={() => {
+                                            setClipboard(entity.rotation.x + ', ' + entity.rotation.y + ', ' + entity.rotation.z)
+                                            setCopiedRotation(true)
+                                        }}
+                                    >{copiedRotation ? locale.ui_copied_rotation : locale.ui_copy_rotation}</Button>
                                     <Button
                                         variant='light'
                                         color={copiedName ? 'teal' : 'blue.4'}

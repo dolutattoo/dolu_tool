@@ -137,5 +137,7 @@
   "ui_meters": "méter",
   "ui_flags": "Flag-ek",
   "ui_room": "Szoba",
-  "ui_radio_station": "Rádió állomás"
+  "ui_radio_station": "Rádió állomás",
+  "ui_copied_rotation": "Copy rotations",
+  "ui_copy_rotation": "Copied rotations"
 }
