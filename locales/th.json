@@ -138,6 +138,6 @@
   "ui_flags": "แฟลก",
   "ui_room": "รูม",
   "ui_radio_station": "สถานีวิทยุ",
-  "ui_copied_rotation": "Copy rotations",
-  "ui_copy_rotation": "Copied rotations"
+  "ui_copied_rotation": "Copied rotation",
+  "ui_copy_rotation": "Copy rotation"
 }

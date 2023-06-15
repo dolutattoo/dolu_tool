@@ -138,6 +138,6 @@
   "ui_flags": "Flags",
   "ui_room": "Room",
   "ui_radio_station": "Radio Station",
-  "ui_copied_rotation": "Copy rotations",
-  "ui_copy_rotation": "Copied rotations"
+  "ui_copied_rotation": "Copied rotation",
+  "ui_copy_rotation": "Copy rotation"
 }
