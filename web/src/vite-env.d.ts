@@ -15,6 +15,9 @@ interface TransformComponent extends ModeSelector {
   onChangeSpace?: () => void;
   setCurrentEntity: (value: number) => void;
   onChangeMode?: (value: GizmoEditorMode) => void;
+
+  onMouseUp?: (e?: THREE.Event) => void;
+  onMouseDown?: (e?: THREE.Event) => void;
 }
 
 interface TransformEntity {

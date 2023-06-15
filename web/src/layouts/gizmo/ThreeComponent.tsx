@@ -9,6 +9,7 @@ export const ThreeComponent = React.memo(() => {
     const [editorMode, setEditorMode] = useState<GizmoEditorMode>('translate');
     const [spaceMode, setSpaceMode] = useState<GizmoSpaceMode>('world');
     const [entity, setEntity] = useState< number| undefined >();
+    const [drag, setDrag] = useState<boolean >(false);
 
     const toggleSpaceMode = useCallback((): void => {
         setSpaceMode(spaceMode === 'world' ? 'local' : 'world');
@@ -29,10 +30,11 @@ export const ThreeComponent = React.memo(() => {
     }, [editorMode, spaceMode])    
 
     const mouseHandler = useCallback((e: any): void => {
-        if (e.target?.tagName !== 'CANVAS' || e.button !== 0) return;
-
+        if (e.target?.tagName !== 'CANVAS' || e.button !== 0 || drag) return;
         fetchNui('dolu_tool:selectEntity');
-    }, []);
+    }, [drag]);
+
+    const setDragging = useCallback((value: boolean): void => setDrag(value), [drag]);
 
     useEffect(() => {
         window.addEventListener('keyup', keyHandler)
@@ -48,7 +50,7 @@ export const ThreeComponent = React.memo(() => {
         <>
             <Canvas style={{ zIndex: 1 }}>
                 <CameraComponent />
-                <TransformComponent onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} currentEntity={entity} setCurrentEntity={setEntity} />
+                <TransformComponent onMouseUp={() => setDragging(false)} onMouseDown={ () => setDragging(true) } onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} currentEntity={entity} setCurrentEntity={setEntity} />
             </Canvas>
 
             {entity && <ModeSelector onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} />}

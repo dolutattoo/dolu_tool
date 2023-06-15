@@ -4,7 +4,7 @@ import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { fetchNui } from '../../utils/fetchNui'
 import { Mesh, MathUtils } from 'three'
 
-export const TransformComponent = React.memo(({ space, mode, currentEntity, setCurrentEntity }: TransformComponent) => {
+export const TransformComponent = React.memo(({ space, mode, currentEntity, setCurrentEntity, onMouseUp, onMouseDown }: TransformComponent) => {
     const mesh = useRef<Mesh>(null!)
 
     useNuiEvent<TransformEntity>('setGizmoEntity', (entity: TransformEntity): void => {
@@ -35,7 +35,7 @@ export const TransformComponent = React.memo(({ space, mode, currentEntity, setC
     return (
         <>
             <Suspense fallback={<p>Loading Gizmo</p>}>
-                {currentEntity != null && <TransformControls space={space} size={0.5} object={mesh} mode={mode} onObjectChange={handleObjectDataUpdate} />}
+                {currentEntity != null && <TransformControls onMouseUp={onMouseUp} onMouseDown={onMouseDown} space={space} size={0.5} object={mesh} mode={mode} onObjectChange={handleObjectDataUpdate} />}
                 <mesh ref={ mesh } />
             </Suspense>
         </>
