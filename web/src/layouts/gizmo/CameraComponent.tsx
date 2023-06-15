@@ -1,17 +1,18 @@
+import React, { useCallback } from 'react'
 import { PerspectiveCamera } from '@react-three/drei'
 import { useNuiEvent } from '../../hooks/useNuiEvent'
 import { useThree } from '@react-three/fiber'
 import { MathUtils } from 'three'
 
-export const CameraComponent = () => {
+export const CameraComponent = React.memo(() => {
     const { camera } = useThree()
 
-    const zRotationHandler = (t: number,e: number) => {
+    const zRotationHandler = useCallback((t: number, e: number): number => {
         return t > 0 && t < 90 ? e : (t > -180 && t < -90) || t > 0 ? -e : e
-    }
+    }, []);
 
     useNuiEvent('setCameraPosition', ({ position, rotation }: any) => {
-        camera.position.set( position.x, position.z, -position.y )
+        camera.position.set(position.x, position.z, -position.y)
         camera.rotation.order = 'YZX'
 
         rotation && camera.rotation.set(
@@ -22,8 +23,8 @@ export const CameraComponent = () => {
 
         camera.updateProjectionMatrix()
     })
-    
+
     return (
-        <PerspectiveCamera position={[0,0,10]} makeDefault onUpdate={(self: any) => self.updateProjectionMatrix()} />
+        <PerspectiveCamera position={[0, 0, 10]} makeDefault onUpdate={(self: any) => self.updateProjectionMatrix()} />
     )
-}
+});

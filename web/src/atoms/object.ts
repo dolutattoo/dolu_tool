@@ -17,7 +17,10 @@ export interface Entity {
     invalid?: boolean
 }
 
-export const ObjectListAtom = atom<Entity[]|[]>({ key: 'ObjectList', default: [] })
+
+export type ObjectList = Array<Entity>;
+
+export const ObjectListAtom = atom<ObjectList>({key: "ObjectList", default: []});
 export const ObjectNameAtom = atom<string>({ key: 'ObjectCurrentAccordionItem', default: 'prop_alien_egg_01' })
 
 export const getObjectList = () => useRecoilValue(ObjectListAtom)

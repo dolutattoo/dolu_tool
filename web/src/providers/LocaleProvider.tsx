@@ -334,7 +334,7 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_copy_coords: '',
     ui_copied_coords: '',
     ui_copied_rotation: '',
-    ui_copy_rotation: '"Copied rotations"',
+    ui_copy_rotation: '',
     ui_copy_name: '',
     ui_copied_name: '',
     ui_copy_hash: '',
