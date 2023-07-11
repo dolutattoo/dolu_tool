@@ -465,6 +465,9 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
     cb(1)
     local model = joaat(data.modelName)
 
+    -- Check if entity was spawned using Object Spawner
+    local entity = Client.spawnedEntities[data.entity.handle]
+
     if not IsModelInCdimage(model) then
         data.entity.invalid = true
 
@@ -478,13 +481,11 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
         return
     end
 
-    -- Check if entity was spawned using Object Spawner
-    local entity = Client.spawnedEntities[data.entity.handle]
-
     -- If entity was spawned using Object Spawner, send updated data to nui
     if entity and DoesEntityExist(entity.handle) then
         entity.invalid = false
         entity.name = data.modelName
+        entity.hash = GetHashKey(entity.modelName),
 
         -- Remove current entity
         SetEntityAsMissionEntity(entity.handle)
