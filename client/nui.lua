@@ -437,19 +437,28 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
         invalid = false
     }
 
-    updateNuiObjectList()
+    local entityData = {
+        name = modelName,
+        hash = GetHashKey(modelName),
+        handle = obj,
+        position = GetEntityCoords(obj),
+        rotation = entityRotation,
+    }
 
     SendNUIMessage({
         action = 'setGizmoEntity',
+        data = entityData
+    })
+
+    SendNUIMessage({
+        action = 'setObjectData',
         data = {
-            name = modelName,
-            handle = obj,
-            position = GetEntityCoords(obj),
-            rotation = entityRotation,
+            entity = entityData
         }
     })
 
     Client.gizmoEntity = obj
+    updateNuiObjectList()
 end)
 
 RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
