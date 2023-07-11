@@ -286,8 +286,15 @@ end)
 local function updateNuiObjectList()
     local entityTable = {}
 
-    for _, v in pairs(Client.spawnedEntities) do
-        entityTable[#entityTable + 1] = v
+    local keys = {}
+    for k in pairs(Client.spawnedEntities) do
+        keys[#keys + 1] = k
+    end
+
+    table.sort(keys)
+
+    for _, k in ipairs(keys) do
+        entityTable[#entityTable + 1] = Client.spawnedEntities[k]
     end
 
     SendNUIMessage({
