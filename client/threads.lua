@@ -137,9 +137,11 @@ CreateThread(function()
                 SetEntityDrawOutline(Client.outlinedEntity, false)
             end
 
-            Client.outlinedEntity = Client.gizmoEntity
-            SetEntityDrawOutline(Client.outlinedEntity, true)
 
+            if GetEntityType(Client.gizmoEntity) ~= 1 then
+                Client.outlinedEntity = Client.gizmoEntity
+                SetEntityDrawOutline(Client.outlinedEntity, true)
+            end
         else
             if Client.outlinedEntity then
                 SetEntityDrawOutline(Client.outlinedEntity, false)
