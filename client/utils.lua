@@ -478,6 +478,7 @@ Utils.initTarget = function()
                     action = 'setGizmoEntity',
                     data = {
                         name = 'Unknown Game Object',
+                        hash = 0,
                         handle = data.entity,
                         position = GetEntityCoords(data.entity),
                         rotation = GetEntityRotation(data.entity),
@@ -628,114 +629,39 @@ Utils.assert = function(v, msg, value)
     end
 end
 
+Utils.raycast = function(maxDistance, ignore)
+	local screenPosition = { x = GetControlNormal(0, 239), y = GetControlNormal(0, 240) }
+	local pos = GetGameplayCamCoord()
+	local rot = GetGameplayCamRot(0)
+	local fov = GetGameplayCamFov()
+	local cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, 0, 2)
+	local camRight, camForward, camUp, camPos = GetCamMatrix(cam)
 
---[[
-Credit: @spAnser
-https://github.com/spAnser/pioneer-village/blob/master/resources/%5Btools%5D/object_manager/client/cl_main.lua
-]]
-local abs, sin, cos, rad = math.abs, math.sin, math.cos, math.rad
-Utils.ScreenToWorld = function(flags, ignore)
-    local absoluteX, absoluteY = GetNuiCursorPosition()
-    local camPos = GetFinalRenderedCamCoord()
+    DestroyCam(cam, true)
 
-    local processedCoords = Utils.processCoordinates(absoluteX, absoluteY)
-    local target = Utils.s2w(camPos, processedCoords.x, processedCoords.y)
+	screenPosition = vec2(screenPosition.x - 0.5, screenPosition.y - 0.5) * 2.0
 
-    local dir = target - camPos
-    local from = camPos + (dir * 0.05)
-    local to = camPos + (dir * 300)
+	local fovRadians = (fov * 3.14) / 180.0
+	local to = camPos + camForward + (camRight * screenPosition.x * fovRadians * GetAspectRatio(false) * 0.534375) - (camUp * screenPosition.y * fovRadians * 0.534375)
 
-    local ray = StartShapeTestRay(from.x, from.y, from.z, to.x, to.y, to.z, flags, ignore, 0)
-	local a, b, c, d, e = GetShapeTestResult(ray)
-    return b, c, e, to
+	local direction = (to - camPos) * maxDistance
+	local endPoint = camPos + direction
+
+	local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(camPos.x, camPos.y, camPos.z, endPoint.x, endPoint.y, endPoint.z, -1, ignore, 0)
+	local result, hit, endCoords, surfaceNormal, entityhit = GetShapeTestResult(rayHandle)
+
+	return result, hit, endCoords, surfaceNormal, entityhit
 end
 
-Utils.processCoordinates = function(x, y)
-    local screenX, screenY = GetActiveScreenResolution()
+Utils.resetGizmoEntity = function()
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {}
+    })
 
-    local relativeX = 1 - (x / screenX) * 1.0 * 2
-    local relativeY = 1 - (y / screenY) * 1.0 * 2
-
-    if relativeX > 0.0 then
-        relativeX = -relativeX;
-    else
-        relativeX = abs(relativeX)
+    if DoesEntityExist(Client.gizmoEntity) then
+        FreezeEntityPosition(Client.gizmoEntity, false)
     end
 
-    if relativeY > 0.0 then
-        relativeY = -relativeY
-    else
-        relativeY = abs(relativeY)
-    end
-
-    return { x = relativeX, y = relativeY }
-end
-
-Utils.s2w = function (camPos, relX, relY)
-    local camRot = GetGameplayCamRot(0)
-    
-    local camForward = Utils.RotationToDirection2(camRot)
-    local rotUp = camRot + vector3(10, 0, 0)
-    local rotDown = camRot + vector3(-10, 0, 0)
-    local rotLeft = camRot + vector3(0, 0, -10)
-    local rotRight = camRot + vector3(0, 0, 10)
-
-    local camRight = Utils.RotationToDirection2(rotRight) - Utils.RotationToDirection2(rotLeft)
-    local camUp = Utils.RotationToDirection2(rotUp) - Utils.RotationToDirection2(rotDown)
-
-    local rollRad = -rad(camRot.y)
-    local camRightRoll = (camRight * cos(rollRad)) - (camUp * sin(rollRad))
-    local camUpRoll = (camRight * sin(rollRad)) + (camUp * cos(rollRad))
-
-    local point3D = camPos + (camForward * 10.0) + camRightRoll + camUpRoll
-
-    local point2D = Utils.w2s(point3D)
-
-    if point2D == undefined then
-        return camPos + (camForward * 10.0)
-    end
-
-    local point3DZero = camPos + (camForward * 10.0)
-    local point2DZero = Utils.w2s(point3DZero)
-
-    if point2DZero == nil then
-        return camPos + (camForward * 10.0)
-    end
-
-    local eps = 0.001
-
-    if abs(point2D.x - point2DZero.x) < eps or abs(point2D.y - point2DZero.y) < eps then
-        return camPos + (camForward * 10.0)
-    end
-
-    local scaleX = (relX - point2DZero.x) / (point2D.x - point2DZero.x)
-    local scaleY = (relY - point2DZero.y) / (point2D.y - point2DZero.y)
-    local point3Dret = camPos + (camForward * 10.0) + (camRightRoll * scaleX) + (camUpRoll * scaleY)
-
-    return point3Dret
-end
-
-Utils.RotationToDirection2 = function(rotation)
-    local z = rad(rotation.z)
-    local x = rad(rotation.x)
-    local num = abs(cos(x))
-
-    local result = {}
-    result.x = -sin(z) * num
-    result.y = cos(z) * num
-    result.z = sin(x)
-    return vector3(result.x, result.y, result.z)
-end
-
-Utils.w2s = function (position)
-    local onScreen, _x, _y = GetScreenCoordFromWorldCoord(position.x, position.y, position.z)
-    if not onScreen then
-        return nil
-    end
-
-    local newPos = {}
-    newPos.x = (_x - 0.5) * 2
-    newPos.y = (_y - 0.5) * 2
-    newPos.z = 0
-    return newPos
+    Client.gizmoEntity = nil
 end

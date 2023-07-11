@@ -305,83 +305,82 @@ local function updateNuiObjectList()
     })
 end
 
-RegisterNUICallback('dolu_tool:selectEntity', function(data, cb)
+RegisterNUICallback('dolu_tool:selectEntity', function(_, cb)
     cb(1)
 
     if Client.currentTab ~= 'object' then
         return
     end
 
-    local hit, endCoords, entityHit, _ = Utils.ScreenToWorld(16 + 32 + 64 + 256, Client.gizmoEntity)
+	local result, hit, endCoords, surfaceNormal, entityHit = Utils.raycast(10000.0, Client.gizmoEntity)
 
-    if not hit or entityHit == 0 or entityHit == Client.gizmoEntity then
+    repeat
+		Wait(0)
+	until result == 1 or result == 2
+
+    if result == 1 or not hit or not entityHit then
         return
     end
 
-    if not NetworkHasControlOfEntity(entityHit) then
-        NetworkRequestControlOfEntity(entityHit)
+    local entityType = GetEntityType(entityHit)
+    local entityTypeName
 
-        local timer = GetGameTimer()
-        while not NetworkHasControlOfEntity(entityHit) do
-            Wait(0)
+    if entityType == 1 then
+        if IsPedAPlayer(entityHit) then
+            return
+        end
+        entityTypeName = 'ped'
+    elseif entityType == 2 then
+        entityTypeName = 'vehicle'
+    elseif entityType == 3 then
+        entityTypeName = 'object'
+    else
+        -- Todo: Handle other entity types?
+        return
+    end
 
-            if GetGameTimer() - timer > 5000 then
-                print('Failed to get control of object, please try again')
+    if entityType > 1 or not IsPedAPlayer(entityHit) then -- Make sure we are not trying to request control of a player
+        if not NetworkHasControlOfEntity(entityHit) then
+            NetworkRequestControlOfEntity(entityHit)
 
-                return lib.notify({
-                    title = 'Dolu Tool',
-                    description = 'Failed to get control of object, please try again',
-                    type = 'error',
-                    position = 'top'
-                })
+            local timer = GetGameTimer()
+            while not NetworkHasControlOfEntity(entityHit) do
+                Wait(0)
+
+                if GetGameTimer() - timer > 5000 then
+                    print('Failed to get control of object, please try again')
+
+                    return lib.notify({
+                        title = 'Dolu Tool',
+                        description = 'Failed to get control of object, please try again',
+                        type = 'error',
+                        position = 'top'
+                    })
+                end
             end
         end
     end
 
-    local modelName = GetEntityArchetypeName(entityHit) or string.format('%X', GetEntityModel(entityHit)):upper()
+    local modelName = GetEntityArchetypeName(entityHit) or ('%X'):format(GetEntityModel(entityHit)):upper()
+    local entityCoords = GetEntityCoords(entityHit)
     local entityRotation = GetEntityRotation(entityHit)
-    local coords = GetEntityCoords(entityHit)
 
     FreezeEntityPosition(entityHit, true)
-
-    Client.spawnedEntities[entityHit] = {
-        handle = entityHit,
-        name = modelName,
-        position = {
-            x = Utils.round(coords.x, 3),
-            y = Utils.round(coords.y, 3),
-            z = Utils.round(coords.z, 3)
-        },
-        rotation = {
-            x = Utils.round(entityRotation.x, 3),
-            y = Utils.round(entityRotation.y, 3),
-            z = Utils.round(entityRotation.z, 3)
-        },
-        invalid = false
-    }
-
-    updateNuiObjectList()
-
-    SendNUIMessage({
-        action = 'setObjectData',
-        data = {
-            entity = Client.spawnedEntities[entityHit]
-        }
-    })
 
     SendNUIMessage({
         action = 'setGizmoEntity',
         data = {
             name = modelName,
+            hash = GetEntityModel(entityHit),
             handle = entityHit,
-            position = Client.spawnedEntities[entityHit].position,
+            position = entityCoords,
             rotation = entityRotation,
+            type = entityTypeName
         }
     })
 
     Client.gizmoEntity = entityHit
 end)
-
 
 RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     cb(1)
