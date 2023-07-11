@@ -121,7 +121,7 @@ end)
 -- Gizmo's entity
 CreateThread(function()
     SetEntityDrawOutlineShader(1)
-    SetEntityDrawOutlineColor(200, 200, 250, 180)
+    SetEntityDrawOutlineColor(130, 150, 250, 180)
 
     while true do
         if Client.gizmoEntity then

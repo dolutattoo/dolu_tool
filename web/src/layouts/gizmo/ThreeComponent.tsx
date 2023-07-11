@@ -1,16 +1,40 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { Canvas } from '@react-three/fiber'
+import { useRecoilValue } from 'recoil'
 import { CameraComponent } from './CameraComponent'
 import { TransformComponent } from './TransformComponent'
 import { ModeSelector } from './ModeSelector'
 import { fetchNui } from '../../utils/fetchNui'
-import { useRecoilValue } from 'recoil'
 import { KeyboardLayoutAtom } from '../../atoms/object'
+
+
+import { debugData } from '../../utils/debugData'
+
+debugData([
+  {
+    action: 'setGizmoEntity',
+    data: {
+      handle: 123456,
+      position: {
+        x: 4123,
+        y: -4456,
+        z: 4789
+      },
+      rotation: {
+        x: 3210,
+        y: -3211,
+        z: 3212
+      },
+      name: 'test_entity',
+      hash: 168542,
+    }
+  }
+], 10)
 
 export const ThreeComponent = React.memo(() => {
   const [editorMode, setEditorMode] = useState<GizmoEditorMode>('translate')
   const [spaceMode, setSpaceMode] = useState<GizmoSpaceMode>('world')
-  const [entity, setEntity] = useState<number | undefined>()
+  const [entity, setEntity] = useState<TransformEntity | undefined>()
   const [drag, setDrag] = useState<boolean>(false)
   const layout = useRecoilValue(KeyboardLayoutAtom)
 
@@ -63,7 +87,7 @@ export const ThreeComponent = React.memo(() => {
         <TransformComponent onMouseUp={() => setDragging(false)} onMouseDown={() => setDragging(true)} onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} currentEntity={entity} setCurrentEntity={setEntity} />
       </Canvas>
 
-      {entity && <ModeSelector onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} />}
+      {entity?.handle && <ModeSelector onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} currentEntity={entity} />}
     </>
   )
 })
