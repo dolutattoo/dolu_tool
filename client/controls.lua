@@ -91,3 +91,18 @@ CreateThread(function()
         Wait(0)
     end
 end)
+
+AddEventHandler('onResourceStop', function(name)
+	if name ~= cache.resource then return end
+
+	-- Stop outlining entity
+	if Client.outlinedEntity then
+		SetEntityDrawOutline(Client.outlinedEntity, false)
+		Client.outlinedEntity = nil
+	end
+
+    -- Reset player camera
+    if Client.noClip then
+	    SetFreecamActive(false)
+    end
+end)

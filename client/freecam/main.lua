@@ -174,7 +174,7 @@ function StartFreecamThread()
 		EndTextCommandScaleformString()
 	end
 
-	--Scaleform drawing thread
+	-- Scaleform drawing thread
 	CreateThread(function()
 		local scaleform = RequestScaleformMovie("instructional_buttons")
 		while not HasScaleformMovieLoaded(scaleform) do
@@ -241,12 +241,3 @@ function StartFreecamThread()
 		SetScaleformMovieAsNoLongerNeeded()
 	end)
 end
-
---------------------------------------------------------------------------------
-
--- When the resource is stopped, make sure to return the camera to the player.
-AddEventHandler('onResourceStop', function(name)
-	if name ~= cache.resource then return end
-
-	SetFreecamActive(false)
-end)

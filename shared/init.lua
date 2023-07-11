@@ -8,7 +8,6 @@ end
 if not LoadResourceFile(cache.resource, 'web/build/index.html') then
     local err = '^4[dolu_tool] ^1Unable to load UI. Build dolu_tool or download the latest release:\n  -> ^3https://github.com/dolutattoo/dolu_tool/releases/latest/download/dolu_tool.zip^0'
     Shared.isUiLoaded = false
-
     print(err)
 else
     Shared.isUiLoaded = true
