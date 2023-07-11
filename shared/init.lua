@@ -20,80 +20,78 @@ end
 
 lib.locale()
 
-CreateThread(function()
-    if lib.context == 'server' then
-        Server = {}
+if lib.context == 'server' then
+    Server = {}
+elseif lib.context == 'client' then
+    if not Shared.isUiLoaded then
+        lib.notify({
+            type = 'error',
+            icon = 'fa-solid fa-ban',
+            title = 'Dolu Tool',
+            description = 'Unable to load UI. Build dolu_tool or download the latest release',
+            duration = 20000
+        })
+    end
 
-    elseif lib.context == 'client' then
-        if not Shared.isUiLoaded then
+    Client = {
+        noClip = false,
+        isMenuOpen = false,
+        currentTab = 'home',
+        lastLocation = json.decode(GetResourceKvpString('dolu_tool:lastLocation')),
+        portalPoly = false,
+        portalLines = false,
+        portalCorners = false,
+        portalInfos = false,
+        interiorId = GetInteriorFromEntity(cache.ped),
+        defaultTimecycles = {},
+        spawnedEntities = {},
+        freezeTime = false,
+        freezeWeather = false,
+        data = {}
+    }
+
+    -- Load locale
+    RegisterNUICallback('loadLocale', function(_, cb)
+        cb(1)
+        local locale = Config.language or 'en'
+        local JSON = LoadResourceFile(cache.resource, ('locales/%s.json'):format(locale))
+        if not JSON then
+            JSON = LoadResourceFile(cache.resource, 'locales/en.json')
             lib.notify({
                 type = 'error',
-                icon = 'fa-solid fa-ban',
-                title = 'Dolu Tool',
-                description = 'Unable to load UI. Build dolu_tool or download the latest release',
-                duration = 20000
+                title = "Dolu Tool",
+                description = "'" .. locale .. "' locale not found, please contribute by adding your language",
+                duration = 10000
             })
         end
+        SendNUIMessage({
+            action = 'setLocale',
+            data = json.decode(JSON)
+        })
+    end)
 
-        Client = {
-            noClip = false,
-            isMenuOpen = false,
-            currentTab = 'home',
-            lastLocation = json.decode(GetResourceKvpString('dolu_tool:lastLocation')),
-            portalPoly = false,
-            portalLines = false,
-            portalCorners = false,
-            portalInfos = false,
-            interiorId = GetInteriorFromEntity(cache.ped),
-            defaultTimecycles = {},
-            spawnedEntities = {},
-            freezeTime = false,
-            freezeWeather = false,
-            data = {}
-        }
+    -- Get data from shared/data json files
+    lib.callback('dolu_tool:getData', false, function(data)
+        Client.data = data
+    end)
 
-        -- Load locale
-        RegisterNUICallback('loadLocale', function(_, cb)
-            cb(1)
-            local locale = Config.language or 'en'
-            local JSON = LoadResourceFile(cache.resource, ('locales/%s.json'):format(locale))
-            if not JSON then
-                JSON = LoadResourceFile(cache.resource, 'locales/en.json')
-                lib.notify({
-                    type = 'error',
-                    title = "Dolu Tool",
-                    description = "'" .. locale .. "' locale not found, please contribute by adding your language",
-                    duration = 10000
-                })
-            end
-            SendNUIMessage({
-                action = 'setLocale',
-                data = json.decode(JSON)
-            })
-        end)
-
-        -- Get data from shared/data json files
-        lib.callback('dolu_tool:getData', false, function(data)
-            Client.data = data
-        end)
-
+    CreateThread(function()
         -- If ox_target is running, create targets
         if GetResourceState('ox_target'):find('start') then
             Utils.initTarget()
         end
 
-        CreateThread(function()
-            Utils.setMenuPlayerCoords()
-            while true do
-                Wait(150)
-                Client.interiorId = GetInteriorFromEntity(cache.ped)
-            end
-        end)
+        Utils.setMenuPlayerCoords()
 
         if not Config.development then
             SetTimeout(1000, function()
                 Client.version = lib.callback.await('dolu_tool:getVersion', false)
             end)
         end
-    end
-end)
+
+        while true do
+            Wait(150)
+            Client.interiorId = GetInteriorFromEntity(cache.ped)
+        end
+    end)
+end
