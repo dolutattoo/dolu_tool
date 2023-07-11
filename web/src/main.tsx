@@ -21,23 +21,23 @@ if (isEnvBrowser()) {
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <HashRouter>
+    <LocaleProvider>
+      <HashRouter>
         <MantineProvider withNormalizeCSS withGlobalStyles theme={customTheme}>
           <RecoilRoot>
-            <LocaleProvider>
-              <ModalsProvider
-                modalProps={{
-                  size: 'xs',
-                  transition: 'slide-up',
-                  // Modals would overflow the page with slide-up transition
-                  styles: { inner: { overflow: 'hidden' } },
-                }}
-              >
-                <App />
-              </ModalsProvider>
-            </LocaleProvider>
+            <ModalsProvider
+              modalProps={{
+                size: 'xs',
+                transition: 'slide-up',
+                // Modals would overflow the page with slide-up transition
+                styles: { inner: { overflow: 'hidden' } },
+              }}
+            >
+              <App />
+            </ModalsProvider>
           </RecoilRoot>
         </MantineProvider>
-    </HashRouter>
+      </HashRouter>
+    </LocaleProvider>
   </React.StrictMode>
 )
