@@ -7,8 +7,8 @@
   "command_weather_notfound": "ไม่สามารถกำหนดภูมิอากาศที่กำหนดได้: %s",
   "teleport_invalid_coords": "ไม่สามารถวาร์ไปที่พิกัดที่กำหนดได้",
   "model_doesnt_exist": "กำหนดโมเดล %s ไม่ได้",
-  "copied_coords_clipboard": "คัดลอกตำแหน่งพิกัดเรียบร้อย",
-  "copied_model_clipboard": "Model hash copied to clipboard",
+  "copied_coords_clipboard": "คัดลอกตำแหน่งพิกัดเรียบร้อยแล้ว",
+  "copied_model_clipboard": "คัดลอกแฮชโมเดลเรียบร้อยแล้ว",
   "press_escape_exit": "กด 'Escape' เพื่อออกจากโหมดแก้ไข",
   "custom_location_created": "ได้สร้างพิกัดกำหนดเองเรียบร้อยแล้ว",
   "vehicle_upgraded": "ได้อัพเกรดยานพาหนะเรียบร้อยแล้ว",
@@ -138,6 +138,6 @@
   "ui_flags": "แฟลก",
   "ui_room": "รูม",
   "ui_radio_station": "สถานีวิทยุ",
-  "ui_copied_rotation": "Copied rotation",
-  "ui_copy_rotation": "Copy rotation"
+  "ui_copied_rotation": "คัดลอกมุมหมุนแล้ว",
+  "ui_copy_rotation": "คัดลอกมุมหมุน"
 }
