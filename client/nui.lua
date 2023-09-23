@@ -280,7 +280,7 @@ end)
 
 RegisterNUICallback('dolu_tool:spawnFavoriteVehicle', function(_, cb)
     cb(1)
-    Utils.spawnVehicle('krieger')
+    Utils.spawnVehicle(Config.favoriteVehicle)
 end)
 
 local function updateNuiObjectList()
