@@ -377,7 +377,7 @@ Utils.spawnVehicle = function(model, coords)
     local vehicle = CreateVehicle(model, coords.x, coords.y, coords.z, GetEntityHeading(playerPed), true, true)
 
     TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
-    SetVehicleRadioEnabled(vehicle, false)
+    SetVehRadioStation(vehicle, 'OFF')
     SetVehicleDirtLevel(vehicle, 0.0)
     SetVehicleNumberPlateText(vehicle, '~DOLU~')
     cache.vehicle = vehicle
