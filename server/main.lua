@@ -237,9 +237,31 @@ RegisterCommand('flag', function(source, args)
     end
 
     local result = {}
-    for i, flag in ipairs(flags) do
+    for _, flag in ipairs(flags) do
         result[#result+1] = tostring(flag)
     end
 
     print(json.encode(result , {indent=true}))
+end)
+
+RegisterCommand('parseVehicleList', function(source, args)
+    if source > 0 then return end
+
+    local vehicles = getFileData('shared/data', 'vehicleList.json')
+
+    local data = {}
+
+    for key, vehicle in ipairs(vehicles) do
+        data[key] = {
+            hash = vehicle.hash,
+            name = vehicle.name,
+            class = vehicle.class,
+            displayName = vehicle.displayName,
+            type = vehicle.type,
+            dlc = vehicle.dlc,
+            manufacturer = vehicle.manufacturer
+        }
+    end
+
+    updateFileData('shared/data', 'vehicleList.json', data)
 end)
