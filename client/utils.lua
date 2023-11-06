@@ -440,7 +440,7 @@ Utils.rotationToDirection = function(rotation)
 end
 
 Utils.initTarget = function()
-    if not Config.perimission('target') then return end
+    if not Config.permission('target') then return end
 
     exports.ox_target:addGlobalObject({
         {
