@@ -1,5 +1,5 @@
 RegisterCommand('dolu_tool:open', function()
-    if not Config.perimission('menu') then return end
+    if not Config.permission('menu') then return end
 
     if not IsNuiFocused() and not IsPauseMenuActive() then
         Utils.openUI()
@@ -8,7 +8,7 @@ end)
 RegisterKeyMapping('dolu_tool:open', locale('command_openui', '~o~>~w~'), 'keyboard', Config.openMenuKey)
 
 RegisterCommand('goback', function()
-    if not Config.perimission('teleport') then return end
+    if not Config.permission('teleport') then return end
 
     if not Client.lastCoords then
         lib.notify({
@@ -32,7 +32,7 @@ RegisterCommand('goback', function()
 end)
 
 RegisterCommand('tpm', function()
-    if not Config.perimission('teleport') then return end
+    if not Config.permission('teleport') then return end
 
     local marker = GetFirstBlipInfoId(8)
 
@@ -86,7 +86,7 @@ end)
 RegisterKeyMapping('tpm', locale('command_tpm', '~o~>~w~'), 'keyboard', Config.teleportMarkerKey)
 
 RegisterCommand('noclip', function()
-    if not Config.perimission('noclip') then return end
+    if not Config.permission('noclip') then return end
 
     Client.noClip = not Client.noClip
     SetFreecamActive(Client.noClip)
