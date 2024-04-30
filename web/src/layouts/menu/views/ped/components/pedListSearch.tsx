@@ -1,21 +1,20 @@
 import { TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
 import { TbSearch } from 'react-icons/tb'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { pedListSearchAtom, pedsActivePageAtom } from '../../../../../atoms/ped'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useLocales } from '../../../../../providers/LocaleProvider'
 import { fetchNui } from '../../../../../utils/fetchNui'
 
 const PedSearch: React.FC = () => {
   const { locale } = useLocales()
-  const [searchPed, setSearchPed] = useState('')
-  const setPedSearch = useSetRecoilState(pedListSearchAtom)
+  const [searchPed, setSearchPed] = useRecoilState(pedListSearchAtom)
   const [debouncedPedSearch] = useDebouncedValue(searchPed, 200)
   const setActivePage = useSetRecoilState(pedsActivePageAtom)
 
   useEffect(() => {
-    setPedSearch(debouncedPedSearch)
+    setActivePage(1)
     fetchNui('dolu_tool:loadPages', { type: 'peds', activePage: 1, filter: debouncedPedSearch })
   }, [debouncedPedSearch])
 
@@ -25,10 +24,7 @@ const PedSearch: React.FC = () => {
         placeholder={locale.ui_search}
         icon={<TbSearch size={20} />}
         value={searchPed}
-        onChange={(e) => {
-          setActivePage(1)
-          setSearchPed(e.target.value)
-        }}
+        onChange={(e) => setSearchPed(e.target.value)}
       />
     </>
   )
