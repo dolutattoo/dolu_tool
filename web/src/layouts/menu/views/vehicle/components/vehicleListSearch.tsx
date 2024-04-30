@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { TextInput } from '@mantine/core'
 import { useDebouncedValue } from '@mantine/hooks'
-import { useRecoilValue, useSetRecoilState } from 'recoil'
+import { useRecoilState, useSetRecoilState } from 'recoil'
 import { TbSearch } from 'react-icons/tb'
 import { vehicleListSearchAtom, vehiclesActivePageAtom } from '../../../../../atoms/vehicle'
 import { fetchNui } from '../../../../../utils/fetchNui'
@@ -9,13 +9,12 @@ import { useLocales } from '../../../../../providers/LocaleProvider'
 
 const VehicleSearch: React.FC = () => {
   const { locale } = useLocales()
-  const [searchVehicle, setSearchVehicle] = useState('')
-  const setVehicleSearch = useSetRecoilState(vehicleListSearchAtom)
+  const [searchVehicle, setSearchVehicle] = useRecoilState(vehicleListSearchAtom)
   const [debouncedVehicleSearch] = useDebouncedValue(searchVehicle, 200)
   const setActivePage = useSetRecoilState(vehiclesActivePageAtom)
 
   useEffect(() => {
-    setVehicleSearch(debouncedVehicleSearch)
+    setActivePage(1)
     fetchNui('dolu_tool:loadPages', { type: 'vehicles', activePage: 1, filter: debouncedVehicleSearch })
   }, [debouncedVehicleSearch])
 
@@ -25,10 +24,7 @@ const VehicleSearch: React.FC = () => {
         placeholder={locale.ui_search}
         icon={<TbSearch size={20} />}
         value={searchVehicle}
-        onChange={(e) => {
-          setActivePage(1)
-          setSearchVehicle(e.target.value)
-        }}
+        onChange={(e) => setSearchVehicle(e.target.value)}
       />
     </>
   )
