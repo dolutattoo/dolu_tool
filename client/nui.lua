@@ -66,7 +66,7 @@ end)
 RegisterNUICallback('dolu_tool:teleport', function(data, cb)
     cb(1)
     if data then
-        Utils.teleportPlayer({ x = data.x, y = data.y, z = data.z, heading = data.heading }, true)
+        Utils.teleportPlayer(data, true)
 
         SendNUIMessage({
             action = 'setLastLocation',
@@ -637,7 +637,7 @@ RegisterNUICallback('dolu_tool:goToEntity', function(data, cb)
     if data?.position and data.handle and DoesEntityExist(data.handle) then
         local coords = GetEntityCoords(data.handle)
 
-        Utils.teleportPlayer({x = coords.x, y = coords.y, z = coords.z}, true)
+        Utils.teleportPlayer(coords, true)
 
         lib.notify({
             title = 'Dolu Tool',
@@ -754,8 +754,9 @@ RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
         formatedCoords = vec3(data.coords.x, data.coords.y, data.coords.z)
     end
 
-    if not formatedCoords then return end
-    Utils.teleportPlayer({ x = formatedCoords.x, y = formatedCoords.y, z = formatedCoords.z }, true)
+    if formatedCoords then
+        Utils.teleportPlayer(formatedCoords, true)
+    end
 end)
 
 RegisterNUICallback('dolu_tool:loadPages', function(data, cb)

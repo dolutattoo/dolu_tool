@@ -293,8 +293,7 @@ Utils.setMenuPlayerCoords = function()
 end
 
 Utils.teleportPlayer = function(coords, updateLastCoords)
-    assert(type(coords) == 'table', locale('teleport_invalid_coords'))
-    coords = vec4(coords.x, coords.y, coords.z, coords.heading or 0)
+    coords = vec4(coords.x, coords.y, coords.z, coords.w or coords.heading or 0)
 
     if Client.noClip then
         if updateLastCoords then
@@ -303,8 +302,12 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
         setGameplayCamCoords(coords)
     end
 
+    RequestCollisionAtCoord(coords.x, coords.y, coords.z)
     DoScreenFadeOut(150)
-    Wait(150)
+
+    while not IsScreenFadedOut() do
+        Wait(0)
+    end
 
     local vehicle = cache.seat == -1 and cache.vehicle
 
@@ -314,32 +317,19 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
         lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
     end
 
-    local z, inc, int = 0.0, 1.0, coords.z - 20
-
-    while z < 800.0 do
+    while not IsScreenFadedOut() do
         Wait(0)
-        local found, groundZ = GetGroundZFor_3dCoord(coords.x, coords.y, z, false)
-
-        if int == 0 then
-            int = GetInteriorAtCoords(coords.x, coords.y, z)
-
-            if int ~= 0 then
-                inc = 0.1
-            end
-        end
-
-        if found then
-            Utils.setPlayerCoords(vehicle, coords.x, coords.y, groundZ, coords.w)
-            break
-        end
-
-        Utils.setPlayerCoords(vehicle, coords.x, coords.y, z, coords.w)
-        z += inc
     end
 
-    Utils.freezePlayer(false, vehicle)
+    SetEntityCoordsNoOffset(cache.ped, coords.x, coords.y, coords.z, false, false, false)
+    SetEntityHeading(cache.ped, coords.w or 0)
     SetGameplayCamRelativeHeading(0)
+
+    Wait(500)
+
     DoScreenFadeIn(500)
+    Utils.freezePlayer(false, vehicle)
+
     GetInteriorData()
 end
 
