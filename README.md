@@ -1,13 +1,13 @@
 # Dolu Tool
-This is a FiveM resource providing a bunch of features to help you developping your scripts and mods.
-Any contribution will be apreciated!
+This is a FiveM resource providing a bunch of features to help you developing your scripts and mods.
+Any contribution will be appreciated!
 
 ## Installation
 Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_tool) and follow the install steps.
 
 ## Features
 - Locale system from ox_lib
-- Automaticly check for update and display it in header (see last picture)
+- Automatically checks for updates and displays when an update is available on the header (see this [picture](https://user-images.githubusercontent.com/47056777/213062611-3397e226-8996-40a3-8da7-9fc072a84aa3.jpg))
 - Target objects to copy coords, delete or move them using the gizmo (requires [ox_target](https://github.com/overextended/ox_target))
 - Simple permission system (check config.lua)
 - **Home:**
@@ -34,23 +34,23 @@ Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_
   - Keep all spawned objects in a list
   - Various options available for spawned entities
 - **Locations:**
-  - Browse to all vanilla interiors
+  - Browse all vanilla interiors
   - Copy coords/teleport
   - Create custom locations, saved in server cache (kvp)
   - Delete/Rename custom locations
   - Filter search to show/hide custom/vanilla locations
 - **Peds:**
-  - Browse to all vanilla peds
+  - Browse all vanilla peds
   - Preview images
   - Set peds
   - Copy name/hash
 - **Vehicles:**
-  - Browse to all vanilla vehicles
+  - Browse all vanilla vehicles
   - Preview images
   - Spawn vehicle
   - Copy name/hash
 - **Weapons:**
-  - Browse to all vanilla weapons
+  - Browse all vanilla weapons
   - Preview images
   - Give weapons (with ox_inventory support)
   - Copy name/hash
@@ -74,7 +74,7 @@ Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_
 ![1054_18-01-23_02-33](https://i.imgur.com/dg4zAbi.jpg)
 
 ## Credits
-This tool could not exists without help of
+This tool could not exists without the help of
 - **[AnthonyTCS](https://github.com/AnthonyTCS)**
 - **[Tiwabs](https://github.com/Tiwabs)**
 - **[Lentokone](https://github.com/Aik-10)**
