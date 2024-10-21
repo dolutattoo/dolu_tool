@@ -535,7 +535,7 @@ end)
 RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
     cb(1)
 
-    if not Client.spawnedEntities[entityHandle] or not DoesEntityExist(entityHandle) then
+    if not Client.spawnedEntities[entityHandle] then
         lib.notify({
             title = 'Dolu Tool',
             description = locale('entity_doesnt_exist'),
