@@ -451,7 +451,7 @@ Utils.initTarget = function()
             distance = 10,
             onSelect = function(data)
                 local coords = GetEntityCoords(data.entity)
-                lib.setClipboard(coords.x .. ', ' .. coords.y .. ', ' .. coords.z)
+                lib.setClipboard(Utils.round(coords.x, 3) .. ', ' .. Utils.round(coords.y, 3) .. ', ' .. Utils.round(coords.z, 3))
                 lib.notify({type='success', description=locale('copied_coords_clipboard')})
             end
         },
