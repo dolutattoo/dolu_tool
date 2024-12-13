@@ -105,6 +105,20 @@ RegisterNUICallback('dolu_tool:setPortalFlagCheckbox', function(data, cb)
     cb(1)
 end)
 
+RegisterNUICallback('dolu_tool:flipPortal', function(data, cb)
+    local roomFrom = GetInteriorPortalRoomFrom(Client.interiorId, data.portalIndex)
+    local roomTo = GetInteriorPortalRoomTo(Client.interiorId, data.portalIndex)
+
+    SetInteriorPortalRoomFrom(Client.interiorId, data.portalIndex, roomTo)
+    SetInteriorPortalRoomTo(Client.interiorId, data.portalIndex, roomFrom)
+
+    RefreshInterior(Client.interiorId)
+
+    Wait(50)
+    GetInteriorData()
+
+    cb(1)
+end)
 RegisterNUICallback('dolu_tool:setTimecycle', function(data, cb)
     cb(1)
 
