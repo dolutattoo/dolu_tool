@@ -300,6 +300,7 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
             Client.lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
         end
         SetGameplayCamCoords(vec3(coords.x, coords.y, coords.z + 0.5))
+        return
     end
 
     RequestCollisionAtCoord(coords.x, coords.y, coords.z)
