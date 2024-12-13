@@ -431,6 +431,7 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     end
 
     FreezeEntityPosition(obj, true)
+    DisableCamCollisionForEntity(obj)
 
     local entityRotation = GetEntityRotation(obj)
 
