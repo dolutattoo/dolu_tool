@@ -13,9 +13,7 @@ Config.teleportMarkerKey = 'F10'
 
 Config.favoriteVehicle = 'adder'
 
--- Use this function to check if a player is allowed to use dolu_tool features.
--- By default, the function returns true, meaning everyone can use dolu_tool.
--- 'type' can be 'menu', 'noclip', 'teleport' or 'target'
-Config.permission = function(type)
-    return true
-end
+-- Permission system based on ace permissions.
+-- If Config.permission is set to false, everyone will have access to the menu.
+Config.usePermission = false
+Config.permission = { 'group.admin', 'qbcore.dev' }
