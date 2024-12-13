@@ -310,6 +310,7 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
     end
 
     local vehicle = cache.seat == -1 and cache.vehicle
+    local entity = vehicle and cache.vehicle or cache.ped
 
     Utils.freezePlayer(true, vehicle)
 
@@ -321,8 +322,8 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
         Wait(0)
     end
 
-    SetEntityCoordsNoOffset(cache.ped, coords.x, coords.y, coords.z, false, false, false)
-    SetEntityHeading(cache.ped, coords.w or 0)
+    SetEntityCoordsNoOffset(entity, coords.x, coords.y, coords.z, false, false, false)
+    SetEntityHeading(entity, coords.w or 0)
     SetGameplayCamRelativeHeading(0)
 
     Wait(500)
