@@ -3,16 +3,16 @@ local function getFileData(path, file)
 end
 
 local function updateFileData(path, file, data)
-    return SaveResourceFile(cache.resource, path .. '/' .. file, json.encode(data, { indent=true }))
+    return SaveResourceFile(cache.resource, path .. '/' .. file, json.encode(data, { indent = true }))
 end
 
 local function formatTimecycles(timecycles)
     local formatedTimecycles = {}
 
-    for i=1, #timecycles do
+    for i = 1, #timecycles do
         local v = timecycles[i]
         local found
-        for j=1, #formatedTimecycles do
+        for j = 1, #formatedTimecycles do
             if formatedTimecycles[j].label == v.Name then
                 found = true
                 break
@@ -32,15 +32,15 @@ local function formatVanillaInteriors(vanillaInteriors)
     local formatedLocations = {}
     local count = 0
 
-    for i=1, #vanillaInteriors do
+    for i = 1, #vanillaInteriors do
         local v = vanillaInteriors[i]
         if v.Locations[1] then
             count += 1
             formatedLocations[count] = {
                 name = v.Name,
-                x = math.floor(v.Locations[1].Position.X *10^2)/10^2,
-                y = math.floor(v.Locations[1].Position.Y *10^2)/10^2,
-                z = math.floor(v.Locations[1].Position.Z *10^2)/10^2,
+                x = math.floor(v.Locations[1].Position.X * 10 ^ 2) / 10 ^ 2,
+                y = math.floor(v.Locations[1].Position.Y * 10 ^ 2) / 10 ^ 2,
+                z = math.floor(v.Locations[1].Position.Z * 10 ^ 2) / 10 ^ 2,
                 heading = 0,
                 metadata = {
                     dlc = v.DlcName,
@@ -58,7 +58,7 @@ end
 local function formatRadioStations(radioStations)
     local formatedRadioStations = {}
 
-    for i=1, #radioStations do
+    for i = 1, #radioStations do
         local v = radioStations[i]
         table.insert(formatedRadioStations, { label = v.RadioName, value = v.RadioName })
     end
@@ -69,7 +69,7 @@ end
 local function formatStaticEmitters(staticEmitters)
     local formatedStaticEmitters = {}
 
-    for i=1, #staticEmitters do
+    for i = 1, #staticEmitters do
         local v = staticEmitters[i]
         table.insert(formatedStaticEmitters, {
             name = v.Name,
@@ -89,10 +89,30 @@ local function filterCustomLocations()
     local customLocations = {}
     for _, v in ipairs(Server.locations) do
         if v.custom then
-            customLocations[#customLocations+1] = v
+            customLocations[#customLocations + 1] = v
         end
     end
     return customLocations
+end
+
+if Config.usePermission then
+    for j = 1, #Config.permission do
+        lib.addAce(Config.permission[j], 'dolu_tool')
+    end
+
+    lib.callback.register('dolu_tool:isAllowed', function(source, notify)
+        local allowed = IsPlayerAceAllowed(source, 'dolu_tool')
+
+        if not allowed and notify then
+            lib.notify(source, {
+                title = 'Dolu Tool',
+                description = 'You do not have permission to do this.',
+                type = 'error'
+            })
+        end
+
+        return allowed
+    end)
 end
 
 lib.callback.register('dolu_tool:getData', function()
@@ -216,52 +236,24 @@ if Shared.ox_inventory then
     end)
 end
 
-RegisterCommand('flag', function(source, args)
-    if source > 0 then return end
+-- RegisterCommand('parseVehicleList', function(source, args)
+--     if source > 0 then return end
 
-    local totalFlags = tonumber(args[1])
-    local type = 'ytyp'
-    local all_flags = {
-        portal = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192 },
-        room = { 1, 2, 4, 8, 16, 32, 64, 128, 256, 512 },
-        ytyp = { 2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768, 65536, 131072, 262144, 524288, 1048576, 2097152, 4194304, 8388608, 16777216, 33554432, 67108864, 134217728, 268435456, 536870912, 1073741824, 2147483648 }
-    }
+--     local vehicles = getFileData('shared/data', 'vehicleList.json')
 
-    if not all_flags[type] then return end
+--     local data = {}
 
-    local flags = {}
-    for _, flag in ipairs(all_flags[type]) do
-        if totalFlags & flag ~= 0 then
-            flags[#flags+1] = tostring(flag)
-        end
-    end
+--     for key, vehicle in ipairs(vehicles) do
+--         data[key] = {
+--             hash = vehicle.hash,
+--             name = vehicle.name,
+--             class = vehicle.class,
+--             displayName = vehicle.displayName,
+--             type = vehicle.type,
+--             dlc = vehicle.dlc,
+--             manufacturer = vehicle.manufacturer
+--         }
+--     end
 
-    local result = {}
-    for _, flag in ipairs(flags) do
-        result[#result+1] = tostring(flag)
-    end
-
-    print(json.encode(result , {indent=true}))
-end)
-
-RegisterCommand('parseVehicleList', function(source, args)
-    if source > 0 then return end
-
-    local vehicles = getFileData('shared/data', 'vehicleList.json')
-
-    local data = {}
-
-    for key, vehicle in ipairs(vehicles) do
-        data[key] = {
-            hash = vehicle.hash,
-            name = vehicle.name,
-            class = vehicle.class,
-            displayName = vehicle.displayName,
-            type = vehicle.type,
-            dlc = vehicle.dlc,
-            manufacturer = vehicle.manufacturer
-        }
-    end
-
-    updateFileData('shared/data', 'vehicleList.json', data)
-end)
+--     updateFileData('shared/data', 'vehicleList.json', data)
+-- end, true)

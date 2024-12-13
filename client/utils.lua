@@ -297,7 +297,7 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
 
     if Client.noClip then
         if updateLastCoords then
-            lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
+            Client.lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
         end
         setGameplayCamCoords(coords)
     end
@@ -314,7 +314,7 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
     Utils.freezePlayer(true, vehicle)
 
     if updateLastCoords then
-        lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
+        Client.lastCoords = vec4(GetEntityCoords(entity).xyz, GetEntityHeading(entity))
     end
 
     while not IsScreenFadedOut() do
