@@ -804,13 +804,21 @@ end)
 
 -- Exports
 exports("setGizmoEntity", function(obj)
+    if not DoesEntityExist(obj) then
+        return lib.notify({
+            description = locale('entity_doesnt_exist'),
+            type = 'error',
+            position = 'top'
+        })
+    end
     Client.gizmoEntity = obj
+    local model = GetEntityModel(obj)
 
     SendNUIMessage({
         action = 'setGizmoEntity',
         data = {
-            name = modelName,
-            hash = GetHashKey(modelName),
+            name = GetEntityArchetypeName(obj) or ('%X'):format(model):upper(),
+            hash = model,
             handle = obj,
             position = GetEntityCoords(obj),
             rotation = GetEntityRotation(obj),
