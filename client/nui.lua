@@ -16,7 +16,6 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
 
     if newTab == 'home' then
         Utils.setMenuPlayerCoords()
-
     elseif newTab == 'world' then
         local hour, minute = Utils.getClock()
 
@@ -27,30 +26,24 @@ RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
                 weather = Utils.getWeather()
             }
         })
-
     elseif newTab == 'interior' and not Client.timecyclesLoaded then
         SendNUIMessage({
             action = 'setTimecycleList',
             data = Client.data.timecycles
         })
         Client.timecyclesLoaded = true
-
     elseif newTab == 'locations' and not Client.locationsLoaded then
         Utils.loadPage('locations', 1)
         Client.locationsLoaded = true
-
     elseif newTab == 'peds' and not Client.pedsLoaded then
         Utils.loadPage('peds', 1)
         Client.pedsLoaded = true
-
     elseif newTab == 'vehicles' and not Client.vehiclesLoaded then
         Utils.loadPage('vehicles', 1)
         Client.vehiclesLoaded = true
-
     elseif newTab == 'weapons' and not Client.weaponsLoaded then
         Utils.loadPage('weapons', 1)
         Client.weaponsLoaded = true
-
     elseif newTab == 'audio' and not Client.audioLoaded then
         Utils.getClosestStaticEmitter()
 
@@ -178,7 +171,7 @@ RegisterNUICallback('dolu_tool:getClock', function(_, cb)
 
     SendNUIMessage({
         action = 'setClockData',
-        data = {hour = hour, minute = minute }
+        data = { hour = hour, minute = minute }
     })
 end)
 
@@ -216,7 +209,7 @@ RegisterNUICallback('dolu_tool:upgradeVehicle', function(_, cb)
     if DoesEntityExist(vehicle) and IsEntityAVehicle(vehicle) then
         local max
 
-        for _, modType in ipairs({11, 12, 13, 16}) do
+        for _, modType in ipairs({ 11, 12, 13, 16 }) do
             max = GetNumVehicleMods(vehicle, modType) - 1
             SetVehicleMod(vehicle, modType, max, customWheels)
         end
@@ -246,9 +239,9 @@ RegisterNUICallback('dolu_tool:giveWeapon', function(weaponName, cb)
     if Shared.ox_inventory then
         lib.callback('dolu_tool:giveWeaponToPlayer', false, function(result)
             if result then
-                lib.notify({type = 'success', description = locale('weapon_gave')})
+                lib.notify({ type = 'success', description = locale('weapon_gave') })
             else
-                lib.notify({type = 'error', description = locale('weapon_cant_carry')})
+                lib.notify({ type = 'error', description = locale('weapon_cant_carry') })
             end
         end, weaponName)
 
@@ -312,11 +305,11 @@ RegisterNUICallback('dolu_tool:selectEntity', function(_, cb)
         return
     end
 
-	local result, hit, endCoords, surfaceNormal, entityHit = Utils.raycast(10000.0, Client.gizmoEntity)
+    local result, hit, endCoords, surfaceNormal, entityHit = Utils.raycast(10000.0, Client.gizmoEntity)
 
     repeat
-		Wait(0)
-	until result == 1 or result == 2
+        Wait(0)
+    until result == 1 or result == 2
 
     if result == 1 or not hit or not entityHit then
         return
@@ -415,8 +408,8 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     local distance = 5 -- Distance to spawn object from the camera
     local cameraRotation = GetFinalRenderedCamRot()
     local cameraCoord = GetFinalRenderedCamCoord()
-	local direction = Utils.rotationToDirection(cameraRotation)
-	local coords =  vec3(cameraCoord.x + direction.x * distance, cameraCoord.y + direction.y * distance, cameraCoord.z + direction.z * distance)
+    local direction = Utils.rotationToDirection(cameraRotation)
+    local coords = vec3(cameraCoord.x + direction.x * distance, cameraCoord.y + direction.y * distance, cameraCoord.z + direction.z * distance)
     local obj = CreateObject(model, coords.x, coords.y, coords.z, true, true)
 
     Wait(50)
@@ -745,12 +738,11 @@ RegisterNUICallback('dolu_tool:setCustomCoords', function(data, cb)
         local coordString = (data.coordString:gsub(',', '')):gsub('  ', ' ')
         local coords = {}
 
-        for match in (coordString..' '):gmatch('(.-) ') do
+        for match in (coordString .. ' '):gmatch('(.-) ') do
             table.insert(coords, match)
         end
 
         formatedCoords = vec3(tonumber(coords[1]), tonumber(coords[2]), tonumber(coords[3]))
-
     elseif data.coords then
         formatedCoords = vec3(data.coords.x, data.coords.y, data.coords.z)
     end
