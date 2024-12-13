@@ -299,7 +299,7 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
         if updateLastCoords then
             Client.lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
         end
-        setGameplayCamCoords(coords)
+        SetGameplayCamCoords(vec3(coords.x, coords.y, coords.z + 0.5))
     end
 
     RequestCollisionAtCoord(coords.x, coords.y, coords.z)
@@ -337,7 +337,7 @@ Utils.changePed = function(model)
     if type(model) == 'string' then model = joaat(model) end
 
     if not IsModelInCdimage(model) then
-        lib.notify({ type='error', description=locale('model_doesnt_exist', model)})
+        lib.notify({ type = 'error', description = locale('model_doesnt_exist', model) })
         return
     end
 
@@ -385,14 +385,14 @@ Utils.listFlags = function(totalFlags, type)
 
     for _, flag in ipairs(all_flags[type]) do
         if totalFlags & flag ~= 0 then
-            flags[#flags+1] = tostring(flag)
+            flags[#flags + 1] = tostring(flag)
         end
     end
 
     local result = {}
 
     for i, flag in ipairs(flags) do
-        result[#result+1] = tostring(flag)
+        result[#result + 1] = tostring(flag)
     end
 
     return result
@@ -406,7 +406,7 @@ Utils.quat2Euler = function(x, y, z, w)
 
     local Rx = math.atan2(2 * (q0 * q1 + q2 * q3), 1 - (2 * (q1 * q1 + q2 * q2)))
     local Ry = math.asin(2 * (q0 * q2 - q3 * q1))
-    local Rz = math.atan2(2 * (q0 * q3 + q1 * q2), 1 - (2  * (q2 * q2 + q3 * q3)))
+    local Rz = math.atan2(2 * (q0 * q3 + q1 * q2), 1 - (2 * (q2 * q2 + q3 * q3)))
 
     local euler = vec3(Rx, Ry, Rz) * 180 / math.pi
 
@@ -414,7 +414,7 @@ Utils.quat2Euler = function(x, y, z, w)
 end
 
 Utils.rotationToDirection = function(rotation)
-	local adjustedRotation = vec3(
+    local adjustedRotation = vec3(
         (math.pi / 180) * rotation.x,
         (math.pi / 180) * rotation.y,
         (math.pi / 180) * rotation.z
@@ -441,7 +441,7 @@ Utils.initTarget = function()
             onSelect = function(data)
                 local model = GetEntityModel(data.entity)
                 lib.setClipboard(model)
-                lib.notify({type='success', description=locale('copied_model_clipboard')})
+                lib.notify({ type = 'success', description = locale('copied_model_clipboard') })
             end
         },
         {
@@ -452,7 +452,7 @@ Utils.initTarget = function()
             onSelect = function(data)
                 local coords = GetEntityCoords(data.entity)
                 lib.setClipboard(coords.x .. ', ' .. coords.y .. ', ' .. coords.z)
-                lib.notify({type='success', description=locale('copied_coords_clipboard')})
+                lib.notify({ type = 'success', description = locale('copied_coords_clipboard') })
             end
         },
         {
@@ -477,7 +477,7 @@ Utils.initTarget = function()
                 Client.gizmoEntity = data.entity
                 SetNuiFocus(true, true)
                 SetNuiFocusKeepInput(true)
-                lib.notify({type='inform', description=locale('press_escape_exit')})
+                lib.notify({ type = 'inform', description = locale('press_escape_exit') })
             end
         },
         {
@@ -504,11 +504,11 @@ end
 
 Utils.getPages = function(page, table, itemPerPage)
     local start = (page - 1) * itemPerPage + 1 -- start index of the page
-    local finish = start + itemPerPage - 1 -- end index of the page
+    local finish = start + itemPerPage - 1     -- end index of the page
     local pageContent = {}
 
     for i = start, math.min(finish, #table) do
-        pageContent[#pageContent+1] = table[i]
+        pageContent[#pageContent + 1] = table[i]
     end
 
     return pageContent
@@ -557,7 +557,7 @@ Utils.loadPage = function(listType, activePage, filter, checkboxes)
         data = {
             type = listType,
             content = Utils.getPages(activePage, filteredList, itemPerPage),
-            maxPages = math.ceil(#filteredList/itemPerPage)
+            maxPages = math.ceil(#filteredList / itemPerPage)
         }
     })
 end
@@ -620,27 +620,27 @@ Utils.assert = function(v, msg, value)
 end
 
 Utils.raycast = function(maxDistance, ignore)
-	local screenPosition = { x = GetControlNormal(0, 239), y = GetControlNormal(0, 240) }
-	local pos = GetGameplayCamCoord()
-	local rot = GetGameplayCamRot(0)
-	local fov = GetGameplayCamFov()
-	local cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, 0, 2)
-	local camRight, camForward, camUp, camPos = GetCamMatrix(cam)
+    local screenPosition = { x = GetControlNormal(0, 239), y = GetControlNormal(0, 240) }
+    local pos = GetGameplayCamCoord()
+    local rot = GetGameplayCamRot(0)
+    local fov = GetGameplayCamFov()
+    local cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, 0, 2)
+    local camRight, camForward, camUp, camPos = GetCamMatrix(cam)
 
     DestroyCam(cam, true)
 
-	screenPosition = vec2(screenPosition.x - 0.5, screenPosition.y - 0.5) * 2.0
+    screenPosition = vec2(screenPosition.x - 0.5, screenPosition.y - 0.5) * 2.0
 
-	local fovRadians = (fov * 3.14) / 180.0
-	local to = camPos + camForward + (camRight * screenPosition.x * fovRadians * GetAspectRatio(false) * 0.534375) - (camUp * screenPosition.y * fovRadians * 0.534375)
+    local fovRadians = (fov * 3.14) / 180.0
+    local to = camPos + camForward + (camRight * screenPosition.x * fovRadians * GetAspectRatio(false) * 0.534375) - (camUp * screenPosition.y * fovRadians * 0.534375)
 
-	local direction = (to - camPos) * maxDistance
-	local endPoint = camPos + direction
+    local direction = (to - camPos) * maxDistance
+    local endPoint = camPos + direction
 
-	local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(camPos.x, camPos.y, camPos.z, endPoint.x, endPoint.y, endPoint.z, -1, ignore, 0)
-	local result, hit, endCoords, surfaceNormal, entityhit = GetShapeTestResult(rayHandle)
+    local rayHandle = StartExpensiveSynchronousShapeTestLosProbe(camPos.x, camPos.y, camPos.z, endPoint.x, endPoint.y, endPoint.z, -1, ignore, 0)
+    local result, hit, endCoords, surfaceNormal, entityhit = GetShapeTestResult(rayHandle)
 
-	return result, hit, endCoords, surfaceNormal, entityhit
+    return result, hit, endCoords, surfaceNormal, entityhit
 end
 
 Utils.resetGizmoEntity = function()

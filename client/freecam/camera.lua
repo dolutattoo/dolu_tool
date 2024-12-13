@@ -96,9 +96,9 @@ end
 
 function GetFreecamMatrix()
     return _internal_vecX,
-    _internal_vecY,
-    _internal_vecZ,
-    _internal_pos
+        _internal_vecY,
+        _internal_vecZ,
+        _internal_pos
 end
 
 --------------------------------------------------------------------------------
@@ -146,7 +146,7 @@ function SetFreecamActive(active)
     RenderScriptCams(active, enableEasing, easingDuration, true, true)
 end
 
-function setGameplayCamCoords(coords)
+function SetGameplayCamCoords(coords)
     SetCamCoord(_internal_camera, coords.x, coords.y, coords.z)
     SetFreecamPosition(vec3(coords.x, coords.y, coords.z))
 end

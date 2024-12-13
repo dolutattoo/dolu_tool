@@ -6,7 +6,7 @@ Config = {}
 Config.language = 'en'
 
 -- These are default keys to interact with dolu_tool commands.
--- You can also override them in your pause menu, at the very bottom of FiveM keybinds section.
+-- You can also override them in your pause menu, in the FiveM keybinds section.
 Config.openMenuKey = 'F3'
 Config.toggleNoclipKey = 'F11'
 Config.teleportMarkerKey = 'F10'
