@@ -1,6 +1,7 @@
 import { atom, useRecoilValue } from 'recoil'
 
 export interface Entity {
+    id: string
     handle: number
     name: string
     position: {
@@ -16,7 +17,6 @@ export interface Entity {
     frozen?: boolean
     invalid?: boolean
 }
-
 
 export type ObjectList = Array<Entity>
 

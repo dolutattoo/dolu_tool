@@ -9,6 +9,7 @@ interface TransformEntity {
   handle: number;
   position: THREE.Vector3;
   rotation: THREE.Vector3;
+  id?: string;
 }
 
 interface ModeSelector {

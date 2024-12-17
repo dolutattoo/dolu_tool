@@ -1,3 +1,10 @@
+local idCounter = 0
+
+local function generateUniqueId()
+    idCounter += 1
+    return string.format("%x-%x", GetGameTimer(), idCounter)
+end
+
 RegisterNUICallback('dolu_tool:tabSelected', function(newTab, cb)
     cb(1)
     local previousTab = Client.currentTab
@@ -279,16 +286,13 @@ end)
 local function updateNuiObjectList()
     local entityTable = {}
 
-    local keys = {}
-    for k in pairs(Client.spawnedEntities) do
-        keys[#keys + 1] = k
+    for id, entity in pairs(Client.spawnedEntities) do
+        table.insert(entityTable, entity)
     end
 
-    table.sort(keys)
-
-    for _, k in ipairs(keys) do
-        entityTable[#entityTable + 1] = Client.spawnedEntities[k]
-    end
+    table.sort(entityTable, function(a, b)
+        return a.id < b.id
+    end)
 
     SendNUIMessage({
         action = 'setObjectList',
@@ -364,28 +368,28 @@ RegisterNUICallback('dolu_tool:selectEntity', function(_, cb)
 
     FreezeEntityPosition(entityHit, true)
 
-    local entity = {
-        name = modelName,
-        hash = GetEntityModel(entityHit),
-        handle = entityHit,
-        position = entityCoords,
-        rotation = entityRotation,
-        type = entityTypeName
-    }
+    local entityId = Entity(entityHit).state.entityId
+    local entity = entityId and Client.spawnedEntities[entityId]
+
+    SendNUIMessage({
+        action = 'setObjectData',
+        data = { entity = entity or nil }
+    })
 
     SendNUIMessage({
         action = 'setGizmoEntity',
-        data = entity
+        data = {
+            id = entityId,
+            name = modelName,
+            hash = GetEntityModel(entityHit),
+            handle = entityHit,
+            position = entityCoords,
+            rotation = entityRotation,
+            type = entityTypeName
+        }
     })
 
     Client.gizmoEntity = entityHit
-
-    if Client.spawnedEntities[entityHit] then
-        SendNUIMessage({
-            action = 'setObjectData',
-            data = { entity = entity }
-        })
-    end
 end)
 
 RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
@@ -402,17 +406,17 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
         return
     end
 
-
     lib.requestModel(model)
 
-    local distance = 5 -- Distance to spawn object from the camera
-    local cameraRotation = GetFinalRenderedCamRot()
+    local distance = 5
+    local cameraRotation = GetFinalRenderedCamRot(2)
     local cameraCoord = GetFinalRenderedCamCoord()
     local direction = Utils.rotationToDirection(cameraRotation)
     local coords = vec3(cameraCoord.x + direction.x * distance, cameraCoord.y + direction.y * distance, cameraCoord.z + direction.z * distance)
-    local obj = CreateObject(model, coords.x, coords.y, coords.z, true, true)
+    local obj = CreateObjectNoOffset(model, coords.x, coords.y, coords.z, true, true, false)
+    local entityId = generateUniqueId()
 
-    Wait(50)
+    Entity(obj).state:set('entityId', entityId, false)
 
     if not DoesEntityExist(obj) then
         return lib.notify({
@@ -428,7 +432,8 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
 
     local entityRotation = GetEntityRotation(obj)
 
-    Client.spawnedEntities[obj] = {
+    Client.spawnedEntities[entityId] = {
+        id = entityId,
         handle = obj,
         name = modelName,
         position = {
@@ -445,6 +450,7 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     }
 
     local entityData = {
+        id = entityId,
         name = modelName,
         hash = GetHashKey(modelName),
         handle = obj,
@@ -468,12 +474,46 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     updateNuiObjectList()
 end)
 
+RegisterNUICallback('dolu_tool:deleteEntity', function(entityId, cb)
+    cb(1)
+
+    local entity = Client.spawnedEntities[entityId]
+    if not entity then
+        lib.notify({
+            title = 'Dolu Tool',
+            description = locale('entity_doesnt_exist'),
+            type = 'error',
+            position = 'top'
+        })
+        return
+    end
+
+    if DoesEntityExist(entity.handle) then
+        DeleteEntity(entity.handle)
+    end
+    Client.spawnedEntities[entityId] = nil
+
+    SendNUIMessage({
+        action = 'setGizmoEntity',
+        data = {}
+    })
+    Client.gizmoEntity = nil
+
+    updateNuiObjectList()
+
+    lib.notify({
+        title = 'Dolu Tool',
+        description = locale('entity_deleted'),
+        type = 'success',
+        position = 'top'
+    })
+end)
+
 RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
     cb(1)
     local model = joaat(data.modelName)
 
-    -- Check if entity was spawned using Object Spawner
-    local entity = Client.spawnedEntities[data.entity.handle]
+    local entity = Client.spawnedEntities[data.entity.id]
 
     if not IsModelInCdimage(model) then
         data.entity.invalid = true
@@ -488,27 +528,23 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
         return
     end
 
-    -- If entity was spawned using Object Spawner, send updated data to nui
     if entity and DoesEntityExist(entity.handle) then
         entity.invalid = false
         entity.name = data.modelName
-        entity.hash = GetHashKey(entity.modelName),
+        entity.hash = GetHashKey(entity.modelName)
 
-        -- Remove current entity
-        SetEntityAsMissionEntity(entity.handle)
+        SetEntityAsMissionEntity(entity.handle, true, true)
         DeleteEntity(entity.handle)
 
-        -- Create new entity
         lib.requestModel(model)
 
-        local obj = CreateObject(model, entity.position.x, entity.position.y, entity.position.z)
+        local obj = CreateObjectNoOffset(model, entity.position.x, entity.position.y, entity.position.z, false, false, false)
+        SetEntityRotation(obj, entity.rotation.x, entity.rotation.y, entity.rotation.z, 2, false)
+        entity.handle = obj
 
-        Wait(5)
-
-        SetEntityRotation(obj, entity.rotation.x, entity.rotation.y, entity.rotation.z)
+        Entity(obj).state:set('entityId', entity.id, false)
 
         SetModelAsNoLongerNeeded(model)
-        entity.handle = obj
 
         SendNUIMessage({
             action = 'setObjectData',
@@ -526,40 +562,6 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
     end
 end)
 
-RegisterNUICallback('dolu_tool:deleteEntity', function(entityHandle, cb)
-    cb(1)
-
-    if not Client.spawnedEntities[entityHandle] then
-        lib.notify({
-            title = 'Dolu Tool',
-            description = locale('entity_doesnt_exist'),
-            type = 'error',
-            position = 'top'
-        })
-        return
-    end
-
-    DeleteEntity(entityHandle)
-    Client.spawnedEntities[entityHandle] = nil
-
-    -- Sending empty object to hide editor
-    SendNUIMessage({
-        action = 'setGizmoEntity',
-        data = {}
-    })
-    Client.gizmoEntity = nil
-
-    -- Updating nui object list
-    updateNuiObjectList()
-
-    lib.notify({
-        title = 'Dolu Tool',
-        description = locale('entity_deleted'),
-        type = 'success',
-        position = 'top'
-    })
-end)
-
 RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
     cb(1)
 
@@ -574,9 +576,9 @@ RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
     -- Remove all spawned entities
     local entities = Client.spawnedEntities
 
-    for handle in pairs(entities) do
-        if DoesEntityExist(handle) then
-            DeleteEntity(handle)
+    for id, entity in pairs(entities) do
+        if DoesEntityExist(entity.handle) then
+            DeleteEntity(entity.handle)
         end
     end
 
@@ -586,11 +588,10 @@ RegisterNUICallback('dolu_tool:deleteAllEntities', function(_, cb)
     updateNuiObjectList()
 end)
 
-RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
+RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityId, cb)
     cb(1)
 
-    -- If entity param is nil, hide gizmo
-    if not entityHandle then
+    if not entityId then
         SendNUIMessage({
             action = 'setGizmoEntity',
             data = {}
@@ -599,9 +600,9 @@ RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
         return
     end
 
-    local entity = Client.spawnedEntities[entityHandle]
+    local entity = Client.spawnedEntities[entityId]
 
-    if not entity or not DoesEntityExist(entityHandle) then
+    if not entity or not DoesEntityExist(entity.handle) then
         return lib.notify({
             title = 'Dolu Tool',
             description = locale('entity_doesnt_exist'),
@@ -610,10 +611,10 @@ RegisterNUICallback('dolu_tool:setGizmoEntity', function(entityHandle, cb)
         })
     end
 
-    -- Set entity gizmo
     SendNUIMessage({
         action = 'setGizmoEntity',
         data = {
+            id = entity.id,
             name = entity.name,
             hash = GetHashKey(entity.name),
             handle = entity.handle,
@@ -662,11 +663,11 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
     end
 
     if data.position then
-        SetEntityCoords(data.handle, data.position.x, data.position.y, data.position.z)
+        SetEntityCoordsNoOffset(data.handle, data.position.x, data.position.y, data.position.z, false, false, false)
     end
 
     if data.rotation then
-        SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z)
+        SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z, 2, false)
     end
 
     data.name = data.name or GetEntityArchetypeName(data.handle) or ('%X'):format(GetEntityModel(data.handle)):upper()
@@ -678,7 +679,7 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
     })
 
     -- If entity was spawned using Object Spawner, send updated data to nui
-    local spawnedEntity = Client.spawnedEntities[data.handle]
+    local spawnedEntity = Client.spawnedEntities[data.id]
 
     if spawnedEntity then
         spawnedEntity.position = GetEntityCoords(data.handle)

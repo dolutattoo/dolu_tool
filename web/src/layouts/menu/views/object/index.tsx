@@ -85,19 +85,19 @@ const Object: React.FC = () => {
     })
 
     useNuiEvent('setObjectData', (data: { entity: Entity }) => {
-        if ( data.entity === null ) return
+        if (!data.entity?.id) {
+            setAccordionItem(null)
+            return
+        };
 
-        const tempTable = objectList.map( entity => {
-            if (entity.handle === data.entity.handle ) {
-                entity = data.entity
-            }
-            
-            return entity;    
+        setObjectList(currentList => {
+            return currentList.map(entity => 
+                entity.id === data.entity.id ? data.entity : entity
+            );
         });
-
-        setObjectList(tempTable)
-        setAccordionItem(data.entity.handle.toString());
-    })
+        
+        setAccordionItem(data.entity.id);
+    });
 
     useEffect(() => {
         setTimeout(() => {
@@ -155,13 +155,13 @@ const Object: React.FC = () => {
                     value={currentAccordionItem}
                     defaultValue={currentAccordionItem}
                     onChange={(value) => {
-                        setAccordionItem(value)                                
-                        fetchNui('dolu_tool:setGizmoEntity', parseInt(value as string))
+                        setAccordionItem(value)
+                        fetchNui('dolu_tool:setGizmoEntity', value)
                     }}
                 >
                         {objectList.map((entity: Entity) => {
                             return (
-                                <Accordion.Item key={entity.handle} value={entity.handle.toString()}>
+                                <Accordion.Item key={entity.id} value={entity.id}>
                                     <Accordion.Control>
                                         <TextInput
                                             error={entity.invalid}
@@ -233,7 +233,7 @@ const Object: React.FC = () => {
                                                 color='blue.4'
                                                 size='xs'
                                                 onClick={() => {
-                                                    fetchNui('dolu_tool:deleteEntity', entity.handle)
+                                                    fetchNui('dolu_tool:deleteEntity', entity.id)
                                                     setAccordionItem(null)
                                                 }}
                                             >{locale.ui_delete}</Button>
