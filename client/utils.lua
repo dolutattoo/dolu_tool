@@ -432,7 +432,7 @@ Utils.rotationToDirection = function(rotation)
 end
 
 Utils.initTarget = function()
-    if not Config.permission('target') then return end
+    if Config.usePermission and not lib.callback.await('dolu_tool:isAllowed', 100, true) then return end
 
     exports.ox_target:addGlobalObject({
         {
