@@ -667,7 +667,7 @@ RegisterNUICallback('dolu_tool:moveEntity', function(data, cb)
     end
 
     if data.rotation then
-        SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z, 2, false)
+        SetEntityRotation(data.handle, data.rotation.x, data.rotation.y, data.rotation.z, 0, false)
     end
 
     data.name = data.name or GetEntityArchetypeName(data.handle) or ('%X'):format(GetEntityModel(data.handle)):upper()
