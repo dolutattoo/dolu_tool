@@ -24,7 +24,7 @@ Utils.openUI = function()
     SendNUIMessage({
         action = 'setMenuVisible',
         data = {
-            version = Client.version or { currentVersion = 'Development 🛠️' },
+            version = Client.version,
             lastLocation = Client.lastLocation,
             position = coords.x .. ', ' .. coords.y .. ', ' .. coords.z
         }
@@ -434,7 +434,7 @@ end
 Utils.initTarget = function()
     if Config.usePermission and not lib.callback.await('dolu_tool:isAllowed', 100, true) then return end
 
-    exports.ox_target:addGlobalObject({
+    exports.xcore:addGlobalObject({
         {
             name = 'ox:option0',
             icon = 'fa-solid fa-clipboard-list',

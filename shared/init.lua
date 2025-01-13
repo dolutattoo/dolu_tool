@@ -83,11 +83,7 @@ elseif lib.context == 'client' then
 
         Utils.setMenuPlayerCoords()
 
-        if not Config.development then
-            SetTimeout(1000, function()
-                Client.version = lib.callback.await('dolu_tool:getVersion', false)
-            end)
-        end
+        Client.version = lib.callback.await('dolu_tool:getVersion', false)
 
         while true do
             Wait(150)
