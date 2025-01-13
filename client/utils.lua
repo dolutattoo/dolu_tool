@@ -434,7 +434,7 @@ end
 Utils.initTarget = function()
     if Config.usePermission and not lib.callback.await('dolu_tool:isAllowed', 100, true) then return end
 
-    exports.xcore:addGlobalObject({
+    exports.ox_target:addGlobalObject({
         {
             name = 'ox:option0',
             icon = 'fa-solid fa-clipboard-list',
