@@ -12,6 +12,7 @@ Config.toggleNoclipKey = 'F11'
 Config.teleportMarkerKey = 'F10'
 
 Config.favoriteVehicle = 'adder'
+Config.customVehiclePlate = '~DOLU~' -- Remove the text if you don't want a custom plate.
 
 -- Permission system based on ace permissions.
 -- If Config.permission is set to false, everyone will have access to the menu.

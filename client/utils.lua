@@ -371,7 +371,11 @@ Utils.spawnVehicle = function(model, coords)
     TaskWarpPedIntoVehicle(playerPed, vehicle, -1)
     SetVehRadioStation(vehicle, 'OFF')
     SetVehicleDirtLevel(vehicle, 0.0)
-    SetVehicleNumberPlateText(vehicle, '~DOLU~')
+
+    if Config.customVehiclePlate and Config.customVehiclePlate ~= '' then
+        SetVehicleNumberPlateText(vehicle, Config.customVehiclePlate)
+    end
+
     cache.vehicle = vehicle
 end
 
