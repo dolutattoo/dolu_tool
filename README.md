@@ -60,6 +60,26 @@ Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_
   - Get info from closest vanilla Static Emitter
   - Set radio station, play or stop closest vanilla Static Emitter
 
+## Locales 
+
+  - French
+  - English
+  - Turkish
+  - Spanish
+  - Italian
+  - Czech
+  - Brasilian
+  - Danish
+  - Hungarian
+  - Portuguese
+  - Polish
+  - Thai
+  - Simplified Chinese
+  - Traditional Chinese
+  - Korean
+  - Japanese
+  - German
+
 # Preview
 ![1045_18-01-23_02-27](https://user-images.githubusercontent.com/47056777/213062596-cb40e714-f941-446b-8387-beaa9cf4ec37.jpg)
 ![1046_18-01-23_02-27](https://user-images.githubusercontent.com/47056777/213062599-febc9b70-01c8-42ca-9bc8-e0b91c4b8ee5.jpg)
