@@ -4,7 +4,7 @@ lua54 'yes'
 game 'gta5'
 
 name 'dolu_tool'
-version '4.4.4'
+version '4.4.5'
 description 'A tool for FiveM developpers'
 author 'Dolu'
 repository 'https://github.com/dolutattoo/dolu_tool'
