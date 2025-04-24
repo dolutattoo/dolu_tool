@@ -261,22 +261,20 @@ Utils.freezePlayer = function(state, vehicle)
     SetPlayerControl(playerId, not state, 1 << 8)
     SetPlayerInvincible(playerId, state)
     FreezeEntityPosition(entity, state)
-    SetEntityCollision(entity, not state)
+    SetEntityCollision(entity, not state, vehicle)
 
     if not state and vehicle then
         SetVehicleOnGroundProperly(entity)
     end
 end
 
-Utils.setPlayerCoords = function(vehicle, x, y, z, heading)
-    if vehicle then
-        return SetPedCoordsKeepVehicle(cache.ped, x, y, z)
-    end
+Utils.setPlayerCoords = function(x, y, z, heading, withVehicle)
+    local entity = withVehicle and cache.seat == -1 and cache.vehicle or cache.ped
 
-    SetEntityCoords(cache.ped, x, y, z, false, false, false, false)
+    SetEntityCoordsNoOffset(entity, x, y, z, false, false, false)
 
     if heading then
-        SetEntityHeading(cache.ped, heading)
+        SetEntityHeading(entity, heading)
     end
 end
 
@@ -297,40 +295,38 @@ Utils.teleportPlayer = function(coords, updateLastCoords)
 
     if Client.noClip then
         if updateLastCoords then
-            Client.lastCoords = vec4(GetEntityCoords(cache.ped).xyz, GetEntityHeading(cache.ped))
+            local lastCoords = GetEntityCoords(cache.ped)
+            Client.lastCoords = vec4(lastCoords.x, lastCoords.y, lastCoords.z, GetEntityHeading(cache.ped))
         end
+
         SetGameplayCamCoords(vec3(coords.x, coords.y, coords.z + 0.5))
         return
     end
 
-    RequestCollisionAtCoord(coords.x, coords.y, coords.z)
     DoScreenFadeOut(150)
 
     while not IsScreenFadedOut() do
         Wait(0)
     end
 
-    local vehicle = cache.seat == -1 and cache.vehicle
-    local entity = vehicle and cache.vehicle or cache.ped
-
-    Utils.freezePlayer(true, vehicle)
+    local isDriving = cache.seat == -1
+    local entity = isDriving and cache.vehicle or cache.ped
 
     if updateLastCoords then
-        Client.lastCoords = vec4(GetEntityCoords(entity).xyz, GetEntityHeading(entity))
+        local lastCoords = GetEntityCoords(entity)
+        Client.lastCoords = vec4(lastCoords.x, lastCoords.y, lastCoords.z, GetEntityHeading(entity))
     end
 
-    while not IsScreenFadedOut() do
-        Wait(0)
-    end
-
+    RequestCollisionAtCoord(coords.x, coords.y, coords.z)
+    Utils.freezePlayer(true, true)
     SetEntityCoordsNoOffset(entity, coords.x, coords.y, coords.z, false, false, false)
     SetEntityHeading(entity, coords.w or 0)
     SetGameplayCamRelativeHeading(0)
 
     Wait(500)
 
-    DoScreenFadeIn(500)
-    Utils.freezePlayer(false, vehicle)
+    DoScreenFadeIn(250)
+    Utils.freezePlayer(false, isDriving)
 
     GetInteriorData()
 end
