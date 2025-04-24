@@ -19,14 +19,15 @@ jobs:
           fetch-depth: 0
           ref: ${{ github.event.repository.default_branch }}
 
-      - uses: pnpm/action-setup@v2.0.1
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4.0.0
         with:
-          version: 8.6.0
+          version: 9
 
       - name: Setup node
         uses: actions/setup-node@v2
         with:
-          node-version: 16.x
+          node-version: 18.x
           cache: "pnpm"
           cache-dependency-path: "web/pnpm-lock.yaml"
 
