@@ -74,7 +74,7 @@ Please read the [Documentation](https://dolutattoo.github.io/docs/category/dolu_
 ![1054_18-01-23_02-33](https://i.imgur.com/dg4zAbi.jpg)
 
 # Credits
-This tool could not exists without the help of
+This tool could not exist without the help of
 - **[AnthonyTCS](https://github.com/AnthonyTCS)**
 - **[Tiwabs](https://github.com/Tiwabs)**
 - **[Lentokone](https://github.com/Aik-10)**
