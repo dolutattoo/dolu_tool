@@ -1,4 +1,5 @@
 import { useEffect, useRef } from 'react'
+import { closeAllModals } from '@mantine/modals'
 import { noop } from '../utils/misc'
 import { fetchNui } from '../utils/fetchNui'
 
@@ -17,6 +18,7 @@ export const useExitListener = (visibleSetter: FrameVisibleSetter, cb?: () => vo
   useEffect(() => {
     const keyHandler = (e: KeyboardEvent) => {
       if (LISTENED_KEYS.includes(e.code)) {
+        closeAllModals()
         setterRef.current(false)
         cb && cb()
         fetchNui('dolu_tool:exit')
