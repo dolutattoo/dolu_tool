@@ -280,14 +280,22 @@ end
 
 Utils.setMenuPlayerCoords = function()
     local coords = GetEntityCoords(cache.ped)
+    local heading = GetEntityHeading(cache.ped)
+
+    if Client.noClip then
+        coords = GetFinalRenderedCamCoord()
+        heading = GetFinalRenderedCamRot(2).z % 360
+    end
 
     SendNUIMessage({
         action = 'playerCoords',
         data = {
             coords = Utils.round(coords.x, 3) .. ', ' .. Utils.round(coords.y, 3) .. ', ' .. Utils.round(coords.z, 3),
-            heading = tostring(Utils.round(GetEntityHeading(cache.ped), 3))
+            heading = tostring(Utils.round(heading, 3))
         }
     })
+
+    return coords, heading
 end
 
 Utils.teleportPlayer = function(coords, updateLastCoords)

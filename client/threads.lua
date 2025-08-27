@@ -98,22 +98,16 @@ CreateThread(function()
 
     while true do
         if Client.isMenuOpen and Client.currentTab == 'home' then
-            local coords = GetEntityCoords(cache.ped)
-            local heading = GetEntityHeading(cache.ped)
+            local coords, heading = Utils.setMenuPlayerCoords()
 
             if #(coords - oldCoords) > 0.25 or heading - oldHeading > 1 then
-                SendNUIMessage({
-                    action = 'playerCoords',
-                    data = {
-                        coords = ('%.3f, %.3f, %.3f'):format(Utils.round(coords.x, 3), Utils.round(coords.y, 3), Utils.round(coords.z, 3)),
-                        heading = tostring(Utils.round(GetEntityHeading(cache.ped), 3))
-                    }
-                })
                 oldCoords = coords
+                oldHeading = heading
             end
         else
             Wait(500)
         end
+
         Wait(50)
     end
 end)
@@ -176,7 +170,7 @@ end)
 -- Draw static emitters
 CreateThread(function()
     while true do
-        if Client.drawStaticEmitters  then
+        if Client.drawStaticEmitters then
             local coords = GetEntityCoords(cache.ped)
 
             for _, v in ipairs(Client.data.staticEmitters) do
