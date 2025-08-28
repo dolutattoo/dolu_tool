@@ -8,30 +8,24 @@ importers:
 
   .:
     dependencies:
-      '@babel/core':
-        specifier: ^7.20.12
-        version: 7.20.12
-      '@emotion/react':
-        specifier: ^11.10.5
-        version: 11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0)
       '@mantine/core':
         specifier: ^5.10.0
-        version: 5.10.0(@emotion/react@11.10.5)(@mantine/hooks@5.10.0)(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)
+        version: 5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mantine/dates':
         specifier: ^5.10.0
-        version: 5.10.0(@mantine/core@5.10.0)(@mantine/hooks@5.10.0)(dayjs@1.11.7)(react@18.2.0)
+        version: 5.10.0(@mantine/core@5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(dayjs@1.11.7)(react@18.2.0)
       '@mantine/hooks':
         specifier: ^5.10.0
         version: 5.10.0(react@18.2.0)
       '@mantine/modals':
         specifier: ^5.10.0
-        version: 5.10.0(@mantine/core@5.10.0)(@mantine/hooks@5.10.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 5.10.0(@mantine/core@5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@react-three/drei':
         specifier: ^9.52.6
-        version: 9.52.6(@react-three/fiber@8.10.0)(@types/three@0.144.0)(react-dom@18.2.0)(react@18.2.0)(three@0.145.0)
+        version: 9.52.6(@react-three/fiber@8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0))(@types/three@0.144.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0)
       '@react-three/fiber':
         specifier: ^8.10.0
-        version: 8.10.0(react-dom@18.2.0)(react@18.2.0)(three@0.145.0)
+        version: 8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0)
       dayjs:
         specifier: ^1.11.7
         version: 1.11.7
@@ -46,10 +40,10 @@ importers:
         version: 4.9.0(react@18.2.0)
       react-router-dom:
         specifier: ^6.6.2
-        version: 6.6.2(react-dom@18.2.0)(react@18.2.0)
+        version: 6.6.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       recoil:
         specifier: ^0.7.6
-        version: 0.7.6(react-dom@18.2.0)(react@18.2.0)
+        version: 0.7.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       three:
         specifier: ^0.145.0
         version: 0.145.0
@@ -72,9 +66,6 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
-      prettier:
-        specifier: ^2.8.1
-        version: 2.8.3
       rimraf:
         specifier: ^3.0.2
         version: 3.0.2
@@ -971,11 +962,6 @@ packages:
   potpack@1.0.2:
     resolution: {integrity: sha512-choctRBIV9EMT9WGAZHn3V7t0Z2pMQyl0EZE6pFc/6ml3ssw7Dlf/oAOvFwjm1HVsqfQN8GfeFyJ+d8tRzqueQ==}
 
-  prettier@2.8.3:
-    resolution: {integrity: sha512-tJ/oJ4amDihPoufT5sM0Z1SKEuKay8LfVAMlbbhnnkvt6BUserZylqo2PN+p9KeljLr0OHa2rXHU1T8reeoTrw==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-
   prop-types@15.8.1:
     resolution: {integrity: sha512-oj87CgZICdulUohogVAR7AjlC0327U4el4L6eAvOqCeudMDVU0NThNaV+b9Df4dXgSP1gXMTnPdhfe/2qDH5cg==}
 
@@ -1468,7 +1454,6 @@ snapshots:
 
   '@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0)':
     dependencies:
-      '@babel/core': 7.20.12
       '@babel/runtime': 7.20.7
       '@emotion/babel-plugin': 11.10.5(@babel/core@7.20.12)
       '@emotion/cache': 11.10.5
@@ -1476,9 +1461,11 @@ snapshots:
       '@emotion/use-insertion-effect-with-fallbacks': 1.0.0(react@18.2.0)
       '@emotion/utils': 1.2.0
       '@emotion/weak-memoize': 0.3.0
-      '@types/react': 18.0.26
       hoist-non-react-statics: 3.3.2
       react: 18.2.0
+    optionalDependencies:
+      '@babel/core': 7.20.12
+      '@types/react': 18.0.26
 
   '@emotion/serialize@1.1.1':
     dependencies:
@@ -1509,16 +1496,16 @@ snapshots:
     dependencies:
       '@floating-ui/core': 1.1.0
 
-  '@floating-ui/react-dom-interactions@0.10.3(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)':
+  '@floating-ui/react-dom-interactions@0.10.3(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@floating-ui/react-dom': 1.2.0(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom': 1.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       aria-hidden: 1.2.2(@types/react@18.0.26)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - '@types/react'
 
-  '@floating-ui/react-dom@1.2.0(react-dom@18.2.0)(react@18.2.0)':
+  '@floating-ui/react-dom@1.2.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@floating-ui/dom': 1.1.0
       react: 18.2.0
@@ -1546,13 +1533,13 @@ snapshots:
       '@jridgewell/resolve-uri': 3.1.0
       '@jridgewell/sourcemap-codec': 1.4.14
 
-  '@mantine/core@5.10.0(@emotion/react@11.10.5)(@mantine/hooks@5.10.0)(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)':
+  '@mantine/core@5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@floating-ui/react-dom-interactions': 0.10.3(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)
+      '@floating-ui/react-dom-interactions': 0.10.3(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mantine/hooks': 5.10.0(react@18.2.0)
-      '@mantine/styles': 5.10.0(@emotion/react@11.10.5)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/styles': 5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mantine/utils': 5.10.0(react@18.2.0)
-      '@radix-ui/react-scroll-area': 1.0.2(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-scroll-area': 1.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-textarea-autosize: 8.3.4(@types/react@18.0.26)(react@18.2.0)
@@ -1560,9 +1547,9 @@ snapshots:
       - '@emotion/react'
       - '@types/react'
 
-  '@mantine/dates@5.10.0(@mantine/core@5.10.0)(@mantine/hooks@5.10.0)(dayjs@1.11.7)(react@18.2.0)':
+  '@mantine/dates@5.10.0(@mantine/core@5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(dayjs@1.11.7)(react@18.2.0)':
     dependencies:
-      '@mantine/core': 5.10.0(@emotion/react@11.10.5)(@mantine/hooks@5.10.0)(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/core': 5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mantine/hooks': 5.10.0(react@18.2.0)
       '@mantine/utils': 5.10.0(react@18.2.0)
       dayjs: 1.11.7
@@ -1572,15 +1559,15 @@ snapshots:
     dependencies:
       react: 18.2.0
 
-  '@mantine/modals@5.10.0(@mantine/core@5.10.0)(@mantine/hooks@5.10.0)(react-dom@18.2.0)(react@18.2.0)':
+  '@mantine/modals@5.10.0(@mantine/core@5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
-      '@mantine/core': 5.10.0(@emotion/react@11.10.5)(@mantine/hooks@5.10.0)(@types/react@18.0.26)(react-dom@18.2.0)(react@18.2.0)
+      '@mantine/core': 5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(@mantine/hooks@5.10.0(react@18.2.0))(@types/react@18.0.26)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@mantine/hooks': 5.10.0(react@18.2.0)
       '@mantine/utils': 5.10.0(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@mantine/styles@5.10.0(@emotion/react@11.10.5)(react-dom@18.2.0)(react@18.2.0)':
+  '@mantine/styles@5.10.0(@emotion/react@11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@emotion/react': 11.10.5(@babel/core@7.20.12)(@types/react@18.0.26)(react@18.2.0)
       clsx: 1.1.1
@@ -1615,7 +1602,7 @@ snapshots:
       '@babel/runtime': 7.20.7
       react: 18.2.0
 
-  '@radix-ui/react-presence@1.0.0(react-dom@18.2.0)(react@18.2.0)':
+  '@radix-ui/react-presence@1.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.20.7
       '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
@@ -1623,14 +1610,14 @@ snapshots:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@radix-ui/react-primitive@1.0.1(react-dom@18.2.0)(react@18.2.0)':
+  '@radix-ui/react-primitive@1.0.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.20.7
       '@radix-ui/react-slot': 1.0.1(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
-  '@radix-ui/react-scroll-area@1.0.2(react-dom@18.2.0)(react@18.2.0)':
+  '@radix-ui/react-scroll-area@1.0.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@babel/runtime': 7.20.7
       '@radix-ui/number': 1.0.0
@@ -1638,8 +1625,8 @@ snapshots:
       '@radix-ui/react-compose-refs': 1.0.0(react@18.2.0)
       '@radix-ui/react-context': 1.0.0(react@18.2.0)
       '@radix-ui/react-direction': 1.0.0(react@18.2.0)
-      '@radix-ui/react-presence': 1.0.0(react-dom@18.2.0)(react@18.2.0)
-      '@radix-ui/react-primitive': 1.0.1(react-dom@18.2.0)(react@18.2.0)
+      '@radix-ui/react-presence': 1.0.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@radix-ui/react-primitive': 1.0.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@radix-ui/react-use-callback-ref': 1.0.0(react@18.2.0)
       '@radix-ui/react-use-layout-effect': 1.0.0(react@18.2.0)
       react: 18.2.0
@@ -1683,23 +1670,23 @@ snapshots:
       '@react-spring/types': 9.6.1
       react: 18.2.0
 
-  '@react-spring/three@9.6.1(@react-three/fiber@8.10.0)(react@18.2.0)(three@0.145.0)':
+  '@react-spring/three@9.6.1(@react-three/fiber@8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0))(react@18.2.0)(three@0.145.0)':
     dependencies:
       '@react-spring/animated': 9.6.1(react@18.2.0)
       '@react-spring/core': 9.6.1(react@18.2.0)
       '@react-spring/shared': 9.6.1(react@18.2.0)
       '@react-spring/types': 9.6.1
-      '@react-three/fiber': 8.10.0(react-dom@18.2.0)(react@18.2.0)(three@0.145.0)
+      '@react-three/fiber': 8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0)
       react: 18.2.0
       three: 0.145.0
 
   '@react-spring/types@9.6.1': {}
 
-  '@react-three/drei@9.52.6(@react-three/fiber@8.10.0)(@types/three@0.144.0)(react-dom@18.2.0)(react@18.2.0)(three@0.145.0)':
+  '@react-three/drei@9.52.6(@react-three/fiber@8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0))(@types/three@0.144.0)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0)':
     dependencies:
       '@babel/runtime': 7.20.7
-      '@react-spring/three': 9.6.1(@react-three/fiber@8.10.0)(react@18.2.0)(three@0.145.0)
-      '@react-three/fiber': 8.10.0(react-dom@18.2.0)(react@18.2.0)(three@0.145.0)
+      '@react-spring/three': 9.6.1(@react-three/fiber@8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0))(react@18.2.0)(three@0.145.0)
+      '@react-three/fiber': 8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0)
       '@use-gesture/react': 10.2.23(react@18.2.0)
       detect-gpu: 5.0.7
       glsl-noise: 0.0.0
@@ -1710,7 +1697,6 @@ snapshots:
       meshline: 3.1.6(three@0.145.0)
       react: 18.2.0
       react-composer: 5.0.3(react@18.2.0)
-      react-dom: 18.2.0(react@18.2.0)
       react-merge-refs: 1.1.0
       stats.js: 0.17.0
       suspend-react: 0.0.8(react@18.2.0)
@@ -1720,22 +1706,25 @@ snapshots:
       troika-three-text: 0.47.1(three@0.145.0)
       utility-types: 3.10.0
       zustand: 3.7.2(react@18.2.0)
+    optionalDependencies:
+      react-dom: 18.2.0(react@18.2.0)
     transitivePeerDependencies:
       - '@types/three'
 
-  '@react-three/fiber@8.10.0(react-dom@18.2.0)(react@18.2.0)(three@0.145.0)':
+  '@react-three/fiber@8.10.0(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(three@0.145.0)':
     dependencies:
       '@babel/runtime': 7.20.7
       '@types/react-reconciler': 0.26.7
       its-fine: 1.0.8(react@18.2.0)
       react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
       react-reconciler: 0.27.0(react@18.2.0)
-      react-use-measure: 2.1.1(react-dom@18.2.0)(react@18.2.0)
+      react-use-measure: 2.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       scheduler: 0.21.0
       suspend-react: 0.0.8(react@18.2.0)
       three: 0.145.0
       zustand: 3.7.2(react@18.2.0)
+    optionalDependencies:
+      react-dom: 18.2.0(react@18.2.0)
 
   '@remix-run/router@1.2.1': {}
 
@@ -1806,9 +1795,10 @@ snapshots:
 
   aria-hidden@1.2.2(@types/react@18.0.26)(react@18.2.0):
     dependencies:
-      '@types/react': 18.0.26
       react: 18.2.0
       tslib: 2.4.1
+    optionalDependencies:
+      '@types/react': 18.0.26
 
   babel-plugin-macros@3.1.0:
     dependencies:
@@ -2153,8 +2143,6 @@ snapshots:
 
   potpack@1.0.2: {}
 
-  prettier@2.8.3: {}
-
   prop-types@15.8.1:
     dependencies:
       loose-envify: 1.4.0
@@ -2188,7 +2176,7 @@ snapshots:
 
   react-refresh@0.13.0: {}
 
-  react-router-dom@6.6.2(react-dom@18.2.0)(react@18.2.0):
+  react-router-dom@6.6.2(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       '@remix-run/router': 1.2.1
       react: 18.2.0
@@ -2209,7 +2197,7 @@ snapshots:
     transitivePeerDependencies:
       - '@types/react'
 
-  react-use-measure@2.1.1(react-dom@18.2.0)(react@18.2.0):
+  react-use-measure@2.1.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       debounce: 1.2.1
       react: 18.2.0
@@ -2219,10 +2207,11 @@ snapshots:
     dependencies:
       loose-envify: 1.4.0
 
-  recoil@0.7.6(react-dom@18.2.0)(react@18.2.0):
+  recoil@0.7.6(react-dom@18.2.0(react@18.2.0))(react@18.2.0):
     dependencies:
       hamt_plus: 1.0.2
       react: 18.2.0
+    optionalDependencies:
       react-dom: 18.2.0(react@18.2.0)
 
   regenerator-runtime@0.13.11: {}
@@ -2338,14 +2327,16 @@ snapshots:
 
   use-isomorphic-layout-effect@1.1.2(@types/react@18.0.26)(react@18.2.0):
     dependencies:
-      '@types/react': 18.0.26
       react: 18.2.0
+    optionalDependencies:
+      '@types/react': 18.0.26
 
   use-latest@1.2.1(@types/react@18.0.26)(react@18.2.0):
     dependencies:
-      '@types/react': 18.0.26
       react: 18.2.0
       use-isomorphic-layout-effect: 1.1.2(@types/react@18.0.26)(react@18.2.0)
+    optionalDependencies:
+      '@types/react': 18.0.26
 
   utility-types@3.10.0: {}
 
@@ -2375,5 +2366,5 @@ snapshots:
   zstddec@0.0.2: {}
 
   zustand@3.7.2(react@18.2.0):
-    dependencies:
+    optionalDependencies:
       react: 18.2.0
