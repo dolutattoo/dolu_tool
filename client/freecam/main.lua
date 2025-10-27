@@ -149,22 +149,14 @@ function StartFreecamThread()
 			end
 		end
 
-		local frameCounter = 0
 		local loopPos, loopRotZ
 		while IsFreecamActive() do
 			loopPos, loopRotZ = UpdateCamera()
-			frameCounter += 1
-			if frameCounter > 100 then
-				frameCounter = 0
-				if loopPos then
-					updatePos(loopPos, loopRotZ)
-				end
+			if loopPos then
+				updatePos(loopPos, loopRotZ)
 			end
 			Wait(0)
 		end
-
-		-- One last time due to the optimization
-		updatePos(loopPos, loopRotZ)
 	end)
 
 	local function InstructionalButton(controlButton, text)
