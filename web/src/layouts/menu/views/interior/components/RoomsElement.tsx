@@ -132,7 +132,6 @@ const RoomsElement: React.FC = memo(() => {
         {locale.ui_current_room}
       </Text>
       <Space h="xs" />
-      <Paper p="md">
         <RoomInfoRow
           label={locale.ui_index}
           value={interior.currentRoom?.index}
@@ -159,7 +158,6 @@ const RoomsElement: React.FC = memo(() => {
             />
           )}
         </Group>
-      </Paper>
     </Paper>
   );
 });
