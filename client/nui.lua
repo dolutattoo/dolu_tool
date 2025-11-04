@@ -533,14 +533,20 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
         entity.name = data.modelName
         entity.hash = GetHashKey(entity.modelName)
 
+        local currentPos = GetEntityCoords(entity.handle)
+        local currentRot = GetEntityRotation(entity.handle)
+
         SetEntityAsMissionEntity(entity.handle, true, true)
         DeleteEntity(entity.handle)
 
         lib.requestModel(model)
 
-        local obj = CreateObjectNoOffset(model, entity.position.x, entity.position.y, entity.position.z, false, false, false)
-        SetEntityRotation(obj, entity.rotation.x, entity.rotation.y, entity.rotation.z, 2, false)
+        local obj = CreateObjectNoOffset(model, currentPos.x, currentPos.y, currentPos.z, false, false, false)
+        SetEntityRotation(obj, currentRot.x, currentRot.y, currentRot.z, 2, false)
+
         entity.handle = obj
+        entity.position = { x = currentPos.x, y = currentPos.y, z = currentPos.z }
+        entity.rotation = { x = currentRot.x, y = currentRot.y, z = currentRot.z }
 
         Entity(obj).state:set('entityId', entity.id, false)
 
