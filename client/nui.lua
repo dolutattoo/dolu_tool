@@ -764,11 +764,6 @@ RegisterNUICallback('dolu_tool:loadPages', function(data, cb)
     Utils.loadPage(data.type, data.activePage, data.filter, data.checkboxes)
 end)
 
-RegisterNUICallback('dolu_tool:openBrowser', function(data, cb)
-    cb(1)
-    SendNUIMessage({ name = 'openBrowser', url = data.url })
-end)
-
 RegisterNUICallback('dolu_tool:setStaticEmitterDrawDistance', function(distance, cb)
     cb(1)
     Client.staticEmitterDrawDistance = distance

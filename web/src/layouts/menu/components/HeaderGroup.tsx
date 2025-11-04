@@ -10,6 +10,7 @@ import { fetchNui } from '../../../utils/fetchNui'
 import { useLocales } from '../../../providers/LocaleProvider'
 import { useExitListener } from '../../../hooks/useExitListener'
 import { useEffect, useState } from 'react'
+import { openUrl } from '../../../utils/misc'
 
 const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
   const { locale } = useLocales()
@@ -45,7 +46,7 @@ const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
             <ActionIcon
               color='orange.4'
               style={{ margin: '5px', width: '40px', height: '40px' }}
-              onClick={() => fetchNui('dolu_tool:openBrowser', { url: data.url })}
+              onClick={() => openUrl(data.url!)}
             >
               <AiFillGithub fontSize={24} />
             </ActionIcon>
@@ -57,7 +58,7 @@ const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
             <ActionIcon
               color='blue.4'
               style={{ margin: '5px', width: '40px', height: '40px' }}
-              onClick={() => fetchNui('dolu_tool:openBrowser', { url: 'https://github.com/dolutattoo/dolu_tool/' })}
+              onClick={() => openUrl('https://github.com/dolutattoo/dolu_tool/')}
             >
               <AiFillGithub fontSize={24} />
             </ActionIcon>
@@ -69,7 +70,7 @@ const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
             <ActionIcon
               color='blue.4'
               style={{ margin: '5px', width: '40px', height: '40px' }}
-              onClick={() => fetchNui('dolu_tool:openBrowser', { url: 'https://discord.gg/ZQn2m2A' })}
+              onClick={() => openUrl('https://discord.gg/ZQn2m2A')}
             >
               <FaDiscord fontSize={24} />
             </ActionIcon>

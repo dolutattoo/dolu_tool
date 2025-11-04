@@ -40,7 +40,6 @@ ui_page 'web/build/index.html'
 files {
     'web/build/index.html',
     'web/build/**/*',
-    'web/browser.js',
     'locales/*.json'
 }
 

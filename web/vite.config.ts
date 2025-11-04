@@ -7,10 +7,7 @@ export default defineConfig({
   base: './',
   build: {
     chunkSizeWarningLimit: 1500,
-    outDir: 'build',
-    rollupOptions: {
-      external: ['browser.js']
-    }
+    outDir: 'build'
   },
   esbuild: {
     logOverride: { 'this-is-undefined-in-esm': 'silent' },
