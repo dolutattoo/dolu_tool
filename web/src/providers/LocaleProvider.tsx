@@ -134,6 +134,7 @@ interface Locale {
   ui_update_warning: string
   ui_github: string
   ui_discord: string
+  ui_support: string
   ui_audio: string
   ui_static_emitters: string
   ui_draw_static_emitters: string
@@ -282,6 +283,7 @@ debugData(
         ui_update_warning: "Update available!",
         ui_github: "Open Github Repository",
         ui_discord: "Join Dolu Discord",
+        ui_support: "Support me",
         ui_audio: "Audio",
         ui_static_emitters: 'Static Emitters',
         ui_draw_static_emitters: 'Show static emitters',
@@ -438,6 +440,7 @@ const LocaleProvider: React.FC<{ children: React.ReactNode }> = ({ children }) =
     ui_update_warning: '',
     ui_github: '',
     ui_discord: '',
+    ui_support: '',
     ui_audio: '',
     ui_static_emitters: '',
     ui_draw_static_emitters: '',

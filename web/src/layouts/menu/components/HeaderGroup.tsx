@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil'
 import { TbLogout } from 'react-icons/tb'
 import { AiFillGithub } from 'react-icons/ai'
 import { FaDiscord } from 'react-icons/fa'
+import { SiKofi } from "react-icons/si"
 import { menuVisibilityAtom } from '../../../atoms/visibility'
 import { Version } from '../../../atoms/version'
 import { useNuiEvent } from '../../../hooks/useNuiEvent'
@@ -41,7 +42,7 @@ const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
         </Group>
         <Group>
           {data.url ?
-          
+
           <Tooltip label={locale.ui_update_warning} position='bottom' transition='scale-y' opened={opened} color='orange.4' style={{ color: 'black', fontWeight: 'bold' }} withArrow arrowSize={10}>
             <ActionIcon
               color='orange.4'
@@ -63,7 +64,7 @@ const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
               <AiFillGithub fontSize={24} />
             </ActionIcon>
           </Tooltip>
-          
+
           }
 
           <Tooltip label={locale.ui_discord} position='bottom' transition='scale-y'>
@@ -73,6 +74,16 @@ const HeaderGroup: React.FC<{data: Version}> = ({ data }) => {
               onClick={() => openUrl('https://discord.gg/ZQn2m2A')}
             >
               <FaDiscord fontSize={24} />
+            </ActionIcon>
+          </Tooltip>
+
+          <Tooltip label={locale.ui_support} position='bottom' transition='scale-y'>
+            <ActionIcon
+              color='blue.4'
+              style={{ margin: '5px', width: '40px', height: '40px' }}
+              onClick={() => openUrl('https://ko-fi.com/dolutattoo')}
+            >
+              <SiKofi fontSize={24} />
             </ActionIcon>
           </Tooltip>
 
