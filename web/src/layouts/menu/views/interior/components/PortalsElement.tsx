@@ -22,11 +22,11 @@ const DebugCheckboxGroup = memo(({ locale, value, onChange }: { locale: any, val
   </Checkbox.Group>
 ));
 
-const FlagCheckboxGroup = memo(({ locale, value, onChange, portalEditingIndex }: { 
+const FlagCheckboxGroup = memo(({ locale, value, onChange, portalEditingIndex }: {
   locale: any,
-  value: string[], 
+  value: string[],
   onChange: (value: string[]) => void,
-  portalEditingIndex: number 
+  portalEditingIndex: number
 }) => (
   <Checkbox.Group
     orientation='vertical'
@@ -42,9 +42,9 @@ const FlagCheckboxGroup = memo(({ locale, value, onChange, portalEditingIndex }:
     <Checkbox color='blue.4' value='2' label={"2 - " + locale.ui_portal_flag_2} />
     <Checkbox color='blue.4' value='4' label={"4 - " + locale.ui_portal_flag_4} />
     <Checkbox color='blue.4' value='8' label={"8 - " + locale.ui_portal_flag_8} />
-    <Checkbox color='blue.4' value='16' label={"16 -" + locale.ui_portal_flag_16} />
-    <Checkbox color='blue.4' value='32' label={"32 -" + locale.ui_portal_flag_32} />
-    <Checkbox color='blue.4' value='64' label={"64 -" + locale.ui_portal_flag_64} />
+    <Checkbox color='blue.4' value='16' label={"16 - " + locale.ui_portal_flag_16} />
+    <Checkbox color='blue.4' value='32' label={"32 - " + locale.ui_portal_flag_32} />
+    <Checkbox color='blue.4' value='64' label={"64 - " + locale.ui_portal_flag_64} />
     <Checkbox color='blue.4' value='128' label={"128 - " + locale.ui_portal_flag_128} />
     <Checkbox color='blue.4' value='256' label={"256 - " + locale.ui_portal_flag_256} />
     <Checkbox color='blue.4' value='512' label={"512 - " + locale.ui_portal_flag_512} />
@@ -119,7 +119,7 @@ const PortalsElement: React.FC = () => {
                   }}
                   styles={{ input: { width: 58, textAlign: 'center' } }}
                 />
-                
+
                 <ActionIcon size={36} variant='default' onClick={() => { handlers.current?.increment() }}>
                   <FaArrowRight />
                 </ActionIcon>
