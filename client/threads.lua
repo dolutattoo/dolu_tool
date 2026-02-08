@@ -117,13 +117,27 @@ CreateThread(function()
     SetEntityDrawOutlineShader(1)
     SetEntityDrawOutlineColor(130, 150, 250, 180)
 
+    local previousGizmoEntity = nil
+
     while true do
         if Client.gizmoEntity then
+            -- If gizmo entity changed, unfreeze the previous one
+            if previousGizmoEntity and previousGizmoEntity ~= Client.gizmoEntity and DoesEntityExist(previousGizmoEntity) then
+                FreezeEntityPosition(previousGizmoEntity, false)
+            end
+
+            -- Freeze the current gizmo entity
+            if DoesEntityExist(Client.gizmoEntity) then
+                FreezeEntityPosition(Client.gizmoEntity, true)
+            end
+
+            previousGizmoEntity = Client.gizmoEntity
+
             SendNUIMessage({
                 action = 'setCameraPosition',
                 data = {
                     position = GetFinalRenderedCamCoord(),
-                    rotation = GetFinalRenderedCamRot()
+                    rotation = GetFinalRenderedCamRot(2)
                 }
             })
 
@@ -131,12 +145,17 @@ CreateThread(function()
                 SetEntityDrawOutline(Client.outlinedEntity, false)
             end
 
-
             if GetEntityType(Client.gizmoEntity) ~= 1 then
                 Client.outlinedEntity = Client.gizmoEntity
                 SetEntityDrawOutline(Client.outlinedEntity, true)
             end
         else
+            -- Unfreeze the previous entity when gizmo is disabled
+            if previousGizmoEntity and DoesEntityExist(previousGizmoEntity) then
+                FreezeEntityPosition(previousGizmoEntity, false)
+                previousGizmoEntity = nil
+            end
+
             if Client.outlinedEntity then
                 SetEntityDrawOutline(Client.outlinedEntity, false)
                 Client.outlinedEntity = nil

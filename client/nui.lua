@@ -362,12 +362,6 @@ RegisterNUICallback('dolu_tool:selectEntity', function(_, cb)
     local entityCoords = GetEntityCoords(entityHit)
     local entityRotation = GetEntityRotation(entityHit)
 
-    if Client.gizmoEntity and DoesEntityExist(Client.gizmoEntity) then
-        FreezeEntityPosition(Client.gizmoEntity, false)
-    end
-
-    FreezeEntityPosition(entityHit, true)
-
     local entityId = Entity(entityHit).state.entityId
     local entity = entityId and Client.spawnedEntities[entityId]
 
@@ -427,7 +421,6 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
         })
     end
 
-    FreezeEntityPosition(obj, true)
     DisableCamCollisionForEntity(obj)
 
     local entityRotation = GetEntityRotation(obj)
@@ -474,6 +467,128 @@ RegisterNUICallback('dolu_tool:addEntity', function(modelName, cb)
     updateNuiObjectList()
 end)
 
+RegisterNUICallback('dolu_tool:gizmoDragStart', function(data, cb)
+    cb(1)
+
+    -- If SHIFT is pressed, duplicate the current gizmo entity
+    if data.shiftPressed and Client.gizmoEntity and DoesEntityExist(Client.gizmoEntity) then
+        local entityState = Entity(Client.gizmoEntity).state
+        local entityId = entityState.entityId
+        local originalEntity = entityId and Client.spawnedEntities[entityId]
+
+        if not originalEntity then
+            -- Entity not in spawned list, can't duplicate
+            return
+        end
+
+        local model = joaat(originalEntity.name)
+
+        if not IsModelInCdimage(model) then
+            lib.notify({
+                title = 'Dolu Tool',
+                description = locale('entity_doesnt_exist'),
+                type = 'error',
+                position = 'top'
+            })
+            return
+        end
+
+        lib.requestModel(model)
+
+        -- Create duplicate at current position
+        local coords = vec3(data.position.x, data.position.y, data.position.z)
+        local rotation = vec3(data.rotation.x, data.rotation.y, data.rotation.z)
+        local obj = CreateObjectNoOffset(model, coords.x, coords.y, coords.z, true, true, false)
+        local newEntityId = generateUniqueId()
+
+        Entity(obj).state:set('entityId', newEntityId, false)
+
+        if not DoesEntityExist(obj) then
+            return lib.notify({
+                title = 'Dolu Tool',
+                description = locale('entity_cant_be_loaded'),
+                type = 'error',
+                position = 'top'
+            })
+        end
+
+        DisableCamCollisionForEntity(obj)
+        SetEntityRotation(obj, rotation.x, rotation.y, rotation.z, 2, false)
+
+        local entityCoords = GetEntityCoords(obj)
+        local entityRotation = GetEntityRotation(obj)
+
+        -- Add to spawned entities list
+        Client.spawnedEntities[newEntityId] = {
+            id = newEntityId,
+            handle = obj,
+            name = originalEntity.name,
+            position = {
+                x = Utils.round(entityCoords.x, 3),
+                y = Utils.round(entityCoords.y, 3),
+                z = Utils.round(entityCoords.z, 3)
+            },
+            rotation = {
+                x = Utils.round(entityRotation.x, 3),
+                y = Utils.round(entityRotation.y, 3),
+                z = Utils.round(entityRotation.z, 3)
+            },
+            invalid = false
+        }
+
+        -- Switch gizmo to control the new duplicate
+        Client.gizmoEntity = obj
+
+        local entityData = {
+            id = newEntityId,
+            name = originalEntity.name,
+            hash = GetHashKey(originalEntity.name),
+            handle = obj,
+            position = entityCoords,
+            rotation = entityRotation,
+        }
+
+        SendNUIMessage({
+            action = 'setGizmoEntity',
+            data = entityData
+        })
+
+        SendNUIMessage({
+            action = 'setObjectData',
+            data = {
+                entity = entityData
+            }
+        })
+
+        updateNuiObjectList()
+    end
+end)
+
+RegisterNUICallback('dolu_tool:updateGizmoTransform', function(data, cb)
+    cb(1)
+
+    -- Apply transform to current gizmo entity
+    if Client.gizmoEntity and DoesEntityExist(Client.gizmoEntity) then
+        if data.position then
+            SetEntityCoordsNoOffset(Client.gizmoEntity, data.position.x, data.position.y, data.position.z, false, false, false)
+        end
+
+        if data.rotation then
+            SetEntityRotation(Client.gizmoEntity, data.rotation.x, data.rotation.y, data.rotation.z, 0, false)
+        end
+
+        -- Update spawned entity data if it exists
+        local entityState = Entity(Client.gizmoEntity).state
+        local entityId = entityState.entityId
+        local spawnedEntity = entityId and Client.spawnedEntities[entityId]
+
+        if spawnedEntity then
+            spawnedEntity.position = GetEntityCoords(Client.gizmoEntity)
+            spawnedEntity.rotation = GetEntityRotation(Client.gizmoEntity)
+        end
+    end
+end)
+
 RegisterNUICallback('dolu_tool:deleteEntity', function(entityId, cb)
     cb(1)
 
@@ -509,106 +624,6 @@ RegisterNUICallback('dolu_tool:deleteEntity', function(entityId, cb)
     })
 end)
 
-RegisterNUICallback('dolu_tool:duplicateEntity', function(data, cb)
-    cb(1)
-
-    local originalEntity = Client.spawnedEntities[data.entityId]
-    if not originalEntity then
-        lib.notify({
-            title = 'Dolu Tool',
-            description = locale('entity_doesnt_exist'),
-            type = 'error',
-            position = 'top'
-        })
-        return
-    end
-
-    local model = joaat(originalEntity.name)
-
-    if not IsModelInCdimage(model) then
-        lib.notify({
-            title = 'Dolu Tool',
-            description = locale('entity_doesnt_exist'),
-            type = 'error',
-            position = 'top'
-        })
-        return
-    end
-
-    lib.requestModel(model)
-
-    -- Create duplicate at the original entity's position
-    local coords = vec3(data.position.x, data.position.y, data.position.z)
-    local rotation = vec3(data.rotation.x, data.rotation.y, data.rotation.z)
-    local obj = CreateObjectNoOffset(model, coords.x, coords.y, coords.z, true, true, false)
-    local entityId = generateUniqueId()
-
-    Entity(obj).state:set('entityId', entityId, false)
-
-    if not DoesEntityExist(obj) then
-        return lib.notify({
-            title = 'Dolu Tool',
-            description = locale('entity_cant_be_loaded'),
-            type = 'error',
-            position = 'top'
-        })
-    end
-
-    FreezeEntityPosition(obj, true)
-    DisableCamCollisionForEntity(obj)
-    SetEntityRotation(obj, rotation.x, rotation.y, rotation.z, 2, false)
-
-    local entityRotation = GetEntityRotation(obj)
-    local entityCoords = GetEntityCoords(obj)
-
-    Client.spawnedEntities[entityId] = {
-        id = entityId,
-        handle = obj,
-        name = originalEntity.name,
-        position = {
-            x = Utils.round(entityCoords.x, 3),
-            y = Utils.round(entityCoords.y, 3),
-            z = Utils.round(entityCoords.z, 3)
-        },
-        rotation = {
-            x = Utils.round(entityRotation.x, 3),
-            y = Utils.round(entityRotation.y, 3),
-            z = Utils.round(entityRotation.z, 3)
-        },
-        invalid = false
-    }
-
-    -- Unfreeze the original entity
-    if DoesEntityExist(originalEntity.handle) then
-        FreezeEntityPosition(originalEntity.handle, false)
-    end
-
-    local entityData = {
-        id = entityId,
-        name = originalEntity.name,
-        hash = GetHashKey(originalEntity.name),
-        handle = obj,
-        position = entityCoords,
-        rotation = entityRotation,
-    }
-
-    -- Set the gizmo to control the new duplicate
-    SendNUIMessage({
-        action = 'setGizmoEntity',
-        data = entityData
-    })
-
-    SendNUIMessage({
-        action = 'setObjectData',
-        data = {
-            entity = entityData
-        }
-    })
-
-    Client.gizmoEntity = obj
-    updateNuiObjectList()
-end)
-
 RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
     cb(1)
     local model = joaat(data.modelName)
@@ -617,6 +632,15 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
 
     if not IsModelInCdimage(model) then
         data.entity.invalid = true
+
+        -- Disable gizmo for invalid entity
+        if Client.gizmoEntity == entity.handle then
+            SendNUIMessage({
+                action = 'setGizmoEntity',
+                data = {}
+            })
+            Client.gizmoEntity = nil
+        end
 
         SendNUIMessage({
             action = 'setObjectData',
@@ -659,12 +683,20 @@ RegisterNUICallback('dolu_tool:setEntityModel', function(data, cb)
             }
         })
 
+        -- Reactivate gizmo with new entity
         SendNUIMessage({
             action = 'setGizmoEntity',
-            data = entity
+            data = {
+                id = entity.id,
+                name = entity.name,
+                hash = entity.hash,
+                handle = obj,
+                position = GetEntityCoords(obj),
+                rotation = GetEntityRotation(obj),
+            }
         })
 
-        Client.gizmoEntity = entity.handle
+        Client.gizmoEntity = obj
     end
 end)
 

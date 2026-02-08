@@ -14,7 +14,10 @@ export const TransformComponent = React.memo(({ space, mode, currentEntity, setC
 
   useNuiEvent<TransformEntity>('setGizmoEntity', (entity: TransformEntity | undefined): void => {
     setCurrentEntity(entity);
-    if (!entity || !entity.handle || !entity.position || !entity.rotation) {
+
+    // If entity is undefined or missing required data, clear the gizmo
+    if (!entity || !entity.position || !entity.rotation) {
+      setCurrentEntity(undefined);
       return;
     };
 
@@ -46,11 +49,8 @@ export const TransformComponent = React.memo(({ space, mode, currentEntity, setC
   }, []);
 
   const handleObjectDataUpdate = useCallback((): void => {
-    fetchNui('dolu_tool:moveEntity', {
-      name: currentEntity?.name,
-      hash: currentEntity?.hash,
-      handle: currentEntity?.handle,
-      id: currentEntity?.id,
+    // Just send position/rotation, let Lua decide what to do
+    fetchNui('dolu_tool:updateGizmoTransform', {
       position: {
         x: mesh.current.position.x,
         y: -mesh.current.position.z,
@@ -62,15 +62,15 @@ export const TransformComponent = React.memo(({ space, mode, currentEntity, setC
         z: MathUtils.radToDeg(mesh.current.rotation.y)
       }
     });
-  }, [mesh, currentEntity?.handle, currentEntity?.id]);
+  }, [mesh]);
 
   const handleMouseDown = useCallback(() => {
     onMouseDown?.()
 
-    // If SHIFT is pressed and in translate mode, duplicate the entity
-    if (shiftPressed && mode === 'translate' && currentEntity?.id) {
-      fetchNui('dolu_tool:duplicateEntity', {
-        entityId: currentEntity.id,
+    // Notify Lua if SHIFT is pressed in translate mode
+    if (shiftPressed && mode === 'translate') {
+      fetchNui('dolu_tool:gizmoDragStart', {
+        shiftPressed: true,
         position: {
           x: mesh.current.position.x,
           y: -mesh.current.position.z,
@@ -83,7 +83,7 @@ export const TransformComponent = React.memo(({ space, mode, currentEntity, setC
         }
       });
     }
-  }, [shiftPressed, mode, currentEntity, mesh, onMouseDown]);
+  }, [shiftPressed, mode, mesh, onMouseDown]);
 
   const handleMouseUp = useCallback(() => {
     onMouseUp?.();
@@ -92,7 +92,7 @@ export const TransformComponent = React.memo(({ space, mode, currentEntity, setC
   return (
     <>
       <Suspense fallback={<p>Loading Gizmo</p>}>
-        {currentEntity?.handle && <TransformControls onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} space={space} size={0.5} object={mesh} mode={mode} translationSnap={translateSnap} rotationSnap={rotateSnap} onObjectChange={handleObjectDataUpdate} />}
+        {currentEntity && <TransformControls onMouseUp={handleMouseUp} onMouseDown={handleMouseDown} space={space} size={0.5} object={mesh} mode={mode} translationSnap={translateSnap} rotationSnap={rotateSnap} onObjectChange={handleObjectDataUpdate} />}
         <mesh ref={mesh} />
       </Suspense>
     </>

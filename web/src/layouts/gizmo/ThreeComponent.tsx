@@ -87,7 +87,7 @@ export const ThreeComponent = React.memo(() => {
         <TransformComponent onMouseUp={() => setDragging(false)} onMouseDown={() => setDragging(true)} onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} currentEntity={entity} setCurrentEntity={setEntity} />
       </Canvas>
 
-      {entity?.handle && <ModeSelector onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} currentEntity={entity} />}
+      {entity && <ModeSelector onChangeSpace={toggleSpaceMode} onChangeMode={setEditorMode} space={spaceMode} mode={editorMode} currentEntity={entity} />}
     </>
   )
 })
