@@ -631,9 +631,9 @@ end
 
 Utils.raycast = function(maxDistance, ignore)
     local screenPosition = { x = GetControlNormal(0, 239), y = GetControlNormal(0, 240) }
-    local pos = GetGameplayCamCoord()
-    local rot = GetGameplayCamRot(0)
-    local fov = GetGameplayCamFov()
+    local pos = GetFinalRenderedCamCoord()
+    local rot = GetFinalRenderedCamRot(2)
+    local fov = GetFinalRenderedCamFov()
     local cam = CreateCamWithParams("DEFAULT_SCRIPTED_CAMERA", pos.x, pos.y, pos.z, rot.x, rot.y, rot.z, fov, 0, 2)
     local camRight, camForward, camUp, camPos = GetCamMatrix(cam)
 
